@@ -18,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('test')->group(function (){
+Route::prefix('admin')->group(function (){
     Route::get('/', function () {
-        dd('da');
         return view('admin.welcome');
     });
 });
