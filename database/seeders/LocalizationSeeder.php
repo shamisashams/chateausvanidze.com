@@ -10,6 +10,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Localization;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,7 @@ class LocalizationSeeder extends Seeder
     public function run()
     {
         // Delete all raws from localization
-        DB::table('localizations')->delete();
+        DB::table('localizations')->truncate();
 
 
         // Localization Array
@@ -56,6 +57,8 @@ class LocalizationSeeder extends Seeder
 
 
         // Insert localizations
-        DB::table('localizations')->insert($localizations);
+        foreach ($localizations as $localization) {
+            Localization::updateOrCreate($localization);
+        }
     }
 }
