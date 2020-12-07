@@ -27,8 +27,10 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware(['auth','can:isAdmin'])->group(function () {
         Route::get('/', function () {
-            dd(123);
+
+            return view('admin.welcome');
         });
+
 
     });
 });
