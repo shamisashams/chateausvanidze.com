@@ -26,7 +26,7 @@
     <link href="{{asset('../adm/css/main.css?version=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('../adm/css/fonts.css')}}" rel="stylesheet">
   </head>
-  <body class="with-content-panel menu-position-side menu-side-left" style="padding-bottom:0">
+  <body class="with-content-panel menu-position-side menu-side-left full-screen" style="padding-bottom:0">
     <x-admin.dashboard>
 
       @yield('body')
