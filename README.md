@@ -14,13 +14,13 @@ $ npm install
 create .env file by .env.example
 
 
-[comment]: <> (```sh)
+```sh
 
-[comment]: <> ($ php artisan migrate)
+$ php artisan migrate
 
-[comment]: <> ($ php artisan db:seed)
+$ php artisan db:seed --class="LocalizationSeeder"
 
-[comment]: <> (```)
+```
 
 # Run Application
 ```sh
