@@ -173,39 +173,13 @@
           <li class="sub-header">
             <span>Elements</span>
           </li>
-          <li class=" has-sub-menu">
-            <a href="#">
+          <li>
+            <a href="/languages" target="_blank">
               <div class="icon-w">
-                <div class="os-icon os-icon-mail"></div>
+                <div class="os-icon os-icon-flag"></div>
               </div>
-              <span>Emails</span></a>
-            <div class="sub-menu-w">
-              <div class="sub-menu-header">
-                Emails
-              </div>
-              <div class="sub-menu-icon">
-                <i class="os-icon os-icon-mail"></i>
-              </div>
-              <div class="sub-menu-i">
-                <ul class="sub-menu">
-                  <li>
-                    <a href="emails_welcome.html">Welcome Email</a>
-                  </li>
-                  <li>
-                    <a href="emails_order.html">Order Confirmation</a>
-                  </li>
-                  <li>
-                    <a href="emails_payment_due.html">Payment Due</a>
-                  </li>
-                  <li>
-                    <a href="emails_forgot.html">Forgot Password</a>
-                  </li>
-                  <li>
-                    <a href="emails_activate.html">Activate Account</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              <span>@lang('Language')</span></a>
+            
           </li>
           <li class=" has-sub-menu">
             <a href="#">
