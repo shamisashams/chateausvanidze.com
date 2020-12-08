@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,20 @@ Route::prefix('admin')->group(function () {
         Route::get('/', function () {
 
             return view('admin.welcome');
-        });
+        })->name('adminIndex');
+        Route::get('/test', function () {
 
+            return view('admin.welcome');
+        })->name('sss');
 
+        Route::resource('localizations', LocalizationController::class)
+            ->name('index', 'localizationIndex')
+            ->name('create','localizationCreateView')
+            ->name('store','localizationCreate')
+            ->name('edit','localizationEditView')
+            ->name('update','localizationUpdate')
+            ->name('destroy','localizationDestroy')
+            ->name('show','localizationShow')
+        ;
     });
 });
