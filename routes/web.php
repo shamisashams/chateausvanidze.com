@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    
+
     return view('welcome');
 });
 
@@ -26,6 +26,9 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::middleware(['auth','can:isAdmin'])->group(function () {
+        // Logout action if user is loggedin
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
         Route::get('/', function () {
 
             return view('admin.welcome');

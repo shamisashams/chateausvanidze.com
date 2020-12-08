@@ -102,7 +102,7 @@
                   <a href="users_profile_small.html"><i class="os-icon os-icon-ui-44"></i><span>My Invoices</span></a>
                 </li>
                 <li>
-                  <a href="users_profile_small.html"><i class="os-icon os-icon-ui-15"></i><span>Cancel Account</span></a>
+                  <a href="{{route('logout')}}"><i class="os-icon os-icon-ui-15"></i><span>Cancel Account</span></a>
                 </li>
               </ul>
             </div>
