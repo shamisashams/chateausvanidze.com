@@ -18,6 +18,17 @@ class LocalizationService
     }
 
     /**
+     * Get Localization by id.
+     *
+     * @param Localization $localization
+     * @return Localization
+     */
+    public function find(Localization $localization)
+    {
+        return $localization;
+    }
+
+    /**
      * Get localizations.
      *
      * @param LocalizationRequest $request
