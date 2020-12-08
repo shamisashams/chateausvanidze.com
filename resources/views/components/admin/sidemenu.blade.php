@@ -174,7 +174,7 @@
             <span>Elements</span>
           </li>
           <li>
-            <a href="/languages" target="_blank">
+            <a href="/admin/languages" target="_blank">
               <div class="icon-w">
                 <div class="os-icon os-icon-flag"></div>
               </div>
