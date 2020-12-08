@@ -9,7 +9,7 @@
                 Login Form
             </h4>
             {!! Form::open(['url' => route('login'),'method' =>'post']) !!}
-            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="form-group {{ ($errors->has('email') || $errors->has('auth')) ? ' has-error' : '' }}">
             {{ Form::label('email', 'Username', []) }}
             {{ Form::email('email', '', ['class' => 'form-control', 'no','placeholder'=>'Enter your username']) }}
             @if ($errors->has('email'))
@@ -18,12 +18,16 @@
                 </span>
             @endif
         </div>
-        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+        <div class="form-group {{ ($errors->has('password') || $errors->has('auth')) ? ' has-error' : '' }}">
             {{ Form::label('password', 'Password', []) }}
             {{ Form::password('password',  ['class' => 'form-control', 'no','placeholder'=>'Enter your password']) }}
             @if ($errors->has('password'))
                 <span class="help-block">
                     {{ $errors->first('password') }}
+                </span>
+            @elseif($errors->has('auth'))
+                <span class="help-block">
+                    {{ $errors->first('auth') }}
                 </span>
             @endif
         </div>

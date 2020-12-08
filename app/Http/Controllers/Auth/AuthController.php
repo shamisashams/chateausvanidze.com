@@ -25,6 +25,7 @@ class AuthController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function login(LoginRequest $request)
     {
@@ -32,7 +33,10 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            throw new \Exception('Wrong email or password.');
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'auth' => [__('validation.wrong_email_or_password')],
+            ]);
+            throw $error;
         }
         return redirect('admin');
 
