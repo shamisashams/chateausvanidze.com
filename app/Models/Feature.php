@@ -23,5 +23,9 @@ class Feature extends Model
     {
         return $this->hasMany('App\Models\ProductFreatures', 'feature_id');
     }
+    public function answers()
+    {
+        return $this->hasMany('App\Models\FeatureAnswers', 'feature_id');
+    }
 
 }
