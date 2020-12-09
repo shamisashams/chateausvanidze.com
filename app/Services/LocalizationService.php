@@ -20,12 +20,12 @@ class LocalizationService
     /**
      * Get Localization by id.
      *
-     * @param Localization $localization
+     * @param int $id
      * @return Localization
      */
-    public function find(Localization $localization)
+    public function find(int $id)
     {
-        return $localization;
+        return $this->model->where('id',$id)->firstOrFail();
     }
 
     /**
@@ -36,72 +36,74 @@ class LocalizationService
      */
     public function getAll($request)
     {
-        $localizations = $this->model->query();
+        $data = $this->model->query();
 
         if ($request->id) {
-            $localizations = $localizations->where('id',$request->id);
+            $data = $data->where('id',$request->id);
         }
 
         if ($request->title) {
-            $localizations = $localizations->where('title', 'like', "%{$request->title}%");
+            $data = $data->where('title', 'like', "%{$request->title}%");
         }
 
         if ($request->abbreviation) {
-            $localizations = $localizations->where('abbreviation', 'like', "%{$request->abbreviation}%");
+            $data = $data->where('abbreviation', 'like', "%{$request->abbreviation}%");
         }
 
         if ($request->native) {
-            $localizations = $localizations->where('native', 'like', "%{$request->native}%");
+            $data = $data->where('native', 'like', "%{$request->native}%");
         }
 
-        if ($request->native) {
-            $localizations = $localizations->where('locale', 'like', "%{$request->locale}%");
+        if ($request->locale) {
+            $data = $data->where('locale', 'like', "%{$request->locale}%");
         }
         if ($request->status != null) {
-            $localizations = $localizations->where('status',$request->status);
+            $data = $data->where('status',$request->status);
         }
 
 
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
 
-        return $localizations->paginate($perPage);
+        return $data->paginate($perPage);
     }
 
 
     /**
      * Create localization item into db.
      *
-     * @param array $data
+     * @param array $request
      * @return LengthAwarePaginator
      */
-    public function store(array $data)
+    public function store(array $request)
     {
-        return $this->model->create($data);
+        return $this->model->create($request);
     }
 
     /**
      * Update localization item.
      *
-     * @param Localization $localization
-     * @param array $data
+     * @param int $id
+     * @param array $request
      * @return bool
      */
-    public function update(Localization $localization, array $data)
+    public function update($id, array $request)
     {
-        return $localization->update($data);
+        $data = $this->model->find($id);
+        return $data->update($request);
     }
 
     /**
      * Create localization item into db.
      *
-     * @param Localization $localization
+     * @param int $id
      * @return bool
      * @throws \Exception
      */
-    public function delete(Localization $localization)
+    public function delete($id)
     {
-        return $localization->delete();
+        $data = $this->model->find($id);
+        return $data->delete();
     }
 
 }

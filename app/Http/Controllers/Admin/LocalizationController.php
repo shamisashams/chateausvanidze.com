@@ -8,8 +8,10 @@ use App\Services\LocalizationService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class LocalizationController extends AdminController
 {
@@ -56,7 +58,7 @@ class LocalizationController extends AdminController
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return Response
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function store(LocalizationRequest $request)
     {
@@ -113,9 +115,9 @@ class LocalizationController extends AdminController
      *
      * @param LocalizationRequest $request
      * @param int $id
-     * @return Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Response|Redirector
      */
-    public function update(LocalizationRequest $request, Localization $localization)
+    public function update(LocalizationRequest $request, int $id)
     {
         $data = $request->only([
             'title',
@@ -128,7 +130,7 @@ class LocalizationController extends AdminController
         $data['status'] = isset($data['status']) ? 1 : 0;
         $data['default'] = isset($data['default']) ? 1 : 0;
 
-        if (!$this->service->update($localization,$data)) {
+        if (!$this->service->update($id,$data)) {
             return redirect(route('localizationEditView'))->with('danger', 'Localization does not update.');
         }
 
@@ -139,12 +141,12 @@ class LocalizationController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Localization $localization
-     * @return Response
+     * @param int $id
+     * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy(Localization $localization)
+    public function destroy(int $id)
     {
-        if (!$this->service->delete($localization)) {
+        if (!$this->service->delete($id)) {
             return redirect(route('localizationIndex'))->with('danger', 'Localization does not delete.');
         }
         return redirect(route('localizationIndex'))->with('success', 'Localization delete successfully.');
