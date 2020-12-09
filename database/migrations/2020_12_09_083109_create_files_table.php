@@ -18,8 +18,8 @@ class CreateFilesTable extends Migration
             $table->string('name')->nullable();   
             $table->string('path')->nullable();    
             $table->string('format')->nullable(); 
-            $table->string('fileable_type'); 
-            $table->index('fileable_id');  
+            $table->string('fileable_type')->nullable(); 
+            $table->integer('fileable_id')->nullable();  
             $table->timestamps();
         });
     }
