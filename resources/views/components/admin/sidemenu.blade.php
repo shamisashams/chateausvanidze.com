@@ -172,7 +172,7 @@
           </li>
 
             <li class="">
-                <a href="{{route('localizationIndex')}}">
+                <a href="{{route('localizationIndex',app()->getLocale() )}}">
                     <div class="icon-w">
                         <div class="os-icon os-icon-life-buoy"></div>
                     </div>
@@ -182,12 +182,12 @@
             <span>Elements</span>
           </li>
           <li>
-            <a href="/admin/languages" target="_blank">
+            <a href="/{{app()->getLocale()}}/admin/languages" target="_blank">
               <div class="icon-w">
                 <div class="os-icon os-icon-flag"></div>
               </div>
               <span>@lang('Language')</span></a>
-            
+
           </li>
           <li class=" has-sub-menu">
             <a href="#">
