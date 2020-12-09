@@ -20,6 +20,7 @@ class CreateUserLanguagesTable extends Migration
             $table->string('first_name', 100);
             $table->string('last_name', 100);
             $table->mediumText('address')->nullable();
+            $table->index(['user_id', 'language_id']);
             $table->timestamps();
         });
     }
