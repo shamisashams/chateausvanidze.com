@@ -16,7 +16,7 @@
           Page Header
         </h1>
         <ul class="main-menu">
-          
+
           <li class="sub-header">
             <span>Options</span>
           </li>
@@ -170,6 +170,14 @@
               </div>
             </div>
           </li>
+
+            <li class="">
+                <a href="{{route('localizationIndex')}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>Localizations</span></a>
+            </li>
           <li class="sub-header">
             <span>Elements</span>
           </li>

@@ -25,6 +25,9 @@
     <link href="{{asset('../adm/bower_components/slick-carousel/slick/slick.css')}}" rel="stylesheet">
     <link href="{{asset('../adm/css/main.css?version=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('../adm/css/fonts.css')}}" rel="stylesheet">
+
+        {{--         Import Custom css.--}}
+        <link href="{{asset('css/app.css')}}" rel="stylesheet">
   </head>
   <body class="with-content-panel menu-position-side menu-side-left full-screen" style="padding-bottom:0">
     <x-admin.dashboard>
@@ -66,7 +69,7 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      
+
       ga('create', 'UA-XXXXXXX-9', 'auto');
       ga('send', 'pageview');
     </script>
