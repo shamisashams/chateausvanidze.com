@@ -59,3 +59,7 @@
     cursor: pointer;
 }
 
+.flag {
+    width: 24px;
+    margin-right: 3px;
+}

@@ -176,7 +176,7 @@
                     <div class="icon-w">
                         <div class="os-icon os-icon-life-buoy"></div>
                     </div>
-                    <span>Localizations</span></a>
+                    <span>{{__('admin.localizations')}}</span></a>
             </li>
           <li class="sub-header">
             <span>Elements</span>
@@ -186,7 +186,7 @@
               <div class="icon-w">
                 <div class="os-icon os-icon-flag"></div>
               </div>
-              <span>@lang('Language')</span></a>
+              <span>@lang('language')</span></a>
 
           </li>
           <li class=" has-sub-menu">

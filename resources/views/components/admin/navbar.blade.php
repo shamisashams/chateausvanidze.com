@@ -4,82 +4,26 @@
         START - Top Menu Controls
         -------------------->
         <div class="top-menu-controls">
-          <div class="element-search autosuggest-search-activator">
-            <input placeholder="Start typing to search..." type="text">
-          </div>
-          <!--------------------
-          START - Messages Link in secondary top menu
-          -------------------->
-          <div class="messages-notifications os-dropdown-trigger os-dropdown-position-left">
-            <i class="os-icon os-icon-mail-14"></i>
-            <div class="new-messages-count">
-              12
-            </div>
-            <div class="os-dropdown light message-list">
-              <ul>
-                <li>
-                  <a href="#">
-                    <div class="user-avatar-w">
-                      <img alt="" src="img/avatar1.jpg">
-                    </div>
-                    <div class="message-content">
-                      <h6 class="message-from">
-                        John Mayers
-                      </h6>
-                      <h6 class="message-title">
-                        Account Update
-                      </h6>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="user-avatar-w">
-                      <img alt="" src="img/avatar2.jpg">
-                    </div>
-                    <div class="message-content">
-                      <h6 class="message-from">
-                        Phil Jones
-                      </h6>
-                      <h6 class="message-title">
-                        Secutiry Updates
-                      </h6>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="user-avatar-w">
-                      <img alt="" src="img/avatar3.jpg">
-                    </div>
-                    <div class="message-content">
-                      <h6 class="message-from">
-                        Bekky Simpson
-                      </h6>
-                      <h6 class="message-title">
-                        Vacation Rentals
-                      </h6>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="user-avatar-w">
-                      <img alt="" src="img/avatar4.jpg">
-                    </div>
-                    <div class="message-content">
-                      <h6 class="message-from">
-                        Alice Priskon
-                      </h6>
-                      <h6 class="message-title">
-                        Payment Confirmation
-                      </h6>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+            @if(isset($languages['current']))
+                <div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-left">
+                    <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">
+                    @if(count($languages['data']) > 0)
+                        <div class="os-dropdown">
+                            <div class="icon-w">
+                                <i class="os-icon os-icon-ui-46"></i>
+                            </div>
+                            <ul>
+                                @foreach($languages['data'] as $data)
+                                <li>
+                                    <a href="{{$data['url']}}"><img class="flag" src="/adm/img/flags-icons/{{$data['img']}}"><span>{{$data['title']}}</span></a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    @endif
+                </div>
+            @endif
           <!--------------------
           END - Messages Link in secondary top menu
           --------------------><!--------------------
