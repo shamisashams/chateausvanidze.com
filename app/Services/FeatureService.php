@@ -159,7 +159,7 @@ class FeatureService
      * Create localization item into db.
      *
      * @param string $lang
-     * @return bool
+     * @return Localization
      * @throws \Exception
      */
     protected function getLocalization(string $lang) {
