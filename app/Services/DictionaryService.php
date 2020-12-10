@@ -3,19 +3,20 @@
 namespace App\Services;
 
 use App\Http\Request\Admin\FeatureRequest;
+use App\Models\Dictionary;
 use App\Models\Feature;
 use App\Models\Localization;
 use http\Client\Request;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use function PHPUnit\Framework\throwException;
 
-class FeatureService
+class DictionaryService
 {
     protected $model;
 
     protected $perPageArray = [10, 20, 30, 50, 100];
 
-    public function __construct(Feature $model)
+    public function __construct(Dictionary $model)
     {
         $this->model = $model;
     }
@@ -38,41 +39,15 @@ class FeatureService
      * @return LengthAwarePaginator
      * @throws \Exception
      */
-    public function getAll(string $lang,$request)
+    public function getAll(string $lang, $request)
     {
         $data = $this->model->query();
 
         $localization = $this->getLocalization($lang);
-
-        $data = $data->with('language')->whereHas('language', function ($query) use ($localization, $request) {
-            $query->where('language_id',$localization->id);
-        });
-
-        if ($request->id) {
-            $data = $data->where('id',$request->id);
+        
+        if ($request->key !== null) {
+            $data = $data->where('key', 'LIKE', '%'.$request->all()['key'].'%');
         }
-
-        if ($request->title) {
-            $data = $data->with('language')->whereHas('language', function ($query) use ($request) {
-                $query->where('title','like',"%{$request->title}%");
-            });
-        }
-
-        if ($request->type) {
-            $data = $data->where('type',  $request->type);
-        }
-
-        if ($request->position) {
-            $data = $data->where('position', 'like', "%{$request->position}%");
-        }
-
-        if ($request->slug) {
-            $data = $data->where('slug', 'like', "%{$request->slug}%");
-        }
-        if ($request->status != null) {
-            $data = $data->where('status',$request->status);
-        }
-
 
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
@@ -90,24 +65,18 @@ class FeatureService
      */
     public function store(string $lang, array $request)
     {
-        $request['status'] = isset($request['status']) ? 1 : 0;
-
-        $localization = $this->getLocalization($lang);
-        $this->model = new Feature([
-            'position' => $request['position'],
-            'status' => $request['status'],
-            'slug' => $request['slug'],
-            'type' => $request['type']
+        $model = $this->model->create([
+            'key' => $request['key'],
+            'module' => $request['module'],
         ]);
-
-        $this->model->save();
-
-        $this->model->language()->create([
-            'feature_id' => $this->model->id,
-            'language_id' => $localization->id,
-            'title' => $request['title'],
-        ]);
-
+        foreach (Localization::all() as $key => $lang) {
+       
+            $model->language()->create([
+                'language_id' => $lang->id,
+                'value' => $request['translates'][$key] ?? ''
+            ]);
+            
+        }
         return true;
     }
 
@@ -120,19 +89,18 @@ class FeatureService
      */
     public function update(int $id, array $request)
     {
-        $request['status'] = isset($request['status']) ? 1 : 0;
-
-        $data = $this->model->find($id);
-        $data->update([
-            'position' => $request['position'],
-            'status' => $request['status'],
-            'slug' => $request['slug'],
-            'type' => $request['type']
+        $model = $this->model->find($id);
+        $model->update([
+            'key' => $request['key'],
+            'module' => $request['module'],
         ]);
-        $data->language()->update([
-           'title' => $request['title']
-        ]);
-
+        foreach (Localization::all() as $key => $lang) {
+        
+            $language = $model->language()->where('language_id', $lang->id)->first();
+            $language->value = $request['translates'][$key] ?? '';
+            $language->save();
+            
+        }
         return true;
     }
 
@@ -140,7 +108,7 @@ class FeatureService
      * Create localization item into db.
      *
      * @param int $id
-     * @return bool
+     * @return boolean
      * @throws \Exception
      */
     public function delete($id)
