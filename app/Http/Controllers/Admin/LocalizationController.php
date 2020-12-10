@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use PhpParser\Node\Scalar\String_;
 
 class LocalizationController extends AdminController
 {
@@ -63,23 +64,19 @@ class LocalizationController extends AdminController
     public function store(LocalizationRequest $request)
     {
         $data = $request->only([
-           'title',
-           'abbreviation',
-           'native',
-           'locale',
-           'status',
+            'title',
+            'abbreviation',
+            'native',
+            'locale',
+            'status',
             'default'
         ]);
-
-
-        $data['status'] = isset($data['status']) ? 1 : 0;
-        $data['default'] = isset($data['default']) ? 1 : 0;
 
         if (!$this->service->store($data)) {
             return redirect(route('localizationCreateView'))->with('danger', 'Localization does not create.');
         }
 
-        return redirect(route('localizationIndex'))->with('success', 'Localization create successfully.');
+        return redirect(route('localizationIndex', app()->getLocale()))->with('success', 'Localization create successfully.');
 
     }
 
@@ -87,11 +84,12 @@ class LocalizationController extends AdminController
      * Display the specified resource.
      *
      * @param Localization $localization
+     * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function show(Localization $localization)
+    public function show(string $locale, Localization $localization)
     {
-        return view('admin.modules.localization.show',[
+        return view('admin.modules.localization.show', [
             'localization' => $localization
         ]);
     }
@@ -100,11 +98,12 @@ class LocalizationController extends AdminController
      * Show the form for editing the specified resource.
      *
      * @param Localization $localization
+     * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function edit(Localization $localization)
+    public function edit(string $locale, Localization $localization)
     {
-        return view('admin.modules.localization.update',[
+        return view('admin.modules.localization.update', [
             'localization' => $localization
         ]);
 
@@ -114,10 +113,11 @@ class LocalizationController extends AdminController
      * Update the specified resource in storage.
      *
      * @param LocalizationRequest $request
+     * @param string $locale
      * @param int $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function update(LocalizationRequest $request, int $id)
+    public function update(string $locale, LocalizationRequest $request, int $id)
     {
         $data = $request->only([
             'title',
@@ -127,29 +127,29 @@ class LocalizationController extends AdminController
             'status',
             'default'
         ]);
-        $data['status'] = isset($data['status']) ? 1 : 0;
-        $data['default'] = isset($data['default']) ? 1 : 0;
 
-        if (!$this->service->update($id,$data)) {
-            return redirect(route('localizationEditView'))->with('danger', 'Localization does not update.');
+
+        if (!$this->service->update($id, $data)) {
+            return redirect(route('localizationEditView', app()->getLocale()))->with('danger', 'Localization does not update.');
         }
 
-        return redirect(route('localizationIndex'))->with('success', 'Localization update successfully.');
+        return redirect(route('localizationIndex', app()->getLocale()))->with('success', 'Localization update successfully.');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param string $locale
      * @param int $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy(int $id)
+    public function destroy(string $locale, int $id)
     {
         if (!$this->service->delete($id)) {
-            return redirect(route('localizationIndex'))->with('danger', 'Localization does not delete.');
+            return redirect(route('localizationIndex', app()->getLocale()))->with('danger', 'Localization does not delete.');
         }
-        return redirect(route('localizationIndex'))->with('success', 'Localization delete successfully.');
+        return redirect(route('localizationIndex', app()->getLocale()))->with('success', 'Localization delete successfully.');
 
     }
 }

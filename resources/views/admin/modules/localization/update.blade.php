@@ -8,7 +8,7 @@
                         Localization update
                     </h6>
                     <div class="element-box">
-                        {!! Form::open(['url' => route('localizationUpdate',$localization->id),'method' =>'put']) !!}
+                        {!! Form::open(['url' => route('localizationUpdate',[app()->getLocale(),$localization->id]),'method' =>'put']) !!}
                         <div class="row">
                             <div class="col-6">
                                 <div

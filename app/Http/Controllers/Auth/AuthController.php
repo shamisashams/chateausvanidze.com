@@ -38,7 +38,7 @@ class AuthController extends Controller
             ]);
             throw $error;
         }
-        return redirect('admin');
+        return redirect(route('adminHome',app()->getLocale()));
 
     }
 
@@ -52,6 +52,6 @@ class AuthController extends Controller
     public function logout()
     {
         \Auth::logout();
-        return redirect(route('login-view'));
+        return redirect(route('login-view',app()->getLocale()));
     }
 }

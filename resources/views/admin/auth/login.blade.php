@@ -8,7 +8,7 @@
             <h4 class="auth-header">
                 Login Form
             </h4>
-            {!! Form::open(['url' => route('login'),'method' =>'post']) !!}
+            {!! Form::open(['url' => route('login', app()->getLocale()),'method' =>'post']) !!}
             <div class="form-group {{ ($errors->has('email') || $errors->has('auth')) ? ' has-error' : '' }}">
             {{ Form::label('email', 'Username', []) }}
             {{ Form::email('email', '', ['class' => 'form-control', 'no','placeholder'=>'Enter your username']) }}
