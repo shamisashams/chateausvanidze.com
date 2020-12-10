@@ -12,6 +12,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function PHPUnit\Framework\throwException;
 
 class Localization extends Model
 {
@@ -31,4 +32,19 @@ class Localization extends Model
         'default'
     ];
     protected $table = 'localizations';
+
+    /**
+     * Create localization item into db.
+     *
+     * @param string $lang
+     * @return Localization
+     * @throws \Exception
+     */
+    public static function getIdByName(string $lang) {
+        $localization = Localization::where('abbreviation',$lang)->first();
+        if ($localization == null) {
+            throwException('Localization not exist.');
+        }
+        return $localization->id;
+    }
 }

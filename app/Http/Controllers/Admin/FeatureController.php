@@ -129,7 +129,7 @@ class FeatureController extends AdminController
         ]);
 
 
-        if (!$this->service->update($id, $data)) {
+        if (!$this->service->update($locale, $id, $data)) {
             return redirect(route('featureEditView', app()->getLocale()))->with('danger', 'Feature does not update.');
         }
 

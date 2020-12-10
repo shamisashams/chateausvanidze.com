@@ -3,7 +3,7 @@
     <div class="content-i">
         <div class="content-box"><div class="element-wrapper">
                 <h6 class="element-header">
-                    {{ ($feature->language) ? $feature->language[0]->title : ''}}
+                    {{ (count($feature->availableLanguage) > 0) ? $feature->availableLanguage[0]->title : ''}}
                 </h6>
 
                 <div class="row">
@@ -12,7 +12,9 @@
                             <tbody>
                             <tr>
                                 <th>Title</th>
-                                <td> {{ ($feature->language) ? $feature->language[0]->title : ''}}</td>
+                                <td>
+                                    {{ (count($feature->availableLanguage) > 0) ? $feature->availableLanguage[0]->title : ''}}
+                                </td>
                             </tr>
                             <tr>
                                 <th>Position</th>

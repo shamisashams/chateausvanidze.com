@@ -14,7 +14,7 @@
                                 <div
                                     class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
                                     {{ Form::label('title', 'Title', []) }}
-                                    {{ Form::text('title', ($feature->language) ? $feature->language[0]->title : '', ['class' => 'form-control', 'no','placeholder'=>'Enter Title']) }}
+                                    {{ Form::text('title', (count($feature->availableLanguage) > 0) ? $feature->availableLanguage[0]->title : '', ['class' => 'form-control', 'no','placeholder'=>'Enter Title']) }}
                                     @if ($errors->has('title'))
                                         <span class="help-block">
                                     {{ $errors->first('title') }}
