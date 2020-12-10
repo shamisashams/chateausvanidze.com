@@ -89,7 +89,7 @@ class FeatureService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
-        $localizationID = Localization::getIdByName($lang);
+        $localization = Localization::getIdByName($lang);
 
         $this->model = new Feature([
             'position' => $request['position'],
@@ -101,7 +101,7 @@ class FeatureService
         $this->model->save();
 
         $this->model->language()->create([
-            'feature_id' => $this->model->id,
+            'language_id' => $localization->id,
             'title' => $request['title'],
         ]);
 
