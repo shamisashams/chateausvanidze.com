@@ -15,9 +15,33 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('permissions')->delete();
-        DB::table('roles_permissions')->delete();
-        DB::table('users_permissions')->delete();
+
+
+        if(DB::table('roles_permissions')->delete()) {
+            DB::table('roles_permissions')->truncate();
+        }
+
+        if(DB::table('users_permissions')->delete()) {
+            DB::table('users_permissions')->truncate();
+        }
+
+        if(DB::table('users_roles')->delete()) {
+            DB::table('users_roles')->truncate();
+        }
+
+        if (DB::table('permissions')->delete()) {
+            DB::table('permissions')->truncate();
+        }
+
+
+        if (DB::table('roles')->delete()) {
+            DB::table('roles')->truncate();
+        }
+
+        if (DB::table('users')->delete()) {
+            DB::table('users')->truncate();
+        }
+
 
         $permissions = array(
             array('name' => 'Read', 'slug' => 'read'),

@@ -24,7 +24,9 @@ class LocalizationSeeder extends Seeder
     public function run()
     {
         // Delete all raws from localization
-        DB::table('localizations')->truncate();
+        if (DB::table('localizations')->delete()) {
+            DB::table('localizations')->truncate();
+        }
 
 
         // Localization Array
