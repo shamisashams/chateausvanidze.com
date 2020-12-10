@@ -52,7 +52,7 @@ class DictionaryService
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
 
-        return $data->paginate($perPage);
+        return $data->orderBy('id', 'DESC')->paginate($perPage);
     }
 
 

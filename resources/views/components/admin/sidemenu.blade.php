@@ -197,6 +197,14 @@
               <span>@lang('language')</span></a>
 
           </li>
+          <li>
+            <a href="/{{app()->getLocale()}}/admin/answers" target="_blank">
+              <div class="icon-w">
+                <div class="os-icon os-icon-flag"></div>
+              </div>
+              <span>@lang('answers')</span></a>
+
+          </li>
           <li class=" has-sub-menu">
             <a href="#">
               <div class="icon-w">

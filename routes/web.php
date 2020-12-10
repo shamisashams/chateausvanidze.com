@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
@@ -68,7 +69,13 @@ Route::group([
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
 
+            Route::resource('answers', AnswerController::class)
+                ->name('index', 'AnswerIndex')
+                ->name('store', 'AnswerStore')
+                ->name('update', 'AnswerUpdate')
+                ->name('destroy', 'AnswerDestroy');    
         });
+            
     });
 });
 
