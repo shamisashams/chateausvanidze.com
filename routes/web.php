@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\DictionaryController;
+use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +60,14 @@ Route::group([
                 ->name('update', 'featureUpdate')
                 ->name('destroy', 'featureDestroy')
                 ->name('show', 'featureShow');
+
+            // Language
+            Route::resource('languages', DictionaryController::class)
+                ->name('index', 'DictionaryIndex')
+                ->name('store', 'DictionaryStore')
+                ->name('update', 'DictionaryUpdate')
+                ->name('destroy', 'DictionaryDestroy');
+
         });
     });
 });
