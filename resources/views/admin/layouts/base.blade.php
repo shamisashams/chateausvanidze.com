@@ -28,6 +28,7 @@
 
         {{--         Import Custom css.--}}
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
+        <link href="{{asset('adm/css/app.css')}}" rel="stylesheet">
   </head>
   <body class="with-content-panel menu-position-side menu-side-left full-screen" style="padding-bottom:0">
     <x-admin.dashboard>

@@ -30,4 +30,5 @@ class Localization extends Model
         'status',
         'default'
     ];
+    protected $table = 'localizations';
 }
