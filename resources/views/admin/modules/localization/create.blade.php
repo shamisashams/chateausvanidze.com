@@ -8,7 +8,7 @@
                         Localization Create
                     </h6>
                     <div class="element-box">
-                        {!! Form::open(['url' => route('localizationCreate'),'method' =>'post']) !!}
+                        {!! Form::open(['url' => route('localizationCreate',app()->getLocale()),'method' =>'post']) !!}
                         <div class="row">
                             <div class="col-6">
                                 <div

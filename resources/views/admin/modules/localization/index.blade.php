@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-    {!! Form::open(['url' => route('localizationIndex'),'method' =>'get']) !!}
+    {!! Form::open(['url' => route('localizationIndex',app()->getLocale()),'method' =>'get']) !!}
     <div class="controls-above-table">
         <div class="row">
             <div class="col-sm-2">
-                <a class="btn btn-lg btn-success" href="{{route('localizationCreateView')}}">Create Localization</a>
+                <a class="btn btn-lg btn-success" href="{{route('localizationCreateView',app()->getLocale())}}">Create Localization</a>
             </div>
             <div class="col-sm-10 per-page-column">
                 <div class="per-page-container">
@@ -94,15 +94,15 @@
                             @endif
                         </td>
                         <td class="row-actions d-flex">
-                            <a href="{{route('localizationShow',$localization->id)}}">
+                            <a href="{{route('localizationShow',[app()->getLocale(),$localization->id])}}">
                                 <i class="os-icon os-icon-documents-07"></i>
                             </a>
-                            <a href="{{route('localizationEditView',$localization->id)}}">
+                            <a href="{{route('localizationEditView',[app()->getLocale(), $localization->id])}}">
                                 <i class="os-icon os-icon-ui-49">
 
                                 </i>
                             </a>
-                            {!! Form::open(['url' => route('localizationDestroy',$localization->id),'method' =>'delete']) !!}
+                            {!! Form::open(['url' => route('localizationDestroy',[app()->getLocale(),$localization->id]),'method' =>'delete']) !!}
                                 <button class="delete-icon" onclick="return confirm('Are you sure, you want to delete this item?!');" type="submit">
                                     <i
                                         class="os-icon os-icon-ui-15">

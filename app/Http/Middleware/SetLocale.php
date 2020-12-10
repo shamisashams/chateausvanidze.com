@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Localization;
 use Closure;
+use function PHPUnit\Framework\throwException;
 
 class SetLocale
 {
@@ -15,8 +17,15 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
-
+        $locale = $request->segment(1);
+        $localization = Localization::where('abbreviation',$locale)->first();
+        if ($localization == null) {
+            throwException('Localization is wrong.');
+        }
+        if (!$localization->status) {
+            throwException('Localization is disabled..');
+        }
+        app()->setLocale($locale);
         return $next($request);
     }
 }

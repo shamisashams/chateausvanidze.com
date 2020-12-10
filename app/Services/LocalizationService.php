@@ -77,6 +77,8 @@ class LocalizationService
      */
     public function store(array $request)
     {
+        $request['status'] = isset($request['status']) ? 1 : 0;
+        $request['default'] = isset($request['default']) ? 1 : 0;
         return $this->model->create($request);
     }
 
@@ -89,6 +91,9 @@ class LocalizationService
      */
     public function update($id, array $request)
     {
+        $request['status'] = isset($request['status']) ? 1 : 0;
+        $request['default'] = isset($request['default']) ? 1 : 0;
+
         $data = $this->model->find($id);
         return $data->update($request);
     }
