@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DictionaryController;
 use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
 
