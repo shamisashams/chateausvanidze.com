@@ -15,7 +15,7 @@
                             <ul>
                                 @foreach($languages['data'] as $data)
                                 <li>
-                                    <a href="{{$data['url']}}"><img class="flag" src="/adm/img/flags-icons/{{$data['img']}}"><span>{{$data['title']}}</span></a>
+                                    <a href="{{$data['url']}}" class="d-flex"><img class="flag" src="/adm/img/flags-icons/{{$data['img']}}"><span>{{$data['title']}}</span></a>
                                 </li>
                                 @endforeach
                             </ul>
