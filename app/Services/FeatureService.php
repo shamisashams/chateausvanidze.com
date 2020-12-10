@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Request\Admin\FeatureRequest;
 use App\Models\Feature;
+use App\Models\FeatureLanguage;
 use App\Models\Localization;
 use http\Client\Request;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -42,19 +43,15 @@ class FeatureService
     {
         $data = $this->model->query();
 
-        $localization = $this->getLocalization($lang);
-
-        $data = $data->with('language')->whereHas('language', function ($query) use ($localization, $request) {
-            $query->where('language_id',$localization->id);
-        });
+        $localizationID = Localization::getIdByName($lang);
 
         if ($request->id) {
             $data = $data->where('id',$request->id);
         }
 
         if ($request->title) {
-            $data = $data->with('language')->whereHas('language', function ($query) use ($request) {
-                $query->where('title','like',"%{$request->title}%");
+            $data = $data->with('language')->whereHas('language', function ($query) use ($localizationID, $request) {
+                $query->where('title','like',"%{$request->title}%")->where('language_id',$localizationID);
             });
         }
 
@@ -92,7 +89,8 @@ class FeatureService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
-        $localization = $this->getLocalization($lang);
+        $localizationID = Localization::getIdByName($lang);
+
         $this->model = new Feature([
             'position' => $request['position'],
             'status' => $request['status'],
@@ -104,7 +102,7 @@ class FeatureService
 
         $this->model->language()->create([
             'feature_id' => $this->model->id,
-            'language_id' => $localization->id,
+            'language_id' => $localizationID,
             'title' => $request['title'],
         ]);
 
@@ -114,11 +112,12 @@ class FeatureService
     /**
      * Update Feature item.
      *
+     * @param string $lang
      * @param int $id
      * @param array $request
      * @return bool
      */
-    public function update(int $id, array $request)
+    public function update(string $lang,int $id, array $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
@@ -129,9 +128,21 @@ class FeatureService
             'slug' => $request['slug'],
             'type' => $request['type']
         ]);
-        $data->language()->update([
-           'title' => $request['title']
-        ]);
+
+        $localizationID =  Localization::getIdByName($lang);
+
+        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localizationID])->first();
+
+        if ($featureLanguage == null) {
+            $data->language()->create([
+                'feature_id' => $this->model->id,
+                'language_id' => $localizationID,
+                'title' => $request['title'],
+            ]);
+        } else {
+            $featureLanguage->title = $request['title'];
+            $featureLanguage->save();
+        }
 
         return true;
     }
@@ -153,21 +164,5 @@ class FeatureService
             throwException('Feature  can not delete.');
         }
         return true;
-    }
-
-    /**
-     * Create localization item into db.
-     *
-     * @param string $lang
-     * @return Localization
-     * @throws \Exception
-     */
-    protected function getLocalization(string $lang) {
-        $localization = Localization::where('abbreviation',$lang)->first();
-        if (!$localization) {
-            throwException('Localization not exist.');
-        }
-
-        return $localization;
     }
 }

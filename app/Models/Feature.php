@@ -9,12 +9,12 @@ class Feature extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'position',       
+        'position',
         'status',
-        'slug',  
-        'type', 
+        'slug',
+        'type',
     ];
-    
+
     public function language()
     {
         return $this->hasMany('App\Models\FeatureLanguage', 'feature_id');
@@ -28,4 +28,7 @@ class Feature extends Model
         return $this->hasMany('App\Models\FeatureAnswers', 'feature_id');
     }
 
+    public function availableLanguage() {
+        return $this->language()->where('language_id','=', Localization::getIdByName(app()->getLocale()));
+    }
 }

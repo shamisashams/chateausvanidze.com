@@ -90,7 +90,7 @@
                 @foreach($features as $feature)
                     <tr>
                         <td class="text-left">{{$feature->id}}</td>
-                        <td class="text-center">{{$feature->language[0]->title}}</td>
+                        <td class="text-center">{{(count($feature->availableLanguage) > 0) ?  $feature->availableLanguage[0]->title : ''}}</td>
                         <td class="text-center">{{$feature->type}}</td>
                         <td class="text-center">{{$feature->position}}</td>
                         <td class="text-center">{{$feature->slug}}</td>
