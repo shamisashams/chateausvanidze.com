@@ -23,5 +23,13 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductLanguage', 'product_id');
     }
+    public function features()
+    {
+        return $this->hasMany('App\Models\ProductFreatures', 'product_id');
+    }
+    public function answers()
+    {
+        return $this->hasMany('App\Models\ProductAnswers', 'product_id');
+    }
 
 }
