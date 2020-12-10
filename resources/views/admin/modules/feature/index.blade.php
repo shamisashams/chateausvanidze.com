@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-    {!! Form::open(['url' => route('localizationIndex',app()->getLocale()),'method' =>'get']) !!}
+    {!! Form::open(['url' => route('featureIndex',app()->getLocale()),'method' =>'get']) !!}
     <div class="controls-above-table">
         <div class="row">
             <div class="col-sm-2">
-                <a class="btn btn-lg btn-success" href="{{route('localizationCreateView',app()->getLocale())}}">@lang('admin.create_localizations')</a>
+                <a class="btn btn-lg btn-success" href="{{route('featureCreateView',app()->getLocale())}}">@lang('admin.create_features')</a>
             </div>
             <div class="col-sm-10 per-page-column">
                 <div class="per-page-container">
@@ -19,9 +19,9 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
-                <th>Abbreviation</th>
-                <th>native</th>
-                <th>locale</th>
+                <th>type</th>
+                <th>position</th>
+                <th>slug</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -43,26 +43,33 @@
                     @endif
                 </th>
                 <th>
-                    {{ Form::text('abbreviation',Request::get('abbreviation'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @if ($errors->has('abbreviation'))
+                    {{ Form::select('type',[
+                        '' => 'All',
+                        'input' => 'Input',
+                        'textarea' => 'Textarea',
+                        'checkbox' => 'Checkbox',
+                        'radio' => 'Radio',
+                        'select' => 'Select'
+                        ],Request::get('type'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('type'))
                         <span class="help-block">
-                        {{ $errors->first('abbreviation') }}
+                        {{ $errors->first('type') }}
                         </span>
                     @endif
                 </th>
                 <th>
-                    {{ Form::text('native',Request::get('native'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @if ($errors->has('native'))
+                    {{ Form::text('position',Request::get('position'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('position'))
                         <span class="help-block">
-                        {{ $errors->first('native') }}
+                        {{ $errors->first('position') }}
                         </span>
                     @endif
                 </th>
                 <th>
-                    {{ Form::text('locale',Request::get('locale'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @if ($errors->has('locale'))
+                    {{ Form::text('slug',Request::get('slug'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('slug'))
                         <span class="help-block">
-                        {{ $errors->first('locale') }}
+                        {{ $errors->first('slug') }}
                         </span>
                     @endif
                 </th>
@@ -79,31 +86,31 @@
             </thead>
             {!! Form::close() !!}
             <tbody>
-            @if($localizations)
-                @foreach($localizations as $localization)
+            @if($features)
+                @foreach($features as $feature)
                     <tr>
-                        <td class="text-left">{{$localization->id}}</td>
-                        <td class="text-center">{{$localization->title}}</td>
-                        <td class="text-center">{{$localization->abbreviation}}</td>
-                        <td class="text-center">{{$localization->native}}</td>
-                        <td class="text-center">{{$localization->locale}}</td>
+                        <td class="text-left">{{$feature->id}}</td>
+                        <td class="text-center">{{$feature->language[0]->title}}</td>
+                        <td class="text-center">{{$feature->type}}</td>
+                        <td class="text-center">{{$feature->position}}</td>
+                        <td class="text-center">{{$feature->slug}}</td>
                         <td class="text-center">
-                            @if($localization->status)
+                            @if($feature->status)
                                 <span class="text-green">Active</span>
                             @else
                                 <span class="text-red">Not Active</span>
                             @endif
                         </td>
                         <td class="row-actions d-flex">
-                            <a href="{{route('localizationShow',[app()->getLocale(),$localization->id])}}">
+                            <a href="{{route('featureShow',[app()->getLocale(),$feature->id])}}">
                                 <i class="os-icon os-icon-documents-07"></i>
                             </a>
-                            <a href="{{route('localizationEditView',[app()->getLocale(), $localization->id])}}">
+                            <a href="{{route('featureEditView',[app()->getLocale(), $feature->id])}}">
                                 <i class="os-icon os-icon-ui-49">
 
                                 </i>
                             </a>
-                            {!! Form::open(['url' => route('localizationDestroy',[app()->getLocale(),$localization->id]),'method' =>'delete']) !!}
+                            {!! Form::open(['url' => route('featureDestroy',[app()->getLocale(),$feature->id]),'method' =>'delete']) !!}
                                 <button class="delete-icon" onclick="return confirm('Are you sure, you want to delete this item?!');" type="submit">
                                     <i
                                         class="os-icon os-icon-ui-15">
@@ -118,6 +125,6 @@
             </tbody>
         </table>
     </div>
-    {{ $localizations->links('admin.vendor.pagination.custom') }}
+    {{ $features->links('admin.vendor.pagination.custom') }}
 
 @endsection

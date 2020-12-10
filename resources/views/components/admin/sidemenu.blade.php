@@ -178,6 +178,14 @@
                     </div>
                     <span>{{__('admin.localizations')}}</span></a>
             </li>
+
+            <li class="">
+                <a href="{{route('featureIndex',app()->getLocale() )}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>{{__('admin.features')}}</span></a>
+            </li>
           <li class="sub-header">
             <span>Elements</span>
           </li>

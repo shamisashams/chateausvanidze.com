@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::group([
             })->name('adminHome');
 
 
-
+            // Localizations
             Route::resource('localizations', LocalizationController::class)
                 ->name('index', 'localizationIndex')
                 ->name('create', 'localizationCreateView')
@@ -48,6 +49,15 @@ Route::group([
                 ->name('destroy', 'localizationDestroy')
                 ->name('show', 'localizationShow');
 
+            // Features
+            Route::resource('features', FeatureController::class)
+                ->name('index', 'featureIndex')
+                ->name('create', 'featureCreateView')
+                ->name('store', 'featureCreate')
+                ->name('edit', 'featureEditView')
+                ->name('update', 'featureUpdate')
+                ->name('destroy', 'featureDestroy')
+                ->name('show', 'featureShow');
         });
     });
 });

@@ -23,7 +23,7 @@
                         @foreach ($element as $page => $url)
                             @if ($page == $paginator->currentPage())
                                 <li>
-                                    <a class="current" href="" onclick="return false;">1</a>
+                                    <a class="current" href="" onclick="return false;">{{$page}}</a>
                                 </li>
                             @else
                                 <li>
