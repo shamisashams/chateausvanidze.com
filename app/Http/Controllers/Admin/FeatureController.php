@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\FeatureRequest;
-use App\Http\Request\Admin\LocalizationRequest;
-use App\Models\Feature;
-use App\Models\Localization;
 use App\Services\FeatureService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -84,28 +81,28 @@ class FeatureController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param Feature $feature
+     * @param int $id
      * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function show(string $locale, Feature $feature)
+    public function show(string $locale, int $id)
     {
         return view('admin.modules.feature.show', [
-            'feature' => $feature
+            'feature' => $this->service->find($id)
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Feature $feature
+     * @param int $id
      * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function edit(string $locale, Feature $feature)
+    public function edit(string $locale, int $id)
     {
         return view('admin.modules.feature.update', [
-            'feature' => $feature
+            'feature' => $this->service->find($id)
         ]);
 
     }

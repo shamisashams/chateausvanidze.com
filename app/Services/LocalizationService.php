@@ -25,7 +25,7 @@ class LocalizationService
      */
     public function find(int $id)
     {
-        return $this->model->where('id',$id)->firstOrFail();
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -79,6 +79,7 @@ class LocalizationService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
         $request['default'] = isset($request['default']) ? 1 : 0;
+
         return $this->model->create($request);
     }
 
@@ -93,8 +94,10 @@ class LocalizationService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
         $request['default'] = isset($request['default']) ? 1 : 0;
-
-        $data = $this->model->find($id);
+        if ($request['default']) {
+            $this->updateDefault();
+        }
+        $data = $this->find($id);
         return $data->update($request);
     }
 
@@ -107,8 +110,18 @@ class LocalizationService
      */
     public function delete($id)
     {
-        $data = $this->model->find($id);
+        $data = $this->find($id);
         return $data->delete();
     }
 
+
+    protected function updateDefault() {
+        $localization = Localization::where('default', true)->first();
+        if ($localization != null) {
+            $localization->default = false;
+            $localization->save();
+        }
+
+        return true;
+    }
 }

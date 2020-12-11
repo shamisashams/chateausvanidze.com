@@ -19,12 +19,12 @@ class SetLocale
     {
         $locale = $request->segment(1);
         $localization = Localization::where('abbreviation',$locale)->first();
-        // if ($localization == null) {
-        //     throwException('Localization is wrong.');
-        // }
-        // if (!$localization->status) {
-        //     throwException('Localization is disabled..');
-        // }
+         if ($localization == null) {
+             throwException('Localization is wrong.');
+         }
+         if (!$localization->status) {
+             throwException('Localization is disabled..');
+         }
         app()->setLocale($locale);
         return $next($request);
     }

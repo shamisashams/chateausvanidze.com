@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Request\Admin\FeatureRequest;
 use App\Models\Feature;
 use App\Models\FeatureLanguage;
 use App\Models\Localization;
-use http\Client\Request;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use function PHPUnit\Framework\throwException;
 
@@ -29,7 +27,7 @@ class FeatureService
      */
     public function find(int $id)
     {
-        return $this->model->where('id',$id)->firstOrFail();
+        return $this->model->findOrFail($id);
     }
 
     /**
