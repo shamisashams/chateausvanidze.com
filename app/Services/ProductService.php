@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Localization;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use function PHPUnit\Framework\throwException;
 
@@ -83,7 +84,51 @@ class ProductService
      */
     public function store(string $lang, array $request)
     {
+        $request['status'] = isset($request['status']) ? 1 : 0;
 
+        $localizationID = Localization::getIdByName($lang);
+
+
+        $this->model = $this->model->create([
+            'release_date' => Carbon::parse($request['release_date']),
+            'position' => $request['position'],
+            'status' => $request['status'],
+            'slug' => $request['slug'],
+            'price' => $request['price']
+        ]);
+
+        $this->model->language()->create([
+            'feature_id' => $this->model->id,
+            'language_id' => $localizationID,
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'content' => $request['content'],
+        ]);
+
+        if ($request['features'] != null) {
+
+            if (count($request['features']) > 0) {
+
+                foreach ($request['features'] as $key => $feature) {
+                    if(count($feature)> 0) {
+                        foreach ($feature as $answer) {
+                            $this->model->features()->create([
+                               'feature_id' => $key,
+                               'product_id' => $this->model->id
+                            ]);
+
+                            $this->model->answers()->create([
+                               'product_id' => $this->model->id,
+                               'feature_id' => $key,
+                               'answer_id' => $answer
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -108,22 +153,27 @@ class ProductService
      */
     public function delete($id)
     {
-
-    }
-
-    /**
-     * Create Product item into db.
-     *
-     * @param string $lang
-     * @return Localization
-     * @throws \Exception
-     */
-    protected function getLocalization(string $lang) {
-        $localization = Localization::where('abbreviation',$lang)->first();
-        if (!$localization) {
-            throwException('Localization not exist.');
+        $data = $this->find($id);
+        if (count($data->language) > 0) {
+            if(!$data->language()->delete()){
+                throwException('Product languages can not delete.');
+            }
+        }
+        if (count($data->answers) > 0) {
+            if(!$data->answers()->delete()){
+                throwException('Product Answers can not delete.');
+            }
         }
 
-        return $localization;
+        if (count($data->features) > 0) {
+            if(!$data->features()->delete()){
+                throwException('Product Answers can not delete.');
+            }
+        }
+
+        if (!$data->delete()) {
+            throwException('Product  can not delete.');
+        }
+        return true;
     }
 }

@@ -25,4 +25,8 @@ class Answer extends Model
     {
         return $this->hasMany('App\Models\ProductAnswers', 'answer_id');
     }
+
+    public function availableLanguage() {
+        return $this->language()->where('language_id','=', Localization::getIdByName(app()->getLocale()));
+    }
 }

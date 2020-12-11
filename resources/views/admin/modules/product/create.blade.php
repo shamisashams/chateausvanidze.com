@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-    {!! Form::open(['url' => route('featureCreate',app()->getLocale()),'method' =>'post']) !!}
+    {!! Form::open(['url' => route('productCreate',app()->getLocale()),'method' =>'post']) !!}
 
     <div class="content-box">
         <div class="row">
@@ -65,19 +65,39 @@
                         <div class="row">
                             <div class="col-6">
                                 <div
-                                    class="form-group {{ $errors->has('slug') ? ' has-error' : '' }}">
-                                    {{ Form::label('slug', 'Slug', []) }}
-                                    {{ Form::text('slug', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Slug']) }}
-                                    @if ($errors->has('slug'))
+                                    class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+                                    {{ Form::label('description', 'Description', []) }}
+                                    {{ Form::textarea('description', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Description']) }}
+                                    @if ($errors->has('description'))
                                         <span class="help-block">
-                                    {{ $errors->first('native') }}
+                                    {{ $errors->first('description') }}
                                 </span>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div
-                                    class="form-group {{ $errors->has('locale') ? ' has-error' : '' }}">
+                                    class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
+                                    {{ Form::label('content', 'Content', []) }}
+                                    {{ Form::textarea('content', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content']) }}
+                                    @if ($errors->has('content'))
+                                        <span class="help-block">
+                                            {{ $errors->first('content') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-check">
+                                    <label class="form-check-label"><input class="form-check-input" name="status"
+                                                                           type="checkbox">Status</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div
+                                    class="form-group {{ $errors->has('release_date') ? ' has-error' : '' }}">
                                     {{ Form::label('release_date', 'Release Date', []) }}
                                     <div class="date-input">
                                         {{ Form::text('release_date', '', ['class' => 'form-control single-daterange', 'no','placeholder'=>'Release date']) }}
@@ -85,33 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div
-                                    class="form-group {{ $errors->has('features') ? ' has-error' : '' }}">
-                                    {{ Form::label('features', 'Features', []) }}
-                                    <select name="features[]" class="form-control select2" multiple="true">
 
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div
-                                    class="form-group {{ $errors->has('answers') ? ' has-error' : '' }}">
-                                    {{ Form::label('answers', 'Answers', []) }}
-                                    <select name="answers[]" class="form-control select2" multiple="true">
-
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label"><input class="form-check-input" name="status"
-                                                                   type="checkbox">Status</label>
-                        </div>
                         <div class="form-buttons-w">
                             <button class="btn btn-primary" type="submit"> Create</button>
                         </div>
@@ -123,49 +117,22 @@
                     <h6 class="element-header" style="padding-top: 16px;">
                     </h6>
                     <div class="element-box">
-                        <div class="row">
-                            <div class="col-12">
-                                <div
-                                    class="form-group {{ $errors->has('features') ? ' has-error' : '' }}">
-                                    {{ Form::label('features', 'Features', []) }}
-                                    <select name="features[]" class="form-control select2" multiple="true">
-                                        @if(count($features) > 0)
-                                            @foreach($features as $feature)
-                                                @if(count($feature->availableLanguage) > 0)
-                                                    <option value="{{$feature->id}}">{{$feature->availableLanguage[0]->title}}</option>
-                                                @else
-                                                    <option value="{{$feature->id}}">{{(count($feature->language) > 0) ? $feature->language[0]->title : $feature->slug}}</option>
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div
-                                    class="form-group {{ $errors->has('answers') ? ' has-error' : '' }}">
-                                    {{ Form::label('answers', 'answers', []) }}
-                                    <select name="answers[]" class="form-control select2" id="answers-select2"
-                                            multiple="true">
-
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-
+                        @if(count($features) > 0)
+                            @foreach($features as $feature)
+                                @if(count($feature->answer) > 0)
+                                {{ Form::label('featurs',(count($feature->availableLanguage) > 0) ? $feature->availableLanguage[0]->title :$feature->language[0]->title , []) }}
+                                <select name="features[{{$feature->id}}][]" class="form-control select2" multiple="true">
+                                    @foreach($feature->answer as $answer)
+                                        <option value="{{$answer->id}}">{{(count($answer->availableLanguage) > 0) ? $answer->availableLanguage[0]->title : $answer->language[0]->title }}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
     {!! Form::close() !!}
-    <script type="text/javascript">
-        function featureChange() {
-
-        }
-    </script>
 @endsection
