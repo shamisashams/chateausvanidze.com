@@ -156,7 +156,7 @@ class FeatureService
     public function delete($id)
     {
         $data = $this->find($id);
-        if ($data->language) {
+        if (count($data->language) > 0) {
             if(!$data->language()->delete()){
                 throwException('Feature languages can not delete.');
             }
