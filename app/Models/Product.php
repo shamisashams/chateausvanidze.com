@@ -12,7 +12,7 @@ class Product extends Model
         'release_date',
         'position',
         'status',
-        'slug',   
+        'slug',
         'price'
     ];
     public function files()
@@ -32,4 +32,7 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductAnswers', 'product_id');
     }
 
+    public function availableLanguage() {
+        return $this->language()->where('language_id','=', Localization::getIdByName(app()->getLocale()));
+    }
 }

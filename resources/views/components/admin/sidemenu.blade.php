@@ -170,7 +170,13 @@
               </div>
             </div>
           </li>
-
+            <li class="">
+                <a href="{{route('productIndex',app()->getLocale() )}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>{{__('admin.products')}}</span></a>
+            </li>
             <li class="">
                 <a href="{{route('localizationIndex',app()->getLocale() )}}">
                     <div class="icon-w">
