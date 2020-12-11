@@ -16,7 +16,7 @@ class CreateDictionariesTable extends Migration
         Schema::create('dictionaries', function (Blueprint $table) {
             $table->id();
             $table->string('key');
-            $table->string('module');
+            $table->string('module')->nullable();
             $table->timestamps();
         });
     }

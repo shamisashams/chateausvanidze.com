@@ -57,8 +57,12 @@ class DictionaryController extends AdminController
      * @param  \App\Models\Dictionary  $dictionary
      * @return \Illuminate\Http\Response
      */
-    public function update(DictionaryRequest $request, $locale, $id)
+    public function update(Request $request, $locale, $id)
     {
+        $this->validate($request, [
+            'key' => 'required|string|max:255'
+        ]);
+        
         $data = $request->only([
             'key',
             'module',
