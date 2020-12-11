@@ -91,6 +91,8 @@ class FeatureService
 
         $localization = $this->getLocalization($lang);
 
+
+
         $this->model = new Feature([
             'position' => $request['position'],
             'status' => $request['status'],
@@ -101,6 +103,7 @@ class FeatureService
         $this->model->save();
 
         $this->model->language()->create([
+
             'feature_id' => $this->model->id,
             'language_id' => $localization->id,
             'title' => $request['title'],
@@ -121,7 +124,7 @@ class FeatureService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
-        $data = $this->model->find($id);
+        $data = $this->find($id);
         $data->update([
             'position' => $request['position'],
             'status' => $request['status'],
@@ -156,9 +159,11 @@ class FeatureService
      */
     public function delete($id)
     {
-        $data = $this->model->find($id);
-        if(!$data->language()->delete()){
-            throwException('Feature languages can not delete.');
+        $data = $this->find($id);
+        if (count($data->language) > 0) {
+            if(!$data->language()->delete()){
+                throwException('Feature languages can not delete.');
+            }
         }
         if (!$data->delete()) {
             throwException('Feature  can not delete.');
