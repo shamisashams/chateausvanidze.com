@@ -11,7 +11,7 @@
             <div class="col-span-1 px-2">
                 <select name="feature" class="w-full border p-1 font-normal text-xs" >
                     @foreach ($features as $feature)
-                        <option value="{{$feature->language()->where('language_id', $localization)->first()->id}}">{{$feature->language()->where('language_id', $localization)->first()->title}}</option>
+                    <option value="{{$feature->id}}">{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
                     @endforeach
                 </select> <br>
                 <small>Feature</small>
@@ -77,7 +77,7 @@
                 <td>
                     <select name="feature" class="w-full border p-1 font-normal text-xs" >
                         @foreach ($features as $feature)
-                            <option {{($item->feature->feature_id == $feature->id) ? 'selected' : ''}} value="{{$feature->language()->where('language_id', $localization)->first()->id}}">{{$feature->language()->where('language_id', $localization)->first()->title}}</option>
+                            <option value="{{$feature->id}}" {{($item->feature->feature_id == $feature->id) ? 'selected' : ''}} >{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
                         @endforeach
                     </select>
                 </td>
