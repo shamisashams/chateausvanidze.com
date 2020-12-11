@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\LocalizationRequest;
-use App\Models\Localization;
 use App\Services\LocalizationService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
-use PhpParser\Node\Scalar\String_;
 
 class LocalizationController extends AdminController
 {
@@ -83,28 +81,28 @@ class LocalizationController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param Localization $localization
+     * @param int $id
      * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function show(string $locale, Localization $localization)
+    public function show(string $locale, int $id)
     {
         return view('admin.modules.localization.show', [
-            'localization' => $localization
+            'localization' => $this->service->find($id)
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Localization $localization
+     * @param int $id
      * @param string $locale
      * @return Application|Factory|View|Response
      */
-    public function edit(string $locale, Localization $localization)
+    public function edit(string $locale, int $id)
     {
         return view('admin.modules.localization.update', [
-            'localization' => $localization
+            'localization' => $this->service->find($id)
         ]);
 
     }
