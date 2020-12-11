@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Answer;
 use App\Models\Feature;
+use App\Models\FeatureLanguage;
 use App\Models\Localization;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use function PHPUnit\Framework\throwException;
@@ -63,10 +64,12 @@ class AnswerService
      */
     public function store(string $lang, array $request)
     {
+        $feature = FeatureLanguage::findOrFail(intval($request['feature']))->feature;
+
         $model = $this->model->create([
             'slug' => $request['slug'],
             'position' => $request['position'],
-            'status' => $request['status'],
+            'status' => intval($request['status']),
         ]);
     
         $localization = $this->getLocalization($lang);
@@ -75,7 +78,7 @@ class AnswerService
             'title' => $request['title']
         ]);
         $model->features()->create([
-            'feature_id' => $request['feature']
+            'feature_id' => $feature->id
         ]);
         return true;
     }

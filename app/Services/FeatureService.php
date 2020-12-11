@@ -87,7 +87,9 @@ class FeatureService
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
-        $localizationID = Localization::getIdByName($lang);
+        $localization = $this->getLocalization($lang);
+
+
 
         $this->model = new Feature([
             'position' => $request['position'],
@@ -99,7 +101,9 @@ class FeatureService
         $this->model->save();
 
         $this->model->language()->create([
-            'language_id' => $localizationID,
+
+            'feature_id' => $this->model->id,
+            'language_id' => $localization->id,
             'title' => $request['title'],
         ]);
 
@@ -126,14 +130,14 @@ class FeatureService
             'type' => $request['type']
         ]);
 
-        $localizationID =  Localization::getIdByName($lang);
+        $localization = $this->getLocalization($lang);
 
-        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localizationID])->first();
+        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localization->id])->first();
 
         if ($featureLanguage == null) {
             $data->language()->create([
                 'feature_id' => $this->model->id,
-                'language_id' => $localizationID,
+                'language_id' => $localization->id,
                 'title' => $request['title'],
             ]);
         } else {
@@ -163,5 +167,21 @@ class FeatureService
             throwException('Feature  can not delete.');
         }
         return true;
+    }
+    
+    /**
+     * Create localization item into db.
+     *
+     * @param string $lang
+     * @return Localization
+     * @throws \Exception
+     */
+    protected function getLocalization(string $lang) {
+        $localization = Localization::where('abbreviation',$lang)->first();
+        if (!$localization) {
+            throwException('Localization not exist.');
+        }
+
+        return $localization;
     }
 }

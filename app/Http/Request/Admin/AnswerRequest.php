@@ -27,7 +27,7 @@ class AnswerRequest extends FormRequest
             'slug' => 'required|string|max:255|unique:answers',
             'title' => 'required|string|max:255',
             'feature' => 'required|integer',
-            'status' => 'required|integer'
+            'status' => 'required|string|min:1|max:1'
         ];
     }
 }

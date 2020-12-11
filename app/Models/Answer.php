@@ -17,9 +17,9 @@ class Answer extends Model
     {
         return $this->hasMany('App\Models\AnswerLanguage', 'answer_id');
     }
-    public function features()
+    public function feature()
     {
-        return $this->hasMany('App\Models\FeatureAnswers', 'answer_id');
+        return $this->hasOne('App\Models\FeatureAnswers', 'answer_id');
     }
     public function products()
     {

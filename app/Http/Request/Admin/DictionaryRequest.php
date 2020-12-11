@@ -25,7 +25,6 @@ class DictionaryRequest extends FormRequest
     {
         return [
             'key' => 'required|string|max:255|unique:dictionaries',
-            'module' => 'required|string|max:255',
         ];
     }
 }

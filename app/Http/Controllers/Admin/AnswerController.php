@@ -30,7 +30,7 @@ class AnswerController extends AdminController
 
         $features = Feature::all();
         $localization = Localization::where('abbreviation',$locale)->first()->id;
-        return view('admin.modules.answer.index', ['dictionaries' => $this->service->getAll($locale, $request), 'locale'=>$locale,'features'=>$features, 'localization' => $localization]);
+        return view('admin.modules.answer.index', ['answers' => $this->service->getAll($locale, $request), 'locale'=>$locale,'features'=>$features, 'localization' => $localization]);
     }
 
     /**
