@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
@@ -73,9 +74,19 @@ Route::group([
                 ->name('index', 'AnswerIndex')
                 ->name('store', 'AnswerStore')
                 ->name('update', 'AnswerUpdate')
-                ->name('destroy', 'AnswerDestroy');    
+                ->name('destroy', 'AnswerDestroy');
+
+            // Products
+            Route::resource('products', ProductController::class)
+                ->name('index', 'productIndex')
+                ->name('create', 'productCreateView')
+                ->name('store', 'productCreate')
+                ->name('edit', 'productEditView')
+                ->name('update', 'productUpdate')
+                ->name('destroy', 'productDestroy')
+                ->name('show', 'productShow');
         });
-            
+
     });
 });
 
