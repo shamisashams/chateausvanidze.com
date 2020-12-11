@@ -48,6 +48,9 @@ class DictionaryService
         if ($request->key !== null) {
             $data = $data->where('key', 'LIKE', '%'.$request->all()['key'].'%');
         }
+        if ($request->module !== null) {
+            $data = $data->where('module', 'LIKE', '%'.$request->all()['module'].'%');
+        }
 
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;

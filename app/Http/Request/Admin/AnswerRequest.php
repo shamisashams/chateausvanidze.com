@@ -23,6 +23,7 @@ class AnswerRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'slug' => 'required|string|max:255|unique:answers',
             'title' => 'required|string|max:255',

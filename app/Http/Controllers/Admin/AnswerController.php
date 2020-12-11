@@ -59,9 +59,23 @@ class AnswerController extends AdminController
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update( Request $request, $locale, $id)
     {
-        //
+        $this->validate($request, [
+            'slug' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'feature' => 'required|integer',
+            'status' => 'required|string|min:1|max:1'
+        ]);
+        $data = $request->only([
+            'slug',
+            'feature',
+            'status',
+            'position',
+            'title'
+        ]);
+        $this->service->update($id, $locale, $data);
+        return redirect()->back();
     }
 
     /**
