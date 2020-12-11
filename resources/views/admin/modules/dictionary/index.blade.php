@@ -5,42 +5,37 @@
         
     </div>
     <div class="col-span-7 md:col-span-5">
-
+        <form action="{{route('DictionaryStore', $locale)}}" method="POST" class="bg-white py-3 flex items-center justify-between justify-between px-4">
+            @csrf
+            <td>
+                <input type="text" name="key" placeholder="Key" required class="w-20 focus:outline-none border  p-0.5" style="@error('key') border:1px solid red !important @enderror">
+            </td>
+            <td>
+                <input type="text" name="module" placeholder="module"  class="w-20 focus:outline-none border p-0.5 mt-0.5" style="@error('module') border:1px solid red !important @enderror">
+            </td>
+            @foreach ($langs as $lang)
+            <td>
+                <div class="text-left">
+                    <input type="text" name="translates[]"  class="focus:outline-none border p-0.5 w-20" placeholder="{{$lang->abbreviation}} ">
+                </div>
+            </td>
+            @endforeach
+            <td >
+                <button type="submit" class="p-2 rounded-md bg-gray-200" type="submit">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                      </svg>
+                </button>          
+        </td>
+    </form>
         <table class="table table-bordered table-lg table-v2 table-striped">
-                <tr>
-                    <form action="{{route('DictionaryStore', $locale)}}" method="POST" class="bg-white py-3 flex items-center justify-between justify-between px-4">
-                        @csrf
-                        <td>
-                            <div>
-                                <h6 class="font-bold">
-                                    <input type="text" name="key" placeholder="Key" required class="w-20 focus:outline-none border  p-0.5" style="@error('key') border:1px solid red !important @enderror">
-                                </h6>
-                                <small class="font-normal"><input type="text" name="module" placeholder="module"  class="w-20 focus:outline-none border p-0.5 mt-0.5" style="@error('module') border:1px solid red !important @enderror"></small>
-                            </div>
-                        </td>
-                        @foreach ($langs as $lang)
-                        <td>
-                            <div class="text-left">
-                                <input type="text" name="translates[]"  class="focus:outline-none border p-0.5 w-20" placeholder="{{$lang->abbreviation}} ">
-                            </div>
-                        </td>
-                        @endforeach
-                        <td >
-                            <button type="submit" class="p-2 rounded-md bg-gray-200" type="submit">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                                  </svg>
-                            </button>          
-                    </td>
-                </form>
-                </tr>
             <thead>
                 <tr>
                     <th>
-                        <div class="text-left">
-                            <h6>Key</h6>
-                            <small>Module</small>
-                        </div>
+                        KEY
+                    </th>
+                    <th>
+                        Module
                     </th>
                     @foreach ($langs as $item)
                         <th>
@@ -54,18 +49,27 @@
             </thead>
             <tr>
                 <form action="{{route('DictionaryIndex', $locale)}}" class="bg-white py-3 px-4 mt-2 flex items-center">
-                <th><input type="text" value="{{\Request::get('key') }}" name="key" class="w-full focus:outline-none w-20" placeholder="Search by Key.."></th>
+                    <th><input type="text" value="{{\Request::get('key') }}" name="key" class="w-full focus:outline-none border p-0.5" placeholder="Search by Key.."></th>
+                    <th><input type="text" value="{{\Request::get('module') }}" name="module" class="w-full focus:outline-none border p-0.5" placeholder="Search by Module.."></th>
                 @foreach ($langs as $item)
                 <th></th>
                 @endforeach
                 <th>
-                    <select name="per_page" class="ml-2" onchange="this.form.submit()">
-                        <option value="10" {{\Request::get('per_page') == 10 ? 'selected' : ''}}>10</option>
-                        <option value="20" {{\Request::get('per_page') == 20 ? 'selected' : ''}}>20</option>
-                        <option value="30" {{\Request::get('per_page') == 30 ? 'selected' : ''}}>30</option>
-                        <option value="50" {{\Request::get('per_page') == 50 ? 'selected' : ''}}>50</option>
-                        <option value="100" {{\Request::get('per_page') == 100 ? 'selected' : ''}}>100</option>
-                    </select>
+                    <div class="flex items-center">
+                        <select name="per_page" class="ml-2" onchange="this.form.submit()">
+                            <option value="10" {{\Request::get('per_page') == 10 ? 'selected' : ''}}>10</option>
+                            <option value="20" {{\Request::get('per_page') == 20 ? 'selected' : ''}}>20</option>
+                            <option value="30" {{\Request::get('per_page') == 30 ? 'selected' : ''}}>30</option>
+                            <option value="50" {{\Request::get('per_page') == 50 ? 'selected' : ''}}>50</option>
+                            <option value="100" {{\Request::get('per_page') == 100 ? 'selected' : ''}}>100</option>
+                        </select>
+                        <button type="submit" class="p-2 rounded-md ml-2 bg-gray-200" type="submit">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                              </svg>
+                        </button>
+                    </div>
                 </th>
             </form>
             </tr>
@@ -78,12 +82,10 @@
                     @csrf
                     @method('PUT')
                     <td>
-                        <div class="text-left">
-                            <h6 class="font-bold">
-                                <input type="text" name="key" value="{{$item->key}}" placeholder="Key" required class="w-20 focus:outline-none border @error('key') border-red-500 @enderror p-0.5">
-                            </h6>
-                            <small class="font-normal"><input type="text" name="module" placeholder="module" required class="w-20 focus:outline-none border @error('module') border-red-500 @enderror p-0.5 mt-0.5" value="{{$item->module}}"></small>
-                        </div>
+                        {{$item->key}}
+                    </td>
+                    <td>
+                        <input type="text" name="module" placeholder="module" required class="w-full focus:outline-none border  p-0.5 mt-0.5" value="{{$item->module}}">
                     </td>
                     @foreach ($langs as $lang)
                     <td>

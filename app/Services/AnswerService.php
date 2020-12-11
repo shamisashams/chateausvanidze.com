@@ -73,11 +73,14 @@ class AnswerService
         ]);
     
         $localization = $this->getLocalization($lang);
-        $model->language()->create([
-            'language_id' => $localization->id,
-            'title' => $request['title']
-        ]);
-        $model->features()->create([
+        foreach (Localization::all() as $item) {
+            $model->language()->create([
+                'language_id' => $item->id,
+                'title' => $request['title']
+            ]);
+        }
+
+        $model->feature()->create([
             'feature_id' => $feature->id
         ]);
         return true;
@@ -90,20 +93,25 @@ class AnswerService
      * @param array $request
      * @return bool
      */
-    public function update(int $id, array $request)
+    public function update(int $id, string $lang,  array $request)
     {
-        $model = $this->model->find($id);
+        $feature = FeatureLanguage::findOrFail(intval($request['feature']))->feature;
+        $model = Answer::findOrFail(intval($id));
+        $localization = $this->getLocalization($lang);
         $model->update([
-            'key' => $request['key'],
-            'module' => $request['module'],
+            'slug' => $request['slug'],
+            'position' => $request['position'],
+            'status' => intval($request['status']),
         ]);
-        foreach (Localization::all() as $key => $lang) {
-        
-            $language = $model->language()->where('language_id', $lang->id)->first();
-            $language->value = $request['translates'][$key] ?? '';
+    
+            $language = $model->language()->where('language_id', $localization->id)->first();
+            $language->title = $request['title'];
             $language->save();
-            
-        }
+       
+
+        $model->feature()->update([
+            'feature_id' => $feature->id
+        ]);
         return true;
     }
 
