@@ -47,6 +47,42 @@
         </form>
 
         <table class="table table-bordered table-lg table-v2 table-striped">
+            <tr>
+                <form action="{{route('AnswerIndex', $locale)}}">
+                    <th>
+                        <select name="feature" class="w-full border p-1 font-normal text-xs" >
+                            <option value="" selected></option>
+                            @foreach ($features as $feature)
+                            <option value="{{$feature->id}}" {{(\Request::get('feature') == $feature->id) ? 'selected' : ''}}>{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
+                            @endforeach
+                        </select>
+                    </th>
+                    <th>
+                        <input type="text" value="{{\Request::get('position')}}"  name="position" class="w-full border p-1 font-normal text-xs" placeholder="Position">
+                    </th>
+                    <th>
+                        <input  type="text" value="{{\Request::get('slug')}}"  name="slug" class="w-full border p-1 font-normal text-xs" placeholder="Slug">
+                    </th>
+                    <th>
+                        <input  type="text" value="{{\Request::get('title')}}"  name="title" class="w-full border p-1 font-normal text-xs" placeholder="Title">
+                    </th>
+                    <th>
+                        <select name="status" class="w-2/3 border p-1 font-normal text-xs" >
+                            <option value="" selected></option>
+                            <option value="1">on</option>
+                            <option value="0">off</option>
+                        </select> 
+                    </th>
+                    <th>
+                        <button type="submit" class="p-2 ml-2 bg-white rounded-md">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                              </svg>
+                        </button>
+                    </th>
+                </form>
+            </tr>
             <tbody>
                 <th>
                     Feature
@@ -71,9 +107,9 @@
             @foreach ($answers as $item)
             <tr>
                 
-                <form action="{{route('AnswerUpdate', [$locale, $item->id])}}" method="POST" class="bg-white py-3 mt-2 px-4 grid w-full grid-cols-5">
+                <form action="{{route('AnswerUpdate', [app()->getLocale(),$item->id])}}" method="POST" class="flex w-full justify-between justify-between " >
                     @csrf
-                    @method('PUT')„
+                    @method('PUT')
                 <td>
                     <select name="feature" class="w-full border p-1 font-normal text-xs" >
                         @foreach ($features as $feature)
@@ -88,7 +124,7 @@
                     <input required type="text" name="slug" value="{{$item->slug}}" class="w-full border p-1 font-normal text-xs" placeholder="Slug"> 
                 </td>
                 <td>
-                    <input required type="text" name="title" value="{{$item->language()->where('language_id', $localization)->first()->title}}" class="w-full border p-1 font-normal text-xs" placeholder="Title"> 
+                    <input required type="text" name="title" value="{{($item->language()->where('language_id', $localization)->first()->title) ?? $item->language()->first()->title}}" class="w-full border p-1 font-normal text-xs" placeholder="Title"> 
                 </td>
                 <td>
                     <select name="status" class="w-2/3 border p-1 font-normal text-xs" >

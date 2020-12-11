@@ -94,7 +94,6 @@ class DictionaryService
     {
         $model = $this->model->find($id);
         $model->update([
-            'key' => $request['key'],
             'module' => $request['module'],
         ]);
         foreach (Localization::all() as $key => $lang) {

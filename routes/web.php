@@ -63,13 +63,13 @@ Route::group([
                 ->name('show', 'featureShow');
 
             // Language
-            Route::resource('languages', DictionaryController::class)
+            Route::resource('languages', DictionaryController::class, ['only' => ['index', 'store', 'update', 'destroy']])
                 ->name('index', 'DictionaryIndex')
                 ->name('store', 'DictionaryStore')
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
 
-            Route::resource('answers', AnswerController::class)
+            Route::resource('answers', AnswerController::class, ['only' => ['index', 'store', 'update', 'destroy']])
                 ->name('index', 'AnswerIndex')
                 ->name('store', 'AnswerStore')
                 ->name('update', 'AnswerUpdate')

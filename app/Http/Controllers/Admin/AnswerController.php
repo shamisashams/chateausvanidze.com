@@ -25,7 +25,10 @@ class AnswerController extends AdminController
     public function index($locale, Request $request)
     {
         $request->validate([
-            'key' => 'string|max:255|nullable',
+            'feature' => 'integer|nullable',
+            'position' => 'string|nullable',
+            'title' => 'string|max:255|nullable',
+            'status' => 'integer|nullable',
         ]);
 
         $features = Feature::all();
@@ -59,7 +62,7 @@ class AnswerController extends AdminController
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, $locale, $id)
+    public function update(Request $request, $locale, $id)
     {
         $this->validate($request, [
             'slug' => 'required|string|max:255',
@@ -84,8 +87,9 @@ class AnswerController extends AdminController
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy($locale, $id)
     {
-        //
+        $this->service->delete($id);
+        return redirect()->back();
     }
 }

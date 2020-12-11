@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Models\Answer;
+use App\Models\AnswerLanguage;
 use App\Models\Feature;
+use App\Models\FeatureAnswers;
 use App\Models\FeatureLanguage;
 use App\Models\Localization;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -42,10 +44,20 @@ class AnswerService
     {
         $data = $this->model->query();
 
-        $localization = $this->getLocalization($lang);
-        
-        if ($request->key !== null) {
-            $data = $data->where('key', 'LIKE', '%'.$request->all()['key'].'%');
+
+        if ($request->feature !== null) {
+            $modelarray = FeatureAnswers::select('answer_id')->where('feature_id', intval($request->all()['feature']))->get()->toArray();
+            $data = $data->whereIn('id', $modelarray);
+        }
+        if ($request->position !== null) {
+            $data = $data->where('position', 'like', '%'.$request->all()['position'].'%');
+        }
+        if ($request->title !== null) {
+            $modelarray = AnswerLanguage::select('answer_id')->where('title', 'like', '%'.$request->all()['title'].'%')->get()->toArray();
+            $data = $data->whereIn('id', $modelarray);
+        }
+        if ($request->status !== null) {
+            $data = $data->where('status', 'like', '%'.$request->all()['status'].'%');
         }
 
         // Check if perPage exist and validation by perPageArray [].
@@ -64,7 +76,7 @@ class AnswerService
      */
     public function store(string $lang, array $request)
     {
-        $feature = FeatureLanguage::findOrFail(intval($request['feature']))->feature;
+        $feature = Feature::findOrFail(intval($request['feature']));
 
         $model = $this->model->create([
             'slug' => $request['slug'],
@@ -73,12 +85,10 @@ class AnswerService
         ]);
     
         $localization = $this->getLocalization($lang);
-        foreach (Localization::all() as $item) {
-            $model->language()->create([
-                'language_id' => $item->id,
-                'title' => $request['title']
-            ]);
-        }
+        $model->language()->create([
+            'language_id' => $localization->id,
+            'title' => $request['title']
+        ]);
 
         $model->feature()->create([
             'feature_id' => $feature->id
@@ -95,7 +105,7 @@ class AnswerService
      */
     public function update(int $id, string $lang,  array $request)
     {
-        $feature = FeatureLanguage::findOrFail(intval($request['feature']))->feature;
+        $feature = Feature::findOrFail(intval($request['feature']));
         $model = Answer::findOrFail(intval($id));
         $localization = $this->getLocalization($lang);
         $model->update([
@@ -105,8 +115,15 @@ class AnswerService
         ]);
     
             $language = $model->language()->where('language_id', $localization->id)->first();
-            $language->title = $request['title'];
-            $language->save();
+            if ($language) {
+                $language->title = $request['title'];
+                $language->save();
+            }else{
+                $model->language()->create([
+                    'language_id' => $localization->id,
+                    'title' => $request['title']
+                ]);
+            }
        
 
         $model->feature()->update([

@@ -85,7 +85,7 @@
                         {{$item->key}}
                     </td>
                     <td>
-                        <input type="text" name="module" placeholder="module" required class="w-full focus:outline-none border  p-0.5 mt-0.5" value="{{$item->module}}">
+                        <input type="text" name="module" placeholder="module"  class="w-full focus:outline-none border  p-0.5 mt-0.5" value="{{$item->module}}">
                     </td>
                     @foreach ($langs as $lang)
                     <td>

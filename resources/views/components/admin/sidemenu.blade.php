@@ -190,7 +190,7 @@
             <span>Elements</span>
           </li>
           <li>
-            <a href="/{{app()->getLocale()}}/admin/languages" target="_blank">
+            <a href="/{{app()->getLocale()}}/admin/languages" >
               <div class="icon-w">
                 <div class="os-icon os-icon-flag"></div>
               </div>
@@ -198,7 +198,7 @@
 
           </li>
           <li>
-            <a href="/{{app()->getLocale()}}/admin/answers" target="_blank">
+            <a href="/{{app()->getLocale()}}/admin/answers">
               <div class="icon-w">
                 <div class="os-icon os-icon-flag"></div>
               </div>

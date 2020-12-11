@@ -59,12 +59,8 @@ class DictionaryController extends AdminController
      */
     public function update(Request $request, $locale, $id)
     {
-        $this->validate($request, [
-            'key' => 'required|string|max:255'
-        ]);
         
         $data = $request->only([
-            'key',
             'module',
             'translates'
         ]);   
