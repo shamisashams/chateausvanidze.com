@@ -52,7 +52,7 @@ class ProductController extends AdminController
      */
     public function create()
     {
-        $features = Feature::where('status',true)->get();
+        $features = Feature::all();
 
         return view('admin.modules.product.create',[
             'features' => $features
@@ -68,23 +68,11 @@ class ProductController extends AdminController
      */
     public function store(string $lang, ProductRequest $request)
     {
-        $data = $request->only([
-            'title',
-            'position',
-            'slug',
-            'price',
-            'description',
-            'content',
-            'status',
-            'release_date',
-            'features'
-        ]);
-
-        if (!$this->service->store($lang,$data)) {
+        if (!$this->service->store($lang,$request)) {
             return redirect(route('productCreateView',app()->getLocale()))->with('danger', 'Product does not create.');
         }
 
-        return redirect(route('producIndex', app()->getLocale()))->with('success', 'Product create successfully.');
+        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product create successfully.');
 
     }
 
@@ -97,7 +85,9 @@ class ProductController extends AdminController
      */
     public function show(string $locale, int $id)
     {
-
+        return view('admin.modules.product.show', [
+            'product' => $this->service->find($id)
+        ]);
     }
 
     /**
@@ -109,8 +99,15 @@ class ProductController extends AdminController
      */
     public function edit(string $locale, int $id)
     {
+        $product = $this->service->find($id);
+        $productAnswers = $product->answers()->select('answer_id')->get()->toArray();
+        $features = Feature::all();
 
-
+        return view('admin.modules.product.update',[
+            'product' => $product,
+            'features' =>$features,
+            'productAnswers' => $productAnswers,
+        ]);
     }
 
     /**
@@ -123,7 +120,11 @@ class ProductController extends AdminController
      */
     public function update(string $locale, ProductRequest $request, int $id)
     {
+        if (!$this->service->update($locale,$id,$request)) {
+            return redirect(route('productIndex',app()->getLocale()))->with('danger', 'Product does not update.');
+        }
 
+        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product update successfully.');
     }
 
     /**

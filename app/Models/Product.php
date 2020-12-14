@@ -17,7 +17,7 @@ class Product extends Model
     ];
     public function files()
     {
-        return $this->morphToMany('App\Models\File', 'fileable');
+        return $this->morphMany('App\Models\File', 'fileable');
     }
     public function language()
     {

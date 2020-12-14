@@ -85,10 +85,10 @@
                             @endif
                         </td>
                         <td class="row-actions d-flex">
-                            <a href="{{route('featureShow',[app()->getLocale(),$product->id])}}">
+                            <a href="{{route('productShow',[app()->getLocale(),$product->id])}}">
                                 <i class="os-icon os-icon-documents-07"></i>
                             </a>
-                            <a href="{{route('featureEditView',[app()->getLocale(), $product->id])}}">
+                            <a href="{{route('productEditView',[app()->getLocale(), $product->id])}}">
                                 <i class="os-icon os-icon-ui-49">
 
                                 </i>
