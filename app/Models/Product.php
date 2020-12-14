@@ -25,7 +25,7 @@ class Product extends Model
     }
     public function features()
     {
-        return $this->hasMany('App\Models\ProductFreatures', 'product_id');
+        return $this->hasMany('App\Models\ProductFeatures', 'product_id');
     }
     public function answers()
     {

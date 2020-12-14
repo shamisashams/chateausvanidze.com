@@ -74,8 +74,8 @@
                 @foreach($products as $product)
                     <tr>
                         <td class="text-left">{{$product->id}}</td>
-                        <td class="text-center">{{(count($product->availableLanguage) > 0) ?  $feature->availableLanguage[0]->title : ''}}</td>
-                        <td class="text-center">{{(count($product->availableLanguage) > 0) ?  $feature->availableLanguage[0]->description : ''}}</td>
+                        <td class="text-center">{{(count($product->availableLanguage) > 0) ?  $product->availableLanguage[0]->title : ''}}</td>
+                        <td class="text-center">{{(count($product->availableLanguage) > 0) ?  $product->availableLanguage[0]->description : ''}}</td>
                         <td class="text-center">{{$product->slug}}</td>
                         <td class="text-center">
                             @if($product->status)
@@ -93,7 +93,7 @@
 
                                 </i>
                             </a>
-                            {!! Form::open(['url' => route('featureDestroy',[app()->getLocale(),$product->id]),'method' =>'delete']) !!}
+                            {!! Form::open(['url' => route('productDestroy',[app()->getLocale(),$product->id]),'method' =>'delete']) !!}
                                 <button class="delete-icon" onclick="return confirm('Are you sure, you want to delete this item?!');" type="submit">
                                     <i
                                         class="os-icon os-icon-ui-15">

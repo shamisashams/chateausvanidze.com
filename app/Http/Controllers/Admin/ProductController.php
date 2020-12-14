@@ -68,7 +68,23 @@ class ProductController extends AdminController
      */
     public function store(string $lang, ProductRequest $request)
     {
+        $data = $request->only([
+            'title',
+            'position',
+            'slug',
+            'price',
+            'description',
+            'content',
+            'status',
+            'release_date',
+            'features'
+        ]);
 
+        if (!$this->service->store($lang,$data)) {
+            return redirect(route('productCreateView',app()->getLocale()))->with('danger', 'Product does not create.');
+        }
+
+        return redirect(route('producIndex', app()->getLocale()))->with('success', 'Product create successfully.');
 
     }
 
@@ -119,6 +135,10 @@ class ProductController extends AdminController
      */
     public function destroy(string $locale, int $id)
     {
+        if (!$this->service->delete($id)) {
+            return redirect(route('productIndex', app()->getLocale()))->with('danger', 'Product does not delete.');
+        }
+        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product delete successfully.');
 
 
     }
