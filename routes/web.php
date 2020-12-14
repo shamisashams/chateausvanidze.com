@@ -30,6 +30,7 @@ Route::group([
 
     Route::prefix('admin')->group(function () {
         Route::middleware('loggedin')->group(function () {
+            Route::get('logout', [AuthController::class, 'logout'])->name('logout');
             Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
             Route::post('login', [AuthController::class, 'login'])->name('login');
         });
@@ -64,15 +65,19 @@ Route::group([
                 ->name('show', 'featureShow');
 
             // Language
-            Route::resource('languages', DictionaryController::class, ['only' => ['index', 'store', 'update', 'destroy']])
+            Route::resource('languages', DictionaryController::class)
                 ->name('index', 'DictionaryIndex')
                 ->name('store', 'DictionaryStore')
+                ->name('create', 'DictionaryCreate')
+                ->name('edit', 'DictionaryEdit')
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
 
-            Route::resource('answers', AnswerController::class, ['only' => ['index', 'store', 'update', 'destroy']])
+            Route::resource('answers', AnswerController::class)
                 ->name('index', 'AnswerIndex')
                 ->name('store', 'AnswerStore')
+                ->name('create', 'AnswerCreate')
+                ->name('edit', 'AnswerEdit')
                 ->name('update', 'AnswerUpdate')
                 ->name('destroy', 'AnswerDestroy');
 

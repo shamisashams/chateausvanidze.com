@@ -5,46 +5,13 @@
         
     </div>
     <div class="col-span-7 md:col-span-5">
+        <div class="flex items-center mb-2 justify-between">
+            <a href="{{route('AnswerCreate', $locale)}}" class=" bg-green-400 text-white p-2 rounded-md">
+                answer.create
+            </a>
 
-        <form action="{{route('AnswerStore', $locale)}}" method="POST" class="bg-white py-3 px-4 grid w-full grid-cols-5">
-            @csrf
-            <div class="col-span-1 px-2">
-                <select name="feature" class="w-full border p-1 font-normal text-xs" >
-                    @foreach ($features as $feature)
-                    <option value="{{$feature->id}}">{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
-                    @endforeach
-                </select> <br>
-                <small>Feature</small>
-            </div>
-            <div class="col-span-2 flex items-center">
-                <div class="col-span-1 w-full px-2">
-                    <input type="text" name="position" class="w-full border p-1 font-normal text-xs" placeholder="Position"> <br>
-                    <small>Position</small>
-                </div>
-                <div class="col-span-1 w-full px-2">
-                    <input required type="text" name="slug" class="w-full border p-1 font-normal text-xs" placeholder="Slug"> <br>
-                    <small>Slug</small>
-                </div>
-            </div>
-            <div class="col-span-1 px-2">
-                <input required type="text" name="title" class="w-full border p-1 font-normal text-xs" placeholder="Title"> <br>
-                <small>Title</small>
-            </div>
-            <div class="col-span-1 flex items-center justify-between">
-                <div class="w-full">
-                    <select name="status" class="w-2/3 border p-1 font-normal text-xs" >
-                        <option value="1">on</option>
-                        <option value="0">off</option>
-                    </select> <br>
-                    <small>Status</small>
-                </div>
-                <button type="submit" class="p-2 bg-gray-200 rounded-md">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                      </svg>
-                </button>
-            </div>
-        </form>
+        </div>
+        
 
         <table class="table table-bordered table-lg table-v2 table-striped">
             <tr>
@@ -94,61 +61,55 @@
             </tr>
             <tbody>
                 <th>
-                    Feature
+                    @lang('answer.feature')
                 </th>
                 <th>
-                    Position
+                    @lang('answer.position')
                 </th>
                 <th>
-                    Slug
+                    @lang('answer.slug')
                 </th>
                 <th>
-                    TiTle
+                    @lang('answer.title')
                 </th>
                 <th>
-                    Status
+                    @lang('answer.status')
                 </th>
                 <th>
-                    Permission
+                    @lang('answer.permission')
                 </th>
             </tbody>
             @if ($answers)
             @foreach ($answers as $item)
             <tr>
                 
-                <form action="{{route('AnswerUpdate', [app()->getLocale(),$item->id])}}" method="POST" class="flex w-full justify-between justify-between " >
-                    @csrf
-                    @method('PUT')
+                
                 <td>
-                    <select name="feature" class="w-full border p-1 font-normal text-xs" >
-                        @foreach ($features as $feature)
-                            <option value="{{$feature->id}}" {{($item->feature->feature_id == $feature->id) ? 'selected' : ''}} >{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
-                        @endforeach
-                    </select>
+                    {{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}
                 </td>
                 <td>
-                    <input type="text" name="position" value="{{$item->position}}" class="w-full border p-1 font-normal text-xs" placeholder="Position"> 
+                    {{$item->position}}
                 </td>
                 <td>
-                    <input required type="text" name="slug" value="{{$item->slug}}" class="w-full border p-1 font-normal text-xs" placeholder="Slug"> 
+                    {{$item->slug}}
                 </td>
                 <td>
-                    <input required type="text" name="title" value="{{($item->language()->where('language_id', $localization)->first()->title) ?? $item->language()->first()->title}}" class="w-full border p-1 font-normal text-xs" placeholder="Title"> 
+                    {{($item->language()->where('language_id', $localization)->first()->title) ?? $item->language()->first()->title}}
                 </td>
                 <td>
-                    <select name="status" class="w-2/3 border p-1 font-normal text-xs" >
-                        <option value="1" {{($item->status == 1) ? 'selected' : ''}}>on</option>
-                        <option value="0" {{($item->status == 0) ? 'selected' : ''}}>off</option>
-                    </select>
+                    @if($item->status == 1)
+                    @lang('answer.on')
+                    @else
+                    @lang('answer.off')
+                    @endif
                 </td>
                 <td>
                     <div class="flex items-center">
-                        <button type="submit" class="p-2 bg-gray-200 rounded-md">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        <a href="{{route('AnswerEdit', [$locale, $item->id])}}" type="submit" class="p-2 bg-gray-200 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                               </svg>
-                        </button>
-                    </form>
+                            </a>
                     <form action="{{route('AnswerDestroy', [$locale, $item->id])}}"  method="POST">
                         @csrf
                         @method('DELETE')

@@ -36,7 +36,19 @@ class AnswerController extends AdminController
         $localization = Localization::where('abbreviation',$locale)->first()->id;
         return view('admin.modules.answer.index', ['answers' => $this->service->getAll($locale, $request), 'locale'=>$locale,'features'=>$features, 'localization' => $localization]);
     }
-
+    public function create($locale)
+    {
+        $features = Feature::all();
+        $localization = Localization::where('abbreviation',$locale)->first()->id;
+        return view('admin.modules.answer.create', ['features'=>$features, 'localization' => $localization,  'locale'=>$locale,]);
+    }
+    
+    public function edit($locale, $id)
+    {
+        $features = Feature::all();
+        $localization = Localization::where('abbreviation',$locale)->first()->id;
+        return view('admin.modules.answer.edit', ['answer' => $this->service->find($id), 'features'=>$features, 'localization' => $localization,  'locale'=>$locale,]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -53,7 +65,7 @@ class AnswerController extends AdminController
             'title'
         ]);
         $this->service->store($locale, $data);
-        return redirect()->back();
+        return redirect()->route('AnswerIndex', compact('locale'));
     }
 
     /**
@@ -79,7 +91,7 @@ class AnswerController extends AdminController
             'title'
         ]);
         $this->service->update($id, $locale, $data);
-        return redirect()->back();
+        return redirect()->route('AnswerIndex', compact('locale'));
     }
 
     /**

@@ -47,9 +47,19 @@ class DictionaryController extends AdminController
         
         $this->service->store($locale, $data);
 
-        return redirect()->back();
+        return redirect()->route('DictionaryIndex', compact('locale'));
     }
-
+    
+    public function edit($locale, $id)
+    {
+        $langs = Localization::all();
+        return view('admin.modules.dictionary.edit', ['language' => $this->service->find($id), 'locale'=>$locale,'langs'=>$langs]);
+    }
+    public function create($locale)
+    {
+        $langs = Localization::all();
+        return view('admin.modules.dictionary.create', ['locale'=>$locale,'langs'=>$langs]);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -66,7 +76,7 @@ class DictionaryController extends AdminController
         ]);   
         $this->service->update($id,$data);
 
-        return redirect()->back();
+        return redirect()->route('DictionaryIndex', compact('locale'));
 
     }
 
