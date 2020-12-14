@@ -8,15 +8,25 @@
         <form action="{{route('DictionaryStore', $locale)}}" method="POST" class="bg-white py-3 flex items-center justify-between justify-between px-4">
             @csrf
             <td>
-                <input type="text" name="key" placeholder="Key" required class="w-20 focus:outline-none border  p-0.5" style="@error('key') border:1px solid red !important @enderror">
+                <div>
+                    <input type="text" name="key" placeholder="Key" required class="font-normal text-xs focus:outline-none border  p-0.5" style="@error('key') border:1px solid red !important @enderror"> <br>
+                    <small>Key</small>
+                </div>
             </td>
             <td>
-                <input type="text" name="module" placeholder="module"  class="w-20 focus:outline-none border p-0.5 mt-0.5" style="@error('module') border:1px solid red !important @enderror">
+            <div>
+                <input type="text" name="module" placeholder="module"  class="font-normal text-xs focus:outline-none border p-0.5 mt-0.5" style="@error('module') border:1px solid red !important @enderror">
+                <br>
+                <small>
+                    Module
+                </small>
+            </div>
             </td>
             @foreach ($langs as $lang)
             <td>
                 <div class="text-left">
-                    <input type="text" name="translates[]"  class="focus:outline-none border p-0.5 w-20" placeholder="{{$lang->abbreviation}} ">
+                    <input type="text" name="translates[]"  class="font-normal text-xs focus:outline-none border p-0.5 w-20" placeholder="{{$lang->abbreviation}} "> <br>
+                    <small>{{$lang->title}}</small>
                 </div>
             </td>
             @endforeach
@@ -63,7 +73,7 @@
                             <option value="50" {{\Request::get('per_page') == 50 ? 'selected' : ''}}>50</option>
                             <option value="100" {{\Request::get('per_page') == 100 ? 'selected' : ''}}>100</option>
                         </select>
-                        <button type="submit" class="p-2 rounded-md ml-2 bg-gray-200" type="submit">
+                        <button type="submit" class="p-2 rounded-md ml-2 bg-white" type="submit">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
