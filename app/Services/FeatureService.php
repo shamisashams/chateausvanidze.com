@@ -129,14 +129,14 @@ class FeatureService
             'type' => $request['type']
         ]);
 
-        $localization = $this->getLocalization($lang);
+        $localizationID = Localization::getIdByName($lang);
 
-        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localization->id])->first();
+        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localizationID])->first();
 
         if ($featureLanguage == null) {
             $data->language()->create([
                 'feature_id' => $this->model->id,
-                'language_id' => $localization->id,
+                'language_id' => $localizationID,
                 'title' => $request['title'],
             ]);
         } else {

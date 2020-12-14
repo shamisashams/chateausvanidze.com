@@ -25,23 +25,9 @@
     <link href="{{asset('../adm/bower_components/slick-carousel/slick/slick.css')}}" rel="stylesheet">
     <link href="{{asset('../adm/css/main.css?version=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('../adm/css/fonts.css')}}" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
-        <style type="text/css">
-            .main-section{
-                margin:0 auto;
-                padding: 20px;
-                margin-top: 100px;
-                background-color: #fff;
-                box-shadow: 0px 0px 20px #c1c1c1;
-            }
-            .fileinput-remove,
-            .fileinput-upload{
-                display: none;
-            }
-        </style>
+    <link href="{{asset('../adm/uploader/image-uploader.css')}}" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css">
         {{--         Import Custom css.--}}
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <link href="{{asset('adm/css/app.css')}}" rel="stylesheet">
@@ -81,8 +67,8 @@
     <script src="{{asset('../adm/bower_components/bootstrap/js/dist/popover.js')}}"></script>
     <script src="{{asset('../adm/js/demo_customizer.js?version=4.4.0')}}"></script>
     <script src="{{asset('../adm/js/main.js?version=4.4.0')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+    <script src="{{asset('../adm/uploader/image-uploader.js')}}"></script>
+    <script src="{{asset('../js/app.js')}}"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

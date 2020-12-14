@@ -19343,6 +19343,34 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$(document).ready(function () {
+  var oldImages = $('#old_images').val();
+
+  if (oldImages) {
+    oldImages = JSON.parse(oldImages);
+  }
+
+  var imagedata = [];
+  var getUrl = window.location;
+  var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+
+  if (oldImages && oldImages.length > 0) {
+    oldImages.forEach(function (el, key) {
+      imagedata.push({
+        id: el.id,
+        src: "".concat(baseUrl, "storage/product/").concat(el.fileable_id, "/").concat(el.name)
+      });
+    });
+    $('.input-images').imageUploader({
+      preloaded: imagedata,
+      imagesInputName: 'images',
+      preloadedInputName: 'old_images'
+    });
+  } else {
+    $('.input-images').imageUploader();
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

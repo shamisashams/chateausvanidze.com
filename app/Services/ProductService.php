@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
+use App\Http\Request\Admin\ProductRequest;
 use App\Models\Localization;
 use App\Models\Product;
+use App\Models\ProductLanguage;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\throwException;
 
 class ProductService
@@ -79,10 +82,10 @@ class ProductService
      * Create Feature item into db.
      *
      * @param string $lang
-     * @param array $request
+     * @param ProductRequest $request
      * @return bool
      */
-    public function store(string $lang, array $request)
+    public function store(string $lang,ProductRequest $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
@@ -111,12 +114,12 @@ class ProductService
 
                 foreach ($request['features'] as $key => $feature) {
                     if(count($feature)> 0) {
-                        foreach ($feature as $answer) {
-                            $this->model->features()->create([
-                               'feature_id' => $key,
-                               'product_id' => $this->model->id
-                            ]);
+                        $this->model->features()->create([
+                            'feature_id' => $key,
+                            'product_id' => $this->model->id
+                        ]);
 
+                        foreach ($feature as $answer) {
                             $this->model->answers()->create([
                                'product_id' => $this->model->id,
                                'feature_id' => $key,
@@ -128,6 +131,21 @@ class ProductService
             }
         }
 
+        $model = $this->model;
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . $file->getClientOriginalName();
+                $destination = base_path() . '/storage/app/public/product/' . $this->model->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $model->files()->create([
+                    'name' => $imagename,
+                    'path' => '/storage/app/public/product/' . $model->id,
+                    'format' => $file->getClientOriginalExtension(),
+                ]);
+            }
+        }
+
         return true;
     }
 
@@ -136,12 +154,105 @@ class ProductService
      *
      * @param string $lang
      * @param int $id
-     * @param array $request
+     * @param ProductRequest $request
      * @return bool
      */
-    public function update(string $lang,int $id, array $request)
+    public function update(string $lang,int $id, ProductRequest $request)
     {
+        $request['status'] = isset($request['status']) ? 1 : 0;
 
+        $localizationID = Localization::getIdByName($lang);
+
+        $data = $this->find($id);
+
+        $data->update([
+            'release_date' => Carbon::parse($request['release_date']),
+            'position' => $request['position'],
+            'status' => $request['status'],
+            'slug' => $request['slug'],
+            'price' => $request['price']
+        ]);
+        $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localizationID])->first();
+
+        if ($productLanguage == null) {
+            $data->language()->create([
+                'feature_id' => $data->id,
+                'language_id' => $localizationID,
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'content' => $request['content'],
+            ]);
+        } else {
+            $productLanguage->title = $request['title'];
+            $productLanguage->description = $request['description'];
+            $productLanguage->content = $request['content'];
+            $productLanguage->save();
+        }
+
+        if (count($data->answers) > 0) {
+            if(!$data->answers()->delete()){
+                throwException('Product Answers can not delete.');
+            }
+        }
+
+        if (count($data->features) > 0) {
+            if(!$data->features()->delete()){
+                throwException('Product Features can not delete.');
+            }
+        }
+
+        if ($request['features'] != null) {
+            if (count($request['features']) > 0) {
+
+                foreach ($request['features'] as $key => $feature) {
+                    if(count($feature)> 0) {
+                        $data->features()->create([
+                            'feature_id' => $key,
+                            'product_id' => $data->id
+                        ]);
+                        foreach ($feature as $answer) {
+                            $data->answers()->create([
+                                'product_id' => $data->id,
+                                'feature_id' => $key,
+                                'answer_id' => $answer
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Delete product file if deleted in request.
+        if (count($data->files) > 0) {
+            foreach ($data->files as $file) {
+                if ($request['old_images'] == null) {
+                    $file->delete();
+                    continue;
+                }
+                if (!in_array($file->id,$request['old_images'])) {
+                    if (Storage::exists('public/product/' . $data->id.'/'.$file->name)) {
+                        Storage::delete('public/product/' . $data->id.'/'.$file->name);
+                    }
+                    $file->delete();
+
+                }
+            }
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . $file->getClientOriginalName();
+                $destination = base_path() . '/storage/app/public/product/' . $data->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $data->files()->create([
+                    'name' => $imagename,
+                    'path' => '/storage/app/public/product/' . $data->id,
+                    'format' => $file->getClientOriginalExtension(),
+                ]);
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -167,10 +278,16 @@ class ProductService
 
         if (count($data->features) > 0) {
             if(!$data->features()->delete()){
-                throwException('Product Answers can not delete.');
+                throwException('Product Features can not delete.');
             }
         }
 
+        if (count($data->files) > 0) {
+            if (Storage::exists('public/product/' . $data->id)) {
+                Storage::deleteDirectory('public/product/' . $data->id);
+            }
+            $data->files()->delete();
+        }
         if (!$data->delete()) {
             throwException('Product  can not delete.');
         }
