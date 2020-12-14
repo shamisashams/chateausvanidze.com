@@ -114,12 +114,12 @@ class ProductService
 
                 foreach ($request['features'] as $key => $feature) {
                     if(count($feature)> 0) {
-                        foreach ($feature as $answer) {
-                            $this->model->features()->create([
-                               'feature_id' => $key,
-                               'product_id' => $this->model->id
-                            ]);
+                        $this->model->features()->create([
+                            'feature_id' => $key,
+                            'product_id' => $this->model->id
+                        ]);
 
+                        foreach ($feature as $answer) {
                             $this->model->answers()->create([
                                'product_id' => $this->model->id,
                                'feature_id' => $key,
@@ -206,12 +206,11 @@ class ProductService
 
                 foreach ($request['features'] as $key => $feature) {
                     if(count($feature)> 0) {
+                        $data->features()->create([
+                            'feature_id' => $key,
+                            'product_id' => $data->id
+                        ]);
                         foreach ($feature as $answer) {
-                            $data->features()->create([
-                                'feature_id' => $key,
-                                'product_id' => $data->id
-                            ]);
-
                             $data->answers()->create([
                                 'product_id' => $data->id,
                                 'feature_id' => $key,
