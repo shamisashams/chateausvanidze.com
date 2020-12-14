@@ -52,6 +52,9 @@ class AnswerService
         if ($request->position !== null) {
             $data = $data->where('position', 'like', '%'.$request->all()['position'].'%');
         }
+        if ($request->slug !== null) {
+            $data = $data->where('slug', 'like', '%'.$request->all()['slug'].'%');
+        }
         if ($request->title !== null) {
             $modelarray = AnswerLanguage::select('answer_id')->where('title', 'like', '%'.$request->all()['title'].'%')->get()->toArray();
             $data = $data->whereIn('id', $modelarray);

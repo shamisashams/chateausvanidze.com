@@ -27,6 +27,7 @@ class AnswerController extends AdminController
         $request->validate([
             'feature' => 'integer|nullable',
             'position' => 'string|nullable',
+            'slug' => 'string|max:255|nullable',
             'title' => 'string|max:255|nullable',
             'status' => 'integer|nullable',
         ]);
