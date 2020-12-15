@@ -50,6 +50,11 @@ class DictionaryController extends AdminController
         return redirect()->route('DictionaryIndex', compact('locale'));
     }
     
+    public function show($locale, $id)
+    {
+        $langs = Localization::all();
+        return view('admin.modules.dictionary.show', ['language' => $this->service->find($id), 'locale'=>$locale,'langs'=>$langs]);
+    }
     public function edit($locale, $id)
     {
         $langs = Localization::all();

@@ -69,6 +69,7 @@ Route::group([
                 ->name('index', 'DictionaryIndex')
                 ->name('store', 'DictionaryStore')
                 ->name('create', 'DictionaryCreate')
+                ->name('show', 'DictionaryShow')
                 ->name('edit', 'DictionaryEdit')
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
