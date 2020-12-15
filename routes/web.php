@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,16 @@ Route::group([
                 ->name('update', 'productUpdate')
                 ->name('destroy', 'productDestroy')
                 ->name('show', 'productShow');
+
+            // Users
+            Route::resource('users',UserController::class)
+                ->name('index', 'userIndex')
+                ->name('create', 'userCreateView')
+                ->name('store', 'userCreate')
+                ->name('edit', 'userEditView')
+                ->name('update', 'userUpdate')
+                ->name('destroy', 'userDestroy')
+                ->name('show', 'userShow');
         });
 
     });
