@@ -60,7 +60,7 @@ class FeatureController extends AdminController
      * @param FeatureRequest $request
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function store(string $lang, FeatureRequest $request)
+    public function store(string $locale, FeatureRequest $request)
     {
         $data = $request->only([
             'title',
@@ -70,11 +70,11 @@ class FeatureController extends AdminController
             'status'
         ]);
 
-        if (!$this->service->store($lang,$data)) {
-            return redirect(route('featureCreateView',app()->getLocale()))->with('danger', 'Feature does not create.');
+        if (!$this->service->store($locale,$data)) {
+            return redirect(route('featureCreateView',$locale))->with('danger', 'Feature does not create.');
         }
 
-        return redirect(route('featureIndex', app()->getLocale()))->with('success', 'Feature create successfully.');
+        return redirect(route('featureIndex', $locale))->with('success', 'Feature create successfully.');
 
     }
 
@@ -127,10 +127,10 @@ class FeatureController extends AdminController
 
 
         if (!$this->service->update($locale, $id, $data)) {
-            return redirect(route('featureEditView', app()->getLocale()))->with('danger', 'Feature does not update.');
+            return redirect(route('featureEditView', $locale))->with('danger', 'Feature does not update.');
         }
 
-        return redirect(route('featureIndex', app()->getLocale()))->with('success', 'Feature update successfully.');
+        return redirect(route('featureIndex', $locale))->with('success', 'Feature update successfully.');
 
     }
 
@@ -144,9 +144,9 @@ class FeatureController extends AdminController
     public function destroy(string $locale, int $id)
     {
         if (!$this->service->delete($id)) {
-            return redirect(route('featureIndex', app()->getLocale()))->with('danger', 'Feature does not delete.');
+            return redirect(route('featureIndex', $locale))->with('danger', 'Feature does not delete.');
         }
-        return redirect(route('featureIndex', app()->getLocale()))->with('success', 'Feature delete successfully.');
+        return redirect(route('featureIndex', $locale))->with('success', 'Feature delete successfully.');
 
     }
 }

@@ -101,7 +101,7 @@ class ProductService
         ]);
 
         $this->model->language()->create([
-            'feature_id' => $this->model->id,
+            'product_id' => $this->model->id,
             'language_id' => $localizationID,
             'title' => $request['title'],
             'description' => $request['description'],

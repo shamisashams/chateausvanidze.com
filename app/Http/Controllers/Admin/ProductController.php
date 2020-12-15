@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Request\Admin\FeatureRequest;
 use App\Http\Request\Admin\ProductRequest;
-use App\Models\Answer;
 use App\Models\Feature;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
@@ -66,13 +64,13 @@ class ProductController extends AdminController
      * @param ProductRequest $request
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function store(string $lang, ProductRequest $request)
+    public function store(string $locale, ProductRequest $request)
     {
-        if (!$this->service->store($lang,$request)) {
-            return redirect(route('productCreateView',app()->getLocale()))->with('danger', 'Product does not create.');
+        if (!$this->service->store($locale,$request)) {
+            return redirect(route('productCreateView',$locale))->with('danger', 'Product does not create.');
         }
 
-        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product create successfully.');
+        return redirect(route('productIndex', $locale))->with('success', 'Product create successfully.');
 
     }
 
@@ -121,10 +119,10 @@ class ProductController extends AdminController
     public function update(string $locale, ProductRequest $request, int $id)
     {
         if (!$this->service->update($locale,$id,$request)) {
-            return redirect(route('productIndex',app()->getLocale()))->with('danger', 'Product does not update.');
+            return redirect(route('productIndex',$locale))->with('danger', 'Product does not update.');
         }
 
-        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product update successfully.');
+        return redirect(route('productIndex', $locale))->with('success', 'Product update successfully.');
     }
 
     /**
@@ -137,9 +135,9 @@ class ProductController extends AdminController
     public function destroy(string $locale, int $id)
     {
         if (!$this->service->delete($id)) {
-            return redirect(route('productIndex', app()->getLocale()))->with('danger', 'Product does not delete.');
+            return redirect(route('productIndex', $locale))->with('danger', 'Product does not delete.');
         }
-        return redirect(route('productIndex', app()->getLocale()))->with('success', 'Product delete successfully.');
+        return redirect(route('productIndex', $locale))->with('success', 'Product delete successfully.');
 
 
     }

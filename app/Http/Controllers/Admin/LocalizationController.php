@@ -128,10 +128,10 @@ class LocalizationController extends AdminController
 
 
         if (!$this->service->update($id, $data)) {
-            return redirect(route('localizationEditView', app()->getLocale()))->with('danger', 'Localization does not update.');
+            return redirect(route('localizationEditView', $locale))->with('danger', 'Localization does not update.');
         }
 
-        return redirect(route('localizationIndex', app()->getLocale()))->with('success', 'Localization update successfully.');
+        return redirect(route('localizationIndex', $locale))->with('success', 'Localization update successfully.');
 
     }
 
@@ -145,9 +145,9 @@ class LocalizationController extends AdminController
     public function destroy(string $locale, int $id)
     {
         if (!$this->service->delete($id)) {
-            return redirect(route('localizationIndex', app()->getLocale()))->with('danger', 'Localization does not delete.');
+            return redirect(route('localizationIndex', $locale))->with('danger', 'Localization does not delete.');
         }
-        return redirect(route('localizationIndex', app()->getLocale()))->with('success', 'Localization delete successfully.');
+        return redirect(route('localizationIndex', $locale))->with('success', 'Localization delete successfully.');
 
     }
 }
