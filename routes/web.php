@@ -77,6 +77,7 @@ Route::group([
             Route::resource('answers', AnswerController::class)
                 ->name('index', 'AnswerIndex')
                 ->name('store', 'AnswerStore')
+                ->name('show', 'AnswerShow')
                 ->name('create', 'AnswerCreate')
                 ->name('edit', 'AnswerEdit')
                 ->name('update', 'AnswerUpdate')
