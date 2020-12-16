@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\LocalizationController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
@@ -44,6 +46,9 @@ Route::group([
                 return view('admin.welcome');
             })->name('adminHome');
 
+            // Files
+            Route::get('/files', [FileController::class, 'index'])->name('fileIndex');
+            Route::get('/removeimage/{file}', [FileController::class, 'remove'])->name('removeImage');
 
             // Localizations
             Route::resource('localizations', LocalizationController::class)
@@ -74,7 +79,7 @@ Route::group([
                 ->name('edit', 'DictionaryEdit')
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
-
+            // Answers
             Route::resource('answers', AnswerController::class)
                 ->name('index', 'AnswerIndex')
                 ->name('store', 'AnswerStore')
@@ -83,6 +88,15 @@ Route::group([
                 ->name('edit', 'AnswerEdit')
                 ->name('update', 'AnswerUpdate')
                 ->name('destroy', 'AnswerDestroy');
+            // News
+            Route::resource('news', NewsController::class)
+                ->name('index', 'NewsIndex')
+                ->name('store', 'NewsStore')
+                ->name('show', 'NewsShow')
+                ->name('create', 'NewsCreate')
+                ->name('edit', 'NewsEdit')
+                ->name('update', 'NewsUpdate')
+                ->name('destroy', 'NewsDestroy');
 
             // Products
             Route::resource('products', ProductController::class)

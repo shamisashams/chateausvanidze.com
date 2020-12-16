@@ -59,6 +59,22 @@
                 <span>@lang('admin.answers')</span></a>
   
             </li>
+            <li>
+              <a href="/{{app()->getLocale()}}/admin/news">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-flag"></div>
+                </div>
+                <span>@lang('admin.news')</span></a>
+  
+            </li>
+            <li>
+              <a href="/{{app()->getLocale()}}/admin/files">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-flag"></div>
+                </div>
+                <span>@lang('admin.files')</span></a>
+  
+            </li>
             <li class="">
                 <a href="{{route('userIndex',app()->getLocale() )}}">
                     <div class="icon-w">

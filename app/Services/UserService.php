@@ -141,7 +141,7 @@ class UserService
                 $request->file('images')[$key]->move($destination, $imagename);
                 $model->files()->create([
                     'name' => $imagename,
-                    'path' => '/storage/app/public/user/' . $model->id,
+                    'path' => 'user/' . $model->id,
                     'format' => $file->getClientOriginalExtension(),
                 ]);
             }

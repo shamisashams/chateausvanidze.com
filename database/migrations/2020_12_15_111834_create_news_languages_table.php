@@ -16,7 +16,7 @@ class CreateNewsLanguagesTable extends Migration
         Schema::create('news_languages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('news_id')->constrained('news')->onDelete('cascade');
-            $table->foreignId('language_id')->constrained('languages')->onDelete('cascade');
+            $table->foreignId('language_id')->constrained('localizations')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();      
             $table->text('content')->nullable();  
