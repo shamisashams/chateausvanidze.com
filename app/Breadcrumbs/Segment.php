@@ -29,7 +29,7 @@ class Segment
 
     public function name()
     {
-        return ($this->segment == 'admin') ? __('admin.home') : $this->segment;
+        return ($this->segment == 'admin') ? 'dashboard' : $this->segment;
     }
 
     public function model()
