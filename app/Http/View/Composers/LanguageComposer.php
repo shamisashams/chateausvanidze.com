@@ -38,6 +38,7 @@ class LanguageComposer
         if (count($localizations) > 0) {
             foreach ($localizations as $localization) {
                 if ($localization->abbreviation == app()->getLocale()) {
+                    $languages['abbreviations'][] = $localization->abbreviation;
                     $languages['current']= [
                         'title' => $localization->native,
                         'url' => '',
@@ -45,6 +46,7 @@ class LanguageComposer
                     ];
                     continue;
                 }
+                $languages['abbreviations'][] = $localization->abbreviation;
                 $languages['data'][]= [
                     'title' => $localization->native,
                     'url' => $this->getUrl($localization->abbreviation),
