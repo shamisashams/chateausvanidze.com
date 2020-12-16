@@ -8,5 +8,9 @@ return [
     'features' => 'Features',
     'products' => 'Products',
     'products_update' => 'Products Update',
-    'create_features' => 'Create Features'
+    'create_features' => 'Create Features',
+    'users' => 'Users',
+    'create_users' => 'Create Users',
+    'create_user' => 'Create User',
+    'update_user' => 'Update User'
 ];

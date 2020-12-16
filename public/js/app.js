@@ -19356,9 +19356,19 @@ $(document).ready(function () {
 
   if (oldImages && oldImages.length > 0) {
     oldImages.forEach(function (el, key) {
+      var directory = '';
+
+      if (el.fileable_type === "App\\Models\\User") {
+        directory = 'user';
+      }
+
+      if (el.fileable_type === 'App\\Models\\Product') {
+        directory = 'product';
+      }
+
       imagedata.push({
         id: el.id,
-        src: "".concat(baseUrl, "storage/product/").concat(el.fileable_id, "/").concat(el.name)
+        src: "".concat(baseUrl, "storage/").concat(directory, "/").concat(el.fileable_id, "/").concat(el.name)
       });
     });
     $('.input-images').imageUploader({
@@ -19412,8 +19422,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\wine\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\wine\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/html/wine/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/wine/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

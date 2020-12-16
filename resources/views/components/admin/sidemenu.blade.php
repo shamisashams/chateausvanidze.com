@@ -59,6 +59,14 @@
                 <span>@lang('admin.answers')</span></a>
   
             </li>
+            <li class="">
+                <a href="{{route('userIndex',app()->getLocale() )}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>{{__('admin.users')}}</span></a>
+            </li>
+            <li>
          
 
        
