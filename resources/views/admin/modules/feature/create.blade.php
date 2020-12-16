@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
 @section('content')
-    <div class="content-box">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="element-wrapper">
-                    <h6 class="element-header">
-                        @lang('admin.feature_create')
-                    </h6>
+<div class="content-box">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="element-wrapper">
+                <h6 class="element-header">
+                    @lang('admin.feature_create')
+                </h6>
                     <div class="element-box">
                         {!! Form::open(['url' => route('featureCreate',app()->getLocale()),'method' =>'post']) !!}
                         <div class="row">
