@@ -139,12 +139,12 @@ class DictionaryService
      *
      * @param string $lang
      * @return Localization
-     * @throws \Exception
+     * 
      */
     protected function getLocalization(string $lang) {
         $localization = Localization::where('abbreviation',$lang)->first();
         if (!$localization) {
-            throwException('Localization not exist.');
+            throwException('Localization not exist.'); 
         }
 
         return $localization;
