@@ -18,4 +18,9 @@ class News extends Model
     {
         return $this->hasMany('App\Models\NewsLanguage', 'news_id');
     }
+    
+    public function file()
+    {
+        return $this->morphOne('App\Models\File', 'fileable');
+    }
 }
