@@ -98,9 +98,10 @@ class DictionaryService
         ]);
         foreach (Localization::all() as $key => $lang) {
         
-            $language = $model->language()->where('language_id', $lang->id)->first();
-            $language->value = $request['translates'][$key] ?? '';
-            $language->save();
+            $model->language()->where('language_id', $lang->id)->updateOrCreate([
+                'language_id' => $lang->id,
+                'value' => $request['translates'][$key] ?? ''
+            ]);
             
         }
         return true;

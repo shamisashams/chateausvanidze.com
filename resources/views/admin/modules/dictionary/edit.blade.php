@@ -27,7 +27,7 @@
                 @foreach ($langs as $lang)
                 <div class="text-left col-span-2">
                     <small>{{$lang->title}}</small>
-                    <input type="text" name="translates[]"  class="form-control" value="{{$language->language()->where('language_id', $lang->id)->first()->value}}" placeholder="{{$lang->abbreviation}} "> <br>
+                    <input type="text" name="translates[]"  class="form-control" value="{{$language->language()->where('language_id', $lang->id)->first()->value ?? ''}}" placeholder="{{$lang->abbreviation}} "> <br>
                 </div>
             @endforeach
             <div class="border-t m-0 py-3 col-span-3">

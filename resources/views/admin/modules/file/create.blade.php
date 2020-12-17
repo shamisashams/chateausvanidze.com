@@ -5,7 +5,7 @@
         <div class="col-lg-6">
             <div class="element-wrapper">
             <h6 class="element-header">
-                @lang('admin.file_create')
+                @lang('file.add_files')
             </h6>
             <form action="{{route('FileStore', $locale)}}" enctype="multipart/form-data" method="POST" class="bg-white py-3 px-4 row w-full">
                 @csrf

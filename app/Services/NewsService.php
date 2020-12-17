@@ -6,6 +6,7 @@ use App\Models\Dictionary;
 use App\Models\Feature;
 use App\Models\Localization;
 use App\Models\News;
+use App\Models\NewsLanguage;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,11 +47,22 @@ class NewsService
 
         $localization = $this->getLocalization($lang);
         
-        if ($request->key !== null) {
-            $data = $data->where('key', 'LIKE', '%'.$request->all()['key'].'%');
+        if ($request->id !== null) {
+            $data = $data->where('id', $request->all()['id']);
         }
-        if ($request->module !== null) {
-            $data = $data->where('module', 'LIKE', '%'.$request->all()['module'].'%');
+        if ($request->position !== null) {
+            $data = $data->where('position', 'LIKE', '%'.$request->all()['position'].'%');
+        }
+        if ($request->slug !== null) {
+            $data = $data->where('slug', 'LIKE', '%'.$request->all()['slug'].'%');
+        }
+        if ($request->title !== null) {
+            $titlearray = NewsLanguage::select('news_id')->where([['title', 'LIKE', '%'.$request->all()['title'].'%'], ['language_id', $localization->id]])->get()->toArray();
+            $data = $data->whereInd('id', $titlearray);
+        }
+        if ($request->description !== null) {
+            $descriptionarr = NewsLanguage::select('news_id')->where([['description', 'LIKE', '%'.$request->all()['description'].'%'], ['language_id', $localization->id]])->get()->toArray();
+            $data = $data->whereInd('id', $descriptionarr);
         }
 
         // Check if perPage exist and validation by perPageArray [].

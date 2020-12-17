@@ -5,7 +5,7 @@
         <div class="col-lg-6">
             <div class="element-wrapper">
             <h6 class="element-header">
-                @lang('admin.language.create')
+                @lang('admin.create_news')
             </h6>
             <form action="{{route('NewsUpdate', [$locale, $news->id])}}" enctype="multipart/form-data" method="POST" class="bg-white py-3 px-4 row w-full">
                 @csrf
