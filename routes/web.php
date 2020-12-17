@@ -48,6 +48,8 @@ Route::group([
 
             // Files
             Route::get('/files', [FileController::class, 'index'])->name('fileIndex');
+            Route::get('/files/create', [FileController::class, 'create'])->name('FileCreate');
+            Route::post('/files/store', [FileController::class, 'store'])->name('FileStore');
             Route::get('/removeimage/{file}', [FileController::class, 'remove'])->name('removeImage');
 
             // Localizations

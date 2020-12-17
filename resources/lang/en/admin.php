@@ -12,5 +12,13 @@ return [
     'users' => 'Users',
     'create_users' => 'Create Users',
     'create_user' => 'Create User',
-    'update_user' => 'Update User'
+    'update_user' => 'Update User',
+    'language' => 'Language',
+    'create_dictionary' => 'Add Word',
+    'answers' => 'Answers',
+    'news' => 'News',
+    'files' => 'Files',
+    'create_answer' => 'Add an Answer',
+    'create_news' => 'Add News',
+
 ];

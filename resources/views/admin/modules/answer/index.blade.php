@@ -108,9 +108,9 @@
                         </td>
                         <td class="text-center">
                             @if($feature->status)
-                                <span class="text-green">Active</span>
-                            @else
-                                <span class="text-red">Not Active</span>
+                            <span class="text-green">@lang('answer.on')</span>
+                        @else
+                            <span class="text-red">@lang('answer.off')</span>
                             @endif
                         </td>
                         <td class="row-actions d-flex">
