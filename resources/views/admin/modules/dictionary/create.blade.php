@@ -5,7 +5,7 @@
         <div class="col-lg-6">
             <div class="element-wrapper">
             <h6 class="element-header">
-                @lang('admin.language.create')
+                @lang('admin.create_dictionary')
             </h6>
             <form action="{{route('DictionaryStore', $locale)}}" method="POST" class="bg-white py-3 px-4 grid w-full grid-cols-2 gap-3">
                 @csrf

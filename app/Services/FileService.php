@@ -6,6 +6,8 @@ use App\Models\Feature;
 use App\Models\File;
 use App\Models\Localization;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
+
 use function PHPUnit\Framework\throwException;
 
 class FileService
@@ -55,27 +57,14 @@ class FileService
      * @param array $request
      * @return bool
      */
-    public function store(string $lang, array $request)
+    public function store(array $request)
     {
-        $request['status'] = isset($request['status']) ? 1 : 0;
-
-        $localizationID = Localization::getIdByName($lang);
-
-
-
-        $this->model = new Feature([
-            'position' => $request['position'],
-            'status' => $request['status'],
-            'slug' => $request['slug'],
-            'type' => $request['type']
-        ]);
-
-        $this->model->save();
-
-        $this->model->language()->create([
-            'feature_id' => $this->model->id,
-            'language_id' => $localizationID,
-            'title' => $request['title'],
+        $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs("files/", $request['file'], $filename);
+        $this->model->create([
+            'name' => $filename,
+            'path' => 'files/',
+            'format' => $request['file']->getClientOriginalExtension(),
         ]);
 
         return true;
@@ -91,15 +80,10 @@ class FileService
      */
     public function delete($id)
     {
-        $data = $this->find($id);
-        if (count($data->language) > 0) {
-            if(!$data->language()->delete()){
-                throwException('Feature languages can not delete.');
-            }
-        }
-        if (!$data->delete()) {
-            throwException('Feature  can not delete.');
-        }
+        $file = $this->find($id);
+       
+        Storage::disk('public')->delete($file->path.'/'.$file->name);
+        $file->delete();
         return true;
     }
 }

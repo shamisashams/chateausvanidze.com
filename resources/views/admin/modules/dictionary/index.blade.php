@@ -47,11 +47,11 @@
                     @enderror
                 </th>
 
-                <th></th>
-
-                <th></th>
-
-                <th></th>
+                @foreach ($langs as $item)
+                <th>
+                    
+                </th>
+            @endforeach
 
                 <th></th>
             </tr>

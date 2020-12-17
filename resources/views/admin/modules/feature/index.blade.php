@@ -17,13 +17,13 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>type</th>
-                <th>position</th>
-                <th>slug</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>@lang('feature.id')</th>
+                <th>@lang('feature.title')</th>
+                <th>@lang('feature.type')</th>
+                <th>@lang('feature.position')</th>
+                <th>@lang('feature.slug')</th>
+                <th>@lang('feature.status')</th>
+                <th>@lang('feature.actions')</th>
             </tr>
             <tr>
                 <th>
@@ -96,9 +96,9 @@
                         <td class="text-center">{{$feature->slug}}</td>
                         <td class="text-center">
                             @if($feature->status)
-                                <span class="text-green">Active</span>
+                                <span class="text-green">@lang('feature.on')</span>
                             @else
-                                <span class="text-red">Not Active</span>
+                                <span class="text-red">@lang('feature.off')</span>
                             @endif
                         </td>
                         <td class="row-actions d-flex">
