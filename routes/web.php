@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\LocaleFileController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
@@ -123,6 +124,15 @@ Route::group([
                 ->name('update', 'userUpdate')
                 ->name('destroy', 'userDestroy')
                 ->name('show', 'userShow');
+
+            // Pages
+            Route::resource('pages', PageController::class)->except('destroy')
+                ->name('index', 'pageIndex')
+                ->name('create', 'pageCreateView')
+                ->name('store', 'pageCreate')
+                ->name('edit', 'pageEditView')
+                ->name('update', 'pageUpdate')
+                ->name('show', 'pageShow');
         });
 
     });

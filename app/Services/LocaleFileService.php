@@ -40,7 +40,7 @@ class LocaleFileService
 
         foreach ($this->arrayLang as $this->key => $this->value)
         {
-            $content .= "\t'".$this->key."' => '".$this->value."',\n";
+            $content .= "\t'".$this->key."' => ".'"'.$this->value.'"'.",\n";
         }
 
         $content .= "];";
