@@ -110,6 +110,9 @@ class LocalizationService
     public function delete($id)
     {
         $data = $this->find($id);
+        if ($data->default) {
+            return false;
+        }
         return $data->delete();
     }
 

@@ -69,6 +69,11 @@
                             <label class="form-check-label"><input class="form-check-input" name="default"
                                                                    type="checkbox">Default</label>
                         </div>
+                        @if ($errors->has('default'))
+                            <span class="help-block">
+                                    {{ $errors->first('default') }}
+                                        </span>
+                        @endif
                         <div class="form-buttons-w">
                             <button class="btn btn-primary" type="submit"> Create</button>
                         </div>

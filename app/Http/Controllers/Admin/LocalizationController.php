@@ -145,7 +145,7 @@ class LocalizationController extends AdminController
     public function destroy(string $locale, int $id)
     {
         if (!$this->service->delete($id)) {
-            return redirect(route('localizationIndex', $locale))->with('danger', 'Localization does not delete.');
+            return redirect(route('localizationIndex', $locale))->with('danger', 'Localization is default.');
         }
         return redirect(route('localizationIndex', $locale))->with('success', 'Localization delete successfully.');
 

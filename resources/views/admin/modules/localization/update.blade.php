@@ -18,7 +18,7 @@
                                     @if ($errors->has('title'))
                                         <span class="help-block">
                                     {{ $errors->first('title') }}
-                                </span>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -66,9 +66,15 @@
                                                                    type="checkbox">Status</label>
                         </div>
                         <div class="form-check">
-                            <label class="form-check-label"><input class="form-check-input" name="default" {{$localization->default ? 'checked' : '' }}
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="default" {{$localization->default ? 'checked' : '' }}
                                                                    type="checkbox">Default</label>
                         </div>
+                        @if ($errors->has('default'))
+                            <span class="help-block">
+                                    {{ $errors->first('default') }}
+                                        </span>
+                        @endif
                         <div class="form-buttons-w">
                             <button class="btn btn-primary" type="submit"> Update</button>
                         </div>

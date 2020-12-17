@@ -12,6 +12,6 @@
 
 @if (session('danger'))
     <div class="alert alert-danger" role="alert">
-        @dd
+        {{ session('danger') }}
     </div>
 @endif<?php
