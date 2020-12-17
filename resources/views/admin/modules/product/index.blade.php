@@ -17,12 +17,12 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>slug</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>@lang('product.id')</th>
+                <th>@lang('product.title')</th>
+                <th>@lang('product.description')</th>
+                <th>@lang('product.slug')</th>
+                <th>@lang('product.status')</th>
+                <th>@lang('product.actions')</th>
             </tr>
             <tr>
                 <th>
@@ -79,9 +79,9 @@
                         <td class="text-center">{{$product->slug}}</td>
                         <td class="text-center">
                             @if($product->status)
-                                <span class="text-green">Active</span>
+                                <span class="text-green">@lang('product.on')</span>
                             @else
-                                <span class="text-red">Not Active</span>
+                                <span class="text-red">@lang('product.off')</span>
                             @endif
                         </td>
                         <td class="row-actions d-flex">

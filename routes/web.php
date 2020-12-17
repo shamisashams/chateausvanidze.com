@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Models\Dictionary;
+use App\Models\Localization;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,6 +121,7 @@ Route::group([
                 ->name('update', 'userUpdate')
                 ->name('destroy', 'userDestroy')
                 ->name('show', 'userShow');
+
         });
 
     });

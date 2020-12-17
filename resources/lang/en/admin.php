@@ -20,6 +20,7 @@ return [
     'news' => 'News',
     'files' => 'Files',
     'create_answer' => 'Add an Answer', 
+    'create' => 'Create',
     'create_news' => 'Add News',
     'dashboard' => 'Dashboard',
 

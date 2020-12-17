@@ -13,7 +13,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                    {{ Form::label('title', 'Title', []) }}
+                                    {{ Form::label('title',  __('localization.title'), []) }}
                                     {{ Form::text('title', $localization->title, ['class' => 'form-control', 'no','placeholder'=>'Enter Title']) }}
                                     @if ($errors->has('title'))
                                         <span class="help-block">
@@ -25,7 +25,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('abbreviation') ? ' has-error' : '' }}">
-                                    {{ Form::label('abbreviation', 'Title', []) }}
+                                    {{ Form::label('abbreviation',  __('localization.abbreviation'), []) }}
                                     {{ Form::text('abbreviation', $localization->abbreviation, ['class' => 'form-control', 'no','placeholder'=>'Enter Abbreviation']) }}
                                     @if ($errors->has('abbreviation'))
                                         <span class="help-block">
@@ -39,7 +39,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('native') ? ' has-error' : '' }}">
-                                    {{ Form::label('native', 'Native', []) }}
+                                    {{ Form::label('native',  __('localization.native'), []) }}
                                     {{ Form::text('native', $localization->native, ['class' => 'form-control', 'no','placeholder'=>'Enter Native']) }}
                                     @if ($errors->has('native'))
                                         <span class="help-block">
@@ -51,7 +51,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('locale') ? ' has-error' : '' }}">
-                                    {{ Form::label('locale', $localization->locale, []) }}
+                                    {{ Form::label('locale',  __('localization.locale'), []) }}
                                     {{ Form::text('locale', $localization->locale, ['class' => 'form-control', 'no','placeholder'=>'Enter Locale']) }}
                                     @if ($errors->has('locale'))
                                         <span class="help-block">
@@ -63,14 +63,14 @@
                         </div>
                         <div class="form-check">
                             <label class="form-check-label"><input class="form-check-input" {{$localization->status ? 'checked' : '' }} name="status"
-                                                                   type="checkbox">Status</label>
+                                                                   type="checkbox"> @lang('localization.status')</label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label"><input class="form-check-input" name="default" {{$localization->default ? 'checked' : '' }}
-                                                                   type="checkbox">Default</label>
+                                                                   type="checkbox"> @lang('localization.default')</label>
                         </div>
                         <div class="form-buttons-w">
-                            <button class="btn btn-primary" type="submit"> Update</button>
+                            <button class="btn btn-primary" type="submit">  @lang('localization.update')</button>
                         </div>
                         {!! Form::close() !!}
                     </div>

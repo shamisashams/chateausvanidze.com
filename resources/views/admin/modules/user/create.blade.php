@@ -14,7 +14,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                    {{ Form::label('first_name', 'First Name', []) }}
+                                    {{ Form::label('first_name', __('user.first_name'), []) }}
                                     {{ Form::text('first_name', '', ['class' => 'form-control', 'no','placeholder'=>'Enter First Name']) }}
                                     @if ($errors->has('first_name'))
                                         <span class="help-block">
@@ -26,7 +26,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                    {{ Form::label('last_name', 'Last Name', []) }}
+                                    {{ Form::label('last_name', __('user.last_name'), []) }}
                                     {{ Form::text('last_name', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Last Name']) }}
                                     @if ($errors->has('last_name'))
                                         <span class="help-block">
@@ -40,7 +40,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                    {{ Form::label('phone', 'Phone', []) }}
+                                    {{ Form::label('phone', __('user.phone'), []) }}
                                     {{ Form::text('phone', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Phone']) }}
                                     @if ($errors->has('phone'))
                                         <span class="help-block">
@@ -52,7 +52,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('id_number') ? ' has-error' : '' }}">
-                                    {{ Form::label('id_number', 'Personal ID', []) }}
+                                    {{ Form::label('id_number', __('user.p_id'), []) }}
                                     {{ Form::text('id_number', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Personal ID']) }}
                                     @if ($errors->has('id_number'))
                                         <span class="help-block">
@@ -66,7 +66,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-                                    {{ Form::label('address', 'Address', []) }}
+                                    {{ Form::label('address', __('user.address'), []) }}
                                     {{ Form::text('address', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Address']) }}
                                     @if ($errors->has('address'))
                                         <span class="help-block">
@@ -78,7 +78,7 @@
                             <div class="col-6">
                                 <div
                                         class="form-group {{ $errors->has('role') ? ' has-error' : '' }}">
-                                    {{ Form::label('role', 'Role', []) }}
+                                    {{ Form::label('role', __('user.role'), []) }}
                                     {{ Form::select('role',(count($rolesArray) > 0) ? $rolesArray : [],'',  ['class' => 'form-control', 'no']) }}
                                     @if ($errors->has('role'))
                                         <span class="help-block">
@@ -92,7 +92,7 @@
                             <div class="col-6">
                                 <div
                                         class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                    {{ Form::label('email', 'Email', []) }}
+                                    {{ Form::label('email', __('user.mail'), []) }}
                                     {{ Form::email('email', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Email']) }}
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -106,7 +106,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                                    {{ Form::label('password', 'Password', []) }}
+                                    {{ Form::label('password', __('user.password'), []) }}
                                     {{ Form::password('password', ['class' => 'form-control', 'no','autocomplete' => 'off']) }}
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -118,7 +118,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                    {{ Form::label('password_confirmation', 'Address', []) }}
+                                    {{ Form::label('password_confirmation', __('user.re_password'), []) }}
                                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'no','autocomplete' => 'off']) }}
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
@@ -132,13 +132,13 @@
                             <div class="col-6">
                                 <div class="form-check">
                                     <label class="form-check-label"><input class="form-check-input" name="status"
-                                                                           type="checkbox">Status</label>
+                                                                           type="checkbox">@lang('user.status')</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-buttons-w">
-                            <button class="btn btn-primary" type="submit"> Create</button>
+                            <button class="btn btn-primary" type="submit"> @lang('user.create')</button>
                         </div>
                     </div>
                 </div>

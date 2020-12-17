@@ -17,13 +17,13 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>@lang('user.id')</th>
+                <th>@lang('user.first_name')</th>
+                <th>@lang('user.last_name')</th>
+                <th>@lang('user.mail')</th>
+                <th>@lang('user.status')</th>
+                <th>@lang('user.role')</th>
+                <th>@lang('user.actions')</th>
             </tr>
             <tr>
                 <th>
@@ -88,9 +88,9 @@
                         <td class="text-center">{{$user->email}}</td>
                         <td class="text-center">
                             @if($user->status)
-                                <span class="text-green">Active</span>
+                                <span class="text-green">@lang('user.on')</span>
                             @else
-                                <span class="text-red">Not Active</span>
+                                <span class="text-red">@lang('user.off')</span>
                             @endif
                         </td>
                         <td class="text-center">

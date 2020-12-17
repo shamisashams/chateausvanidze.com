@@ -14,7 +14,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                    {{ Form::label('title', 'Title', []) }}
+                                    {{ Form::label('title', __('product.title'), []) }}
                                     {{ Form::text('title', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Title']) }}
                                     @if ($errors->has('title'))
                                         <span class="help-block">
@@ -26,7 +26,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
-                                    {{ Form::label('position', 'Position', []) }}
+                                    {{ Form::label('position', __('product.position'), []) }}
                                     {{ Form::text('position', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Position']) }}
                                     @if ($errors->has('position'))
                                         <span class="help-block">
@@ -40,7 +40,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('slug') ? ' has-error' : '' }}">
-                                    {{ Form::label('slug', 'Slug', []) }}
+                                    {{ Form::label('slug', __('product.slug'), []) }}
                                     {{ Form::text('slug', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Slug']) }}
                                     @if ($errors->has('slug'))
                                         <span class="help-block">
@@ -52,7 +52,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('price') ? ' has-error' : '' }}">
-                                    {{ Form::label('price', 'Price', []) }}
+                                    {{ Form::label('price', __('product.price'), []) }}
                                     {{ Form::text('price', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Price']) }}
                                     @if ($errors->has('price'))
                                         <span class="help-block">
@@ -66,7 +66,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
-                                    {{ Form::label('description', 'Description', []) }}
+                                    {{ Form::label('description', __('product.description'), []) }}
                                     {{ Form::textarea('description', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Description']) }}
                                     @if ($errors->has('description'))
                                         <span class="help-block">
@@ -78,7 +78,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
-                                    {{ Form::label('content', 'Content', []) }}
+                                    {{ Form::label('content', __('product.content'), []) }}
                                     {{ Form::textarea('content', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content']) }}
                                     @if ($errors->has('content'))
                                         <span class="help-block">
@@ -92,13 +92,13 @@
                             <div class="col-6">
                                 <div class="form-check">
                                     <label class="form-check-label"><input class="form-check-input" name="status"
-                                                                           type="checkbox">Status</label>
+                                                                           type="checkbox">@lang('product.status')</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('release_date') ? ' has-error' : '' }}">
-                                    {{ Form::label('release_date', 'Release Date', []) }}
+                                    {{ Form::label('release_date', __('product.date'), []) }}
                                     <div class="date-input">
                                         {{ Form::text('release_date', '', ['class' => 'form-control single-daterange', 'no','placeholder'=>'Release date']) }}
                                     </div>
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="form-buttons-w">
-                            <button class="btn btn-primary" type="submit"> Create</button>
+                            <button class="btn btn-primary" type="submit"> @lang('product.create')</button>
                         </div>
                     </div>
                 </div>
