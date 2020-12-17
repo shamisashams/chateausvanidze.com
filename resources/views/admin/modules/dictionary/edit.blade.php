@@ -5,7 +5,7 @@
         <div class="col-lg-6">
             <div class="element-wrapper">
             <h6 class="element-header">
-                @lang('admin.language.update')
+                @lang('admin.language_update')
             </h6>
         <form action="{{route('DictionaryUpdate', [$locale,$language->id])}}"method="POST" class="bg-white py-3 px-4 grid w-full grid-cols-2 gap-3">
             @csrf
