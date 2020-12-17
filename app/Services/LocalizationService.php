@@ -54,8 +54,8 @@ class LocalizationService
             $data = $data->where('native', 'like', "%{$request->native}%");
         }
 
-        if ($request->locale) {
-            $data = $data->where('locale', 'like', "%{$request->locale}%");
+        if ($request->localization) {
+            $data = $data->where('locale', 'like', "%{$request->localization}%");
         }
         if ($request->status != null) {
             $data = $data->where('status',$request->status);
@@ -64,7 +64,6 @@ class LocalizationService
 
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
-
         return $data->paginate($perPage);
     }
 

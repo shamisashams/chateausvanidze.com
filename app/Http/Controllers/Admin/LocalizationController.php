@@ -34,7 +34,7 @@ class LocalizationController extends AdminController
             'title' => 'string|max:255|nullable',
             'abbreviation' => 'string|max:255|nullable',
             'native' => 'string|max:255|nullable',
-            'locale' => 'string|max:255|nullable',
+            'localization' => 'string|max:255|nullable',
             'status' => 'boolean|nullable',
         ]);
         return view('admin.modules.localization.index', [

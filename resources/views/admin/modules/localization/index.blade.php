@@ -59,10 +59,10 @@
                     @endif
                 </th>
                 <th>
-                    {{ Form::text('locale',Request::get('locale'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @if ($errors->has('locale'))
+                    {{ Form::text('localization',Request::get('localization'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('localization'))
                         <span class="help-block">
-                        {{ $errors->first('locale') }}
+                        {{ $errors->first('localization') }}
                         </span>
                     @endif
                 </th>
