@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\LocaleFileController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
@@ -81,6 +82,9 @@ Route::group([
                 ->name('edit', 'DictionaryEdit')
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
+
+            Route::get('language/rescan',[DictionaryController::class,'rescan'])->name('languageScanner');
+
             // Answers
             Route::resource('answers', AnswerController::class)
                 ->name('index', 'AnswerIndex')

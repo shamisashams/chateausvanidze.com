@@ -7,7 +7,11 @@
                 <a class="btn btn-lg btn-success"
                    href="{{route('DictionaryCreate',$locale)}}">@lang('admin.create_dictionary')</a>
             </div>
-            <div class="col-sm-10 per-page-column">
+            <div class="col-sm-2">
+                <a class="btn btn-lg btn-warning"
+                   href="{{route('languageScanner', $locale)}}">@lang('admin.rescan')</a>
+            </div>
+            <div class="col-sm-8 per-page-column">
                 <div class="per-page-container">
                     {{ Form::select('per_page',[10 => 10,20 => 20,30 => 30,50 => 50,100=>100],(Request::get('per_page') != null ? Request::get('per_page') : 10),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
                 </div>

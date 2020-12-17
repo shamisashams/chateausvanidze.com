@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\DictionaryRequest;
-use App\Models\Dictionary;
 use App\Models\Localization;
 use App\Services\DictionaryService;
+use App\Services\LocaleFileService;
 use Illuminate\Http\Request;
 
 class DictionaryController extends AdminController
@@ -95,5 +95,35 @@ class DictionaryController extends AdminController
     {
         $this->service->delete($id);
         return redirect()->back();
+    }
+
+    public function rescan($locale) {
+        $localizations = Localization::with('dictionaryLanguages')->get();
+        $langArray = [];
+
+        if (count($localizations) > 0) {
+            foreach ($localizations as $localization) {
+                if (count($localization->dictionaryLanguages) > 0) {
+                    foreach ($localization->dictionaryLanguages as $dictionaryLanguage) {
+                        $langArray[$localization->abbreviation][$dictionaryLanguage->dictionary->module][$dictionaryLanguage->dictionary->key] = $dictionaryLanguage->value;
+                    }
+                }
+            }
+        }
+        $insertArray = [];
+        if (count($langArray) > 0) {
+            foreach ($langArray as $langKey => $items) {
+                if (count($langArray[$langKey]) > 0) {
+                    foreach ($items as $module => $item) {
+                        $localeFileService = new LocaleFileService($langKey,$module,$item);
+                        $localeFileService->rescan();
+                    }
+                }
+            }
+            return redirect(route('DictionaryIndex', $locale))->with('success', 'Languages Updated.');
+
+        }
+
+        return redirect(route('DictionaryIndex', $locale))->with('warning', 'Not exist languages.');
     }
 }

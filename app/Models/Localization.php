@@ -47,4 +47,9 @@ class Localization extends Model
         }
         return $localization->id;
     }
+
+    public function dictionaryLanguages()
+    {
+        return $this->hasMany(DictionaryLanguage::class, 'language_id');
+    }
 }
