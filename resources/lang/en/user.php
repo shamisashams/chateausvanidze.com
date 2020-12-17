@@ -1,19 +1,23 @@
 <?php
 
-return [
-    'key' => 'Key',
-    'id'=> 'Id',
-    'first_name'=> 'First Name',
-    'last_name'=> 'Last Name',
-    'mail'=> 'Email',
-    'status'=> 'Status',
-    'role'=> 'Role',
-    'actions'=> 'Actions',
-    'create'=> 'Create',
-    'phone' => 'Phone',
-    'p_id' => 'Personal ID',
-    'address' => 'Address',
-    'password' => 'Password',
-    're_password' => 'Confirm Password'
-
+return
+[
+	'key' => 'Key',
+	'id' => 'Id',
+	'title' => 'Title',
+	'abbreviation' => 'Abbreviation',
+	'native' => 'Native',
+	'locale' => 'Locale',
+	'status' => 'Status',
+	'actions' => 'Actions',
+	'update' => 'Update',
+	'create' => 'Create',
+	'description' => 'Description',
+	'position' => 'Position',
+	'content' => 'Content',
+	'date' => 'Date',
+	'price' => 'Price',
+	'slug' => 'Slug',
+	'on' => 'Active',
+	'off' => 'Non Active',
 ];

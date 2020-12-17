@@ -42,7 +42,7 @@ class FileService
     public function getAll(string $lang, $request)
     {
         $data = $this->model->query();
-        $data = $data->where([['fileable_type', '!=', 'App\Models\Product'], ['fileable_type', '!=', 'App\Models\User']]);
+        $data = $data->whereNull('fileable_type')->orWhere('fileable_type', 'LIKE', 'App\Models\News');
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
 

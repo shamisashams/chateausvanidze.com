@@ -46,7 +46,14 @@
                         </span>
                     @enderror
                 </th>
-                <th></th>
+                <th>
+                    {{ Form::text('language',Request::get('language'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @error('language')
+                    <span class="help-block">
+                        {{$message}}
+                        </span>
+                    @enderror
+                </th>
                 <th></th>
             </tr>
             </thead>

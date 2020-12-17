@@ -1,6 +1,6 @@
 <?php
 
-return [
-    'login' => 'Login',
-    'localizations' => 'Localizations'
+return
+[
+	'language' => '',
 ];

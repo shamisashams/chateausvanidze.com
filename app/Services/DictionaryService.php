@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Request\Admin\FeatureRequest;
 use App\Models\Dictionary;
+use App\Models\DictionaryLanguage;
 use App\Models\Feature;
 use App\Models\Localization;
 use http\Client\Request;
@@ -50,6 +51,10 @@ class DictionaryService
         }
         if ($request->module !== null) {
             $data = $data->where('module', 'LIKE', '%'.$request->all()['module'].'%');
+        }
+        if ($request->language !== null) {
+            $languagearray = DictionaryLanguage::where('value', 'LIKE', '%'.$request->all()['language'].'%')->get()->toArray();
+            $data = $data->whereIn('id', $languagearray);
         }
 
         // Check if perPage exist and validation by perPageArray [].

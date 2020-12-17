@@ -1,6 +1,6 @@
 <?php
 
-return [
-    'login' => 'ავტორიზაცია',
-    'localizations' => 'Localizations'
+return
+[
+	'language' => '',
 ];

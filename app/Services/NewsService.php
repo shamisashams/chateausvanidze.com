@@ -86,7 +86,7 @@ class NewsService
             'position' => $request['position'],
             'status' => intval($request['status']),
         ]);
-        if($request['file']){
+        if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
             Storage::disk('public')->putFileAs("news/", $request['file'], $filename);
             $model->file()->create([
@@ -94,8 +94,6 @@ class NewsService
                 'path' => 'news/',
                 'format' => $request['file']->getClientOriginalExtension(),
             ]);
-        }else{
-            return redirect()->back();
         }
         $localization = $this->getLocalization($lang);
         
