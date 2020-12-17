@@ -26,6 +26,9 @@ class SetLocale
         $defaultLocale = Localization::where('default', true)->first();
 
         if ($localization == null) {
+            if (strlen($locale) === 2) {
+                array_shift($segments);
+            }
             array_unshift($segments, $defaultLocale->abbreviation);
             return $this->redirectTo($segments);
         }
