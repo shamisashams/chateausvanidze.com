@@ -19,10 +19,24 @@ class FileController extends AdminController
     {
         return view('admin.modules.file.index', ['files' => $this->service->getAll($locale, $request), 'locale'=>$locale]);
     }
-    public function remove($locale, File $file)
+    public function create($locale)
+    {
+        return view('admin.modules.file.create', ['locale'=>$locale]);
+    }
+    public function store(Request $request, $locale)
+    {
+        $this->validate($request, [
+            'file' => 'required'
+        ]);
+        $data = $request->only([
+            'file'
+        ]);
+        $this->service->store($data);
+        return redirect()->route('fileIndex', $locale);
+    }
+    public function remove($locale, $id)
     {   
-        Storage::disk('public')->delete($file->path.'/'.$file->name);
-        $file->delete();
+        $this->service->delete($id);
         return redirect()->back();
     }
 }
