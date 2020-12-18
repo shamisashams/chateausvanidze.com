@@ -10,11 +10,10 @@
 namespace App\Services;
 
 use App\Http\Request\Admin\UserRequest;
-use App\Models\Feature;
-use App\Models\FeatureLanguage;
 use App\Models\Localization;
 use App\Models\User;
 use App\Models\UserLanguage;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
@@ -155,10 +154,9 @@ class UserService
      *
      * @param string $lang
      * @param int $id
-     * @param UserRequest $request
      * @return bool
      */
-    public function update(string $lang,int $id, UserRequest $request)
+    public function update(string $lang,int $id, $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
 
@@ -196,9 +194,25 @@ class UserService
             $userLanguage->save();
         }
 
-        // Role update
-        $data->roles()->detach();
-        $data->roles()->attach($request['role']);
+        if (isset($request['role'])) {
+            // Role update
+            $data->roles()->detach();
+            $data->roles()->attach($request['role']);
+        }
+
+        if ($data->profile == null) {
+            $data->profile()->create([
+                'birthday' => Carbon::parse($request['birthday']),
+                'phone_1' => $request['phone_1'],
+                'phone_2' => $request['phone_2'],
+            ]);
+        } else {
+            $data->profile()->update([
+                'birthday' => Carbon::parse($request['birthday']),
+                'phone_1' => $request['phone_1'],
+                'phone_2' => $request['phone_2'],
+            ]);
+        }
 
         // Delete product file if deleted in request.
         if (count($data->files) > 0) {

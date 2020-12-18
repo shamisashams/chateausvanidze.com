@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FileController;
-use App\Http\Controllers\Admin\LocaleFileController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
@@ -12,8 +11,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\FrontController;
-use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -162,7 +161,8 @@ Route::group([
     Route::get('/blog/{id}', [FrontController::class, 'blogshow'])->name('BlogShow');
     
     // Cabinet
-    Route::get('/cabinet-info', [FrontController::class, 'cabinetinfo'])->name('CabinetInfo');
+    Route::get('/cabinet-info', [CabinetController::class, 'cabinetInfo'])->name('cabinetInfo');
+    Route::put('/cabinet-info/{user}', [CabinetController::class, 'cabinetInfoUpdate'])->name('cabinetInfoUpdate');
     Route::get('/cabinet-orders', [FrontController::class, 'cabinetorders'])->name('CabinetOrders');
 
     // Purchase

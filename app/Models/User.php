@@ -58,4 +58,10 @@ class User extends Authenticatable
     {
         return $this->morphMany('App\Models\File', 'fileable');
     }
+
+    // Profile
+    public function profile()
+    {
+        return $this->morphOne(Profile::class, 'profileable');
+    }
 }
