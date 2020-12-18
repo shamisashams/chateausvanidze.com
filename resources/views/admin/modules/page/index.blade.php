@@ -17,11 +17,11 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>@lang('page.id')</th>
-                <th>@lang('page.title')</th>
-                <th>@lang('page.slug')</th>
-                <th>@lang('page.status')</th>
-                <th>@lang('page.actions')</th>
+                <th>@lang('admin.id')</th>
+                <th>@lang('admin.title')</th>
+                <th>@lang('admin.slug')</th>
+                <th>@lang('admin.status')</th>
+                <th>@lang('admin.actions')</th>
             </tr>
             <tr>
                 <th>

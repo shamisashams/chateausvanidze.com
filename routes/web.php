@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Models\Dictionary;
@@ -133,6 +134,15 @@ Route::group([
                 ->name('edit', 'pageEditView')
                 ->name('update', 'pageUpdate')
                 ->name('show', 'pageShow');
+
+            // Settings
+            Route::resource('settings', SettingController::class)->except('destroy')
+                ->name('index', 'settingIndex')
+                ->name('create', 'settingCreateView')
+                ->name('store', 'settingCreate')
+                ->name('edit', 'settingEditView')
+                ->name('update', 'settingUpdate')
+                ->name('show', 'settingShow');
         });
 
     });

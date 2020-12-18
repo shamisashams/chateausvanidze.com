@@ -5,7 +5,7 @@
         <div class="col-lg-6">
             <div class="element-wrapper">
                 <h6 class="element-header">
-                    @lang('admin.page_create')
+                    @lang('admin.page_update')
                 </h6>
                     <div class="element-box">
                         {!! Form::open(['url' => route('pageUpdate',[app()->getLocale(),$page->id]),'method' =>'put']) !!}
