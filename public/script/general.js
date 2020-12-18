@@ -1,5 +1,4 @@
 
-
 // --- nav on small - menu dropdown 
 const menuIcon = document.querySelector('.menu-icon');
 const navigation = document.querySelector('.navigation');

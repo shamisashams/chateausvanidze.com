@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FrontController;
 use App\Models\Dictionary;
 use Illuminate\Support\Facades\Route;
 
@@ -125,6 +126,27 @@ Route::group([
                 ->name('show', 'userShow');
         });
 
+
+
     });
+
+    // User Rotes
+    Route::get('/about-us', [FrontController::class, 'aboutus'])->name('AboutUs');
+    Route::get('/products', [FrontController::class, 'products'])->name('Products');
+    Route::get('/product/{id}', [FrontController::class, 'productshow'])->name('ProductShow');
+
+    Route::get('/club', [FrontController::class, 'club'])->name('Club');
+    Route::get('/favorites', [FrontController::class, 'favorites'])->name('Favorites');
+
+    Route::get('/blog', [FrontController::class, 'blog'])->name('Blog');
+    Route::get('/blog/{id}', [FrontController::class, 'blogshow'])->name('BlogShow');
+    
+    // Cabinet
+    Route::get('/cabinet-info', [FrontController::class, 'cabinetinfo'])->name('CabinetInfo');
+    Route::get('/cabinet-orders', [FrontController::class, 'cabinetorders'])->name('CabinetOrders');
+
+    // Purchase
+    Route::get('/cart', [FrontController::class, 'cart'])->name('Cart');
+    Route::get('/purchase', [FrontController::class, 'purchase'])->name('Purchase');
 });
 

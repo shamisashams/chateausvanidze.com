@@ -20,7 +20,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-1.png" alt="" >
+                                <img src="{{asset('../img/product-1.png')}}" alt="" >
                             </div>
     
                             <div class="card__info">
@@ -71,7 +71,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-2.png" alt="">
+                                <img src="{{asset('../img/product-2.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -122,7 +122,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-3.png" alt="">
+                                <img src="{{asset('../img/product-3.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -173,7 +173,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-4.png" alt="">
+                                <img src="{{asset('../img/product-4.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -224,7 +224,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-1.png" alt="">
+                                <img src="{{asset('../img/product-1.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -275,7 +275,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-4.png" alt="">
+                                <img src="{{asset('../img/product-4.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -326,7 +326,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-2.png" alt="">
+                                <img src="{{asset('../img/product-2.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -377,7 +377,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-3.png" alt="">
+                                <img src="{{asset('../img/product-3.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -428,7 +428,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-1.png" alt="">
+                                <img src="{{asset('../img/product-1.png')}}" alt="">
                             </div>
     
                             <div class="card__info">
@@ -479,7 +479,7 @@
                             </div>
     
                             <div class="card__img">
-                                <img src="./img/product-2.png" alt="">
+                                <img src="{{asset('../img/product-2.png')}}" alt="">
                             </div>
     
                             <div class="card__info">

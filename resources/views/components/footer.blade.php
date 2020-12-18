@@ -5,7 +5,7 @@
 
             <div class="footer__col">
                 <a class="footer__brand" href="">
-                    <img src="./img/icons/svanidze-brand.svg" alt="">
+                    <img src="{{asset('../img/icons/svanidze-brand.svg')}}" alt="">
                 </a>
 
                 <p class="footer__about-text">
@@ -17,8 +17,8 @@
                 <h2>ბმულები</h2>
 
                 <ul class="footer__nav">
-                    <a href="./index.html">მთავარი</a>
-                    <a href="./about.html">ისტორია</a>
+                    <a href="/">მთავარი</a>
+                    <a href="{{route('AboutUs', app()->getLocale())}}">ისტორია</a>
                     <a href="./products.html">პროდუქცია</a>
                     <a href="./club.html">ღვინის კლუბი</a>
                     <a href="./blogs.html">სიახლეები & ღონისძიებები</a>
@@ -43,11 +43,11 @@
 
             <div class="footer__col">
                 <div class="footer__map">
-                    <img class="img-cover" src="./img/map-img.PNG" alt="">
+                    <img class="img-cover" src="{{asset('../img/map-img.PNG')}}" alt="">
 
                    <div class="overlay">
                         <button class="map-modal-btn">
-                            <img src="./img/icons/svg-fullscreen.svg" alt="">
+                            <img src="{{asset('../img/icons/svg-fullscreen.svg')}}" alt="">
                             დიდ ეკრანზე
                         </button>
                    </div>
@@ -61,27 +61,27 @@
         <div class="container">
 
             <p>
-                <img src="./img/icons/svg-phone.svg" alt="">
+                <img src="{{asset('../img/icons/svg-phone.svg')}}" alt="">
                 +995 555 555 555
             </p>
 
             <p>
-                <img src="./img/icons/svg-mail.svg" alt="">
+                <img src="{{asset('../img/icons/svg-mail.svg')}}" alt="">
                 hello@company.ge
             </p>
 
             <div class="language-box">
                 <div class="language-menu">
                     <a href="">
-                        <img src="./img/icons/georgia_1.svg" alt="">
+                        <img src="{{asset('../img/icons/georgia_1.svg')}}" alt="">
                         GE
                     </a>
                     <a href="">
-                        <img src="./img/icons/russia.svg" alt="">
+                        <img src="{{asset('../img/icons/russia.svg')}}" alt="">
                         Ru
                     </a>
                     <a href="">
-                        <img src="./img/icons/uk.svg" alt="">
+                        <img src="{{asset('../img/icons/uk.svg')}}" alt="">
                         EN
                     </a>
                    
@@ -89,7 +89,7 @@
             </div>
 
             <p>
-                <img src="./img/icons/svg-pin.svg" alt="">
+                <img src="{{asset('../img/icons/svg-pin.svg')}}" alt="">
                 ლორემ იპსუმ მისამართი ქ. N4
             </p>
             
@@ -128,7 +128,7 @@
     <div class="footer-video-modal">
         <div class="footer-modal-wrap">
             <button class="map-modal-close">
-                <img src="./img/icons/svg-close-circle (1).svg" alt="">
+                <img src="{{asset('../img/icons/svg-close-circle (1).svg')}}" alt="">
             </button>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8426.500043046433!2d44.80081624030541!3d41.694236682267714!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd7e64f626b%3A0x61d084ede2576ea3!2sTbilisi%2C%20Georgia!5e0!3m2!1sen!2sus!4v1603197121014!5m2!1sen!2sus" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         </div>

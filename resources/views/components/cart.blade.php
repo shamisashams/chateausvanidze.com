@@ -17,7 +17,7 @@
                     <div class="aside-card">
                         <div class="aside-card__top">
                             <div class="aside-card-img">
-                                <img  class="img-cover" src="./img/product-1.png" alt="">
+                                <img  class="img-cover" src="{{asset('../img/product-1.png')}}" alt="">
                             </div>
                             <div class="aside-card__text">
                                 <h2 class="c-title">
@@ -52,7 +52,7 @@
                     <div class="aside-card">
                         <div class="aside-card__top">
                             <div class="aside-card-img">
-                                <img  class="img-cover" src="./img/product-2.png" alt="">
+                                <img  class="img-cover" src="{{asset('../img/product-2.png')}}" alt="">
                             </div>
                             <div class="aside-card__text">
                                 <h2 class="c-title">
@@ -87,7 +87,7 @@
                     <div class="aside-card">
                         <div class="aside-card__top">
                             <div class="aside-card-img">
-                                <img  class="img-cover" src="./img/product-4.png" alt="">
+                                <img  class="img-cover" src="{{asset('../img/product-4.png')}}" alt="">
                             </div>
                             <div class="aside-card__text">
                                 <h2 class="c-title">
@@ -128,8 +128,8 @@
                     </div>
     
                     <div class="cart-modal__flex">
-                        <a href="./cart.htnl" >კალათა</a>
-                        <a href="./purchase.htnl" >ყიდვა</a>
+                        <a href="{{route('Cart',app()->getLocale())}}" >კალათა</a>
+                        <a href="{{route('Purchase', app()->getLocale())}}" >ყიდვა</a>
                     </div>
                 </div>
         

@@ -17,7 +17,7 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="{{asset('../css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('../css/stick.css')}}">
+    <link rel="stylesheet" href="{{asset('css/stick.css')}}">
     <link rel="stylesheet" href="{{asset('../css/nouislider.css')}}">
 
     <title>     SVANIDZE HOLDING - მთავარი</title>
@@ -26,6 +26,7 @@
 
 <body>
     <x-navbar/>
+    <x-main.auth/>
     <x-cart/>
     @yield('content')
     <x-footer/>
