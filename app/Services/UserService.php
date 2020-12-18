@@ -131,6 +131,12 @@ class UserService
 
         $model = $this->model;
 
+        $model->profile()->create([
+            'birthday' => Carbon::parse($request['birthday']),
+            'phone_1' => $request['phone_1'],
+            'phone_2' => $request['phone_2'],
+        ]);
+
         $model->roles()->attach($request['role']);
 
         if ($request->hasFile('images')) {

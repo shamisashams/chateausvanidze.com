@@ -91,6 +91,44 @@
                         <div class="row">
                             <div class="col-6">
                                 <div
+                                        class="form-group {{ $errors->has('phone_1') ? ' has-error' : '' }}">
+                                    {{ Form::label('phone_1', 'Phone 1', []) }}
+                                    {{ Form::text('phone_1','',  ['class' => 'form-control', 'no']) }}
+                                    @if ($errors->has('phone_1'))
+                                        <span class="help-block">
+                                            {{ $errors->first('phone_1') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div
+                                        class="form-group {{ $errors->has('phone_2') ? ' has-error' : '' }}">
+                                    {{ Form::label('phone_2', 'Phone 2', []) }}
+                                    {{ Form::text('phone_2','',  ['class' => 'form-control', 'no']) }}
+                                    @if ($errors->has('phone_2'))
+                                        <span class="help-block">
+                                            {{ $errors->first('phone_2') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div
+                                        class="form-group {{ $errors->has('birthday') ? ' has-error' : '' }}">
+                                    {{ Form::label('birthday', 'Birthday', []) }}
+                                    {{ Form::text('birthday', '', ['class' => 'form-control single-daterange', 'no','placeholder'=>'Enter Birthday']) }}
+                                    @if ($errors->has('birthday'))
+                                        <span class="help-block">
+                                    {{ $errors->first('birthday') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div
                                         class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                     {{ Form::label('email', 'Email', []) }}
                                     {{ Form::email('email', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Email']) }}

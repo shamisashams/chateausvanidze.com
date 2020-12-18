@@ -9,9 +9,13 @@
 
             <!--fixed cabinet nav-->
             <aside class="cabinet-nav">
-
                 <div class="cabinet__user">
                     <div class="cabinet__user-img">
+                        @if(count($user->files) > 0)
+                            <img class="img-cover" src="{{url('storage/user/'.$user->id.'/'.$user->files[0]->name)}}">
+                        @else
+                            <img class="img-cover" src="{{asset('no-avatar.png')}}" alt="">
+                        @endif
                         <img class="img-cover" src="{{asset('../img/user.png')}}" alt="">
                     </div>
                     <div class="cabinet__user-name">
