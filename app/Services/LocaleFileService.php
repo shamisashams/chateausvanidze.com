@@ -1,5 +1,12 @@
 <?php
-
+/**
+ *  app/Services/LocaleFileService.php
+ *
+ * User: 
+ * Date-Time: 18.12.20
+ * Time: 11:07
+ * @author Vito Makhatadze <vitomaxatadze@gmail.com>
+ */
 namespace App\Services;
 
 
@@ -40,7 +47,7 @@ class LocaleFileService
 
         foreach ($this->arrayLang as $this->key => $this->value)
         {
-            $content .= "\t'".$this->key."' => '".$this->value."',\n";
+            $content .= "\t'".$this->key."' => ".'"'.$this->value.'"'.",\n";
         }
 
         $content .= "];";

@@ -1,33 +1,33 @@
 <?php
 /**
- *  app/Services/FeatureService.php
+ *  app/Services/PageService.php
  *
  * User: 
  * Date-Time: 18.12.20
- * Time: 11:07
+ * Time: 11:06
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
  */
 namespace App\Services;
 
 use App\Models\Feature;
-use App\Models\FeatureLanguage;
 use App\Models\Localization;
+use App\Models\Page;
+use App\Models\PageLanguage;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use function PHPUnit\Framework\throwException;
 
-class FeatureService
+class PageService
 {
     protected $model;
 
     protected $perPageArray = [10, 20, 30, 50, 100];
 
-    public function __construct(Feature $model)
+    public function __construct(Page $model)
     {
         $this->model = $model;
     }
 
     /**
-     * Get Feature by id.
+     * Get Page by id.
      *
      * @param int $id
      * @return Feature
@@ -38,7 +38,7 @@ class FeatureService
     }
 
     /**
-     * Get Features.
+     * Get Page.
      *
      * @param string $lang
      * @return LengthAwarePaginator
@@ -58,14 +58,6 @@ class FeatureService
             $data = $data->with('language')->whereHas('language', function ($query) use ($localizationID, $request) {
                 $query->where('title','like',"%{$request->title}%")->where('language_id',$localizationID);
             });
-        }
-
-        if ($request->type) {
-            $data = $data->where('type',  $request->type);
-        }
-
-        if ($request->position) {
-            $data = $data->where('position', 'like', "%{$request->position}%");
         }
 
         if ($request->slug) {
@@ -97,27 +89,27 @@ class FeatureService
         $localizationID = Localization::getIdByName($lang);
 
 
-
-        $this->model = new Feature([
-            'position' => $request['position'],
-            'status' => $request['status'],
+        $this->model = new Page([
             'slug' => $request['slug'],
-            'type' => $request['type']
+            'status' => $request['status']
         ]);
 
         $this->model->save();
 
         $this->model->language()->create([
-            'feature_id' => $this->model->id,
+            'page_id' => $this->model->id,
             'language_id' => $localizationID,
             'title' => $request['title'],
+            'meta_title' => $request['meta_title'],
+            'description' => $request['description'],
+            'content' => $request['content']
         ]);
 
         return true;
     }
 
     /**
-     * Update Feature item.
+     * Update Page item.
      *
      * @param string $lang
      * @param int $id
@@ -130,48 +122,32 @@ class FeatureService
 
         $data = $this->find($id);
         $data->update([
-            'position' => $request['position'],
-            'status' => $request['status'],
             'slug' => $request['slug'],
-            'type' => $request['type']
+            'status' => $request['status']
         ]);
 
         $localizationID = Localization::getIdByName($lang);
 
-        $featureLanguage = FeatureLanguage::where(['feature_id' => $data->id, 'language_id' => $localizationID])->first();
+        $featureLanguage = PageLanguage::where(['page_id' => $data->id, 'language_id' => $localizationID])->first();
 
         if ($featureLanguage == null) {
             $data->language()->create([
-                'feature_id' => $this->model->id,
+                'page_id' => $this->model->id,
                 'language_id' => $localizationID,
                 'title' => $request['title'],
+                'meta_title' => $request['meta_title'],
+                'description' => $request['description'],
+                'content' => $request['content']
             ]);
         } else {
             $featureLanguage->title = $request['title'];
+            $featureLanguage->meta_title = $request['meta_title'];
+            $featureLanguage->description = $request['description'];
+            $featureLanguage->content = $request['content'];
             $featureLanguage->save();
         }
 
         return true;
     }
 
-    /**
-     * Create localization item into db.
-     *
-     * @param int $id
-     * @return bool
-     * @throws \Exception
-     */
-    public function delete($id)
-    {
-        $data = $this->find($id);
-        if (count($data->language) > 0) {
-            if(!$data->language()->delete()){
-                throwException('Feature languages can not delete.');
-            }
-        }
-        if (!$data->delete()) {
-            throwException('Feature  can not delete.');
-        }
-        return true;
-    }
 }
