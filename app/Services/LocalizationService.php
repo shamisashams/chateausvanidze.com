@@ -1,5 +1,12 @@
 <?php
-
+/**
+ *  app/Services/LocalizationService.php
+ *
+ * User: 
+ * Date-Time: 18.12.20
+ * Time: 11:07
+ * @author Vito Makhatadze <vitomaxatadze@gmail.com>
+ */
 namespace App\Services;
 
 use App\Http\Request\Admin\LocalizationRequest;

@@ -1,16 +1,18 @@
 <?php
 /**
- *  app/Http/Controllers/Admin/FeatureController.php
+ *  app/Http/Controllers/Admin/PageController.php
  *
  * User: 
  * Date-Time: 18.12.20
- * Time: 11:07
+ * Time: 11:06
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
  */
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\FeatureRequest;
+use App\Http\Request\Admin\PageRequest;
 use App\Services\FeatureService;
+use App\Services\PageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,11 +21,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 
-class FeatureController extends AdminController
+class PageController extends AdminController
 {
     protected $service;
 
-    public function __construct(FeatureService $service)
+    public function __construct(PageService $service)
     {
         $this->service = $service;
     }
@@ -39,13 +41,11 @@ class FeatureController extends AdminController
         $request->validate([
             'id' => 'integer|nullable',
             'title' => 'string|max:255|nullable',
-            'type' => 'string|max:255|nullable',
-            'position' => 'string|max:255|nullable',
             'slug' => 'string|max:255|nullable',
             'status' => 'boolean|nullable',
         ]);
-        return view('admin.modules.feature.index', [
-            'features' => $this->service->getAll($lang,$request)
+        return view('admin.modules.page.index', [
+            'pages' => $this->service->getAll($lang,$request)
         ]);
 
     }
@@ -53,11 +53,11 @@ class FeatureController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
-        return view('admin.modules.feature.create');
+        return view('admin.modules.page.create');
     }
 
     /**
@@ -67,21 +67,21 @@ class FeatureController extends AdminController
      * @param FeatureRequest $request
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function store(string $locale, FeatureRequest $request)
+    public function store(string $locale, PageRequest $request)
     {
         $data = $request->only([
             'title',
-            'position',
+            'meta_title',
             'slug',
-            'type',
+            'description',
+            'content',
             'status'
         ]);
-
         if (!$this->service->store($locale,$data)) {
-            return redirect(route('featureCreateView',$locale))->with('danger', 'Feature does not create.');
+            return redirect(route('pageCreateView',$locale))->with('danger', 'Page does not create.');
         }
 
-        return redirect(route('featureIndex', $locale))->with('success', 'Feature create successfully.');
+        return redirect(route('pageIndex', $locale))->with('success', 'Page create successfully.');
 
     }
 
@@ -94,8 +94,8 @@ class FeatureController extends AdminController
      */
     public function show(string $locale, int $id)
     {
-        return view('admin.modules.feature.show', [
-            'feature' => $this->service->find($id)
+        return view('admin.modules.page.show', [
+            'page' => $this->service->find($id)
         ]);
     }
 
@@ -108,8 +108,8 @@ class FeatureController extends AdminController
      */
     public function edit(string $locale, int $id)
     {
-        return view('admin.modules.feature.update', [
-            'feature' => $this->service->find($id)
+        return view('admin.modules.page.update', [
+            'page' => $this->service->find($id)
         ]);
 
     }
@@ -122,38 +122,23 @@ class FeatureController extends AdminController
      * @param int $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function update(string $locale, FeatureRequest $request, int $id)
+    public function update(string $locale, PageRequest $request, int $id)
     {
         $data = $request->only([
             'title',
-            'position',
+            'meta_title',
             'slug',
-            'type',
+            'description',
+            'content',
             'status'
         ]);
 
 
         if (!$this->service->update($locale, $id, $data)) {
-            return redirect(route('featureEditView', $locale))->with('danger', 'Feature does not update.');
+            return redirect(route('pageEditView', $locale))->with('danger', 'Page does not update.');
         }
 
-        return redirect(route('featureIndex', $locale))->with('success', 'Feature update successfully.');
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param string $locale
-     * @param int $id
-     * @return Application|RedirectResponse|Response|Redirector
-     */
-    public function destroy(string $locale, int $id)
-    {
-        if (!$this->service->delete($id)) {
-            return redirect(route('featureIndex', $locale))->with('danger', 'Feature does not delete.');
-        }
-        return redirect(route('featureIndex', $locale))->with('success', 'Feature delete successfully.');
+        return redirect(route('pageIndex', $locale))->with('success', 'Page update successfully.');
 
     }
 }
