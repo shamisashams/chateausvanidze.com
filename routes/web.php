@@ -155,10 +155,10 @@ Route::group([
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
-    Route::get('/facebook/redirect', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
+    Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
 
     Route::get('/google', [AuthController::class, 'google'])->name('google');
-    Route::get('/google/redirect', [AuthController::class, 'googleredirect'])->name('googleredirect');
+    Route::get('/google/callback', [AuthController::class, 'googleredirect'])->name('googleredirect');
 
     Route::get('/about-us', [FrontController::class, 'aboutus'])->name('AboutUs');
     Route::get('/products', [FrontController::class, 'products'])->name('Products');

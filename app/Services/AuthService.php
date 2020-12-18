@@ -59,6 +59,7 @@ class AuthService
                 'last_name' => $request['last_name'],
             ]);
         }
+        $model->roles()->attach('2');
         Auth::login($model);
         return true;
     }

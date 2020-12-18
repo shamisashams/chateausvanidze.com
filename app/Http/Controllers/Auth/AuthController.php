@@ -65,16 +65,17 @@ class AuthController extends Controller
     }
     public function facebookredirect()
     {
-    
-        $user = Socialite::driver('facebook')->user();
-        $user = User::firstOrCreate([
-            'email' => $user->email
-        ], [
-            'name' => $user->name,
-            'email' => $user->email,
-            'password' => Hash::make(Str::random(24))
-        ]);
-        Auth::login($user);
+        $user = Socialite::driver('facebook')->stateless()->user() ?? null;
+        if ($user) {
+            $user = User::firstOrCreate([
+                'email' => $user->email
+            ], [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => Hash::make(Str::random(24))
+            ]);
+            Auth::login($user);
+        }
         return redirect(route('welcome',app()->getLocale()));
     }
     // Google Sociallite
