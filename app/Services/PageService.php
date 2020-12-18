@@ -1,14 +1,19 @@
 <?php
-
+/**
+ *  app/Services/PageService.php
+ *
+ * User: 
+ * Date-Time: 18.12.20
+ * Time: 11:06
+ * @author Vito Makhatadze <vitomaxatadze@gmail.com>
+ */
 namespace App\Services;
 
 use App\Models\Feature;
-use App\Models\FeatureLanguage;
 use App\Models\Localization;
 use App\Models\Page;
 use App\Models\PageLanguage;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use function PHPUnit\Framework\throwException;
 
 class PageService
 {
