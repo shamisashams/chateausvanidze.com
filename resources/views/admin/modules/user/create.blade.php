@@ -118,7 +118,7 @@
                             <div class="col-6">
                                 <div
                                     class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                    {{ Form::label('password_confirmation', 'Address', []) }}
+                                    {{ Form::label('password_confirmation', 'Password Confirmation', []) }}
                                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'no','autocomplete' => 'off']) }}
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
