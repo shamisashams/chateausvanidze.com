@@ -3,8 +3,6 @@
        
    
     
-
-    
         <main>
             <x-main.header/>
 

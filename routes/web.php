@@ -33,18 +33,14 @@ Route::group([
 ], function () {
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('welcome');
 
     Route::prefix('admin')->group(function () {
         Route::middleware('loggedin')->group(function () {
-            Route::get('logout', [AuthController::class, 'logout'])->name('logout');
             Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
-            Route::post('login', [AuthController::class, 'login'])->name('login');
         });
 
         Route::middleware(['auth', 'can:isAdmin'])->group(function () {
-            // Logout action if user is loggedin
-            Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
             Route::get('/', function () {
                 return view('admin.welcome');
@@ -151,6 +147,19 @@ Route::group([
     });
 
     // User Rotes
+
+    // Auth
+    Route::post('/register', [AuthController::class, 'register'])->name('Register');
+
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
+    Route::get('/facebook/redirect', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
+
+    Route::get('/google', [AuthController::class, 'google'])->name('google');
+    Route::get('/google/redirect', [AuthController::class, 'googleredirect'])->name('googleredirect');
+
     Route::get('/about-us', [FrontController::class, 'aboutus'])->name('AboutUs');
     Route::get('/products', [FrontController::class, 'products'])->name('Products');
     Route::get('/product/{id}', [FrontController::class, 'productshow'])->name('ProductShow');
