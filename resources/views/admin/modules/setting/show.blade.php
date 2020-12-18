@@ -19,7 +19,7 @@
                             <tr>
                                 <th>@lang('admin.value')</th>
                                 <td>
-                                    {{ $setting->key }}
+                                    {{ (count($setting->availableLanguage) > 0) ? $setting->availableLanguage[0]->value : '' }}
                                 </td>
                             </tr>
                             </tbody>
