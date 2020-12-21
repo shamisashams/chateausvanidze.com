@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure, View, Route;
+use Illuminate\Support\Facades\Auth;
 
 class LoggedIn
 {
@@ -14,8 +15,8 @@ class LoggedIn
      */
     public function handle($request, Closure $next)
     {
-        if (!is_null(request()->user())) {
-            return redirect('admin/');
+        if (!Auth::user()) {
+            return redirect()->route('welcome', app()->getLocale());
         } else {
             return $next($request);
         }

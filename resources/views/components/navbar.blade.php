@@ -65,52 +65,55 @@
                         <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M9,10.125A5.063,5.063,0,1,0,3.938,5.063,5.064,5.064,0,0,0,9,10.125Zm4.5,1.125H11.563a6.12,6.12,0,0,1-5.126,0H4.5A4.5,4.5,0,0,0,0,15.75v.563A1.688,1.688,0,0,0,1.688,18H16.313A1.688,1.688,0,0,0,18,16.313V15.75A4.5,4.5,0,0,0,13.5,11.25Z"></path>
                     </svg>
 
-                    <!-- two dropdown for auth and un-auth ( "hidden" to switch)-->
-                    <div class="profile-dropdown un-auth ">
+                    @guest
+                        <!-- two dropdown for auth and un-auth ( "hidden" to switch)-->
+                        <div class="profile-dropdown un-auth ">
                             <button class="log-in-btn">ავტორიზაცია</button>
                             <button class="register-btn">რეგისტრაცია</button>
-                    </div>
-
-                    <div class="profile-dropdown auth hidden ">
-                        <div class="profile-dropdown__top">
-                            <div class="profile-dropdown__top-img">
-                                <img class="img-cover" src="{{asset('../img/user.png')}}" alt="">
-                            </div>
-                            <div class="profile-dropdown__top-right">
-                                <p>გამარჯობა</p>
-                                <h1>სახელი</h1>
-                            </div>
                         </div>
-
-                        <a href="" class="profile-dropdown-link">
-                            <div class="profile-dropdown-link-img">
-                                <svg xmlns="http://www.w3.org/2000/svg')}}" width="18" height="18" viewBox="0 0 18 18">
-                                    <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M9,10.125A5.063,5.063,0,1,0,3.938,5.063,5.064,5.064,0,0,0,9,10.125Zm4.5,1.125H11.563a6.12,6.12,0,0,1-5.126,0H4.5A4.5,4.5,0,0,0,0,15.75v.563A1.688,1.688,0,0,0,1.688,18H16.313A1.688,1.688,0,0,0,18,16.313V15.75A4.5,4.5,0,0,0,13.5,11.25Z" fill="#111"></path>
-                                  </svg>
+                    @endguest
+                    @auth
+                        <div class="profile-dropdown auth  ">
+                            <div class="profile-dropdown__top">
+                                <div class="profile-dropdown__top-img">
+                                    <img class="img-cover" src="{{asset('../img/user.png')}}" alt="">
+                                </div>
+                                <div class="profile-dropdown__top-right">
+                                    <p>გამარჯობა</p>
+                                    <h1>{{Auth::user()->name}}</h1>
+                                </div>
                             </div>
-                            ჩემი მონაცემები
-                        </a>
-                        <a href="" class="profile-dropdown-link">
-                            <div class="profile-dropdown-link-img">
-                                <svg xmlns="http://www.w3.org/2000/svg')}}" width="11.775" height="15.494" viewBox="0 0 11.775 15.494">
-                                    <g fill="#111" id="Icon_ionic-ios-document" data-name="Icon ionic-ios-document" transform="translate(-7.313 -3.938)">
-                                      <path id="Path_173" data-name="Path 173" d="M21.338,7.775h3.525a.192.192,0,0,0,.194-.194h0a1.146,1.146,0,0,0-.414-.887L21.686,4.231a1.244,1.244,0,0,0-.8-.287h0a.286.286,0,0,0-.287.287V7.039A.736.736,0,0,0,21.338,7.775Z" transform="translate(-5.968 -0.003)"></path>
-                                      <path fill="#111" id="Path_174" data-name="Path 174" d="M13.626,7.036v-3.1H8.552a1.243,1.243,0,0,0-1.24,1.24V18.192a1.243,1.243,0,0,0,1.24,1.24h9.3a1.243,1.243,0,0,0,1.24-1.24V8.779H15.369A1.746,1.746,0,0,1,13.626,7.036Z"></path>
-                                    </g>
-                                  </svg>
-                                  
-                            </div>
-                            ჩემი შეკვეთები
-                        </a>
 
-                        <a href="" class="profile-dropdown-exit">
-                            <svg xmlns="http://www.w3.org/2000/svg')}}" width="12.327" height="13.149" viewBox="0 0 12.327 13.149">
-                                <path id="Icon_metro-exit" data-name="Icon metro-exit" d="M12.432,10.146V8.5H8.323V6.859h4.109V5.215L14.9,7.681Zm-.822-.822v3.287H7.5v2.465L2.571,12.611V1.928h9.04V6.037h-.822V2.75H4.214L7.5,4.393v7.4h3.287V9.324Z" transform="translate(-2.571 -1.928)"></path>
-                              </svg>
-                            გასვლა
-                        </a>
+                            <a href="{{route('CabinetInfo', app()->getLocale())}}" class="profile-dropdown-link">
+                                <div class="profile-dropdown-link-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg')}}" width="18" height="18" viewBox="0 0 18 18">
+                                        <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M9,10.125A5.063,5.063,0,1,0,3.938,5.063,5.064,5.064,0,0,0,9,10.125Zm4.5,1.125H11.563a6.12,6.12,0,0,1-5.126,0H4.5A4.5,4.5,0,0,0,0,15.75v.563A1.688,1.688,0,0,0,1.688,18H16.313A1.688,1.688,0,0,0,18,16.313V15.75A4.5,4.5,0,0,0,13.5,11.25Z" fill="#111"></path>
+                                    </svg>
+                                </div>
+                                ჩემი მონაცემები
+                            </a>
+                            <a href="{{route('CabinetOrders', app()->getLocale())}}" class="profile-dropdown-link">
+                                <div class="profile-dropdown-link-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg')}}" width="11.775" height="15.494" viewBox="0 0 11.775 15.494">
+                                        <g fill="#111" id="Icon_ionic-ios-document" data-name="Icon ionic-ios-document" transform="translate(-7.313 -3.938)">
+                                        <path id="Path_173" data-name="Path 173" d="M21.338,7.775h3.525a.192.192,0,0,0,.194-.194h0a1.146,1.146,0,0,0-.414-.887L21.686,4.231a1.244,1.244,0,0,0-.8-.287h0a.286.286,0,0,0-.287.287V7.039A.736.736,0,0,0,21.338,7.775Z" transform="translate(-5.968 -0.003)"></path>
+                                        <path fill="#111" id="Path_174" data-name="Path 174" d="M13.626,7.036v-3.1H8.552a1.243,1.243,0,0,0-1.24,1.24V18.192a1.243,1.243,0,0,0,1.24,1.24h9.3a1.243,1.243,0,0,0,1.24-1.24V8.779H15.369A1.746,1.746,0,0,1,13.626,7.036Z"></path>
+                                        </g>
+                                    </svg>
+                                    
+                                </div>
+                                ჩემი შეკვეთები
+                            </a>
 
-                    </div>
+                            <a href="{{route('logout', app()->getLocale())}}" class="profile-dropdown-exit">
+                                <svg xmlns="http://www.w3.org/2000/svg')}}" width="12.327" height="13.149" viewBox="0 0 12.327 13.149">
+                                    <path id="Icon_metro-exit" data-name="Icon metro-exit" d="M12.432,10.146V8.5H8.323V6.859h4.109V5.215L14.9,7.681Zm-.822-.822v3.287H7.5v2.465L2.571,12.611V1.928h9.04V6.037h-.822V2.75H4.214L7.5,4.393v7.4h3.287V9.324Z" transform="translate(-2.571 -1.928)"></path>
+                                </svg>
+                                გასვლა
+                            </a>
+
+                        </div>
+                    @endauth
                 </div>
               
 

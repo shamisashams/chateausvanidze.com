@@ -4,10 +4,23 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Request\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
+use App\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
+    protected $service;
+
+    public function __construct(AuthService $service)
+    {
+        $this->service = $service;
+    }
     /**
      * Show specified view.
      *
@@ -39,7 +52,61 @@ class AuthController extends Controller
             ]);
             throw $error;
         }
-        return redirect(route('adminHome',app()->getLocale()));
+        if(Auth::user()->can('isAdmin')){
+            return redirect(route('adminHome',app()->getLocale()));
+        }else{
+            return redirect(route('welcome',app()->getLocale()));
+        }
+
+    }
+    // Facebook Sociallite
+    public function facebook(){
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function facebookredirect()
+    {
+        $user = Socialite::driver('facebook')->stateless()->user() ?? null;
+        if ($user) {
+            $user = User::firstOrCreate([
+                'email' => $user->email
+            ], [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => Hash::make(Str::random(24))
+            ]);
+            Auth::login($user);
+        }
+        return redirect(route('welcome',app()->getLocale()));
+    }
+    // Google Sociallite
+    public function google(){
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleredirect()
+    {
+    
+        $user = Socialite::driver('google')->user();
+        $user = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => Hash::make(Str::random(24))
+        ]);
+        Auth::login($user);
+        return redirect(route('welcome',app()->getLocale()));
+    }
+
+    public function register($locale, RegisterRequest $request)
+    {
+        $data = $request->only([
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+        ]);
+        $this->service->store($locale, $data);
+        return redirect(route('welcome',app()->getLocale()));
 
     }
 
@@ -52,7 +119,9 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        Auth::logout();
-        return redirect(route('login-view',app()->getLocale()));
+        if(Auth::user()){
+            Auth::logout();
+        }
+        return redirect()->route('welcome',app()->getLocale());
     }
 }
