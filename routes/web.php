@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\DictionaryController;
 use App\Http\Controllers\Admin\FeatureController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CabinetController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -159,7 +161,7 @@ Route::group([
     Route::get('/google', [AuthController::class, 'google'])->name('google');
     Route::get('/google/callback', [AuthController::class, 'googleredirect'])->name('googleredirect');
 
-    Route::get('/about-us', [FrontController::class, 'aboutus'])->name('AboutUs');
+    Route::get('/about-us', [AboutController::class, 'index'])->name('AboutUs');
     Route::get('/products', [FrontController::class, 'products'])->name('Products');
     Route::get('/product/{id}', [FrontController::class, 'productshow'])->name('ProductShow');
 
@@ -173,6 +175,9 @@ Route::group([
     Route::get('/cabinet-info', [CabinetController::class, 'cabinetInfo'])->name('cabinetInfo');
     Route::put('/cabinet-info/{user}', [CabinetController::class, 'cabinetInfoUpdate'])->name('cabinetInfoUpdate');
     Route::get('/cabinet-orders', [FrontController::class, 'cabinetorders'])->name('CabinetOrders');
+
+    Route::match(['get','post'],'/contact-us', [ContactController::class, 'index'])->name('ContactUs');
+
 
     // Purchase
     Route::get('/cart', [FrontController::class, 'cart'])->name('Cart');

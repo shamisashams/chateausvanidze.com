@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
-    public function aboutus()
-    {
-        return view('pages.about_us');
-    }
+
     public function cart()
     {
         return view('pages.cart');
@@ -52,11 +49,7 @@ class FrontController extends Controller
         
         return view('pages.purchase.purchase_un_auth');
     }
-    // Cabinet
-    public function cabinetinfo()
-    {
-        return view('pages.cabinet_info');
-    }
+
     public function cabinetorders()
     {
         return view('pages.cabinet_orders');

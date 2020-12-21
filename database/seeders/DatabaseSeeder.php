@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
                 'status' => true
             ],
             [
-                'slug' => 'about',
+                'slug' => 'about-us',
                 'status' => true
             ],
             [
-                'slug' => 'contact',
+                'slug' => 'contact-us',
                 'status' => true
             ],
             [

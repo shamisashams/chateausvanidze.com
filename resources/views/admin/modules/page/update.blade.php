@@ -75,6 +75,48 @@
                                     </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div
+                                        class="form-group {{ $errors->has('content_2') ? ' has-error' : '' }}">
+                                    {{ Form::label('content_2', 'Content 2', []) }}
+                                    {{ Form::textarea('content_2', (count($page->availableLanguage) > 0) ? $page->availableLanguage[0]->content_2 : '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content 2']) }}
+                                    @if ($errors->has('content_2'))
+                                        <span class="help-block">
+                                    {{ $errors->first('content_2') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div
+                                        class="form-group {{ $errors->has('content_3') ? ' has-error' : '' }}">
+                                    {{ Form::label('content_3', 'Content 3', []) }}
+                                    {{ Form::textarea('content_3', (count($page->availableLanguage) > 0) ? $page->availableLanguage[0]->content_3 : '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content 3']) }}
+                                    @if ($errors->has('content_3'))
+                                        <span class="help-block">
+                                    {{ $errors->first('content_3') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div
+                                        class="form-group {{ $errors->has('content_4') ? ' has-error' : '' }}">
+                                    {{ Form::label('content_4', 'Content 4', []) }}
+                                    {{ Form::textarea('content_4', (count($page->availableLanguage) > 0) ? $page->availableLanguage[0]->content_4 : '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content 4']) }}
+                                    @if ($errors->has('content_4'))
+                                        <span class="help-block">
+                                    {{ $errors->first('content_4') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-check">
                             <label class="form-check-label"><input class="form-check-input" name="status" {{$page->status ? 'checked' : ''}}
                                                                    type="checkbox">Status</label>

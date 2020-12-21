@@ -21,7 +21,10 @@ class PageLanguage extends Model
         'title',
         'meta_title',
         'description',
-        'content'
+        'content',
+        'content_2',
+        'content_3',
+        'content_4',
     ];
 
 }

@@ -11,7 +11,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\FeatureRequest;
 use App\Http\Request\Admin\PageRequest;
-use App\Services\FeatureService;
 use App\Services\PageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -75,6 +74,9 @@ class PageController extends AdminController
             'slug',
             'description',
             'content',
+            'content_2',
+            'content_3',
+            'content_4',
             'status'
         ]);
         if (!$this->service->store($locale,$data)) {
@@ -130,6 +132,9 @@ class PageController extends AdminController
             'slug',
             'description',
             'content',
+            'content_2',
+            'content_3',
+            'content_4',
             'status'
         ]);
 

@@ -102,7 +102,10 @@ class PageService
             'title' => $request['title'],
             'meta_title' => $request['meta_title'],
             'description' => $request['description'],
-            'content' => $request['content']
+            'content' => $request['content'],
+            'content_2' => $request['content_2'],
+            'content_3' => $request['content_3'],
+            'content_4' => $request['content_4'],
         ]);
 
         return true;
@@ -137,7 +140,10 @@ class PageService
                 'title' => $request['title'],
                 'meta_title' => $request['meta_title'],
                 'description' => $request['description'],
-                'content' => $request['content']
+                'content' => $request['content'],
+                'content_2' => $request['content_2'],
+                'content_3' => $request['content_3'],
+                'content_4' => $request['content_4'],
             ]);
         } else {
             $featureLanguage->title = $request['title'];
