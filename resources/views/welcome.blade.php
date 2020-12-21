@@ -1,7 +1,6 @@
 @extends('layouts.base')
 @section('content')
        
-   
     
         <main>
             <x-main.header/>

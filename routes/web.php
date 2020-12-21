@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CabinetController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
@@ -37,10 +38,7 @@ Route::group([
     })->name('welcome');
 
     Route::prefix('admin')->group(function () {
-        Route::middleware('loggedin')->group(function () {
-            Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
-        });
-
+        Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
         Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
             Route::get('/', function () {
@@ -154,6 +152,7 @@ Route::group([
 
     Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
     
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
@@ -182,5 +181,9 @@ Route::group([
     // Purchase
     Route::get('/cart', [FrontController::class, 'cart'])->name('Cart');
     Route::get('/purchase', [FrontController::class, 'purchase'])->name('Purchase');
+
+    // Cart Functions
+    Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::get('/getcartcount', [CartController::class, 'getCartCount'])->name('getCartCount');
 });
 

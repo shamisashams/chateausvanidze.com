@@ -137,7 +137,7 @@
                 </div>
 
                 <a class="nav-r-item nav__fav" href="{{route('Favorites', app()->getLocale())}}">
-                    <span id="fav-count">0</span>
+                    <span id="fav-count" >0</span>
                     <svg xmlns="http://www.w3.org/2000/svg')}}" width="14.758" height="13" viewBox="0 0 14.758 13">
                         <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M15.02,5.558a3.62,3.62,0,0,0-5.121,0l-.7.7-.7-.7a3.621,3.621,0,1,0-5.121,5.121l.7.7L9.2,16.5l5.121-5.121.7-.7a3.62,3.62,0,0,0,0-5.121Z" transform="translate(-1.823 -3.997)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
                     </svg>

@@ -43,7 +43,7 @@ window.addEventListener('click', (e)=> {
 let cartCountBox = $('#cart-count');
 let cartCoun = 0;
 
-function addToCart(el) {
+function addToCart(el, $id) {
     
     var cart = $('.nav__cart');
 
@@ -84,6 +84,7 @@ function addToCart(el) {
             $(this).detach()
         });
     }
+    addToCartAjax($id);
 };
 
 
@@ -335,3 +336,32 @@ window.addEventListener('click', function(e){
         $('#blog-vid-modal').removeClass('visible')
     } 
 });
+
+function addToCartAjax($id){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/addtocart/"+$id,
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+            }
+        } 
+    });
+    getCartCount();
+}
+function getCartCount(){
+    $.ajax({
+        url: "/getcartcount/",
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+                $('#setcartcount').html(data.count)
+                $('#cart-count').html(data.count)
+            }
+        } 
+    });
+}

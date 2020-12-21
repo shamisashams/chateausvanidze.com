@@ -104,7 +104,7 @@ class ProductService
             'position' => $request['position'],
             'status' => $request['status'],
             'slug' => $request['slug'],
-            'price' => $request['price']
+            'price' => $request['price']*100
         ]);
 
         $this->model->language()->create([
@@ -177,7 +177,7 @@ class ProductService
             'position' => $request['position'],
             'status' => $request['status'],
             'slug' => $request['slug'],
-            'price' => $request['price']
+            'price' => $request['price']*100
         ]);
         $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localizationID])->first();
 

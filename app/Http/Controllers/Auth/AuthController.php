@@ -7,6 +7,7 @@ use App\Http\Request\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Services\AuthService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -52,6 +53,10 @@ class AuthController extends Controller
             ]);
             throw $error;
         }
+        if(Auth::user()->status == 0){
+            Auth::logout();
+            return redirect()->route('welcome',app()->getLocale());
+        }
         if(Auth::user()->can('isAdmin')){
             return redirect(route('adminHome',app()->getLocale()));
         }else{
@@ -72,7 +77,8 @@ class AuthController extends Controller
             ], [
                 'name' => $user->name,
                 'email' => $user->email,
-                'password' => Hash::make(Str::random(24))
+                'password' => Hash::make(Str::random(24)),
+                'status' => 1
             ]);
             Auth::login($user);
         }
@@ -91,7 +97,8 @@ class AuthController extends Controller
         ], [
             'name' => $user->name,
             'email' => $user->email,
-            'password' => Hash::make(Str::random(24))
+            'password' => Hash::make(Str::random(24)),
+            'status' => 1
         ]);
         Auth::login($user);
         return redirect(route('welcome',app()->getLocale()));
@@ -121,6 +128,28 @@ class AuthController extends Controller
     {
         if(Auth::user()){
             Auth::logout();
+        }
+        return redirect()->route('welcome',app()->getLocale());
+    }
+
+    public function verify($locale, $token)
+    {
+        $data = explode('|', $token);
+        $user = User::findOrFail($data[0]);
+        if($user->status == 1 || Auth::user()){
+            return redirect()->route('welcome',app()->getLocale());
+        }
+        $tokens = $user->tokens()->where('validate_till', '>=', Carbon::now())->get();
+        if(count($tokens) > 0){
+            foreach ($tokens as $item) {
+                if(Hash::check($data[1], $item->token)){
+                    $user->status = 1;
+                    $user->save();
+                    break;
+                }
+            }
+        }else{
+            $user->delete();
         }
         return redirect()->route('welcome',app()->getLocale());
     }

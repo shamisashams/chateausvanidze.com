@@ -2,13 +2,17 @@
 
 namespace App\Services;
 
+use App\Mail\VerifyMail;
 use App\Models\Dictionary;
 use App\Models\Feature;
 use App\Models\Localization;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 use function PHPUnit\Framework\throwException;
 
@@ -59,8 +63,16 @@ class AuthService
                 'last_name' => $request['last_name'],
             ]);
         }
+
+        $token = Str::random(40);
         $model->roles()->attach('2');
-        Auth::login($model);
+        $model->tokens()->create([
+            'token' => Hash::make($token),
+            'validate_till' => Carbon::now()->addDays(1)
+        ]);
+        Mail::to($request['email'])
+        ->queue(new VerifyMail($token, $model->id));
+
         return true;
     }
         /**

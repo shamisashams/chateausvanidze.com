@@ -9,7 +9,7 @@
     
                 <h2 class="cart-aside__title">
                     კალათა
-                    <span class="cart-count">3</span>
+                    <span class="cart-count" id="setcartcount">0</span>
                 </h2>
     
                 <div class="cart-items-scrollable">

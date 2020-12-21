@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Localization;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +25,9 @@ class FrontController extends Controller
     // Product
     public function products()
     {
-        return view('pages.products');
+        $products = Product::where('status', 1)->paginate(20);
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
+        return view('pages.products', compact('products', 'localization'));
     }
     public function productshow($id)
     {

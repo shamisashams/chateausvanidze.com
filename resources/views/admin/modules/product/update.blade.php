@@ -54,7 +54,7 @@
                                 <div
                                     class="form-group {{ $errors->has('price') ? ' has-error' : '' }}">
                                     {{ Form::label('price', 'Price', []) }}
-                                    {{ Form::text('price', $product->price, ['class' => 'form-control', 'no','placeholder'=>'Enter Price']) }}
+                                    {{ Form::text('price', number_format($product->price/100,2), ['class' => 'form-control', 'no','placeholder'=>'Enter Price']) }}
                                     @if ($errors->has('price'))
                                         <span class="help-block">
                                             {{ $errors->first('price') }}
