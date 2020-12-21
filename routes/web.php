@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
@@ -168,8 +169,8 @@ Route::group([
     Route::get('/club', [FrontController::class, 'club'])->name('Club');
     Route::get('/favorites', [FrontController::class, 'favorites'])->name('Favorites');
 
-    Route::get('/blog', [FrontController::class, 'blog'])->name('Blog');
-    Route::get('/blog/{id}', [FrontController::class, 'blogshow'])->name('BlogShow');
+    Route::get('/blog', [BlogController::class, 'index'])->name('Blog');
+    Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('BlogShow');
     
     // Cabinet
     Route::get('/cabinet-info', [CabinetController::class, 'cabinetInfo'])->name('cabinetInfo');

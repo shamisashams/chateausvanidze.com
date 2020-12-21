@@ -7,7 +7,7 @@
         <div class="container">
 
             <h2 class="blog-details__title">
-                ბლოგის დასახელება ლორემ იპსუმ 
+                ბლოგის დასახელება ლორემ იპსუმ
                 დოლორ სიტ ამეტ
             </h2>
 
@@ -35,16 +35,16 @@
                                         .cls-1, .cls-4 {
                                         fill: none;
                                         }
-                                
+
                                         .cls-1 {
                                         stroke: #fff;
                                         stroke-width: 3px;
                                         }
-                                
+
                                         .cls-2 {
                                         fill: #fff;
                                         }
-                                
+
                                         .cls-3 {
                                         stroke: none;
                                         }
@@ -76,7 +76,7 @@
                 <aside class="blog-details__aside">
 
                     <h2 class="aside-blogs__title">სხვა ბლოგები</h2>
-                
+
                     <div class="aside-blog">
                         <h2 class="aside-blog__name">ბლოგის დასახელება ლორემ.</h2>
                         <div class="aside-blog__img">
@@ -132,7 +132,7 @@
                     </div>
                 </aside>
             </div>
-          
+
         </div>
 
     </section>
@@ -144,10 +144,10 @@
             <button class="video-modal-close close-blog-vid">
                 <img src="{{asset('../img/icons/svg-close-circle (1).svg')}}" alt="">
             </button>
-            
+
             <video controls="">
-                <source src="{{asset('../img/" type="video/mp4">
-                
+                <source src="{{asset('../img/" type="video/mp4}}">
+
                 Your browser does not support HTML video.
               </video>
         </div>

@@ -16,7 +16,7 @@ class NewsService
 {
     protected $model;
 
-    protected $perPageArray = [10, 20, 30, 50, 100];
+    protected $perPageArray = [8,10, 20, 30, 50, 100];
 
     public function __construct(News $model)
     {
@@ -32,6 +32,17 @@ class NewsService
     public function find(int $id)
     {
         return $this->model->where('id',$id)->firstOrFail();
+    }
+
+    /**
+     * Get Feature by id.
+     *
+     * @param string $slug
+     * @return News
+     */
+    public function findBySlug(string $slug)
+    {
+        return $this->model->where('slug',$slug)->firstOrFail();
     }
 
     /**
@@ -64,10 +75,8 @@ class NewsService
             $descriptionarr = NewsLanguage::select('news_id')->where([['description', 'LIKE', '%'.$request->all()['description'].'%'], ['language_id', $localization->id]])->get()->toArray();
             $data = $data->whereInd('id', $descriptionarr);
         }
-
         // Check if perPage exist and validation by perPageArray [].
         $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
-
         return $data->orderBy('id', 'DESC')->paginate($perPage);
     }
 

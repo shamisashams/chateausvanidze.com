@@ -23,4 +23,8 @@ class News extends Model
     {
         return $this->morphOne('App\Models\File', 'fileable');
     }
+
+    public function availableLanguage() {
+        return $this->language()->where('language_id','=', Localization::getIdByName(app()->getLocale()));
+    }
 }
