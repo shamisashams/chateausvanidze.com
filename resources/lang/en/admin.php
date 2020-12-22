@@ -37,5 +37,6 @@ return [
     'status' => 'Status',
     'page_create' => 'Page Create',
     'page_update' => 'Page Update',
-
+    'description' => 'Description',
+    'edit' => 'Edit'
 ];

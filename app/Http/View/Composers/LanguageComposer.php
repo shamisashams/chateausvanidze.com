@@ -11,8 +11,6 @@
 namespace App\Http\View\Composers;
 
 use App\Models\Localization;
-use App\Models\Menu;
-use App\Models\Setting;
 use Illuminate\View\View;
 
 class LanguageComposer
