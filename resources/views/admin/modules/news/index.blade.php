@@ -89,10 +89,10 @@
                             {{$item->slug}}
                         </td>
                         <td class="text-center">
-                            {{$item->language('language_id', $localization)->first()->title ?? ''}}
+                            {{$item->language()->where('language_id', $localization)->first()->title ?? ''}}
                         </td>
                         <td class="text-center">
-                            {{$item->language('language_id', $localization)->first()->description ?? ''}}
+                            {{$item->language()->where('language_id', $localization)->first()->description ?? ''}}
                         </td>
                       
                         <td class="row-actions ">

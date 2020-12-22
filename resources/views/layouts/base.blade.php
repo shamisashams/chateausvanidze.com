@@ -32,17 +32,18 @@
     <x-footer/>
     <!-- third-p js-->
     <script
-        src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    
-    <!--  jQueryUI for the extended easing options -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+
+<!--  jQueryUI for the extended easing options -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- regular js-->
     <script src="{{asset('../script/details.js')}}"></script>
     <script src="{{asset('../script/general.js')}}"></script>
+    <script src="{{asset('../script/nouislider.min.js')}}"></script>
+    <script src="{{asset('../script/products.js')}}"></script>
     <script src="{{asset('../script/index.js')}}"></script>
 
 </body>

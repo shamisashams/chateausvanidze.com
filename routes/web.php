@@ -18,6 +18,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FrontController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,12 +41,21 @@ Route::group([
     })->name('welcome');
 
     Route::prefix('admin')->group(function () {
+        Route::get('/', function () {
+            if(Auth::user() && Auth::user()->can('isAdmin')){
+                return view('admin.welcome');
+            }else{
+                if(Auth::user()){
+                    return view('welcome');
+                }else{
+                    return redirect()->route('login-view', app()->getLocale());
+                }
+            }
+        })->name('adminHome');
         Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
         Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
-            Route::get('/', function () {
-                return view('admin.welcome');
-            })->name('adminHome');
+
 
             // Files
             Route::get('/files', [FileController::class, 'index'])->name('fileIndex');

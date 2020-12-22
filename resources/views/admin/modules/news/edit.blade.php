@@ -30,14 +30,14 @@
                 </div>
                 <div class="col-lg-6 w-full ">
                     <label for="title">@lang('news.title')</label>
-                    <input type="text" required name="title" value="{{$news->language('language_id', $localization)->first()->title}}" class=" py-2 form-control" placeholder="@lang('news.title')">
+                    <input type="text" required name="title" value="{{$news->language()->where('language_id', $localization)->first()->title ?? ''}}" class=" py-2 form-control" placeholder="@lang('news.title')">
                     @error('title')
                     <p>{{$message}}</p>
                     @enderror 
                 </div>
                 <div class="col-lg-12 w-full px-2 mt-2">
                     <label for="description">@lang('news.description')</label>
-                    <textarea name="description" id="description" value="{{$news->language('language_id', $localization)->first()->description}}" class="form-control" placeholder="@lang('news.description')" rows="3"></textarea>
+                    <textarea name="description" id="description" value="{{$news->language()->where('language_id', $localization)->first()->description ?? ''}}" class="form-control" placeholder="@lang('news.description')" rows="3"></textarea>
                     @error('description')
                     <p>{{$message}}</p>
                     @enderror 
@@ -72,7 +72,7 @@
                     @enderror 
                 </div>
                 <div class="px-2 mt-3 w-full">
-                    <textarea cols="50 w-full" id="ckeditor1"  name="content"  rows="10">{{$news->language('language_id', $localization)->first()->content}}</textarea>
+                    <textarea cols="50 w-full" id="ckeditor1"  name="content"  rows="10">{{$news->language()->where('language_id', $localization)->first()->content ?? ''}}</textarea>
                     @error('content')
                      <p>{{$message}}</p>   
                     @enderror

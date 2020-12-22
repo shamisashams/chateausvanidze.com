@@ -106,14 +106,12 @@ class NewsService
         }
         $localization = $this->getLocalization($lang);
         
-        foreach (Localization::all() as $key => $lang) {
-            $model->language()->create([
-                'language_id' => $lang->id,
-                'title' => $request['title'],
-                'description'=> $request['description'],      
-                'content' => $request['content']
-            ]);
-        }
+        $model->language()->create([
+            'language_id' => $localization->id,
+            'title' => $request['title'],
+            'description'=> $request['description'],      
+            'content' => $request['content']
+        ]);
         return true;
     }
 
@@ -142,11 +140,21 @@ class NewsService
                 'format' => $request['file']->getClientOriginalExtension(),
             ]);
         }
-        $language = $model->language('language_id', $localization)->first();
-        $language->title = $request['title'];
-        $language->description = $request['description'];
-        $language->content = $request['content'];
-        $language->save();
+        $language = $model->language()->where('language_id', $localization)->first();
+        if($language){
+            $language->title = $request['title'];
+            $language->description = $request['description'];
+            $language->content = $request['content'];
+            $language->save();
+        }else{
+        
+            $model->language()->create([
+                'language_id' => $localization->id,
+                'title' => $request['title'],
+                'description'=> $request['description'],      
+                'content' => $request['content']
+            ]);
+        }
         return true;
     }
 

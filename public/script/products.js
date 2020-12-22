@@ -10,13 +10,13 @@ var nodes = [
 ];
 
 noUiSlider.create(priceSlider, {
-    start: [5, 400],
+    start: [parseInt(nodes[0].value), parseInt(nodes[1].value)],
     connect: true,
     range: {
         'min': 0,
-        'max': 2000
+        'max': 1000
     },
-    step:10,
+    step:5,
     tooltips: false,
     
     // remove decimals

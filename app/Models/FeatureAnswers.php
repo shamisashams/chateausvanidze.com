@@ -14,10 +14,10 @@ class FeatureAnswers extends Model
     ];
     public function answer()
     {
-        return $this->belongsTo('App\Models\Feature', 'feature_id');
+        return $this->belongsTo('App\Models\Answer', 'feature_id');
     }
     public function feature()
     {
-        return $this->belongsTo('App\Models\Answer', 'answer_id');
+        return $this->belongsTo('App\Models\Feature', 'answer_id');
     }
 }

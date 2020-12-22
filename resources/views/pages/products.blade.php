@@ -9,129 +9,68 @@
             <aside class="category__aside">
                 <h2 class="aside-title">ფასი</h2>
 
-                <div class="range-block">
-                    <div class="price-range-meta">
-                        <div class="price-range-txt">
-                            <input type="number" placeholder="1" id="range-low-price">
-                            <span>₾ -</span>
-                            <input type="number" placeholder="100" id="range-high-price">
-                            <span>- ₾</span>
+                <form action="{{route('Products', app()->getLocale())}}" method="GET">
+                    <div class="range-block">
+                        <div class="price-range-meta">
+                            <div class="price-range-txt">
+                                <input type="number" onchange="this.form.submit()" name="minprice" value="{{Request::get('minprice') ?? (ceil($minprice/100) ?? 0)}}"  id="range-low-price">
+                                <span>₾ -</span>
+                                <input type="number" onchange="this.form.submit()" name="maxprice" value="{{  Request::get('maxprice') ?? (ceil($maxprice/100) ?? 0)}}" id="range-high-price">
+                                <span>- ₾</span>
+                            </div>
                         </div>
+    
+                        <div id="price-range"></div>
                     </div>
+    
+                    
+                    @foreach ($features as $item)
+                    
+                    <div class="aside-divider"></div>
+    
+                    <h2 class="aside-title" style="margin-bottom: 10px">{{$item->language()->where('language_id', $localization)->first()->title ?? ''}}</h2>
+    
+                    <div class="aside-checkboxes">
+    
+                        @foreach ($item->answers as $answer)
+                        <label class="checkbox">
+                            <input type="checkbox" name="answers[]" onchange="this.form.submit()" {{ Request::get('answers') ? (in_array($answer->answer_id, Request::get('answers')) ? 'checked' : '') : ''}} value="{{$answer->answer_id}}">
+                            <span></span>
+                            {{$answer->answer->language()->where('language_id', $localization)->first()->title ?? ''}}
+                        </label>
+                        @endforeach
+                      
+                    </div>
+    
+                    @endforeach
+                </form>
 
-                    <div id="price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0.5%, 0px) scale(0.195, 1);"></div></div><div class="noUi-origin" style="transform: translate(-995%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="400.0" aria-valuenow="10.0" aria-valuetext="10"><div class="noUi-touch-area"></div></div></div><div class="noUi-origin" style="transform: translate(-800%, 0px); z-index: 6;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="10.0" aria-valuemax="2000.0" aria-valuenow="400.0" aria-valuetext="400"><div class="noUi-touch-area"></div></div></div></div></div>
-                </div>
 
-                <div class="aside-divider"></div>
 
-                <h2 class="aside-title">ფილტრი 01</h2>
-
-                <div class="aside-search">
-                    <input type="text" placeholder="ძებნა">
-                </div>
-
-                <div class="aside-checkboxes">
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 2
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 2
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 2
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 2
-                    </label>
-                  
-                </div>
-
-                <div class="aside-divider"></div>
-
-                <h2 class="aside-title">ფილტრი 01</h2>
-
-                <div class="aside-search">
-                    <input type="text" placeholder="ძებნა">
-                </div>
-
-                <div class="aside-checkboxes">
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 2
-                    </label>
-
-                    <label class="checkbox">
-                        <input type="checkbox" name="" value="val">
-                        <span></span>
-                        ფილტრი 1
-                    </label>
-                  
-                </div>
-
-                <button class="clear-filter-btn">
+                <a href="{{route('Products', app()->getLocale())}}" class="clear-filter-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="17.648" height="14.119" viewBox="0 0 17.648 14.119">
                         <path id="Icon_material-delete-sweep" data-name="Icon material-delete-sweep" d="M14.471,16.589H18v1.765h-3.53Zm0-7.059h6.177v1.765H14.471Zm0,3.53h5.295v1.765H14.471ZM3.882,18.354a1.77,1.77,0,0,0,1.765,1.765h5.295a1.77,1.77,0,0,0,1.765-1.765V9.53H3.882ZM13.589,6.882H10.942L10.059,6H6.53l-.882.882H3V8.647H13.589Z" transform="translate(-3 -6)"></path>
                       </svg>
 
                       გასუფთავება
-                </button>
+                    </a>
 
             </aside>
 
             <div class="category__right">
-                <div class="category__top-panel">
+                <div class="category__top-panel" style="display: flex;     justify-content: space-between;">
                     <p class="items-found">
                         მოიძებნა <span>2,532</span> პროდუქტი
                     </p>
-
-                    <select name="" id="" class="select-by">
-                        <option value="">პოპულარული</option>
-                        <option value="">ახალი დამატებული</option>
-                        <option value="">ფასი ზრდადობით</option>
-                        <option value="">ფასი კლებადობით</option>
-                    </select>
+                    <form action="{{url()->full()}}" method="GET" style="float:right">
+                        <select name="sort" onchange="this.form.submit()"  class="select-by">
+                            <option value="">აირჩიეთ</option>
+                            <option value="popular">პოპულარული</option>
+                            <option value="new">ახალი დამატებული</option>
+                            <option value="priceup">ფასი ზრდადობით</option>
+                            <option value="pricedown">ფასი კლებადობით</option>
+                        </select>
+                    </form>
                    
                 </div>
 
@@ -140,7 +79,9 @@
                    @foreach ($products as $product)
                     <div class="product-card">
 
+                        @if (Carbon\Carbon::parse($product->created_at)->isoFormat('MM') == Carbon\Carbon::now()->isoFormat('MM'))
                         <div class="card__status">ახალი </div>
+                        @endif
                         <div class="card__rating">
                             <i class="fa fa-star fa-lg"></i>
                             <i class="fa fa-star fa-lg"></i>
@@ -150,7 +91,11 @@
                         </div>
 
                         <div class="card__img">
+                            @if ($product->files)
                             <img src="{{asset('../storage/product/'.$product->id.'/'.$product->files[0]->name)}}" alt="">
+                            @else 
+                            <img src="{{asset('../img/noimage.jpg')}}" alt="">
+                            @endif
                         </div>
 
                         <div class="card__info">
@@ -158,9 +103,9 @@
                                 <span class="normal-p">{{number_format($product->price/100, 2)}}</span>
                             
                             </div>
-                            <p class="card__title">{{$product->language('language_id', $localization)->first()->title ?? ''}}
+                            <p class="card__title">{{$product->language()->where('language_id', $localization)->first()->title ?? ''}}
                             </p>
-                            <p class="card__description">{{$product->language('language_id', $localization)->first()->description ?? ''}}</p>
+                            <p class="card__description">{{$product->language()->where('language_id', $localization)->first()->description ?? ''}}</p>
                         </div>
 
                         <div class="card__overlay">
@@ -196,37 +141,7 @@
                     
                 </div>
 
-                <div class="category-pagination">
-                    <a href="" class="left-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="8.414" height="14.828" viewBox="0 0 8.414 14.828">
-                            <g id="chevron-left" transform="translate(1 1.414)">
-                              <path id="Path" d="M6,12,0,6,6,0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
-                            </g>
-                          </svg>
-                    </a>
-
-                   <div class="pagination-list">
-                    <a href="" class="active">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href="">6</a>
-                    <a href="">7</a>
-                    <a href="">8</a>
-                    <a href="">9</a>
-                    <a href="">10</a>
-                   </div>
-
-                    <a href="" class="left-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="8.414" height="14.828" viewBox="0 0 8.414 14.828">
-                            <g id="chevron-right" transform="translate(7.414 13.414) rotate(180)">
-                              <path id="Path" d="M6,12,0,6,6,0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
-                            </g>
-                          </svg>
-                          
-                    </a>
-                </div>
+                {{ $products->links('vendor.pagination.custom') }}
 
             </div>
 

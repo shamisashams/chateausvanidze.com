@@ -31,7 +31,16 @@ class AuthController extends Controller
      */
     public function loginView()
     {
-        return view('admin.auth.login');
+        
+        if(Auth::user() && Auth::user()->can('isAdmin')){
+            return redirect(route('adminHome',app()->getLocale()));
+        }else{
+            if(Auth::user()){
+                return redirect()->route('welcome',app()->getLocale());
+            }else{
+                return view('admin.auth.login');
+            }
+        }
     }
 
     /**
