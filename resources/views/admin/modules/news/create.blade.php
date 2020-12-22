@@ -65,6 +65,13 @@
                     @error('content')
                      <p>{{$message}}</p>   
                     @enderror
+                    <div style="margin-top: 20px">
+                        <label for="section">{{__('news.section')}}</label>
+                        <textarea class="form-control" name="section" ></textarea>
+                        @error('content')
+                        <p>{{$message}}</p>
+                        @enderror
+                    </div>
                 <div class="border-t m-0 py-3 col-span-3">
                     <button class="btn btn-primary mt-2" type="submit">@lang('language.create')</button>
                 </div>

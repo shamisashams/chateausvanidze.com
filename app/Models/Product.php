@@ -13,7 +13,10 @@ class Product extends Model
         'position',
         'status',
         'slug',
-        'price'
+        'price',
+        'vip',
+        'sale',
+        'sale_price'
     ];
     public function files()
     {

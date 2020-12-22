@@ -95,6 +95,8 @@ class ProductService
     public function store(string $lang,ProductRequest $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
+        $request['vip'] = isset($request['vip']) ? 1 : 0;
+        $request['sale'] = isset($request['sale']) ? 1 : 0;
 
         $localizationID = Localization::getIdByName($lang);
 
@@ -104,7 +106,10 @@ class ProductService
             'position' => $request['position'],
             'status' => $request['status'],
             'slug' => $request['slug'],
-            'price' => $request['price']*100
+            'price' => $request['price']*100,
+            'vip' => $request['vip'],
+            'sale' => $request['sale'],
+            'sale_price' => $request['sale_price']*100
         ]);
 
         $this->model->language()->create([
@@ -167,7 +172,8 @@ class ProductService
     public function update(string $lang,int $id, ProductRequest $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
-
+        $request['vip'] = isset($request['vip']) ? 1 : 0;
+        $request['sale'] = isset($request['sale']) ? 1 : 0;
         $localizationID = Localization::getIdByName($lang);
 
         $data = $this->find($id);
@@ -177,7 +183,10 @@ class ProductService
             'position' => $request['position'],
             'status' => $request['status'],
             'slug' => $request['slug'],
-            'price' => $request['price']*100
+            'price' => $request['price']*100,
+            'vip' => $request['vip'],
+            'sale' => $request['sale'],
+            'sale_price' => $request['sale_price']
         ]);
         $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localizationID])->first();
 

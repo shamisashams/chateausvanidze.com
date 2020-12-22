@@ -52,6 +52,7 @@ class NewsController extends AdminController
             'description',
             'file',
             'content' ,
+            'section',
             'position' ,
             'status' ,
             'slug'
@@ -101,7 +102,8 @@ class NewsController extends AdminController
             'description' => 'nullable|string|max:255',
             'file' => 'nullable|mimes:jpg,jpeg,png',
             'content' => 'nullable|string',
-            'position' => 'nullable|string|max:255',  
+            'section' => 'nullable|string',
+            'position' => 'nullable|string|max:255',
             'status' => 'required|integer',
             'slug' => 'required',
         ]);
@@ -110,6 +112,7 @@ class NewsController extends AdminController
             'description',
             'file',
             'content' ,
+            'section' ,
             'position' ,
             'status' ,
             'slug'

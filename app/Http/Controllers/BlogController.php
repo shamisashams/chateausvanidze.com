@@ -44,7 +44,7 @@ class BlogController extends Controller
     public function show(string $locale, string $slug)
     {
         return view('pages.blog.show', [
-            'product' => $this->service->findBySlug($slug)
+            'new' => $this->service->findBySlug($slug)
         ]);
     }
 }

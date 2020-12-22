@@ -19366,6 +19366,10 @@ $(document).ready(function () {
         directory = 'product';
       }
 
+      if (el.fileable_type === 'App\\Models\\Page') {
+        directory = 'page';
+      }
+
       imagedata.push({
         id: el.id,
         src: "".concat(baseUrl, "storage/").concat(directory, "/").concat(el.fileable_id, "/").concat(el.name)

@@ -21,6 +21,11 @@ class Page extends Model
     ];
 
 
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
     public function language()
     {
         return $this->hasMany(PageLanguage::class, 'page_id');

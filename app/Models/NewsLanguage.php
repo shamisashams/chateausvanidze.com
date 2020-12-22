@@ -13,7 +13,8 @@ class NewsLanguage extends Model
         'language_id',
         'title',
         'description',      
-        'content'
+        'content',
+        'section',
     ];
     
     public function news()

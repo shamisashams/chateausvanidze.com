@@ -13,7 +13,11 @@
                         @foreach($news as $new)
                             <div class="event-card">
                                 <div class="event-card__img">
-                                    <img class="img-cover" src="{{asset('../img/blog-c-2.png')}}" alt="">
+                                    @if($new->file)
+                                        <img src="{{url('storage/news/'.$new->file->name)}}">
+                                    @else
+                                        <img src="{{url('noimage.png')}}">
+                                    @endif
                                 </div>
 
                                 <h2 class="event-card__title">

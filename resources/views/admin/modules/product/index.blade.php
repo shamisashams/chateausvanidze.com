@@ -17,12 +17,12 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>slug</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>{{__('admin.id')}}</th>
+                <th>{{__('admin.title')}}</th>
+                <th>{{__('admin.description')}}</th>
+                <th>{{__('admin.slug')}}</th>
+                <th>{{__('admin.status')}}</th>
+                <th>{{__('admin.actions')}}</th>
             </tr>
             <tr>
                 <th>

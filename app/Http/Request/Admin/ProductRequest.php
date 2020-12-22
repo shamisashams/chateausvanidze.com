@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
             'title' => 'required|string|max:255',
             'position' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'slug' => ['required', Rule::unique('products', 'slug')->ignore($this->product)],
+            'slug' => ['required','alpha_dash', Rule::unique('products', 'slug')->ignore($this->product)],
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
         ];
     }

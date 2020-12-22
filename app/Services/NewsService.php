@@ -112,6 +112,8 @@ class NewsService
             'description'=> $request['description'],      
             'content' => $request['content']
         ]);
+
+
         return true;
     }
 
@@ -155,6 +157,7 @@ class NewsService
                 'content' => $request['content']
             ]);
         }
+
         return true;
     }
 
