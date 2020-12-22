@@ -1,5 +1,7 @@
 
-
+$(document).ready(function(){
+    getFavoriteCount();
+});
 // preview img 
 
 //---------- change main img by thumbs
@@ -142,8 +144,7 @@ function addOfferedToCart(el) {
 
 
 //  ----------- add to favourites animation
-function addToFav(el) {
-    
+function addToFav(el, $id) {
     var target = $('.nav__fav');
     var imgtoFly = $(el).find("img");
 
@@ -176,4 +177,35 @@ function addToFav(el) {
             $(this).detach()
         });
     }
+    addToFavoritesAjax($id);
 };
+
+
+function addToFavoritesAjax($id){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/addtofavorites/"+$id,
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+            }
+        } 
+    });
+    getFavoriteCount();
+}
+
+function getFavoriteCount(){
+    $.ajax({
+        url: "/getfavoritecount",
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+                $('#fav-count').html(data.count)
+            }
+        } 
+    });
+}

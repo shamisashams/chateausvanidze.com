@@ -16,7 +16,12 @@ class FrontController extends Controller
     }
     public function favorites()
     {
-        return view('pages.favorites');
+        if(!Auth::user()){
+            return redirect()->back();
+        }
+        $favorites = Auth::user()->favorites;
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
+        return view('pages.favorites', compact('favorites', 'localization'));
     }
     public function club()
     {
@@ -29,9 +34,11 @@ class FrontController extends Controller
         $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
         return view('pages.products', compact('products', 'localization'));
     }
-    public function productshow($id)
+    public function productshow($locale, $id)
     {
-        return view('pages.product_details');
+        $product = Product::findOrFail(intval($id));
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
+        return view('pages.product_details', compact('product', 'localization'));
     }
      
     // Blog

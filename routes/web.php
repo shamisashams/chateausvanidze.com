@@ -16,6 +16,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
@@ -186,5 +187,10 @@ Route::group([
     // Cart Functions
     Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::get('/getcartcount', [CartController::class, 'getCartCount'])->name('getCartCount');
+    
+    // Favorite Functions
+    Route::get('/removeFromFavorites/{id}', [FavoriteController::class, 'addToFavorites'])->name('addToFavorites');
+    Route::get('/removefromfavorites/{id}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFromFavorites');
+    Route::get('/getfavoritecount', [FavoriteController::class, 'getFavoriteCount'])->name('getFavoriteCount');
 });
 

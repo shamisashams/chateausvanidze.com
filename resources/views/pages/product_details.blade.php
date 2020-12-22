@@ -8,55 +8,32 @@
 
             <div class="details__preview">
 
-                <div class="big-img-box shown">
-                    <img class="img-cover" src="{{asset('../img/product-clear.png')}}" alt="">
-                    <div class="big-img-overlay">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-plus" class="svg-inline--fa fa-search-plus fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"></path></svg>
-                    </div>
-                </div>
 
-                <div class="big-img-box">
-                    <img class="img-cover" src="{{asset('../img/details-2.png')}}" alt="">
-                    <div class="big-img-overlay">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-plus" class="svg-inline--fa fa-search-plus fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"></path></svg>
-                    </div>
-                </div>
 
-                <div class="big-img-box">
-                    <img class="img-cover" src="{{asset('../img/details-img.png')}}" alt="">
+                @foreach ($product->files as $key => $item)
+                <div class="big-img-box {{($key == 0) ? 'shown' : ''}} ">
+                    <img class="img-cover" src="{{asset('../storage/product/'.$product->id.'/'.$product->files[$key]->name)}}" alt="">
                     <div class="big-img-overlay">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-plus" class="svg-inline--fa fa-search-plus fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"></path></svg>
                     </div>
                 </div>
-
-                <div class="big-img-box">
-                    <img class="img-cover" src="{{asset('../img/details-2.png')}}" alt="">
-                    <div class="big-img-overlay">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search-plus" class="svg-inline--fa fa-search-plus fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"></path></svg>
-                    </div>
-                </div>
+                @endforeach
 
 
                 <div class="big-img-thumbs">
-                    <div class="img-thumb active">
-                        <img class="img-cover" src="{{asset('../img/product-clear.png')}}" alt="">
+                    @foreach ($product->files as $key => $item)
+                        
+                    <div class="img-thumb {{($key == 0) ? 'active' : ''}} ">
+                        <img class="img-cover" src="{{asset('../storage/product/'.$product->id.'/'.$product->files[$key]->name)}}" alt="">
                     </div>
-                    <div class="img-thumb">
-                        <img class="img-cover" src="{{asset('../img/details-2.png')}}" alt="">
-                    </div>
-                    <div class="img-thumb">
-                        <img class="img-cover" src="{{asset('../img/details-img.png')}}" alt="">
-                    </div>
-                    <div class="img-thumb">
-                        <img class="img-cover" src="{{asset('../img/details-2.png')}}" alt="">
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
             <div class="details__complete-info">
                 <div class="complete-info__top">
-                    <div class="product-id">ID 3251</div>
-                    <div class="product-sale-percent">-14%</div>
+                    <div class="product-id">ID {{$product->id}}</div>
+                    {{-- <div class="product-sale-percent">-14%</div> --}}
 
                     <div class="share-product">
                         <p>გაზიარება</p>
@@ -72,16 +49,16 @@
                 </div>
 
                 <div class="details__title">
-                    შატო ზვანიძე დასახელება <span>მშრალი 0.75ლ</span>
+                    {{$product->language()->where('language_id', $localization)->first()->title ?? ''}} <span>{{$product->language()->where('language_id', $localization)->first()->description ?? ''}}</span>
                 </div>
 
                 <div class="prices-actions">
                     <div class="price-col">
-                        <div class="current-price">1,259₾</div>
-                        <div class="old-price">1,500₾</div>
+                        <div class="current-price">{{number_format($product->price/100 ,2)}} ₾</div>
+                        {{-- <div class="old-price">1,500₾</div> --}}
                     </div>
 
-                    <button class="details__add-to-cart">
+                    <button class="details__add-to-cart" onclick="addToCartAjax({{$product->id}})">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16.259" height="15.018" viewBox="0 0 16.259 15.018">
                             <g id="Icon_ionic-ios-cart" data-name="Icon ionic-ios-cart" transform="translate(-3.382 -4.493)">
                               <path id="Path_1" data-name="Path 1" d="M11.439,29.063a.938.938,0,1,1-.938-.938A.938.938,0,0,1,11.439,29.063Z" transform="translate(-2.744 -10.491)"></path>
@@ -94,7 +71,7 @@
 
                     <a class="buy-item" href="">ყიდვა</a>
 
-                    <button onclick="addToFav(this)" class="to-wishlist">
+                    <button onclick="addToFav(this, '{{$product->id}}')" class="to-wishlist">
                         <img src="{{asset('../img/icons/heart-img.png')}}" alt="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14.758" height="13" viewBox="0 0 14.758 13">
                             <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M15.02,5.558a3.62,3.62,0,0,0-5.121,0l-.7.7-.7-.7a3.621,3.621,0,1,0-5.121,5.121l.7.7L9.2,16.5l5.121-5.121.7-.7a3.62,3.62,0,0,0,0-5.121Z" transform="translate(-1.823 -3.997)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
@@ -108,7 +85,7 @@
                 <h3 class="description-title">მოკლე აღწერა</h3>
 
                 <p class="details-description">
-                    ლორემ იპსუმ თანხის ვუჩვენებდი გაედგა დაბრუნდებით იალტის, ჯოზეფ პარიზელი ჰვედრებდა, გადმოვარდნილიყო საათითაც, გულდაგულ კვალობაზე ქრისტემ. შეარცხვინა უდრიდა მიარტყამდა კარვის თავისუბური დაათრობს. კარჩაკეტილნი ორმოცდაათი მოიგონებენ გოდებასავით, სატვირთო სილვანა ვუჩვენებდი, მავრებივით ბზრიალასავით ჯოზეფ თანხის დღედ ფხაკაძის დავეხმაროთ. გიშველეთ სატვირთო ჭკუიდან ემსახურებოდნენ ვაჭმევდი უზ. რამიშვილმა საათითაც ვუჩვენებდი, ვალსები, გულდაგულ მართლწერაში ყოველნაირად. ბზრიალასავით ვალსები გამოყოფილა, გაფრენის სიბრაზით, მაცდურს ახლოვდება პარიზელი სატვირთო შვილიშვილი, ჩუმი საათითაც მშობლიურ შევუდგები დღედ. კინემატოგრაფისტთა გიშველეთ რივერსონი ცოლი მაცდურს იალტის ტრაპი. შვილიშვილი ჭკუიდან რივერსონი, სუვენირი ფხაკაძის ბნედიანივით.
+                    {{$product->language()->where('language_id', $localization)->first()->content ?? ''}}
                 </p>
 
 

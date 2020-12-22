@@ -41,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- regular js-->
+    <script src="{{asset('../script/details.js')}}"></script>
     <script src="{{asset('../script/general.js')}}"></script>
     <script src="{{asset('../script/index.js')}}"></script>
 

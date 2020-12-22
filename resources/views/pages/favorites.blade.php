@@ -16,123 +16,33 @@
             </div>
 
             <div class="buy__products fav-grid">
-
+                @foreach ($favorites as $item)
                 <div class="card-long">
                     <div class="card-long__img">
-                        <img class="img-cover" src="{{asset('../img/product-3.png')}}" alt="">
+                        <img class="img-cover" src="{{asset('../storage/product/'.$item->product_id.'/'.$item->product->files[0]->name)}}" alt="">
                     </div>
 
                     <div class="card-long__text">
                         <h2>
-                            <a href="">შატო ზვანიძე დასახელება</a>
-                            <span>მშრალი 0.75ლ</span>
+                            <a href="">{{$item->product->language()->where('language_id', $localization)->first()->title}}</a>
+                            <span>{{$item->product->language()->where('language_id', $localization)->first()->description}}</span>
                         </h2>
                         <div class="card-long__pricing">
-                            <span class="cur-p">399.00₾</span>
-                            <span class="old-p">449.00₾</span>
+                            <span class="cur-p">{{number_format($item->product->price/100, 2)}} ₾</span>
+                            {{-- <span class="old-p">449.00₾</span> --}}
                         </div>
                     </div>
 
                     <div class="card-long__qty">
                         
 
-                        <button class="card-long__delete-btn">წაშლა</button>
+                        <a href="{{route('removeFromFavorites', [app()->getLocale(), $item->id])}}" class="card-long__delete-btn" style="text-align: center">წაშლა</a>
                     </div>
 
                 </div>
+                @endforeach
 
-                <div class="card-long">
-                    <div class="card-long__img">
-                        <img class="img-cover" src="{{asset('../img/product-4.png')}}" alt="">
-                    </div>
-
-                    <div class="card-long__text">
-                        <h2>
-                            <a href="">შატო ზვანიძე დასახელება</a>
-                            <span>მშრალი 0.75ლ</span>
-                        </h2>
-                        <div class="card-long__pricing">
-                            <span class="cur-p">399.00₾</span>
-                            <span class="old-p">449.00₾</span>
-                        </div>
-                    </div>
-
-                    <div class="card-long__qty">
-                       
-
-                        <button class="card-long__delete-btn">წაშლა</button>
-                    </div>
-
-                </div>
-
-                <div class="card-long">
-                    <div class="card-long__img">
-                        <img class="img-cover" src="{{asset('../img/product-2.png')}}" alt="">
-                    </div>
-
-                    <div class="card-long__text">
-                        <h2>
-                            <a href="">შატო ზვანიძე დასახელება</a>
-                            <span>მშრალი 0.75ლ</span>
-                        </h2>
-                        <div class="card-long__pricing">
-                            <span class="cur-p">399.00₾</span>
-                            <span class="old-p">449.00₾</span>
-                        </div>
-                    </div>
-
-                    <div class="card-long__qty">
-                        <button class="card-long__delete-btn">წაშლა</button>
-                    </div>
-
-                </div>
-
-                <div class="card-long">
-                    <div class="card-long__img">
-                        <img class="img-cover" src="{{asset('../img/product-4.png')}}" alt="">
-                    </div>
-
-                    <div class="card-long__text">
-                        <h2>
-                            <a href="">შატო ზვანიძე დასახელება</a>
-                            <span>მშრალი 0.75ლ</span>
-                        </h2>
-                        <div class="card-long__pricing">
-                            <span class="cur-p">399.00₾</span>
-                            <span class="old-p">449.00₾</span>
-                        </div>
-                    </div>
-
-                    <div class="card-long__qty">
-                       
-
-                        <button class="card-long__delete-btn">წაშლა</button>
-                    </div>
-
-                </div>
-
-                <div class="card-long">
-                    <div class="card-long__img">
-                        <img class="img-cover" src="{{asset('../img/product-2.png')}}" alt="">
-                    </div>
-
-                    <div class="card-long__text">
-                        <h2>
-                            <a href="">შატო ზვანიძე დასახელება</a>
-                            <span>მშრალი 0.75ლ</span>
-                        </h2>
-                        <div class="card-long__pricing">
-                            <span class="cur-p">399.00₾</span>
-                            <span class="old-p">449.00₾</span>
-                        </div>
-                    </div>
-
-                    <div class="card-long__qty">
-                        <button class="card-long__delete-btn">წაშლა</button>
-                    </div>
-
-                </div>
-            </div>
+               
            
             
         </div>

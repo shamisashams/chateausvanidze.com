@@ -68,4 +68,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\VerifyUser', 'user_id');
     }
+    public function favorites()
+    {
+        return $this->hasMany('App\Models\Favorite', 'user_id');
+    }
 }

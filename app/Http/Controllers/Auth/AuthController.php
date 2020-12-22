@@ -60,7 +60,7 @@ class AuthController extends Controller
         if(Auth::user()->can('isAdmin')){
             return redirect(route('adminHome',app()->getLocale()));
         }else{
-            return redirect(route('welcome',app()->getLocale()));
+            return redirect()->back();
         }
 
     }
