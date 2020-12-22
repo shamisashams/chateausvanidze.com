@@ -12,4 +12,5 @@ return
 	'file' => 'File',
 	'status' => 'Status',
 	'create' => 'Create',
+    'section' => 'Section'
 ];

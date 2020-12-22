@@ -111,7 +111,8 @@ class NewsService
                 'language_id' => $lang->id,
                 'title' => $request['title'],
                 'description'=> $request['description'],      
-                'content' => $request['content']
+                'content' => $request['content'],
+                'section' => $request['section']
             ]);
         }
         return true;
@@ -146,6 +147,7 @@ class NewsService
         $language->title = $request['title'];
         $language->description = $request['description'];
         $language->content = $request['content'];
+        $language->section = $request['section'];
         $language->save();
         return true;
     }
