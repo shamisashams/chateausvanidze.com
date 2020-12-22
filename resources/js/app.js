@@ -18,6 +18,9 @@ $( document ).ready(function() {
             if (el.fileable_type === 'App\\Models\\Product') {
                 directory = 'product';
             }
+            if (el.fileable_type === 'App\\Models\\Page') {
+                directory = 'page';
+            }
             imagedata.push({
                 id: el.id,
                 src: `${baseUrl}storage/${directory}/${el.fileable_id}/${el.name}`

@@ -54,8 +54,9 @@ class PageController extends AdminController
      *
      * @return Application|Factory|View|Response
      */
-    public function create()
+    public function create(string $locale)
     {
+        return redirect(route('pageIndex', $locale));
         return view('admin.modules.page.create');
     }
 
@@ -126,20 +127,8 @@ class PageController extends AdminController
      */
     public function update(string $locale, PageRequest $request, int $id)
     {
-        $data = $request->only([
-            'title',
-            'meta_title',
-            'slug',
-            'description',
-            'content',
-            'content_2',
-            'content_3',
-            'content_4',
-            'status'
-        ]);
 
-
-        if (!$this->service->update($locale, $id, $data)) {
+        if (!$this->service->update($locale, $id, $request)) {
             return redirect(route('pageEditView', $locale))->with('danger', 'Page does not update.');
         }
 

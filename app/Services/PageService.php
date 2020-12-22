@@ -9,11 +9,13 @@
  */
 namespace App\Services;
 
+use App\Http\Request\Admin\PageRequest;
 use App\Models\Feature;
 use App\Models\Localization;
 use App\Models\Page;
 use App\Models\PageLanguage;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 class PageService
 {
@@ -116,13 +118,12 @@ class PageService
      *
      * @param string $lang
      * @param int $id
-     * @param array $request
+     * @param PageRequest $request
      * @return bool
      */
-    public function update(string $lang,int $id, array $request)
+    public function update(string $lang,int $id, PageRequest $request)
     {
         $request['status'] = isset($request['status']) ? 1 : 0;
-
         $data = $this->find($id);
         $data->update([
             'slug' => $request['slug'],
@@ -151,6 +152,36 @@ class PageService
             $featureLanguage->description = $request['description'];
             $featureLanguage->content = $request['content'];
             $featureLanguage->save();
+        }
+
+        // Delete page file if deleted in request.
+        if (count($data->files) > 0) {
+            foreach ($data->files as $file) {
+                if ($request['old_images'] == null) {
+                    $file->delete();
+                    continue;
+                }
+                if (!in_array($file->id,$request['old_images'])) {
+                    if (Storage::exists('public/page/' . $data->id.'/'.$file->name)) {
+                        Storage::delete('public/page/' . $data->id.'/'.$file->name);
+                    }
+                    $file->delete();
+
+                }
+            }
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . $file->getClientOriginalName();
+                $destination = base_path() . '/storage/app/public/page/' . $data->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $data->files()->create([
+                    'name' => $imagename,
+                    'path' => '/storage/app/public/page/' . $data->id,
+                    'format' => $file->getClientOriginalExtension(),
+                ]);
+            }
         }
 
         return true;
