@@ -12,11 +12,15 @@ class PurchaseController extends Controller
 {
     public function index($locale)
     {
-        if (Auth::user()) {
-            $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
-            return view('pages.purchase.purchase_auth', compact('localization'));
+        $cart = session('products') ?? null;
+        if ($cart !== null || count($cart) > 0) {
+            if (Auth::user()) {
+                $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
+                return view('pages.purchase.purchase_auth', compact('localization'));
+            }
+            return view('pages.purchase.purchase_un_auth');
         }
-        return view('pages.purchase.purchase_un_auth');
+        return redirect()->back();
     }
     public function buy(PurchaseRequest $request, $locale)
     {
@@ -55,6 +59,8 @@ class PurchaseController extends Controller
                 }
             }
             $order->products()->createMany($products);
+            
+            session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
         }else{
             return redirect()->back();
