@@ -4,17 +4,17 @@ namespace App\View\Components\Main;
 
 use Illuminate\View\Component;
 
-class products extends Component
+class intro extends Component
 {
-    public $products;
+    public $page;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($products)
+    public function __construct($page)
     {
-        $this->products = $products;
+        $this->page = $page;
     }
 
     /**
@@ -24,6 +24,6 @@ class products extends Component
      */
     public function render()
     {
-        return view('components.main.products');
+        return view('components.main.intro');
     }
 }

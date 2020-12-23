@@ -215,7 +215,7 @@ class ProductService
             'price' => $request['price']*100,
             'vip' => $request['vip'],
             'sale' => $request['sale'],
-            'sale_price' => $request['sale_price']
+            'sale_price' => $request['sale_price']*100
         ]);
         $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localization])->first();
 

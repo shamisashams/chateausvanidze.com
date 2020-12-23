@@ -29,10 +29,11 @@
         <div class="about-video__right">
             <img src="./img/icons/svg-paragraph.svg" alt="">
 
-            <h2>ჩვენ შესახებ</h2>
+            <h2>{{__('client.about_us')}}</h2>
 
-            <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა ვაზი კიდევაც საქმეც ჩაგდო ძმობა. რუსეთი დაობლებას დაგიჭერ, დამთავრებული მონადირეები გაიჩინა ისრებივით შარშანდელზედ ბობოქრობდა, შევხვდეთ რომლისათვისაც ლექციად. გაგვიბედავდა ნა ვაზი მიისწრაფოდნენ, მონადირეები გამოქვაბულ მთ ფიქრის, დივანის, შემოევლო ხარჯავ</p>
-
+            @if(count($page->availableLanguage) > 0)
+            <p>{{$page->availableLanguage[0]->content_3}}</p>
+            @endif
             <img src="./img/icons/svg-paragraph.svg" alt="">
         </div>
 

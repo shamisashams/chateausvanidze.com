@@ -151,6 +151,9 @@ class PageService
             $featureLanguage->meta_title = $request['meta_title'];
             $featureLanguage->description = $request['description'];
             $featureLanguage->content = $request['content'];
+            $featureLanguage->content_2 = $request['content_2'];
+            $featureLanguage->content_3 = $request['content_3'];
+            $featureLanguage->content_4 = $request['content_4'];
             $featureLanguage->save();
         }
 
