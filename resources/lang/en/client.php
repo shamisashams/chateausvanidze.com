@@ -39,5 +39,7 @@ return
         'email' => 'Email',
         'subject' => 'Subject',
         'message' => 'Message',
-        'send' => 'Send'
+        'send' => 'Send',
+        'another_blogs' => 'Another Blogs',
+        'continue' => 'Continue'
     ];

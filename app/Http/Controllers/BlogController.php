@@ -43,8 +43,11 @@ class BlogController extends Controller
      */
     public function show(string $locale, string $slug)
     {
+        $new = $this->service->findBySlug($slug);
+        $otherNews = News::inRandomOrder()->where([['status','=',true],['id','!=',$new->id]])->limit(3)->get();
         return view('pages.blog.show', [
-            'new' => $this->service->findBySlug($slug)
+            'new' => $new,
+            'otherNews' => $otherNews
         ]);
     }
 }

@@ -30,7 +30,7 @@
                                                                         (count($new->language) > 0 ? $new->language[0]->description : '') }}
                                 </p>
                                 <a href="{{route('BlogShow',[app()->getLocale(),$new->slug])}}" class="event-card__link">
-                                    დეტალურად
+                                    {{__('client.details')}}
                                 </a>
                             </div>
                         @endforeach
