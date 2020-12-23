@@ -253,16 +253,18 @@ function register() {
 //  --------- Step Down/ Up --------
 
 // increase qty
-function QuantityPlus(el) {
+function QuantityPlus(el, $id) {
     var qtyInput = $(el).parent('.plus-minus-box').find("input");
 
     // increase by 1
     let newVal = parseInt($(qtyInput).val() ) + 1;
     qtyInput.val(newVal)
+    
+    addcartcount($id, 1);
 };
 
 // decrease qty
-function QuantityMinus(el) {
+function QuantityMinus(el, $id) {
     var qtyInput = $(el).parent('.plus-minus-box').find("input");
 
     // decrease if its > 1
@@ -270,6 +272,7 @@ function QuantityMinus(el) {
 
     let newVal = parseInt($(qtyInput).val() ) - 1;
     qtyInput.val(newVal);
+    addcartcount($id, -1);
 };
 
 
@@ -351,13 +354,42 @@ function addToCartAjax($id){
         method: 'GET',
         success: function(data){
             if(data.status == true){
+                getCartCount();
             }
         } 
     });
-    getCartCount();
 }
-function addcartcount(){
-
+function addcartcount($id, $type){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/addcartcount/"+$id+"/"+$type,
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+                getCartCount();
+            }
+        } 
+    });
+}
+function removefromcart($id){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/removefromcart/"+$id,
+        method: 'GET',
+        success: function(data){
+            if(data.status == true){
+                getCartCount();
+            }
+        } 
+    });
 }
 function getCartCount(){
     $.ajax({
@@ -373,7 +405,7 @@ function getCartCount(){
                 $('#cartitems').html('');
                 $products.forEach(item => {
                     $price = ``;
-                    if(item.sale != ''){
+                    if(item.sale){
                         $price = `
                         <span class="cur-p">`+item['sale']/100+`₾</span>
                         <span class="old-p">`+item['price']/100+`₾</span>
@@ -405,15 +437,15 @@ function getCartCount(){
                         <div class="aside-card__bot-left">
                             <h2>რაოდენობა</h2>
                             <div class="plus-minus-box ">
-                                <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
+                                <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
                             
-                                <input  type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
+                                <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
         
-                                <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
+                                <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
                             </div>
                         </div>
     
-                        <button class="aside-card__delete-btn">წაშლა</button>
+                        <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">წაშლა</button>
                     
                     </div>
                     
