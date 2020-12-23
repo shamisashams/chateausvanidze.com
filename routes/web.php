@@ -194,6 +194,8 @@ Route::group([
     Route::get('/purchase', [FrontController::class, 'purchase'])->name('Purchase');
 
     // Cart Functions
+    Route::get('/addcartcount/{id}/{type}', [CartController::class, 'addCartCount'])->name('addCartCount');
+    Route::get('/removefromcart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
     Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::get('/getcartcount', [CartController::class, 'getCartCount'])->name('getCartCount');
     

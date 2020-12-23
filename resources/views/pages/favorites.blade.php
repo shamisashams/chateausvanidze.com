@@ -24,8 +24,8 @@
 
                     <div class="card-long__text">
                         <h2>
-                            <a href="">{{$item->product->language()->where('language_id', $localization)->first()->title}}</a>
-                            <span>{{$item->product->language()->where('language_id', $localization)->first()->description}}</span>
+                            <a href="">{{$item->product->language()->where('language_id', $localization)->first()->title ?? ''}}</a>
+                            <span>{{$item->product->language()->where('language_id', $localization)->first()->description ?? ''}}</span>
                         </h2>
                         <div class="card-long__pricing">
                             <span class="cur-p">{{number_format($item->product->price/100, 2)}} ₾</span>

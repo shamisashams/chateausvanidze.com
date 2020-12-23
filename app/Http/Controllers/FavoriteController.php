@@ -21,9 +21,6 @@ class FavoriteController extends Controller
     }
     public function addToFavorites($locale, $id)
     {
-        if (!Auth::user()) {
-           abort(403); 
-        }
         $favorite = Product::findOrFail(intval($id));
         $user = Auth::user();
         if ( $user->favorites()->where('product_id', $favorite->id)->first()) {
