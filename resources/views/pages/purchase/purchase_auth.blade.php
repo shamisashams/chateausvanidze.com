@@ -12,23 +12,19 @@
                     <h2>ინფორმაცია შეკვეთაზე</h2>
 
                     <p>
-                        <span>პროდუქტის რაოდენობა</span>
-                        <span>1</span>
-                    </p>
-                    <p>
                         <span>მიტანის ღირებულება</span>
                         <span>5₾</span>
                     </p>
                     <p>
                         <span>პროდუქტის ფასი</span>
-                        <span>404₾</span>
+                        <span><span id="buy-prod"></span> ₾</span>
                     </p>
 
                     <div class="order-aside-divider"></div>
 
                     <p class="order-total">
                         <span>სულ თანხა:</span>
-                        <span class="buy-total">409₾</span>
+                        <span class="buy-total"><span id="buy-total"></span> ₾</span>
                     </p>
                 </div>
 
@@ -134,48 +130,11 @@
 
                 <h2 class="buy__title">მიწოდება 3 სამუშაო დღეში</h2>
 
-                <div class="buy__products">
+                <div class="buy__products" id="buyproduct">
 
-                    <div class="card-long">
-                        <div class="card-long__img">
-                            <img class="img-cover" src="{{asset('../img/product-3.png')}}" alt="">
-                        </div>
-
-                        <div class="card-long__text">
-                            <h2>
-                                <a href="">შატო ზვანიძე დასახელება</a>
-                                <span>მშრალი 0.75ლ</span>
-                            </h2>
-                            <div class="card-long__pricing">
-                                <span class="cur-p">399.00₾</span>
-                                <span class="old-p">449.00₾</span>
-                            </div>
-                        </div>
-
-                        <div class="card-long__qty">
-                            <h2>რაოდენობა</h2>
-
-                            <div class="plus-minus-box ">
-                                <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
-                            
-                                <input type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
-        
-                                <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
-                            </div>
-
-                            <button class="card-long__delete-btn">წაშლა</button>
-                        </div>
-
-                    </div>
+                    
                 </div>
 
-                <div class="total-info-panel">
-                    <p>
-                        რაოდენობა (<span class="quantity">2</span>)
-                    </p>
-                    <p>სულ თანხა: <span class="total-cost">404₾</span>
-                    </p>
-                </div>
 
 
             </div>

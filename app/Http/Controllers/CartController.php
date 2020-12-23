@@ -9,6 +9,42 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function index($locale)
+    {
+        $products = array();
+        $cart = session('products') ?? array();
+        
+        $total = 0;
+        if($cart !== null){
+            foreach ($cart as $item) {
+                $products[] = $item->product_id;
+            }
+            $localization = Localization::where('abbreviation', app()->getLocale())->first()->id ?? 1;
+            $products = Product::whereIn('id', array_map('intval', $products))->get()->map(function ($prod) use ($localization, $total, $cart) {
+                $item = [
+                    'id' => $prod->id,
+                    'price' => $prod->price,
+                    'sale' => ($prod->sale == 1) ? $prod->sale_price : '',
+                    'title' => $prod->language()->where('language_id', $localization)->first()->title ?? '',
+                    'description' => $prod->language()->where('language_id', $localization)->first()->description ?? '',
+                    'file' => $prod->files[0]->name ?? ''
+                ];
+                foreach ($cart as $key => $value) {
+                    if($prod->id == $value->product_id){
+                        $item['quantity'] = $value->quantity;
+                    }
+                }
+               
+                return $item;
+            });
+            foreach ($cart as $item) {
+                $total += intval($item->quantity) * intval($item->price)/100;
+            }
+           
+        }
+        
+        return view('pages.cart', compact('products', 'total'));
+    }
     public function addToCart(Request $request, $locale, $id)
     {
         $products = session('products') ?? array();

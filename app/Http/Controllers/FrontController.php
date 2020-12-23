@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class FrontController extends Controller
 {
 
-    public function cart()
-    {
-        return view('pages.cart');
-    }
     public function club()
     {
         return view('pages.club');

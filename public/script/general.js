@@ -402,7 +402,10 @@ function getCartCount(){
                 $products = data.products;
                 $html = ``;
                 $('#totalmoneycart').html(data.total);
+                $('#buy-total').html(data.total+5);
+                $('#buy-prod').html(data.total);
                 $('#cartitems').html('');
+                $('#buyproduct').html('');
                 $products.forEach(item => {
                     $price = ``;
                     if(item.sale){
@@ -421,7 +424,7 @@ function getCartCount(){
                     <div class="aside-card">
                         <div class="aside-card__top">
                             <div class="aside-card-img">
-                                <img  class="img-cover" src="../storage/product/`+item['id']+`/`+item['file']+`" alt="">
+                            <img  class="img-cover" src="../storage/product/`+item['id']+`/`+item['file']+`" alt="">
                             </div>
                             <div class="aside-card__text">
                                 <h2 class="c-title">
@@ -437,11 +440,11 @@ function getCartCount(){
                         <div class="aside-card__bot-left">
                             <h2>რაოდენობა</h2>
                             <div class="plus-minus-box ">
-                                <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
-                            
-                                <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
-        
-                                <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
+                            <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
+                        
+                            <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
+    
+                            <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
                             </div>
                         </div>
     
@@ -450,6 +453,38 @@ function getCartCount(){
                     </div>
                     
                 </div>
+                    `);
+                    $('#buyproduct').append(`
+                        <div class="card-long">
+                        <div class="card-long__img">
+                        <img  class="img-cover" src="../storage/product/`+item['id']+`/`+item['file']+`" alt="">
+                        </div>
+
+                        <div class="card-long__text">
+                            <h2>
+                                <a href="">`+item['title']+`</a>
+                                <span>`+item['description']+`</span>
+                            </h2>
+                            <div class="card-long__pricing">
+                                `+$price+`
+                            </div>
+                        </div>
+
+                        <div class="card-long__qty">
+                            <h2>რაოდენობა</h2>
+
+                            <div class="plus-minus-box ">
+                            <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
+                        
+                            <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
+    
+                            <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
+                            </div>
+
+                            <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">წაშლა</button>
+                        </div>
+
+                    </div>
                     `);
                 });
             }

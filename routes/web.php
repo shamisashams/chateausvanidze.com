@@ -51,6 +51,7 @@ Route::group([
                 }
             }
         })->name('adminHome');
+
         Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
         Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
@@ -165,7 +166,7 @@ Route::group([
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
 
-    Route::get('/', [HomeController::class,'index']);
+    Route::get('/', [HomeController::class,'index'])->name('welcome');
     
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
@@ -191,10 +192,10 @@ Route::group([
 
 
     // Purchase
-    Route::get('/cart', [FrontController::class, 'cart'])->name('Cart');
     Route::get('/purchase', [FrontController::class, 'purchase'])->name('Purchase');
 
     // Cart Functions
+    Route::get('/cart', [CartController::class, 'index'])->name('Cart');
     Route::get('/addcartcount/{id}/{type}', [CartController::class, 'addCartCount'])->name('addCartCount');
     Route::get('/removefromcart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
     Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
