@@ -12,6 +12,8 @@ namespace App\Services;
 use App\Http\Request\Admin\ProductRequest;
 use App\Models\Localization;
 use App\Models\Product;
+use App\Models\ProductAnswers;
+use App\Models\ProductFeatures;
 use App\Models\ProductLanguage;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -77,9 +79,36 @@ class ProductService
             $data = $data->where('status',$request->status);
         }
 
+        if($request->answers !== null){
+            $answerarray = ProductAnswers::select('product_id')->whereIn('answer_id', array_map('intval', $request->answers))->get()->toArray();
+            $data = $data->whereIn('id', $answerarray);
+        }
+        if($request->minprice !== null){
+            $data = $data->where('price', '>=', intval($request->minprice*100));
+        }
+        if($request->maxprice !== null){
+            $data = $data->where('price', '<=', intval($request->maxprice*100));
+        }
+        if($request->sort !== null || $request->sort != ''){
+            switch($request->sort){
+                case "priceup" : 
+                    $data = $data->orderBy('price', 'asc');
+                    break;
+                case "pricedown" :
+                    $data = $data->orderBy('id', 'desc');
+                    break;
+                case "popular" : 
+                    $data = $data->orderBy('position', 'asc');
+                    break;
+                default : 
+                    $data = $data->orderBy('id', 'desc');
+
+            }
+        }
+
 
         // Check if perPage exist and validation by perPageArray [].
-        $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
+        $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 20;
 
         return $data->orderBy('id', 'DESC')->paginate($perPage);
     }
@@ -174,7 +203,7 @@ class ProductService
         $request['status'] = isset($request['status']) ? 1 : 0;
         $request['vip'] = isset($request['vip']) ? 1 : 0;
         $request['sale'] = isset($request['sale']) ? 1 : 0;
-        $localizationID = Localization::getIdByName($lang);
+        $localization = $this->getlocale($lang);
 
         $data = $this->find($id);
 
@@ -188,12 +217,12 @@ class ProductService
             'sale' => $request['sale'],
             'sale_price' => $request['sale_price']
         ]);
-        $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localizationID])->first();
+        $productLanguage = ProductLanguage::where(['product_id' => $data->id, 'language_id' => $localization])->first();
 
         if ($productLanguage == null) {
             $data->language()->create([
                 'feature_id' => $data->id,
-                'language_id' => $localizationID,
+                'language_id' => $localization,
                 'title' => $request['title'],
                 'description' => $request['description'],
                 'content' => $request['content'],
@@ -270,7 +299,13 @@ class ProductService
 
         return true;
     }
-
+    public function features()
+    {
+        $features = ProductFeatures::select('feature_id')->groupBy('feature_id')->get()->map(function ($feature) {
+            return $feature->feature;
+        });
+        return $features;
+    }
     /**
      * Create Product item into db.
      *
@@ -308,5 +343,17 @@ class ProductService
             throwException('Product  can not delete.');
         }
         return true;
+    }
+    public function maxprice()
+    {
+        return $this->model::max('price');
+    }
+    public function minprice()
+    {
+        return $this->model::min('price');
+    }
+    public function getlocale($lang)
+    {
+        return Localization::where('abbreviation',$lang)->first()->id ?? 1;
     }
 }

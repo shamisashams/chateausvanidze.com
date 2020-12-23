@@ -95,10 +95,10 @@
                 @foreach($answers as $item)
                     <tr>
                         <td>
-                            {{($item->feature->feature->language()->where('language_id', $localization)->first()->title) ?? ' '}}
+                            {{ $item->feature ? ($item->feature->feature->language()->where('language_id', $localization)->first()->title ?? '') : ''}}
                         </td>
                         <td>
-                            {{($item->language()->where('language_id', $localization)->first()->title) ?? ' '}}
+                            {{($item->language()->where('language_id', $localization)->first()->title) ?? ''}}
                         </td>
                         <td>
                             {{$item->position}}

@@ -12,119 +12,21 @@
                     <span class="cart-count" id="setcartcount">0</span>
                 </h2>
     
-                <div class="cart-items-scrollable">
+                <div class="cart-items-scrollable" id="cartitems">
     
-                    <div class="aside-card">
-                        <div class="aside-card__top">
-                            <div class="aside-card-img">
-                                <img  class="img-cover" src="{{asset('../img/product-1.png')}}" alt="">
-                            </div>
-                            <div class="aside-card__text">
-                                <h2 class="c-title">
-                                    <a href="">შატო ზვანიძე დასახელება</a>
-                                </h2>
-                                <h3 class="c-subtitle"> მშრალი 0.75ლ</h3>
-                                <div class="aside-card__pricing">
-                                    <span class="cur-p">82.00₾</span>
-                                    <span class="old-p">112.00₾</span>
-                                </div>
-                            </div>
-                        </div>
+
         
-                        <div class="aside-card__bot">
-                            <div class="aside-card__bot-left">
-                                <h2>რაოდენობა</h2>
-                                <div class="plus-minus-box ">
-                                    <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
-                                
-                                    <input  type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
-            
-                                    <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
-                                </div>
-                            </div>
-        
-                            <button class="aside-card__delete-btn">წაშლა</button>
-                        
-                        </div>
-                        
-                    </div>
+
     
-                    <div class="aside-card">
-                        <div class="aside-card__top">
-                            <div class="aside-card-img">
-                                <img  class="img-cover" src="{{asset('../img/product-2.png')}}" alt="">
-                            </div>
-                            <div class="aside-card__text">
-                                <h2 class="c-title">
-                                    <a href="">შატო ზვანიძე დასახელება</a>
-                                </h2>
-                                <h3 class="c-subtitle"> მშრალი 0.75ლ</h3>
-                                <div class="aside-card__pricing">
-                                    <span class="cur-p">82.00₾</span>
-                                    <span class="old-p">112.00₾</span>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="aside-card__bot">
-                            <div class="aside-card__bot-left">
-                                <h2>რაოდენობა</h2>
-                                <div class="plus-minus-box ">
-                                    <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
-                                
-                                    <input  type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
-            
-                                    <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
-                                </div>
-                            </div>
-        
-                            <button class="aside-card__delete-btn">წაშლა</button>
-                        
-                        </div>
-                        
-                    </div>
-    
-                    <div class="aside-card">
-                        <div class="aside-card__top">
-                            <div class="aside-card-img">
-                                <img  class="img-cover" src="{{asset('../img/product-4.png')}}" alt="">
-                            </div>
-                            <div class="aside-card__text">
-                                <h2 class="c-title">
-                                    <a href="">შატო ზვანიძე დასახელება</a>
-                                </h2>
-                                <h3 class="c-subtitle"> მშრალი 0.75ლ</h3>
-                                <div class="aside-card__pricing">
-                                    <span class="cur-p">82.00₾</span>
-                                    <span class="old-p">112.00₾</span>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="aside-card__bot">
-                            <div class="aside-card__bot-left">
-                                <h2>რაოდენობა</h2>
-                                <div class="plus-minus-box ">
-                                    <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
-                                
-                                    <input  type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
-            
-                                    <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
-                                </div>
-                            </div>
-        
-                            <button class="aside-card__delete-btn">წაშლა</button>
-                        
-                        </div>
-                        
-                    </div>
+                    
+                    
     
                 </div>
     
                 <div class="cart-modal__bottom">
                     <div class="cart-modal__flex">
                         <p>სულ :</p>
-                        <h2 class="cart-modal__total-cost">177.00₾</h2>
+                        <h2 class="cart-modal__total-cost"><span id="totalmoneycart"></span> ₾</h2>
                     </div>
     
                     <div class="cart-modal__flex">

@@ -356,6 +356,9 @@ function addToCartAjax($id){
     });
     getCartCount();
 }
+function addcartcount(){
+
+}
 function getCartCount(){
     $.ajax({
         url: "/getcartcount/",
@@ -364,6 +367,59 @@ function getCartCount(){
             if(data.status == true){
                 $('#setcartcount').html(data.count)
                 $('#cart-count').html(data.count)
+                $products = data.products;
+                $html = ``;
+                $('#totalmoneycart').html(data.total);
+                $('#cartitems').html('');
+                $products.forEach(item => {
+                    $price = ``;
+                    if(item.sale != ''){
+                        $price = `
+                        <span class="cur-p">`+item['sale']/100+`₾</span>
+                        <span class="old-p">`+item['price']/100+`₾</span>
+                        `;
+                    }else{
+
+                        $price = `
+                        <span class="cur-p">`+item['price']/100+`₾</span>
+                        `;
+                    }
+                    $('#cartitems').append( `
+                    
+                    <div class="aside-card">
+                        <div class="aside-card__top">
+                            <div class="aside-card-img">
+                                <img  class="img-cover" src="../storage/product/`+item['id']+`/`+item['file']+`" alt="">
+                            </div>
+                            <div class="aside-card__text">
+                                <h2 class="c-title">
+                                    <a href="">`+item['title']+`</a>
+                                </h2>
+                                <h3 class="c-subtitle"> `+item['description']+`</h3>
+                                <div class="aside-card__pricing">
+                                    `+$price+`
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aside-card__bot">
+                        <div class="aside-card__bot-left">
+                            <h2>რაოდენობა</h2>
+                            <div class="plus-minus-box ">
+                                <button class="qty_btn" type="button" onclick="QuantityMinus(this)"> -</button>
+                            
+                                <input  type="number" name="qty" min="1" max="11" value="1" class="qty_input" readonly="">
+        
+                                <button class="qty_btn" type="button" onclick="QuantityPlus(this)">+</button>
+                            </div>
+                        </div>
+    
+                        <button class="aside-card__delete-btn">წაშლა</button>
+                    
+                    </div>
+                    
+                </div>
+                    `);
+                });
             }
         } 
     });

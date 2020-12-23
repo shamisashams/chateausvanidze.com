@@ -173,11 +173,10 @@ Route::group([
     Route::get('/google/callback', [AuthController::class, 'googleredirect'])->name('googleredirect');
 
     Route::get('/about-us', [AboutController::class, 'index'])->name('AboutUs');
-    Route::get('/products', [FrontController::class, 'products'])->name('Products');
-    Route::get('/product/{id}', [FrontController::class, 'productshow'])->name('ProductShow');
+    Route::get('/products', [ProductController::class, 'render'])->name('Products');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('ProductShow');
 
     Route::get('/club', [FrontController::class, 'club'])->name('Club');
-    Route::get('/favorites', [FrontController::class, 'favorites'])->name('Favorites');
 
     Route::get('/blog', [BlogController::class, 'index'])->name('Blog');
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('BlogShow');
@@ -199,6 +198,7 @@ Route::group([
     Route::get('/getcartcount', [CartController::class, 'getCartCount'])->name('getCartCount');
     
     // Favorite Functions
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('Favorites');
     Route::get('/removeFromFavorites/{id}', [FavoriteController::class, 'addToFavorites'])->name('addToFavorites');
     Route::get('/removefromfavorites/{id}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFromFavorites');
     Route::get('/getfavoritecount', [FavoriteController::class, 'getFavoriteCount'])->name('getFavoriteCount');

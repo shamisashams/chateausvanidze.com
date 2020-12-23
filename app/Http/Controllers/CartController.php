@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Localization;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -25,7 +28,27 @@ class CartController extends Controller
     }
     public function getCartCount()
     {
-        $products = session('products') ?? array();
-        return response()->json(array('status' => true, 'count' => count($products)));
+        $products = array();
+        $cart = session('products') ?? array();
+        if($cart !== null){
+            foreach ($cart as $item) {
+                $products[] = $item->product_id;
+            }
+        }
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id ?? 1;
+        $total = 0;
+        $products = Product::whereIn('id', array_map('intval', $products))->get()->map(function ($prod) use ($localization, $total) {
+            $item = [
+                'id' => $prod->id,
+                'price' => $prod->price,
+                'sale' => ($prod->sale === true) ? $prod->sale_price : '',
+                'title' => $prod->language()->where('language_id', $localization)->first()->title ?? '',
+                'description' => $prod->language()->where('language_id', $localization)->first()->description ?? '',
+                'file' => $prod->files[0]->name ?? ''
+            ];
+            $total += ($prod->sale === true) ? $prod->sale_price : $prod->price;
+            return $item;
+        });
+        return response()->json(array('status' => true, 'count' => count($cart), 'products' => $products, 'total' => $total));
     }
 }

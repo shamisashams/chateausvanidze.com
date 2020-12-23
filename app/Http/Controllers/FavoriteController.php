@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favorite;
+use App\Models\Localization;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
+    public function index()
+    {
+        if(!Auth::user()){
+            return redirect()->back();
+        }
+        $favorites = Auth::user()->favorites;
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
+        return view('pages.favorites', compact('favorites', 'localization'));
+    }
     public function addToFavorites($locale, $id)
     {
         if (!Auth::user()) {

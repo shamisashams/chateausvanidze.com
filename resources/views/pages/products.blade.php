@@ -99,7 +99,11 @@
 
                                 <div class="card__info">
                                     <div class="card__price">
-                                        <span class="normal-p">{{number_format($product->price/100, 2)}}</span>
+                                        <span class="normal-p"></span>
+                                        <span class="normal-p">{{ ($product->sale == 1) ? number_format($product->sale_price/100, 2) : number_format($product->price/100, 2)}}₾</span>
+                                        @if ($product->sale == 1)
+                                        <span class="old-p">{{number_format($product->price/100, 2)}}</span>
+                                        @endif
 
                                     </div>
                                     <p class="card__title">{{$product->language()->where('language_id', $localization)->first()->title ?? ''}}

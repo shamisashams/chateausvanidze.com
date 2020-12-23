@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Request\Admin\ProductRequest;
 use App\Models\Feature;
+use App\Models\Localization;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -29,6 +30,15 @@ class ProductController extends AdminController
         $this->service = $service;
     }
 
+    public function render(string $lang, Request $request){
+
+        $products = $this->service->getAll($lang, $request);
+        $features = $this->service->features();
+        $localization = $this->service->getlocale($lang);
+        $minprice = $this->service->minprice();
+        $maxprice = $this->service->maxprice(); 
+        return view('pages.products', compact('products', 'localization', 'features' , 'minprice', 'maxprice'));
+    }
 
     /**
      * Display a listing of the resource.
@@ -90,9 +100,9 @@ class ProductController extends AdminController
      */
     public function show(string $locale, int $id)
     {
-        return view('admin.modules.product.show', [
-            'product' => $this->service->find($id)
-        ]);
+        $product = $this->service->find($id);
+        $localization = $this->service->getlocale($locale);
+        return view('pages.product_details', compact('product', 'localization'));
     }
 
     /**
