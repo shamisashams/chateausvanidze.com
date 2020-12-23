@@ -112,7 +112,7 @@
                                 </div>
 
                                 <div class="card__overlay">
-                                    <a href="{{route('ProductShow', [app()->getLocale(), 1])}}">
+                                    <a href="{{route('ProductShow', [app()->getLocale(), $product->id])}}">
                                         დეტალურად
                                         <span></span>
 
