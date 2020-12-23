@@ -10,6 +10,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Request\Admin\UserCabinetRequest;
+use App\Models\Localization;
 use App\Services\UserService;
 
 class CabinetController extends Controller
@@ -27,7 +28,11 @@ class CabinetController extends Controller
             'user' => $this->service->find(Auth()->user()->id)
         ]);
     }
-
+    public function cabinetorders()
+    {
+        $localization = Localization::where('abbreviation', app()->getLocale())->first()->id ?? 1;
+        return view('pages.cabinet_orders', compact('localization'));
+    }
     public function cabinetInfoUpdate($locale, UserCabinetRequest $request,int $id)
     {
         if (!$this->service->update($locale,$id,$request)) {

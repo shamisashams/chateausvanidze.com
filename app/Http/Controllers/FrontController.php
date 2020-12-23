@@ -29,18 +29,4 @@ class FrontController extends Controller
         return view('pages.blog_details');
     }
 
-    // Puchase
-    public function purchase()
-    {
-        if (Auth::user()) {
-            return view('pages.purchase.purchase_auth');
-        }
-        
-        return view('pages.purchase.purchase_un_auth');
-    }
-
-    public function cabinetorders()
-    {
-        return view('pages.cabinet_orders');
-    }
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -186,13 +187,14 @@ Route::group([
     // Cabinet
     Route::get('/cabinet-info', [CabinetController::class, 'cabinetInfo'])->name('cabinetInfo');
     Route::put('/cabinet-info/{user}', [CabinetController::class, 'cabinetInfoUpdate'])->name('cabinetInfoUpdate');
-    Route::get('/cabinet-orders', [FrontController::class, 'cabinetorders'])->name('CabinetOrders');
+    Route::get('/cabinet-orders', [CabinetController::class, 'cabinetorders'])->name('CabinetOrders');
 
     Route::match(['get','post'],'/contact-us', [ContactController::class, 'index'])->name('ContactUs');
 
 
     // Purchase
-    Route::get('/purchase', [FrontController::class, 'purchase'])->name('Purchase');
+    Route::get('/purchase', [PurchaseController::class, 'index'])->name('Purchase');
+    Route::post('/makepurchase', [PurchaseController::class, 'buy'])->name('makePurchase');
 
     // Cart Functions
     Route::get('/cart', [CartController::class, 'index'])->name('Cart');

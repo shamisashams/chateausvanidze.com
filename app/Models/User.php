@@ -64,6 +64,10 @@ class User extends Authenticatable
     {
         return $this->morphOne(Profile::class, 'profileable');
     }
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'user_id');
+    }
     public function tokens()
     {
         return $this->hasMany('App\Models\VerifyUser', 'user_id');
