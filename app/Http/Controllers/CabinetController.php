@@ -31,7 +31,10 @@ class CabinetController extends Controller
     public function cabinetorders()
     {
         $localization = Localization::where('abbreviation', app()->getLocale())->first()->id ?? 1;
-        return view('pages.cabinet_orders', compact('localization'));
+        return view('pages.cabinet_orders', [
+            'localization' => $localization,
+            'user' => $this->service->find(Auth()->user()->id)
+        ]);
     }
     public function cabinetInfoUpdate($locale, UserCabinetRequest $request,int $id)
     {
