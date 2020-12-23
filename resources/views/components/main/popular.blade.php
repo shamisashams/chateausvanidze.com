@@ -56,7 +56,7 @@
 
 
                         </a>
-                        <button onclick="addToCart(this)">
+                        <button onclick="addToCart(this,'{{$product->id}}')">
                             {{__('client.add_to_cart')}}
                             <span></span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16.259" height="15.018" viewBox="0 0 16.259 15.018">

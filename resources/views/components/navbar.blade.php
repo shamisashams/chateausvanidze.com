@@ -28,21 +28,20 @@
                 </div>
 
                 <li class="navigation__item">
-                    <a href="/" class="navigation__link active">მთავარი</a>
+                    <a href="/" class="navigation__link active">{{__('client.home')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('AboutUs', app()->getLocale())}}"
                        class="navigation__link">{{__('client.history')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link">პროდუქცია</a>
+                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link">{{__('client.products')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Club', app()->getLocale())}}" class="navigation__link">ღვინის კლუბი</a>
+                    <a href="{{route('Club', app()->getLocale())}}" class="navigation__link">{{__('client.wine_club')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link">სიახლეები &amp;
-                        ღონისძიებები</a>
+                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link">{{__('client.news_and_events')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('ContactUs',app()->getLocale())}}"
@@ -82,8 +81,8 @@
                 @guest
                     <!-- two dropdown for auth and un-auth ( "hidden" to switch)-->
                         <div class="profile-dropdown un-auth ">
-                            <button class="log-in-btn">ავტორიზაცია</button>
-                            <button class="register-btn">რეგისტრაცია</button>
+                            <button class="log-in-btn">{{__('client.authorization')}}</button>
+                            <button class="register-btn">{{__('client.registration')}}</button>
                         </div>
                     @endguest
                     @auth
@@ -93,7 +92,7 @@
                                     <img class="img-cover" src="{{asset('../img/user.png')}}" alt="">
                                 </div>
                                 <div class="profile-dropdown__top-right">
-                                    <p>გამარჯობა</p>
+                                    <p>{{__('clients.hello')}}</p>
                                     <h1>{{Auth::user()->name}}</h1>
                                 </div>
                             </div>
@@ -107,7 +106,7 @@
                                               fill="#111"></path>
                                     </svg>
                                 </div>
-                                ჩემი მონაცემები
+                                {{__('client.my_information')}}
                             </a>
                             <a href="{{route('CabinetOrders', app()->getLocale())}}" class="profile-dropdown-link">
                                 <div class="profile-dropdown-link-img">
@@ -124,7 +123,7 @@
                                     </svg>
 
                                 </div>
-                                ჩემი შეკვეთები
+                                {{__('client.my_orders')}}
                             </a>
 
                             <a href="{{route('logout', app()->getLocale())}}" class="profile-dropdown-exit">
@@ -134,7 +133,7 @@
                                           d="M12.432,10.146V8.5H8.323V6.859h4.109V5.215L14.9,7.681Zm-.822-.822v3.287H7.5v2.465L2.571,12.611V1.928h9.04V6.037h-.822V2.75H4.214L7.5,4.393v7.4h3.287V9.324Z"
                                           transform="translate(-2.571 -1.928)"></path>
                                 </svg>
-                                გასვლა
+                                {{__('client.logout')}}
                             </a>
 
                         </div>
@@ -180,7 +179,6 @@
                 <div class="language-box">
                     <div class="language-menu">
                         @if(isset($languages['current']))
-                            <div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-left">
                                 <a href="">
                                     <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">
                                     {{strtoupper($languages['current']['abbreviation'])}}
@@ -196,7 +194,6 @@
                                         </a>
                                     @endforeach
                                 @endif
-                            </div>
                         @endif
 
                     </div>

@@ -21,20 +21,19 @@ $linkedin = Setting::where('key','linkedin')->first();
                 </a>
 
                 <p class="footer__about-text">
-                    ლორემ იპსუმ წესისამებრ მესერს გაბრაზდნენ ჰონორარის ჩამოგორდნენ შესრულების. 
                 </p>
             </div>
 
             <div class="footer__col">
-                <h2>ბმულები</h2>
+                <h2>{{__('client.links')}}</h2>
 
                 <ul class="footer__nav">
-                    <a href="/">მთავარი</a>
-                    <a href="{{route('AboutUs', app()->getLocale())}}">ისტორია</a>
-                    <a href="./products.html">პროდუქცია</a>
-                    <a href="./club.html">ღვინის კლუბი</a>
-                    <a href="./blogs.html">სიახლეები & ღონისძიებები</a>
-                    <a href="./contact.html">კონტაქტი</a>
+                    <a href="/">{{__('client.home')}}</a>
+                    <a href="{{route('AboutUs', app()->getLocale())}}">{{__('client.history')}}</a>
+                    <a href="{{route('Products', app()->getLocale())}}">{{__('client.products')}}</a>
+                    <a href="{{route('Club', app()->getLocale())}}">{{__('client.wine_club')}}</a>
+                    <a href="{{route('Blog', app()->getLocale())}}">{{__('client.news_and_events')}}</a>
+                    <a href="{{route('ContactUs',app()->getLocale())}}">{{__('client.contact-us')}}</a>
                 </ul>
             </div>
 
@@ -59,7 +58,7 @@ $linkedin = Setting::where('key','linkedin')->first();
                    <div class="overlay">
                         <button class="map-modal-btn">
                             <img src="{{asset('../img/icons/svg-fullscreen.svg')}}" alt="">
-                            დიდ ეკრანზე
+                            {{__('client.full_screen')}}
                         </button>
                    </div>
                 </div>
@@ -83,19 +82,23 @@ $linkedin = Setting::where('key','linkedin')->first();
 
             <div class="language-box">
                 <div class="language-menu">
-                    <a href="">
-                        <img src="{{asset('../img/icons/georgia_1.svg')}}" alt="">
-                        GE
-                    </a>
-                    <a href="">
-                        <img src="{{asset('../img/icons/russia.svg')}}" alt="">
-                        Ru
-                    </a>
-                    <a href="">
-                        <img src="{{asset('../img/icons/uk.svg')}}" alt="">
-                        EN
-                    </a>
-                   
+                    @if(isset($languages['current']))
+                        <a href="">
+                            <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">
+                            {{strtoupper($languages['current']['abbreviation'])}}
+
+                        </a>
+                        @if(count($languages['data']) > 0)
+
+                            @foreach($languages['data'] as $data)
+                                <a href="{{$data['url']}}">
+                                    <img src="/adm/img/flags-icons/{{$data['img']}}" alt="">
+                                    {{strtoupper($data['abbreviation'])}}
+
+                                </a>
+                            @endforeach
+                        @endif
+                    @endif
                 </div>
             </div>
 
