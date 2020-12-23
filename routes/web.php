@@ -199,7 +199,7 @@ Route::group([
     
     // Favorite Functions
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('Favorites');
-    Route::get('/removeFromFavorites/{id}', [FavoriteController::class, 'addToFavorites'])->name('addToFavorites');
+    Route::get('/addtofavorites/{id}', [FavoriteController::class, 'addToFavorites'])->name('addToFavorites');
     Route::get('/removefromfavorites/{id}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFromFavorites');
     Route::get('/getfavoritecount', [FavoriteController::class, 'getFavoriteCount'])->name('getFavoriteCount');
 });
