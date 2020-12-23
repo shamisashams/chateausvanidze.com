@@ -40,7 +40,8 @@ class LanguageComposer
                     $languages['current']= [
                         'title' => $localization->native,
                         'url' => '',
-                        'img' => $localization->abbreviation . '.png'
+                        'img' => $localization->abbreviation . '.png',
+                        'abbreviation' => $localization->abbreviation
                     ];
                     continue;
                 }
@@ -48,7 +49,8 @@ class LanguageComposer
                 $languages['data'][]= [
                     'title' => $localization->native,
                     'url' => $this->getUrl($localization->abbreviation),
-                    'img' => $localization->abbreviation . '.png'
+                    'img' => $localization->abbreviation . '.png',
+                    'abbreviation' => $localization->abbreviation
                 ];
             }
         }
