@@ -165,7 +165,7 @@ Route::group([
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
 
-    Route::get('/', [HomeController::class,'index']);
+    Route::get('/', [HomeController::class,'index'])->name('welcome');
     
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');

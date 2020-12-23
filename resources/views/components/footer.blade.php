@@ -21,20 +21,19 @@ $linkedin = Setting::where('key','linkedin')->first();
                 </a>
 
                 <p class="footer__about-text">
-                    ლორემ იპსუმ წესისამებრ მესერს გაბრაზდნენ ჰონორარის ჩამოგორდნენ შესრულების. 
                 </p>
             </div>
 
             <div class="footer__col">
-                <h2>ბმულები</h2>
+                <h2>{{__('client.links')}}</h2>
 
                 <ul class="footer__nav">
-                    <a href="/">მთავარი</a>
-                    <a href="{{route('AboutUs', app()->getLocale())}}">ისტორია</a>
-                    <a href="./products.html">პროდუქცია</a>
-                    <a href="./club.html">ღვინის კლუბი</a>
-                    <a href="./blogs.html">სიახლეები & ღონისძიებები</a>
-                    <a href="./contact.html">კონტაქტი</a>
+                    <a href="/">{{__('client.home')}}</a>
+                    <a href="{{route('AboutUs', app()->getLocale())}}">{{__('client.history')}}</a>
+                    <a href="{{route('Products', app()->getLocale())}}">{{__('client.products')}}</a>
+                    <a href="{{route('Club', app()->getLocale())}}">{{__('client.wine_club')}}</a>
+                    <a href="{{route('Blog', app()->getLocale())}}">{{__('client.news_and_events')}}</a>
+                    <a href="{{route('ContactUs',app()->getLocale())}}">{{__('client.contact-us')}}</a>
                 </ul>
             </div>
 
@@ -59,7 +58,7 @@ $linkedin = Setting::where('key','linkedin')->first();
                    <div class="overlay">
                         <button class="map-modal-btn">
                             <img src="{{asset('../img/icons/svg-fullscreen.svg')}}" alt="">
-                            დიდ ეკრანზე
+                            {{__('client.full_screen')}}
                         </button>
                    </div>
                 </div>
