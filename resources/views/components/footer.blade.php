@@ -82,19 +82,23 @@ $linkedin = Setting::where('key','linkedin')->first();
 
             <div class="language-box">
                 <div class="language-menu">
-                    <a href="">
-                        <img src="{{asset('../img/icons/georgia_1.svg')}}" alt="">
-                        GE
-                    </a>
-                    <a href="">
-                        <img src="{{asset('../img/icons/russia.svg')}}" alt="">
-                        Ru
-                    </a>
-                    <a href="">
-                        <img src="{{asset('../img/icons/uk.svg')}}" alt="">
-                        EN
-                    </a>
-                   
+                    @if(isset($languages['current']))
+                        <a href="">
+                            <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">
+                            {{strtoupper($languages['current']['abbreviation'])}}
+
+                        </a>
+                        @if(count($languages['data']) > 0)
+
+                            @foreach($languages['data'] as $data)
+                                <a href="{{$data['url']}}">
+                                    <img src="/adm/img/flags-icons/{{$data['img']}}" alt="">
+                                    {{strtoupper($data['abbreviation'])}}
+
+                                </a>
+                            @endforeach
+                        @endif
+                    @endif
                 </div>
             </div>
 
