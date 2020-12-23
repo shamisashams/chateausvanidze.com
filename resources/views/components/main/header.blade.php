@@ -3,12 +3,12 @@
     
     <div class="hero__overlay">
         <div class="hero__content">
-            <h1>შატო სვანიძე</h1>
+            <h1>{{__('client.shato_svanidze')}}</h1>
             
-            <h2>საუკეთესო ქართული ღვინო </h2>
+            <h2>{{__('client.best_georgian_wine')}} </h2>
 
-            <a class="hero-link" href="">
-                კატალოგი
+            <a class="hero-link" href="{{route('Products',app()->getLocale())}}">
+                {{__('client.catalog')}}
                 <span></span>
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16.259" height="15.018" viewBox="0 0 16.259 15.018">

@@ -18,6 +18,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,9 +37,7 @@ Route::group([
     'where' => ['locale' => '[a-zA-Z]{2}'],
     'middleware' => ['setlocale']
 ], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+
 
     Route::prefix('admin')->group(function () {
         Route::get('/', function () {
@@ -165,6 +164,8 @@ Route::group([
     Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
+
+    Route::get('/', [HomeController::class,'index']);
     
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');

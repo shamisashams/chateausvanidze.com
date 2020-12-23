@@ -4,8 +4,10 @@
 
         <div class="why-us__wrapper">
             <div class="why-us__overlay">
-                <h2 class="why-us__title">რატომ ჩვენ?</h2>
-                <p class="why-us__parapraph">ლორემ იპსუმ გრძელნაწნავიან დაგარტყა ვაზი კიდევაც საქმეც ჩაგდო ძმობა. რუსეთი დაობლებას დაგიჭერ, დამთავრებული მონადირეები გაიჩინა ისრებივით შარშანდელზედ ბობოქრობდა, შევხვდეთ რომლისათვისაც ლექციად. გაგვიბედავდა ნა ვაზი მიისწრაფოდნენ, მონადირეები გამოქვაბულ მთ ფიქრის, დივანის, შემოევლო ხარჯავს დაობლებას. სასმელი დაგარტყა </p>
+                <h2 class="why-us__title">{{__('client.why_us')}}</h2>
+                @if(count($page->availableLanguage) > 0)
+                <p class="why-us__parapraph">{{$page->availableLanguage[0]->content_2}}</p>
+                @endif
 
                 <div class="divider">
                     <img src="./img/icons/paragraph-fff.svg" alt="">  
