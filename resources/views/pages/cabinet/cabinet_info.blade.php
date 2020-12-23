@@ -20,9 +20,7 @@
                     </div>
                     <div class="cabinet__user-name">
                         <h2>{{(count($user->availableLanguage) > 0)
-                            ? $user->availableLanguage[0]->first_name . ' ' .$user->availableLanguage[0]->last_name :
-                            $user->language[0]->first_name . ' '. $user->language[0]->last_name
-                            }}
+                            ? $user->availableLanguage[0]->first_name . ' ' .$user->availableLanguage[0]->last_name : ''}}
                         </h2>
                         <p>ID - {{$user->id}}</p>
                     </div>
