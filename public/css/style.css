@@ -2015,9 +2015,8 @@ input[type=number] {
     display: block;
 }
 .footer__brand img {
-    display: block; 
-    height: auto;
-    max-width: 100%;
+    display: block;
+    width: 134px;
 }
 
 .footer__about-text{
