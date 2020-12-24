@@ -184,7 +184,7 @@ input[type=number] {
 }
 
 .brand-logo img {
-    height: 54px;
+    height: 98px;
     width: auto;
     display: block;
 }
@@ -4681,7 +4681,7 @@ input[type=number] {
 }
 @media (max-width: 450px) {
     .brand-logo img {
-        height: 36px;
+        height: 70px;
     }
     .nav__form {
         width: 100%;
