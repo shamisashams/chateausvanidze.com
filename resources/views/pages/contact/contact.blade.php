@@ -53,7 +53,7 @@ $contactEmail = Setting::where('key', 'contact_email')->first();
                                 </svg>
 
                             </div>
-                            <p>{!! count($phone->availableLanguage) > 0 ? $address->availableLanguage[0]->value : '' !!}  </p>
+                            <p>{!! count($phone->availableLanguage) > 0 ? $phone->availableLanguage[0]->value : '' !!}  </p>
 
                         </div>
 
@@ -73,7 +73,7 @@ $contactEmail = Setting::where('key', 'contact_email')->first();
                                     </g>
                                 </svg>
                             </div>
-                            <p>{!! count($contactEmail->availableLanguage) > 0 ? $address->availableLanguage[0]->value : '' !!}  </p>
+                            <p>{!! count($contactEmail->availableLanguage) > 0 ? $contactEmail->availableLanguage[0]->value : '' !!}  </p>
                         </div>
                     </div>
                     {!! Form::open(['url' => route('ContactUs',[app()->getLocale()]),'method' =>'post','class' =>'contact__right']) !!}

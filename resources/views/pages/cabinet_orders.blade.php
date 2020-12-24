@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="cabinet__navigation">
-                    <a class="active" href="./cabinet-orders.html">
+                    <a class="active" href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15.909" height="18.182" viewBox="0 0 15.909 18.182">
                             <path id="Icon_open-document" data-name="Icon open-document" d="M0,0V18.182H15.909V9.091H6.818V0ZM9.091,0V6.818h6.818ZM2.273,4.546H4.546V6.818H2.273Zm0,4.546H4.546v2.273H2.273Zm0,4.546h9.091v2.273H2.273Z"></path>
                           </svg>
@@ -42,7 +42,7 @@
                     </a>
 
 
-                    <a href="" class="cabinet__exit">
+                    <a href="{{route('logout',app()->getLocale())}}" class="cabinet__exit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12.327" height="13.149" viewBox="0 0 12.327 13.149">
                             <path id="Icon_metro-exit" data-name="Icon metro-exit" d="M12.432,10.146V8.5H8.323V6.859h4.109V5.215L14.9,7.681Zm-.822-.822v3.287H7.5v2.465L2.571,12.611V1.928h9.04V6.037h-.822V2.75H4.214L7.5,4.393v7.4h3.287V9.324Z" transform="translate(-2.571 -1.928)"></path>
                         </svg>
