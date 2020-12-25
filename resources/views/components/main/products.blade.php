@@ -6,7 +6,7 @@
                         {{__('client.favorite_taste')}}
                     </h2>
                     
-                    <div class="product__grid">
+                    <div class="product__grid slidable">
                         @foreach($products as $product)
                         <div class="product-card">
                             @if($product->created_at > Carbon\Carbon::now()->subWeek())
@@ -71,7 +71,6 @@
     
                         </div>
                         @endforeach
-
                     </div>
                 </div>
     

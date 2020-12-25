@@ -1485,6 +1485,8 @@ input[type=number] {
     font-weight: bold;
 }
 
+
+
 .product__grid {
     margin-top: 45px;
     display: -ms-grid;
@@ -1537,6 +1539,14 @@ input[type=number] {
             flex-direction: column;
     /* remove stars*/
     display: none;
+}
+
+.slidable {
+    width: 100%;
+    position: relative;
+}
+.product__grid.slider {
+    display: block;
 }
 .card__rating > *+* {
     margin-top: 4px;
