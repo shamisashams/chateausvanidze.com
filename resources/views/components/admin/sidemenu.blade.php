@@ -1,10 +1,10 @@
 <div >
     <div style="position: relative; height:100%" class="menu-w color-scheme-light color-style-default menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link" style="height: 100%">
         <div class="logo-w">
-          <a class="logo" href="index.html">
+          <a class="logo" href="{{route('productIndex',app()->getLocale())}}">
             <div class="logo-element"></div>
             <div class="logo-label">
-              Clean Admin
+              Chateau Svanidze
             </div>
           </a>
         </div>

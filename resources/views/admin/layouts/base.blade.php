@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
-    @hasSection('title')
+    <title>Chateau Svanidze</title>
 
-        <title>@yield('title') - {{ config('app.name') }}</title>
-    @else
-        <title>{{ config('app.name') }}</title>
-    @endif
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="template language" name="keywords">

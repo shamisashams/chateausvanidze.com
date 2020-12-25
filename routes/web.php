@@ -43,7 +43,7 @@ Route::group([
     Route::prefix('admin')->group(function () {
         Route::get('/', function () {
             if(Auth::user() && Auth::user()->can('isAdmin')){
-                return view('admin.welcome');
+                return redirect(\route('productIndex',app()->getLocale()));
             }else{
                 if(Auth::user()){
                     return view('welcome');
