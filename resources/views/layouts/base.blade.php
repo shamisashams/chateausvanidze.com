@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="author" content="insite.international">
 
-    <link rel="shortcut icon" type="image/x-icon" href="./img">
+    <link href="favicon.ico" rel="shortcut icon">
     
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">

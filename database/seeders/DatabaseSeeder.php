@@ -98,6 +98,9 @@ class DatabaseSeeder extends Seeder
             [
                 'key' => 'linkedin',
             ],
+            [
+                'key' => 'instagram',
+            ],
         ];
 
         // Insert pages
