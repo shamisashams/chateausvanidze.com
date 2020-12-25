@@ -7,8 +7,9 @@ $phone = Setting::where('key','phone')->first();
 $contactEmail = Setting::where('key','contact_email')->first();
 $facebook = Setting::where('key','facebook')->first();
 $twitter = Setting::where('key','twitter')->first();
-$behance = Setting::where('key','behance')->first();
-$linkedin = Setting::where('key','linkedin')->first();
+//$behance = Setting::where('key','behance')->first();
+//$linkedin = Setting::where('key','linkedin')->first();
+$instagram = Setting::where('key','instagram')->first();
 ?>
 <!-- footer-->
   <footer id="footer">
@@ -121,17 +122,29 @@ $linkedin = Setting::where('key','linkedin')->first();
                     </svg>                          
                 </a>
 
-                <a href="{{count($behance->availableLanguage) > 0 ? $behance->availableLanguage[0]->value : ''}}" target="_blank">
-                    <svg id="Group_5" data-name="Group 5" xmlns="http://www.w3.org/2000/svg" width="12.284" height="7.701" viewBox="0 0 12.284 7.701">
-                        <path id="Icon_awesome-behance" data-name="Icon awesome-behance" d="M4.948,8.752A1.618,1.618,0,0,0,5.98,7.174C5.98,5.668,4.858,5.3,3.564,5.3H0V12.86H3.664c1.373,0,2.664-.659,2.664-2.195a1.821,1.821,0,0,0-1.38-1.913ZM1.661,6.592H3.22c.6,0,1.139.168,1.139.864,0,.642-.42.9-1.013.9H1.661V6.592Zm1.777,4.984H1.661V9.494H3.472c.732,0,1.194.3,1.194,1.079s-.552,1-1.228,1Zm7.646-5.133H8.019V5.7h3.065v.744Zm1.2,3.76A2.69,2.69,0,0,0,9.621,7.234a2.75,2.75,0,0,0-2.8,2.9A2.666,2.666,0,0,0,9.621,13a2.44,2.44,0,0,0,2.561-1.841H10.856a1.245,1.245,0,0,1-1.188.714,1.238,1.238,0,0,1-1.344-1.393h3.948C12.278,10.394,12.284,10.3,12.284,10.2ZM8.326,9.537A1.175,1.175,0,0,1,9.574,8.368a1.12,1.12,0,0,1,1.2,1.169Z" transform="translate(0 -5.302)"/>
-                    </svg>
-                </a>
+{{--                <a href="{{count($behance->availableLanguage) > 0 ? $behance->availableLanguage[0]->value : ''}}" target="_blank">--}}
+{{--                    <svg id="Group_5" data-name="Group 5" xmlns="http://www.w3.org/2000/svg" width="12.284" height="7.701" viewBox="0 0 12.284 7.701">--}}
+{{--                        <path id="Icon_awesome-behance" data-name="Icon awesome-behance" d="M4.948,8.752A1.618,1.618,0,0,0,5.98,7.174C5.98,5.668,4.858,5.3,3.564,5.3H0V12.86H3.664c1.373,0,2.664-.659,2.664-2.195a1.821,1.821,0,0,0-1.38-1.913ZM1.661,6.592H3.22c.6,0,1.139.168,1.139.864,0,.642-.42.9-1.013.9H1.661V6.592Zm1.777,4.984H1.661V9.494H3.472c.732,0,1.194.3,1.194,1.079s-.552,1-1.228,1Zm7.646-5.133H8.019V5.7h3.065v.744Zm1.2,3.76A2.69,2.69,0,0,0,9.621,7.234a2.75,2.75,0,0,0-2.8,2.9A2.666,2.666,0,0,0,9.621,13a2.44,2.44,0,0,0,2.561-1.841H10.856a1.245,1.245,0,0,1-1.188.714,1.238,1.238,0,0,1-1.344-1.393h3.948C12.278,10.394,12.284,10.3,12.284,10.2ZM8.326,9.537A1.175,1.175,0,0,1,9.574,8.368a1.12,1.12,0,0,1,1.2,1.169Z" transform="translate(0 -5.302)"/>--}}
+{{--                    </svg>--}}
+{{--                </a>--}}
 
-                <a href="{{count($linkedin->availableLanguage) > 0 ? $linkedin->availableLanguage[0]->value : ''}}" target="_blank">
-                    <svg id="Group_4" data-name="Group 4" xmlns="http://www.w3.org/2000/svg" width="10.326" height="10.326" viewBox="0 0 10.326 10.326">
-                        <path id="Icon_awesome-linkedin-in" data-name="Icon awesome-linkedin-in" d="M2.311,10.326H.171V3.432H2.311ZM1.24,2.492A1.246,1.246,0,1,1,2.48,1.241,1.25,1.25,0,0,1,1.24,2.492Zm9.084,7.834H8.187V6.97c0-.8-.016-1.825-1.113-1.825-1.113,0-1.284.869-1.284,1.768v3.414H3.652V3.432H5.706v.94h.03A2.249,2.249,0,0,1,7.761,3.26c2.167,0,2.565,1.427,2.565,3.28v3.787Z" transform="translate(0 -0.001)"/>
+{{--                <a href="{{count($linkedin->availableLanguage) > 0 ? $linkedin->availableLanguage[0]->value : ''}}" target="_blank">--}}
+{{--                    <svg id="Group_4" data-name="Group 4" xmlns="http://www.w3.org/2000/svg" width="10.326" height="10.326" viewBox="0 0 10.326 10.326">--}}
+{{--                        <path id="Icon_awesome-linkedin-in" data-name="Icon awesome-linkedin-in" d="M2.311,10.326H.171V3.432H2.311ZM1.24,2.492A1.246,1.246,0,1,1,2.48,1.241,1.25,1.25,0,0,1,1.24,2.492Zm9.084,7.834H8.187V6.97c0-.8-.016-1.825-1.113-1.825-1.113,0-1.284.869-1.284,1.768v3.414H3.652V3.432H5.706v.94h.03A2.249,2.249,0,0,1,7.761,3.26c2.167,0,2.565,1.427,2.565,3.28v3.787Z" transform="translate(0 -0.001)"/>--}}
+{{--                    </svg>--}}
+{{--                      --}}
+{{--                </a>--}}
+                <a href="{{count($instagram->availableLanguage) > 0 ? $instagram->availableLanguage[0]->value : ''}}" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10.326" height="10.326" viewBox="0 0 64 64" aria-labelledby="title"
+                         aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path data-name="layer2"
+                              d="M44.122 2H19.87A17.875 17.875 0 0 0 2 19.835v24.2a17.875 17.875 0 0 0 17.87 17.834h24.252A17.875 17.875 0 0 0 62 44.034v-24.2A17.875 17.875 0 0 0 44.122 2zM55.96 44.034a11.825 11.825 0 0 1-11.838 11.812H19.87A11.825 11.825 0 0 1 8.032 44.034v-24.2A11.825 11.825 0 0 1 19.87 8.022h24.252A11.825 11.825 0 0 1 55.96 19.835zm0 0"
+                              fill="#771732" stroke="#202020" stroke-linecap="round" stroke-miterlimit="10"
+                              stroke-width="2" stroke-linejoin="round"></path>
+                        <path data-name="layer1" d="M32 16.45a15.484 15.484 0 1 0 15.514 15.484A15.519 15.519 0 0 0 32 16.45zm0 24.95a9.461 9.461 0 1 1 9.482-9.461A9.472 9.472 0 0 1 32 41.4zm19.263-24.834a3.719 3.719 0 1 1-3.719-3.711 3.714 3.714 0 0 1 3.719 3.711zm0 0"
+                              fill="#771732" stroke="#771732" stroke-linecap="round" stroke-miterlimit="10"
+                              stroke-width="2" stroke-linejoin="round"></path>
                     </svg>
-                      
                 </a>
             </div>
 
