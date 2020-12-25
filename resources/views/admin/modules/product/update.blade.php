@@ -76,7 +76,7 @@
                                         <div
                                                 class="form-group {{ $errors->has('sale_price') ? ' has-error' : '' }}">
                                             {{ Form::label('sale_price', __('admin.sale_price'), []) }}
-                                            {{ Form::text('sale_price', $product->sale_price, ['class' => 'form-control', 'no','placeholder'=>'Enter Sale Price']) }}
+                                            {{ Form::text('sale_price', $product->sale_price/100, ['class' => 'form-control', 'no','placeholder'=>'Enter Sale Price']) }}
                                             @if ($errors->has('sale_price'))
                                                 <span class="help-block">
                                             {{ $errors->first('sale_price') }}

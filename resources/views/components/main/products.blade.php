@@ -9,8 +9,10 @@
                     <div class="product__grid slidable">
                         @foreach($products as $product)
                         <div class="product-card">
-                            @if($product->created_at > Carbon\Carbon::now()->subWeek())
+                            @if($product->created_at > Carbon\Carbon::now()->subWeek() && $product->status)
                                 <div class="card__status">{{__('client.new')}} </div>
+                                @elseif(!$product->status)
+                                <div class="card__status out-sale">{{__('client.out_of_sale')}} </div>
                             @endif
                             <div class="card__rating">
                                 <i class="fa fa-star fa-lg"></i>
