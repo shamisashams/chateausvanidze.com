@@ -5659,7 +5659,9 @@ input[type=number] {
         width: 100%;
     }
 }
-
+.card__status.out-sale {
+    width: 100px;
+}
 
 
 /*  ----    .html   ----  */

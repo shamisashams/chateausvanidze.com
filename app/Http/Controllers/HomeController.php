@@ -23,8 +23,8 @@ class HomeController extends Controller
             return abort('404');
         }
 
-        $vipProducts = Product::inRandomOrder()->where(['vip'=>true])->limit(5)->get();
-        $popularProducts = Product::inRandomOrder()->where('status',true)->limit(10)->get();
+        $vipProducts = Product::inRandomOrder()->where('vip',true)->limit(15)->get();
+        $popularProducts = Product::inRandomOrder()->limit(10)->get();
 
 
         return view('pages.home.home',[
