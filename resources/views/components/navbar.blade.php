@@ -92,7 +92,7 @@
                                     <img class="img-cover" src="{{asset('../img/user.png')}}" alt="">
                                 </div>
                                 <div class="profile-dropdown__top-right">
-                                    <p>{{__('clients.hello')}}</p>
+                                    <p>{{__('client.hello')}}</p>
                                     <h1>{{Auth::user()->name}}</h1>
                                 </div>
                             </div>
