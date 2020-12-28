@@ -77,6 +77,7 @@
 
                         @foreach ($products as $product)
                             <div class="product-card">
+
                                 @if($product->created_at > Carbon\Carbon::now()->subWeek() && $product->status)
                                     <div class="card__status">{{__('client.new')}} </div>
                                 @elseif(!$product->status)
@@ -92,9 +93,9 @@
 
                                 <div class="card__img">
                                     @if (count($product->files) > 0)
-                                        <img src="{{asset('../storage/product/'.$product->id.'/'.$product->files[0]->name)}}" alt="">
+                                        <img src="{{asset('storage/product/'.$product->id.'/'.$product->files[0]->name)}}" alt="">
                                     @else
-                                        <img src="{{asset('../img/noimage.jpg')}}" alt="">
+                                        <img src="{{asset('img/noimage.jpg')}}" alt="">
                                     @endif
                                 </div>
 
@@ -103,7 +104,7 @@
                                         <span class="normal-p"></span>
                                         <span class="normal-p">{{ ($product->sale == 1) ? number_format($product->sale_price/100, 2) : number_format($product->price/100, 2)}}₾</span>
                                         @if ($product->sale == 1)
-                                        <span class="old-p">{{number_format($product->price/100, 2)}}</span>
+                                            <span class="old-p">{{number_format($product->price/100, 2)}}</span>
                                         @endif
 
                                     </div>
