@@ -22,6 +22,11 @@ class Product extends Model
     {
         return $this->morphMany('App\Models\File', 'fileable');
     }
+
+    public function details(){
+        return $this->hasMany('App\Models\ProductLanguage', 'product_id')->where('language_id', Localization::getIdByName(app()->getLocale()));
+    }
+
     public function language()
     {
         return $this->hasMany('App\Models\ProductLanguage', 'product_id');

@@ -2,7 +2,7 @@
 /**
  *  app/Http/Request/Admin/ProductRequest.php
  *
- * User: 
+ * User:
  * Date-Time: 15.12.20
  * Time: 15:24
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -34,7 +34,6 @@ class ProductRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'position' => 'required|string|max:255',
-            'price' => 'required|numeric',
             'slug' => ['required','alpha_dash', Rule::unique('products', 'slug')->ignore($this->product)],
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
         ];

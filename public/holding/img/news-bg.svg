@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1919.454" height="1076.334" viewBox="0 0 1919.454 1076.334">
+  <defs>
+    <clipPath id="clip-path">
+      <rect x="259" width="1919.454" height="1076.334" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Scroll_Group_1" data-name="Scroll Group 1" transform="translate(-259)" clip-path="url(#clip-path)" style="isolation: isolate">
+    <path id="Union_1" data-name="Union 1" d="M1697.9,1014.833l-791.736,61.5-647.516-61.5L149.223,921.64,130.1,834.671,0,833.526,64.927,538.167,0,242.808l130.1-1.145,19.118-86.969L258.653,61.5,906.169,0,1697.9,61.5,2180.6,0l230.383,340.715,190.472,113.214-56.96,84.239,56.96,84.239L2410.981,735.619,2180.6,1076.334Z" fill="#f9f9f9"/>
+  </g>
+</svg>

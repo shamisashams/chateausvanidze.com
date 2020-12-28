@@ -1,87 +1,117 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="content-box">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="element-wrapper">
+    {!! Form::open(['url' => route('newsCreate',app()->getLocale()),'method' =>'post','files'=>true]) !!}
+
+    <div class="content-box">
+        <div class="element-wrapper">
             <h6 class="element-header">
-                @lang('admin.create_news')
+                @lang('admin.news_create')
             </h6>
-            <form action="{{route('NewsStore', $locale)}}" enctype="multipart/form-data" method="POST" class="bg-white py-3 px-4 row w-full">
-                @csrf
-    
-                <div class="col-lg-6 w-full ">
-                    <label for="file">@lang('news.file')</label>
-                    <input type="file"  name="file" class="text-xs form-control">
-                    @error('file')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                <div class="col-lg-6 w-full ">
-                    <label for="title">@lang('news.title')</label>
-                    <input type="text" required name="title" class=" py-2 form-control" placeholder="@lang('news.title')">
-                    @error('title')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                <div class="col-lg-12 w-full px-2 mt-2">
-                    <label for="description">@lang('news.description')</label>
-                    <textarea name="description" id="description" class="form-control" placeholder="@lang('news.description')" rows="3"></textarea>
-                    @error('description')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                <div class="col-md-4">
-                    
-                    <label for="status">@lang('news.status')</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="1">@lang('news.active')</option>
-                        <option value="0">@lang('news.nonactive')</option>
-                    </select>
-                    @error('status')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                
-                <div class="col-md-4">
-                    
-                    <label for="position">@lang('news.position')</label>
-                    <input type="text"  name="position" class=" py-2 form-control" placeholder="@lang('news.position')">
-                    @error('position')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                
-                <div class="col-md-4">
-                    
-                    <label for="slug">@lang('news.slug')</label>
-                    <input type="text" required name="slug" class=" py-2 form-control" placeholder="@lang('news.slug')">
-                    @error('slug')
-                    <p>{{$message}}</p>
-                    @enderror 
-                </div>
-                <div class="px-2 mt-3 w-full">
-                    <textarea cols="50 w-full" id="ckeditor1" name="content"  rows="10"></textarea>
-                    @error('content')
-                     <p>{{$message}}</p>   
-                    @enderror
-                    <div style="margin-top: 20px">
-                        <label for="section">{{__('news.section')}}</label>
-                        <textarea class="form-control" name="section" ></textarea>
-                        @error('content')
-                        <p>{{$message}}</p>
-                        @enderror
+            <div class="element-box">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+
+                            <div class="col-4">
+                                <div
+                                        class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
+                                    {{ Form::label('title', 'Title', []) }}
+                                    {{ Form::text('title', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Title']) }}
+                                    @if ($errors->has('title'))
+                                        <span class="help-block">
+                                    {{ $errors->first('title') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div
+                                        class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
+                                    {{ Form::label('position', 'Position', []) }}
+                                    {{ Form::text('position', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Position']) }}
+                                    @if ($errors->has('position'))
+                                        <span class="help-block">
+                                            {{ $errors->first('position') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div
+                                        class="form-group {{ $errors->has('slug') ? ' has-error' : '' }}">
+                                    {{ Form::label('slug', 'Slug', []) }}
+                                    {{ Form::text('slug', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Slug']) }}
+                                    @if ($errors->has('slug'))
+                                        <span class="help-block">
+                                    {{ $errors->first('slug') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div
+                                    class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+                                    {{ Form::label('description', 'Description', []) }}
+                                    {{ Form::textarea('description', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Description']) }}
+                                    @if ($errors->has('description'))
+                                        <span class="help-block">
+                                    {{ $errors->first('description') }}
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div
+                                        class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
+                                    {{ Form::label('content', 'Content', []) }}
+                                    {{ Form::textarea('content', '', ['class' => 'form-control', 'no','placeholder'=>'Enter Content']) }}
+                                    @if ($errors->has('content'))
+                                        <span class="help-block">
+                                            {{ $errors->first('content') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+
+
+                        <div class="form-group">
+                            <div class="input-images"></div>
+                            @if ($errors->has('images'))
+                                <span class="help-block">
+                                            {{ $errors->first('images') }}
+                                        </span>
+                            @endif
+                        </div>
                     </div>
-                <div class="border-t m-0 py-3 col-span-3">
-                    <button class="btn btn-primary mt-2" type="submit">@lang('language.create')</button>
+                         <div class="row">
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <label class="form-check-label"><input class="form-check-input" name="status"
+                                                                           type="checkbox">Status</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-buttons-w">
+                            <button class="btn btn-primary" type="submit"> {{__('admin.create')}}</button>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+
         </div>
     </div>
-</div>
+    {!! Form::close() !!}
 @endsection
-
-
-         

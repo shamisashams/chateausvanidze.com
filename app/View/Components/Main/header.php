@@ -23,6 +23,6 @@ class header extends Component
      */
     public function render()
     {
-        return view('components.main.header');
+        // return view('components.main.header');
     }
 }

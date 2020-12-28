@@ -2,7 +2,7 @@
 /**
  *  app/Http/Controllers/Admin/ProductController.php
  *
- * User: 
+ * User:
  * Date-Time: 18.12.20
  * Time: 11:07
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -33,10 +33,7 @@ class ProductController extends AdminController
     public function render(string $lang, Request $request){
 
         $products = $this->service->getAll($lang, $request);
-        $features = $this->service->features();
         $localization = $this->service->getlocale($lang);
-        $minprice = $this->service->minprice();
-        $maxprice = $this->service->maxprice(); 
         return view('pages.products', compact('products', 'localization', 'features' , 'minprice', 'maxprice'));
     }
 
@@ -155,7 +152,5 @@ class ProductController extends AdminController
             return redirect(route('productIndex', $locale))->with('danger', 'Product does not delete.');
         }
         return redirect(route('productIndex', $locale))->with('success', 'Product delete successfully.');
-
-
     }
 }

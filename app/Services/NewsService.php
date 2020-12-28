@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\Dictionary;
+use App\Http\Request\Admin\NewsRequest;
 use App\Models\Feature;
 use App\Models\Localization;
 use App\Models\News;
 use App\Models\NewsLanguage;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
+
 
 use function PHPUnit\Framework\throwException;
 
@@ -31,7 +32,7 @@ class NewsService
      */
     public function find(int $id)
     {
-        return $this->model->where('id',$id)->firstOrFail();
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -52,32 +53,50 @@ class NewsService
      * @return LengthAwarePaginator
      * @throws \Exception
      */
-    public function getAll(string $lang, $request)
+    public function getAll(string $lang,$request)
     {
         $data = $this->model->query();
 
-        $localization = $this->getLocalization($lang);
-        
-        if ($request->id !== null) {
-            $data = $data->where('id', $request->all()['id']);
+        $localizationID = Localization::getIdByName($lang);
+
+
+
+        if ($request->id) {
+            $data = $data->where('id',$request->id);
         }
-        if ($request->position !== null) {
-            $data = $data->where('position', 'LIKE', '%'.$request->all()['position'].'%');
+
+        if ($request->title) {
+            $data = $data->with('language')->whereHas('language', function ($query) use ($localizationID, $request) {
+                $query->where('title','like',"%{$request->title}%")->where('language_id',$localizationID);
+            });
         }
-        if ($request->slug !== null) {
-            $data = $data->where('slug', 'LIKE', '%'.$request->all()['slug'].'%');
+
+        if ($request->description) {
+            $data = $data->with('language')->whereHas('language', function ($query) use ($localizationID, $request) {
+                $query->where('description','like',"%{$request->description}%")->where('language_id',$localizationID);
+            });
         }
-        if ($request->title !== null) {
-            $titlearray = NewsLanguage::select('news_id')->where([['title', 'LIKE', '%'.$request->all()['title'].'%'], ['language_id', $localization->id]])->get()->toArray();
-            $data = $data->whereInd('id', $titlearray);
+
+        if ($request->slug) {
+            $data = $data->where('slug', 'like', "%{$request->slug}%");
         }
-        if ($request->description !== null) {
-            $descriptionarr = NewsLanguage::select('news_id')->where([['description', 'LIKE', '%'.$request->all()['description'].'%'], ['language_id', $localization->id]])->get()->toArray();
-            $data = $data->whereInd('id', $descriptionarr);
+
+        if ($request->status != null) {
+            $data = $data->where('status',$request->status);
         }
-        // Check if perPage exist and validation by perPageArray [].
-        $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 10;
+
+        $perPage = ($request->per_page != null && in_array($request->per_page,$this->perPageArray)) ? $request->per_page : 20;
+
         return $data->orderBy('id', 'DESC')->paginate($perPage);
+    }
+
+
+    public function getByID($lang , $id){
+
+        $data = $this->model->with('files','details')->where('id',$id);
+        $data = $data->first();
+
+        return $data;
     }
 
 
@@ -88,34 +107,43 @@ class NewsService
      * @param array $request
      * @return bool
      */
-    public function store(string $lang, array $request)
+        public function store(string $lang,NewsRequest $request)
     {
-        $model = $this->model->create([
-            'slug' => $request['slug'],
+        $request['status'] = isset($request['status']) ? 1 : 0;
+        $localizationID = Localization::getIdByName($lang);
+
+        $this->model = $this->model->create([
             'position' => $request['position'],
-            'status' => intval($request['status']),
-        ]);
-        if(isset($request['file'])){
-            $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs("news/", $request['file'], $filename);
-            $model->file()->create([
-                'name' => $filename,
-                'path' => 'news/',
-                'format' => $request['file']->getClientOriginalExtension(),
-            ]);
-        }
-        $localization = $this->getLocalization($lang);
-        
-        $model->language()->create([
-            'language_id' => $localization->id,
-            'title' => $request['title'],
-            'description'=> $request['description'],      
-            'content' => $request['content']
+            'status' => $request['status'],
+            'slug' => $request['slug'],
         ]);
 
+        $this->model->language()->create([
+            'news_id' => $this->model->id,
+            'language_id' => $localizationID,
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'content' => $request['content'],
+        ]);
+
+        $model = $this->model;
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . $file->getClientOriginalName();
+                $destination = base_path() . '/storage/app/public/news/' . $this->model->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $model->files()->create([
+                    'name' => $imagename,
+                    'path' => '/storage/app/public/news/' . $model->id,
+                    'format' => $file->getClientOriginalExtension(),
+                ]);
+            }
+        }
 
         return true;
     }
+
 
     /**
      * Update Feature item.
@@ -124,42 +152,70 @@ class NewsService
      * @param array $request
      * @return bool
      */
-    public function update(string $lang,  array $request , int $id)
+    public function update(string $lang,int $id, NewsRequest $request)
     {
-        $model = $this->model->find($id);
-        $model->update([
-            'slug' => $request['slug'],
+        $request['status'] = isset($request['status']) ? 1 : 0;
+        $localization = $this->getlocale($lang);
+
+        $data = $this->find($id);
+
+        $data->update([
             'position' => $request['position'],
-            'status' => intval($request['status']),
+            'status' => $request['status'],
+            'slug' => $request['slug'],
         ]);
-        $localization = $this->getLocalization($lang);
-        if(isset($request['file'])){
-            $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs("news/", $request['file'], $filename);
-            $model->file()->updateOrCreate([
-                'name' => $filename,
-                'path' => 'news/',
-                'format' => $request['file']->getClientOriginalExtension(),
-            ]);
-        }
-        $language = $model->language()->where('language_id', $localization)->first();
-        if($language){
-            $language->title = $request['title'];
-            $language->description = $request['description'];
-            $language->content = $request['content'];
-            $language->save();
-        }else{
-        
-            $model->language()->create([
-                'language_id' => $localization->id,
+
+
+        $newsLanguage = NewsLanguage::where(['news_id' => $data->id, 'language_id' => $localization])->first();
+
+        if ($newsLanguage == null) {
+            $data->language()->create([
+                'language_id' => $localization,
                 'title' => $request['title'],
-                'description'=> $request['description'],      
-                'content' => $request['content']
+                'description' => $request['description'],
+                'content' => $request['content'],
             ]);
+        } else {
+            $newsLanguage->title = $request['title'];
+            $newsLanguage->description = $request['description'];
+            $newsLanguage->content = $request['content'];
+            $newsLanguage->save();
+        }
+
+        // Delete  file if deleted in request.
+        if (count($data->files) > 0) {
+            foreach ($data->files as $file) {
+                if ($request['old_images'] == null) {
+                    $file->delete();
+                    continue;
+                }
+
+                if (!in_array($file->id,$request['old_images'])) {
+                    if (Storage::exists('public/news/' . $data->id.'/'.$file->name)) {
+                        Storage::delete('public/news/' . $data->id.'/'.$file->name);
+                    }
+                    $file->delete();
+                }
+            }
+        }
+
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . $file->getClientOriginalName();
+                $destination = base_path() . '/storage/app/public/news/' . $data->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $data->files()->create([
+                    'name' => $imagename,
+                    'path' => '/storage/app/public/news/' . $data->id,
+                    'format' => $file->getClientOriginalExtension(),
+                ]);
+            }
         }
 
         return true;
     }
+
 
     /**
      * Create localization item into db.
@@ -170,8 +226,23 @@ class NewsService
      */
     public function delete($id)
     {
-        $data = $this->model->find($id);
-        $data->delete();
+        $data = $this->find($id);
+
+        if (count($data->language) > 0) {
+            if(!$data->language()->delete()){
+                throwException('Items languages can not delete.');
+            }
+        }
+        if (count($data->files) > 0) {
+            if (Storage::exists('public/news/' . $data->id)) {
+                Storage::deleteDirectory('public/news/' . $data->id);
+            }
+            $data->files()->delete();
+        }
+
+        if (!$data->delete()) {
+            throwException('Item  can not delete.');
+        }
         return true;
     }
 
@@ -189,5 +260,10 @@ class NewsService
         }
 
         return $localization;
+    }
+
+     public function getlocale($lang)
+    {
+        return Localization::where('abbreviation',$lang)->first()->id ?? 1;
     }
 }

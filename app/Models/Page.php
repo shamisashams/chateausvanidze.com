@@ -2,7 +2,7 @@
 /**
  *  app/Models/Page.php
  *
- * User: 
+ * User:
  * Date-Time: 18.12.20
  * Time: 11:06
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -20,6 +20,9 @@ class Page extends Model
         'status'
     ];
 
+    public function details(){
+        return $this->hasMany(PageLanguage::class, 'page_id')->where('language_id', Localization::getIdByName(app()->getLocale()));
+    }
 
     public function files()
     {

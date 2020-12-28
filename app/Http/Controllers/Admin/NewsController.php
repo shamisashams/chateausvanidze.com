@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Request\Admin\NewsRequest;
-use App\Models\Localization;
 use App\Models\News;
 use App\Services\NewsService;
 use Illuminate\Http\Request;
@@ -22,10 +21,24 @@ class NewsController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($locale, Request $request)
+    public function index(string $lang, Request $request)
     {
-        $localization = Localization::where('abbreviation',$locale)->first()->id;
-        return view('admin.modules.news.index', ['news' => $this->service->getAll($locale, $request), 'locale'=>$locale, 'localization' => $localization]);
+
+        $request->validate([
+            'id' => 'integer|nullable',
+            'title' => 'string|max:255|nullable',
+            'description' => 'string|max:255|nullable',
+            'slug' => 'string|max:255|nullable',
+            'status' => 'boolean|nullable',
+        ]);
+
+
+        $data = $this->service->getAll($lang,$request);
+
+        return view('admin.modules.news.index', [
+            'data' => $data
+        ]);
+
     }
 
     /**
@@ -33,10 +46,9 @@ class NewsController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($locale)
+    public function create()
     {
-        $localization = Localization::where('abbreviation',$locale)->first()->id;
-        return view('admin.modules.news.create', ['locale'=>$locale, 'localization' => $localization]);
+        return view('admin.modules.news.create');
     }
 
     /**
@@ -45,22 +57,13 @@ class NewsController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsRequest $request, $locale)
+    public function store(string $locale, NewsRequest $request)
     {
-        $data = $request->only([
-            'title',
-            'description',
-            'file',
-            'content' ,
-            'section',
-            'position' ,
-            'status' ,
-            'slug'
-        ]);
-        
-        $this->service->store($locale, $data);
+        if (!$this->service->store($locale,$request)) {
+            return redirect(route('newsCreateView',$locale))->with('danger', 'Record does not create.');
+        }
 
-        return redirect()->route('NewsIndex', compact('locale'));
+        return redirect(route('newsIndex', $locale))->with('success', 'Record create successfully.');
     }
 
     /**
@@ -80,10 +83,13 @@ class NewsController extends AdminController
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit($locale, $id)
+    public function edit(string $locale, int $id)
     {
-        $localization = Localization::where('abbreviation',$locale)->first()->id;
-        return view('admin.modules.news.edit', ['news'=> $this->service->find(intval($id)),'locale'=>$locale, 'localization' => $localization]);
+        $data = $this->service->find($id);
+
+        return view('admin.modules.news.update',[
+            'data' => $data,
+        ]);
     }
 
     /**
@@ -93,33 +99,14 @@ class NewsController extends AdminController
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $locale, $id)
+    public function update(string $locale, NewsRequest $request, int $id)
     {
-        // sxvanairad ver avamushave validacia unique ze
-        $this->validate($request, [
-            
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'file' => 'nullable|mimes:jpg,jpeg,png',
-            'content' => 'nullable|string',
-            'section' => 'nullable|string',
-            'position' => 'nullable|string|max:255',
-            'status' => 'required|integer',
-            'slug' => 'required',
-        ]);
-        $data = $request->only([
-            'title',
-            'description',
-            'file',
-            'content' ,
-            'section' ,
-            'position' ,
-            'status' ,
-            'slug'
-        ]);
-        $this->service->update($locale, $data, $id);
 
-        return redirect()->route('NewsIndex', compact('locale'));
+        if (!$this->service->update($locale,$id,$request)) {
+            return redirect(route('newsIndex',$locale))->with('danger', 'Record does not update.');
+        }
+
+        return redirect(route('newsIndex', $locale))->with('success', 'Record update successfully.');
     }
 
     /**
@@ -128,10 +115,11 @@ class NewsController extends AdminController
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy($locale, $id)
+    public function destroy(string $locale, int $id)
     {
-        $this->service->delete($id);
-
-        return redirect()->route('NewsIndex', compact('locale'));
+        if (!$this->service->delete($id)) {
+            return redirect(route('newsIndex', $locale))->with('danger', 'Record does not delete.');
+        }
+        return redirect(route('newsIndex', $locale))->with('success', 'Record delete successfully.');
     }
 }

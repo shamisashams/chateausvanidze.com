@@ -23,6 +23,6 @@ class cart extends Component
      */
     public function render()
     {
-        return view('components.cart');
+        // return view('components.cart');
     }
 }

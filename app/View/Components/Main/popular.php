@@ -24,6 +24,6 @@ class popular extends Component
      */
     public function render()
     {
-        return view('components.main.popular');
+        // return view('components.main.popular');
     }
 }

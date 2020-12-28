@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+@dd('here');
     <div class="content-i">
         <div class="content-box"><div class="element-wrapper">
 
@@ -24,7 +25,7 @@
                                 <td>{{$language->language()->where('language_id', $lang->id)->first()->value ?? ''}}</td>
                             </tr>
                             @endforeach
-                           
+
                             </tbody>
                         </table>
                     </div>

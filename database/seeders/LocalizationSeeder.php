@@ -24,7 +24,6 @@ class LocalizationSeeder extends Seeder
     public function run()
     {
 
-
         // Localization Array
         $localizations = [
             [

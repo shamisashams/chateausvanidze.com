@@ -5,7 +5,7 @@
             <div class="auth-close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13.426" height="13.423" viewBox="0 0 13.426 13.423">
                     <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M19.589,18l4.8-4.8A1.124,1.124,0,0,0,22.8,11.616l-4.8,4.8-4.8-4.8A1.124,1.124,0,1,0,11.616,13.2l4.8,4.8-4.8,4.8A1.124,1.124,0,0,0,13.2,24.384l4.8-4.8,4.8,4.8A1.124,1.124,0,1,0,24.384,22.8Z" transform="translate(-11.285 -11.289)"/>
-                  </svg>                  
+                  </svg>
             </div>
 
             <h2 class="auth__title">ავტორიზაცია</h2>
@@ -21,7 +21,7 @@
 
             <div class="auth-or"><span>ან</span></div>
 
-            <input type="email" required name="email" class="auth__input" placeholder="ელ-ფოსტა"> 
+            <input type="email" required name="email" class="auth__input" placeholder="ელ-ფოსტა">
             @error('email')
                 <div class="error-message show">{{$message}}</div>
             @enderror
@@ -47,7 +47,7 @@
             <a class="auth-underline" href="">დაგავიწყდათ პაროლი?</a>
 
             <button type="button" class="auth-underline switch-to-register">რეგისტრაცია</button>
-            
+
         </form>
     </div>
 
@@ -59,7 +59,7 @@
             <div class="auth-close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13.426" height="13.423" viewBox="0 0 13.426 13.423">
                     <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M19.589,18l4.8-4.8A1.124,1.124,0,0,0,22.8,11.616l-4.8,4.8-4.8-4.8A1.124,1.124,0,1,0,11.616,13.2l4.8,4.8-4.8,4.8A1.124,1.124,0,0,0,13.2,24.384l4.8-4.8,4.8,4.8A1.124,1.124,0,1,0,24.384,22.8Z" transform="translate(-11.285 -11.289)"/>
-                  </svg>                  
+                  </svg>
             </div>
 
             <h2 class="auth__title">რეგისტრაცია</h2>
@@ -74,7 +74,7 @@
             <div class="error-message show">{{$message}}</div>
             @enderror
 
-            <input type="email" class="auth__input" required placeholder="ელ-ფოსტა" name="email"> 
+            <input type="email" class="auth__input" required placeholder="ელ-ფოსტა" name="email">
             @error('email')
             <div class="error-message show">{{$message}}</div>
             @enderror
@@ -108,11 +108,11 @@
                 <div class="error-message show">{{$message}}</div>
                 @enderror
             </label>
-            
+
 
             <button onclick="register()" type="button" class="auth__submit">რეგისტრაცია</button>
 
             <button type="button" class="switch-to-login">ავტორიზაცია</button>
-            
+
         </form>
     </div>

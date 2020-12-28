@@ -24,6 +24,6 @@ class intro extends Component
      */
     public function render()
     {
-        return view('components.main.intro');
+        // return view('components.main.intro');
     }
 }

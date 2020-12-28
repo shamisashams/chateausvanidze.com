@@ -75,9 +75,9 @@
                             @endif
                         </td>
                         <td class="row-actions d-flex">
-                            <a href="{{route('pageShow',[app()->getLocale(),$page->id])}}">
+                            {{-- <a href="{{route('pageShow',[app()->getLocale(),$page->id])}}">
                                 <i class="os-icon os-icon-documents-07"></i>
-                            </a>
+                            </a> --}}
                             <a href="{{route('pageEditView',[app()->getLocale(), $page->id])}}">
                                 <i class="os-icon os-icon-ui-49">
 

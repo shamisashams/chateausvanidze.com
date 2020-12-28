@@ -2,7 +2,7 @@
 /**
  *  app/Services/PageService.php
  *
- * User: 
+ * User:
  * Date-Time: 18.12.20
  * Time: 11:06
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -27,6 +27,28 @@ class PageService
     {
         $this->model = $model;
     }
+
+
+    public function getPageBySlug($slug){
+
+        $data = $this->model
+                        ->with('files','details')
+                        ->where('slug',$slug)
+                        ->first();
+
+                        return $data;
+    }
+
+
+    public function getByID($lang , $id){
+
+        $data = $this->model->with('files','details')->where('id',$id);
+        $data = $data->first();
+
+        return $data;
+    }
+
+
 
     /**
      * Get Page by id.

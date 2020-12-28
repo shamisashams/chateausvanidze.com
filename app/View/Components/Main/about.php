@@ -24,6 +24,6 @@ class about extends Component
      */
     public function render()
     {
-        return view('components.main.about');
+        // return view('components.main.about');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Request\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class NewsRequest extends FormRequest
 {
@@ -25,12 +27,9 @@ class NewsRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'file' => 'nullable|image|mimes:jpg,jpeg,png',
-            'content' => 'nullable|string',
-            'position' => 'nullable|string|max:255',  
-            'status' => 'required|integer',
-            'slug' => 'required|unique:news',
+            'position' => 'required|string|max:255',
+            'slug' => ['required','alpha_dash', Rule::unique('sliders', 'slug')->ignore($this->slider)],
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096'
         ];
     }
 }

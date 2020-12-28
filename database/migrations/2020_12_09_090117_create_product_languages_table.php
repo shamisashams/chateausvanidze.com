@@ -17,9 +17,9 @@ class CreateProductLanguagesTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('language_id')->constrained('localizations')->onDelete('cascade');
-            $table->string('title');      
-            $table->text('description')->nullable();      
-            $table->text('content')->nullable(); 
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->index(['product_id', 'language_id']);
             $table->timestamps();
         });

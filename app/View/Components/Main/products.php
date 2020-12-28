@@ -24,6 +24,6 @@ class products extends Component
      */
     public function render()
     {
-        return view('components.main.products');
+        // return view('components.main.products');
     }
 }

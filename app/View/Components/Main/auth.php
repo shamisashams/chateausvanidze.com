@@ -23,6 +23,6 @@ class auth extends Component
      */
     public function render()
     {
-        return view('components.main.auth');
+        // return view('components.main.auth');
     }
 }

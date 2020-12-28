@@ -1,11 +1,10 @@
-
 @extends('admin.layouts.app')
 @section('content')
-    {!! Form::open(['url' => route('NewsIndex', $locale),'method' =>'get']) !!}
+    {!! Form::open(['url' => route('newsIndex',app()->getLocale()),'method' =>'get']) !!}
     <div class="controls-above-table">
         <div class="row">
             <div class="col-sm-2">
-                <a class="btn btn-lg btn-success" href="{{route('NewsCreate',$locale)}}">@lang('admin.create_news')</a>
+                <a class="btn btn-lg btn-success" href="{{route('newsCreateView',app()->getLocale())}}">@lang('admin.create_News')</a>
             </div>
             <div class="col-sm-10 per-page-column">
                 <div class="per-page-container">
@@ -18,105 +17,89 @@
         <table class="table table-bordered table-lg table-v2 table-striped">
             <thead>
             <tr>
-                <th>@lang('news.id')</th>
-                <th>@lang('news.positon')</th>
-                <th>@lang('news.slug')</th>
-                <th>@lang('news.title')</th>
-                <th>@lang('news.description')</th>
-
-            <th>
-                @lang('news.permissions')
-            </th>
+                <th>{{__('admin.id')}}</th>
+                <th>{{__('admin.title')}}</th>
+                <th>{{__('admin.description')}}</th>
+                <th>{{__('admin.slug')}}</th>
+                <th>{{__('admin.status')}}</th>
+                <th>{{__('admin.actions')}}</th>
             </tr>
             <tr>
                 <th>
                     {{ Form::text('id',Request::get('id'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @error('id')
+                    @if ($errors->has('id'))
                         <span class="help-block">
-                        {{$message}}
+                        {{ $errors->first('id') }}
                         </span>
-                    @enderror
-                </th>
-                <th>
-                    {{ Form::text('position',Request::get('position'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @error('position')
-                        <span class="help-block">
-                        {{$message}}
-                        </span>
-                    @enderror
-                </th>
-                <th>
-                    {{ Form::text('slug',Request::get('slug'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @error('slug')
-                        <span class="help-block">
-                        {{$message}}
-                        </span>
-                    @enderror
+                    @endif
                 </th>
                 <th>
                     {{ Form::text('title',Request::get('title'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @error('title')
+                    @if ($errors->has('title'))
                         <span class="help-block">
-                        {{$message}}
+                        {{ $errors->first('title') }}
                         </span>
-                    @enderror
+                    @endif
                 </th>
                 <th>
-                    {{ Form::text('module',Request::get('description'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
-                    @error('description')
+                    {{ Form::text('description',Request::get('description'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('description'))
                         <span class="help-block">
-                        {{$message}}
+                        {{ $errors->first('description') }}
                         </span>
-                    @enderror
+                    @endif
                 </th>
-
+                <th>
+                    {{ Form::text('slug',Request::get('slug'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('slug'))
+                        <span class="help-block">
+                        {{ $errors->first('slug') }}
+                        </span>
+                    @endif
+                </th>
+                <th>
+                    {{ Form::select('status',['' => 'All','1' => 'Active','0' => 'Not Active'],Request::get('status'),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
+                    @if ($errors->has('status'))
+                        <span class="help-block">
+                        {{ $errors->first('status') }}
+                        </span>
+                    @endif
+                </th>
                 <th></th>
-
             </tr>
             </thead>
             {!! Form::close() !!}
             <tbody>
-            @if($news)
-                @foreach($news as $item)
+            @if($data)
+                @foreach($data as $item)
                     <tr>
+                        <td class="text-left">{{$item->id}}</td>
+                        <td class="text-center">{{(count($item->availableLanguage) > 0) ?  $item->availableLanguage[0]->title : ''}}</td>
+                        <td class="text-center">{{(count($item->availableLanguage) > 0) ?  $item->availableLanguage[0]->description : ''}}</td>
+                        <td class="text-center">{{$item->slug}}</td>
                         <td class="text-center">
-                            {{$item->id}}
+                            @if($item->status)
+                                <span class="text-green">Active</span>
+                            @else
+                                <span class="text-red">Not Active</span>
+                            @endif
                         </td>
-                        <td class="text-center">
-                            {{$item->position}}
-                        </td>
-                        <td class="text-center">
-                            {{$item->slug}}
-                        </td>
-                        <td class="text-center">
-                            {{$item->language()->where('language_id', $localization)->first()->title ?? ''}}
-                        </td>
-                        <td class="text-center">
-                            {{$item->language()->where('language_id', $localization)->first()->description ?? ''}}
-                        </td>
-                      
-                        <td class="row-actions ">
-                           <div class="flex items-center">
-                               
-                            <a href="{{route('NewsShow',[$locale,$item->id])}}">
+                        <td class="row-actions d-flex">
+                            {{-- <a href="{{route('sliderShow',[app()->getLocale(),$item->id])}}">
                                 <i class="os-icon os-icon-documents-07"></i>
-                            </a>
-                            <a href="{{route('NewsEdit', [$locale, $item->id])}}">
+                            </a> --}}
+                            <a href="{{route('newsEditView',[app()->getLocale(), $item->id])}}">
                                 <i class="os-icon os-icon-ui-49">
 
                                 </i>
                             </a>
-                            <form action="{{route('NewsDestroy', [$locale, $item->id])}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"  type="submit">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.037 3.225l1.684 10.104A2 2 0 0 0 5.694 15h4.612a2 2 0 0 0 1.973-1.671l1.684-10.104C13.627 4.224 11.085 5 8 5c-3.086 0-5.627-.776-5.963-1.775z"/>
-                                        <path fill-rule="evenodd" d="M12.9 3c-.18-.14-.497-.307-.974-.466C10.967 2.214 9.58 2 8 2s-2.968.215-3.926.534c-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466zM8 5c3.314 0 6-.895 6-2s-2.686-2-6-2-6 .895-6 2 2.686 2 6 2z"/>
-                                    </svg>
+                            {!! Form::open(['url' => route('newsDestroy',[app()->getLocale(),$item->id]),'method' =>'delete']) !!}
+                                <button class="delete-icon" onclick="return confirm('Are you sure, you want to delete this item?!');" type="submit">
+                                    <i
+                                        class="os-icon os-icon-ui-15">
+                                    </i>
                                 </button>
-                            </form>
-                           </div>
+                            {!! Form::close() !!}
 
                         </td>
                     </tr>
@@ -125,6 +108,6 @@
             </tbody>
         </table>
     </div>
-    {{ $news->links('admin.vendor.pagination.custom') }}
+    {{ $data->links('admin.vendor.pagination.custom') }}
 
 @endsection

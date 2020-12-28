@@ -24,6 +24,6 @@ class whyus extends Component
      */
     public function render()
     {
-        return view('components.main.whyus');
+        // return view('components.main.whyus');
     }
 }

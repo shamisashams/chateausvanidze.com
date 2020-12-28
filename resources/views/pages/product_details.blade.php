@@ -22,7 +22,7 @@
 
                 <div class="big-img-thumbs">
                     @foreach ($product->files as $key => $item)
-                        
+
                     <div class="img-thumb {{($key == 0) ? 'active' : ''}} ">
                         <img class="img-cover" src="{{asset('../storage/product/'.$product->id.'/'.$product->files[$key]->name)}}" alt="">
                     </div>
@@ -77,11 +77,11 @@
                             <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M15.02,5.558a3.62,3.62,0,0,0-5.121,0l-.7.7-.7-.7a3.621,3.621,0,1,0-5.121,5.121l.7.7L9.2,16.5l5.121-5.121.7-.7a3.62,3.62,0,0,0,0-5.121Z" transform="translate(-1.823 -3.997)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
                         </svg>
                     </button>
-                    
+
                 </div>
-                
+
                 <div class="details-divider"></div>
-                
+
                 <h3 class="description-title">მოკლე აღწერა</h3>
 
                 <p class="details-description">

@@ -12,14 +12,14 @@ class ProductLanguage extends Model
         'product_id',
         'language_id',
         'title',
-        'description',      
+        'description',
         'content'
     ];
     public function product()
     {
         return $this->belongsTo('App\Models\Product', 'product_id');
     }
-    
+
     public function language()
     {
         return $this->belongsTo('App\Models\Localization', 'language_id');
