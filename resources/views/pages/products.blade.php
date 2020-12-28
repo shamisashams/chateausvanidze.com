@@ -91,7 +91,7 @@
                                 </div>
 
                                 <div class="card__img">
-                                    @if ($product->files)
+                                    @if (count($product->files) > 0)
                                         <img src="{{asset('../storage/product/'.$product->id.'/'.$product->files[0]->name)}}" alt="">
                                     @else
                                         <img src="{{asset('../img/noimage.jpg')}}" alt="">
