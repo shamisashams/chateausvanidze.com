@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/nouislider.css">
 
-    <title>     SVANIDZE HOLDING - მთავარი</title>
+    <title> Chateau Svanidze - მთავარი</title>
 
 </head>
 
