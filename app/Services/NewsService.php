@@ -97,7 +97,7 @@ class NewsService
         ]);
         if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs("news/", $request['file'], $filename);
+            Storage::disk('public_html')->putFileAs("news/", $request['file'], $filename);
             $model->file()->create([
                 'name' => $filename,
                 'path' => 'news/',
@@ -135,7 +135,7 @@ class NewsService
         $localization = $this->getLocalization($lang);
         if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs("news/", $request['file'], $filename);
+            Storage::disk('public_html')->putFileAs("news/", $request['file'], $filename);
             $model->file()->updateOrCreate([
                 'name' => $filename,
                 'path' => 'news/',

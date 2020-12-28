@@ -142,7 +142,7 @@ class UserService
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
                 $imagename = date('Ymhs') . $file->getClientOriginalName();
-                $destination = base_path() . '/storage/app/public/user/' . $this->model->id;
+                $destination = base_path() . '/storage/app/public_html/user/' . $this->model->id;
                 $request->file('images')[$key]->move($destination, $imagename);
                 $model->files()->create([
                     'name' => $imagename,
@@ -228,8 +228,8 @@ class UserService
                     continue;
                 }
                 if (!in_array($file->id,$request['old_images'])) {
-                    if (Storage::exists('public/user/' . $data->id.'/'.$file->name)) {
-                        Storage::delete('public/user/' . $data->id.'/'.$file->name);
+                    if (Storage::exists('public_html/user/' . $data->id.'/'.$file->name)) {
+                        Storage::delete('public_html/user/' . $data->id.'/'.$file->name);
                     }
                     $file->delete();
 
@@ -240,11 +240,11 @@ class UserService
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
                 $imagename = date('Ymhs') . $file->getClientOriginalName();
-                $destination = base_path() . '/storage/app/public/user/' . $data->id;
+                $destination = base_path() . '/storage/app/public_html/user/' . $data->id;
                 $request->file('images')[$key]->move($destination, $imagename);
                 $data->files()->create([
                     'name' => $imagename,
-                    'path' => '/storage/app/public/user/' . $data->id,
+                    'path' => '/storage/app/public_html/user/' . $data->id,
                     'format' => $file->getClientOriginalExtension(),
                 ]);
             }
@@ -270,8 +270,8 @@ class UserService
         }
 
         if (count($data->files) > 0) {
-            if (Storage::exists('public/user/' . $data->id)) {
-                Storage::deleteDirectory('public/user/' . $data->id);
+            if (Storage::exists('public_html/user/' . $data->id)) {
+                Storage::deleteDirectory('public_html/user/' . $data->id);
             }
             $data->files()->delete();
         }

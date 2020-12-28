@@ -60,7 +60,7 @@ class FileService
     public function store(array $request)
     {
         $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-        Storage::disk('public')->putFileAs("files/", $request['file'], $filename);
+        Storage::disk('public_html')->putFileAs("files/", $request['file'], $filename);
         $this->model->create([
             'name' => $filename,
             'path' => 'files/',
@@ -82,7 +82,7 @@ class FileService
     {
         $file = $this->find($id);
        
-        Storage::disk('public')->delete($file->path.'/'.$file->name);
+        Storage::disk('public_html')->delete($file->path.'/'.$file->name);
         $file->delete();
         return true;
     }
