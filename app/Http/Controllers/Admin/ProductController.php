@@ -2,7 +2,7 @@
 /**
  *  app/Http/Controllers/Admin/ProductController.php
  *
- * User: 
+ * User:
  * Date-Time: 18.12.20
  * Time: 11:07
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Request\Admin\ProductRequest;
 use App\Models\Feature;
 use App\Models\Localization;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -36,7 +37,7 @@ class ProductController extends AdminController
         $features = $this->service->features();
         $localization = $this->service->getlocale($lang);
         $minprice = $this->service->minprice();
-        $maxprice = $this->service->maxprice(); 
+        $maxprice = $this->service->maxprice();
         return view('pages.products', compact('products', 'localization', 'features' , 'minprice', 'maxprice'));
     }
 
@@ -102,7 +103,9 @@ class ProductController extends AdminController
     {
         $product = $this->service->find($id);
         $localization = $this->service->getlocale($locale);
-        return view('pages.product_details', compact('product', 'localization'));
+        $lastAdded = Product::inRandomOrder()->where('id' ,'!=',$id)->limit(5)->get();
+
+        return view('pages.product_details', compact('product', 'localization','lastAdded'));
     }
 
     /**
