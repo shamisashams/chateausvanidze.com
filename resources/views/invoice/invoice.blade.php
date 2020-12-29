@@ -96,7 +96,7 @@
 
                     <td>{{$prod->quantity}}</td>
                     <td>0.75</td>
-                    <td>{{number_format($prod->price/100 ,2)}} ₾</td>
+                    <td>{{number_format($prod->price/100 ,2)}} ლ</td>
                 </tr>
                 <?php $total += $prod->price/100; ?>
             @endforeach
@@ -114,15 +114,15 @@
         <tbody>
         <tr>
             <td>{{__('client.total')}}</td>
-            <td>{{number_format($total ,2)}} ₾</td>
+            <td>{{number_format($total ,2)}} ლ</td>
         </tr>
         <tr>
             <td>{{__('client.courier')}}</td>
-            <td>{{number_format(5 ,2)}} ₾</td>
+            <td>{{number_format(5 ,2)}} ლ</td>
         </tr>
         <tr>
             <td></td>
-            <td>{{number_format($total+5 ,2)}} ₾</td>
+            <td>{{number_format($total+5 ,2)}} ლ</td>
         </tr>
 
         </tbody>
