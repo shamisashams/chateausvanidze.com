@@ -1304,13 +1304,12 @@ input[type=number] {
     align-items: center;
     margin-right: 10px;
     background-color: rgba(116, 116, 116, 0.42);
-    padding: 3px ;
+    padding: 5px ;
     width: 56px;
     border-radius: 5px;
 }
 .language-switch-mobile a img {
     width: 20px;
-    height: 20px;
     margin-right: 7px;
 }
 
