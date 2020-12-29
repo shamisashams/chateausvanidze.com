@@ -113,7 +113,7 @@
         </thead>
         <tbody>
         <tr>
-            <td>{{__('client.total')}}</td>
+            <td>{{__('client.products')}}</td>
             <td>{{number_format($total ,2)}} ლ</td>
         </tr>
         <tr>
@@ -121,7 +121,7 @@
             <td>{{number_format(5 ,2)}} ლ</td>
         </tr>
         <tr>
-            <td></td>
+            <td>{{__('client.total')}}</td>
             <td>{{number_format($total+5 ,2)}} ლ</td>
         </tr>
 
