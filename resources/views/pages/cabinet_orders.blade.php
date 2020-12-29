@@ -99,14 +99,14 @@
                                         <p>{{$item->phone}}</p>
                                     </div>
                                     <div class="ordered-col">
-                                        <button class="invoice-btn">
+                                        <a class="invoice-btn" style="cursor: pointer" href="{{route('getInvoice',[app()->getLocale(),$item->id])}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10.969" height="14.259" viewBox="0 0 10.969 14.259">
                                                 <g id="Icon_ionic-ios-download" data-name="Icon ionic-ios-download" transform="translate(-6.75 -3.375)">
                                                 <path id="Path_60" data-name="Path 60" d="M16.348,10.125H12.68v6.166l1.642-1.618a.446.446,0,1,1,.627.634l-2.4,2.365a.453.453,0,0,1-.312.127.425.425,0,0,1-.171-.034.476.476,0,0,1-.141-.093h0l-2.4-2.365a.446.446,0,1,1,.627-.634L11.8,16.291V10.125H8.121A1.375,1.375,0,0,0,6.75,11.5v8.227a1.375,1.375,0,0,0,1.371,1.371h8.227a1.375,1.375,0,0,0,1.371-1.371V11.5A1.375,1.375,0,0,0,16.348,10.125Z" transform="translate(0 -3.459)"></path>
                                                 <path id="Path_61" data-name="Path 61" d="M17.977,3.821a.446.446,0,0,0-.891,0V6.666h.891Z" transform="translate(-5.297)"></path>
                                                 </g>
                                             </svg>
-                                            ინვოისი</button>
+                                            {{__('client.invoice')}}</a>
                                     </div>
                                 </div>
                                 @foreach ($item->products as $prod)

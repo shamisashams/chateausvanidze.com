@@ -24,16 +24,16 @@ class PurchaseController extends Controller
     }
     public function buy(PurchaseRequest $request, $locale)
     {
-        $cart = session('products') ?? null;        
-        
-        
+        $cart = session('products') ?? null;
+
+
         if($cart !== null){
             $total = 0;
             // validate and get total
             foreach ($cart as $item) {
                 $product = Product::find(intval($item->product_id));
                 if($product && $item->quantity > 0){
-                    $total += $item->quantity * (($product->sale == 1) ? $product->sale : $product->price);
+                    $total += $item->quantity * (($product->sale == 1) ? $product->sale_price : $product->price);
                 }
             }
 
@@ -53,13 +53,13 @@ class PurchaseController extends Controller
                 if($product && $item->quantity > 0){
                     $products[] = (array) [
                         'product_id' => $product->id,
-                        'price' => ($product->sale == 1) ? $product->sale : $product->price,
+                        'price' => ($product->sale == 1) ? $product->sale_price : $product->price,
                         'quantity' => intval($item->quantity)
                     ];
                 }
             }
             $order->products()->createMany($products);
-            
+
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
         }else{

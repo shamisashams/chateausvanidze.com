@@ -19,6 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -168,7 +169,7 @@ Route::group([
     Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
 
     Route::get('/', [HomeController::class,'index'])->name('welcome');
-    
+
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
 
@@ -183,7 +184,7 @@ Route::group([
 
     Route::get('/blog', [BlogController::class, 'index'])->name('Blog');
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('BlogShow');
-    
+
     // Cabinet
     Route::get('/cabinet-info', [CabinetController::class, 'cabinetInfo'])->name('cabinetInfo');
     Route::put('/cabinet-info/{user}', [CabinetController::class, 'cabinetInfoUpdate'])->name('cabinetInfoUpdate');
@@ -202,11 +203,16 @@ Route::group([
     Route::get('/removefromcart/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
     Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::get('/getcartcount', [CartController::class, 'getCartCount'])->name('getCartCount');
-    
+
     // Favorite Functions
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('Favorites');
     Route::get('/addtofavorites/{id}', [FavoriteController::class, 'addToFavorites'])->name('addToFavorites');
     Route::get('/removefromfavorites/{id}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFromFavorites');
     Route::get('/getfavoritecount', [FavoriteController::class, 'getFavoriteCount'])->name('getFavoriteCount');
+
+//    Route::get('invoice',[InvoiceController::class,'index'])->name('getInvoice');
+
+    Route::get('/invoice/{order}', [InvoiceController::class,'index'])->name('getInvoice');
+
 });
 
