@@ -3651,14 +3651,13 @@ input[type=number] {
 
 /* show accordion content */
 .ordered-accordion-content {
-    max-height: 0px;
-    overflow: hidden;
+    display: none;
     -webkit-transition: .7s;
     -o-transition: .7s;
     transition: .7s;
 }
 .ordered-accordion.open .ordered-accordion-content {
-    max-height: 250px;
+    display: block;
 }
 .ordered__user-info {
     padding: 22px 20px;
@@ -4638,6 +4637,17 @@ input[type=number] {
 
 /* Header  */
 @media (max-width: 1126px) {
+    .brand-logo {
+        order: 2;
+        margin-left: 25px;
+    }
+    .menu {
+        display: block;
+        order: 1;
+    }
+    .nav__right {
+        order: 3;
+    }
     .menu {
         display: block;
     }
@@ -4688,8 +4698,11 @@ input[type=number] {
     }
 }
 @media (max-width: 450px) {
+    .brand-logo {
+        margin-left: 6px;
+    }
     .brand-logo img {
-        height: 70px;
+        height: 45px;
     }
     .nav__form {
         width: 100%;
@@ -4829,6 +4842,10 @@ input[type=number] {
     }
     .hero-link {
         font-size: 14px;
+    }
+
+    #hero {
+        background-position: 67% 50%;
     }
 }
 

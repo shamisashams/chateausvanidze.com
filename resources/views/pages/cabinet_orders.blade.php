@@ -49,9 +49,9 @@
                         {{__('client.logout')}}
                     </a>
                 </div>
-            
+
             </aside>
-          
+
 
             <div class="cabinet-content">
                 <h1 class="cabinet-content__title">ჩემი შეკვეთები</h1>
@@ -112,9 +112,9 @@
                                 @foreach ($item->products as $prod)
                                     <div class="ordered__card">
                                         <div class="ordered__card-img">
-                                            @if (!$prod->product->files[0])
+                                            @if (count($prod->product->files) < 1)
                                                 <img class="img-cover" src="{{asset('../img/noimage.jpg')}}" alt="">
-                                            @else 
+                                            @else
                                                 <img class="img-cover" src="{{asset('../storage/product/'.$prod->product_id.'/'.$prod->product->files[0]->name)}}" alt="">
                                             @endif
                                         </div>
@@ -136,14 +136,14 @@
                         </div>
                     @endforeach
 
-                    
 
-                    
+
+
                 </div>
 
             </div>
-           
-            
+
+
         </div>
     </section>
 
