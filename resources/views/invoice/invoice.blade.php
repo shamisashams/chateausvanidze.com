@@ -34,7 +34,7 @@
             <strong>{{__('client.email')}}</strong><br>
             {{__('client.invoice_email')}} <br>
             <strong>{{__('client.bank_address')}}:</strong><br>
-           {{__('client.invoice.bank_address')}}
+           {{__('client.invoice_bank_address')}}
             <br>
         </div>
         <div class="col-xs-3">
