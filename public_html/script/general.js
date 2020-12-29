@@ -2,7 +2,7 @@
 $(document).ready(function(){
     getCartCount();
 });
-// --- nav on small - menu dropdown 
+// --- nav on small - menu dropdown
 const menuIcon = document.querySelector('.menu-icon');
 const navigation = document.querySelector('.navigation');
 
@@ -17,7 +17,7 @@ window.addEventListener('click', function(e){
     if (!navigation.contains(e.target) && (!menuIcon.contains(e.target))){
         menuIcon.classList.remove('close-i');
         navigation.classList.remove('shown');
-    } 
+    }
 });
 
 
@@ -47,14 +47,14 @@ let cartCountBox = $('#cart-count');
 let cartCoun = 0;
 
 function addToCart(el, $id) {
-    
+
     var cart = $('.nav__cart');
 
     var imgtoFly = $(el).parent('.card__overlay').parent().find(".card__img").find("img");
 
     if (imgtoFly) {
-        
-        // increase cart count 
+
+        // increase cart count
         cartCoun++
         //cartCountBox.text(cartCoun)
 
@@ -78,7 +78,7 @@ function addToCart(el, $id) {
                 'width': 25,
                 'height': 25
         }, 1000, 'easeInOutExpo');
-    
+
 
         imgclone.animate({
             'width': 0,
@@ -141,7 +141,7 @@ $('.switch-to-login').on('click', ()=> {
 });
 
 
-// close modals by outside click 
+// close modals by outside click
 window.addEventListener('click', (e)=> {
     let logModal = document.querySelector('.auth-modal.login');
     let regModal = document.querySelector('.auth-modal.register');
@@ -169,7 +169,7 @@ function logIn() {
     let inputsFull = true;
 
     // validate inputs  visually
-    logInInputs.each( function(i, input) { 
+    logInInputs.each( function(i, input) {
         if( $(input).val() == "") {
             $(input).addClass('error');
             logInErrors.eq(i).addClass('show');
@@ -180,13 +180,13 @@ function logIn() {
    });
 
     // check if all inputs are filled & subbmit
-    logInInputs.each( function(i, value) { 
+    logInInputs.each( function(i, value) {
          if( $(value).val() == "") {
             return inputsFull = false;
         }
     });
 
-    // if inputsFull = true  > subbmit 
+    // if inputsFull = true  > subbmit
     inputsFull ? logInForm.trigger( "submit" ) : console.log("not subbmiting")
 };
 
@@ -204,9 +204,9 @@ function register() {
     let inputsFull = true;
     let passMatch = true;
     let checbox = false;
-    
+
     // validate inputs  visually
-    registerInputs.each( function(i, input) { 
+    registerInputs.each( function(i, input) {
         if( $(input).val() == "") {
             $(input).addClass('error');
             registerErrors.eq(i).addClass('show');
@@ -217,7 +217,7 @@ function register() {
    });
 
    // check if all inputs are filled & subbmit
-   registerInputs.each( function(i, value) { 
+   registerInputs.each( function(i, value) {
         if( $(value).val() == "") {
             return inputsFull = false;
         }
@@ -236,16 +236,16 @@ function register() {
     }else {
         $('.pls-check ').addClass('show');
     };
-   
 
-    // if inputsFull = true + pass match + checked > subbmit 
+
+    // if inputsFull = true + pass match + checked > subbmit
     if(inputsFull && passMatch && checbox ) {
        return registerForm.trigger( "submit" )
 
     }else {
         return console.log('reg fai---------l')
     }
-  
+
 };
 
 
@@ -259,7 +259,7 @@ function QuantityPlus(el, $id) {
     // increase by 1
     let newVal = parseInt($(qtyInput).val() ) + 1;
     qtyInput.val(newVal)
-    
+
     addcartcount($id, 1);
 };
 
@@ -293,7 +293,7 @@ $('.close-cart').on('click', function() {
 window.addEventListener('click', function(e){
     if ($(e.target).is(cartModal) ){
         cartModal.removeClass('visible')
-    } 
+    }
 });
 
 
@@ -303,19 +303,19 @@ function editable(el) {
     if( $(el).hasClass('editable') ) {
         // back to readonly
         $(el).parent('.editability').removeClass('editing')
-        $(el).parent('.editability').find("input").attr("readonly", true); 
+        $(el).parent('.editability').find("input").attr("readonly", true);
         $(el).removeClass('editable');
     } else {
         // modify
         $(el).parent('.editability').addClass('editing')
         $(el).parent('.editability').find("input").focus();
-        $(el).parent('.editability').find("input").attr("readonly", false); 
+        $(el).parent('.editability').find("input").attr("readonly", false);
         $(el).addClass('editable');
     }
 };
 
 
-// ------------------ cabinet orders > accordions 
+// ------------------ cabinet orders > accordions
 
 // accordions
 $('.ordered__top').on('click', function() {
@@ -340,7 +340,7 @@ $('.close-blog-vid').on('click', function() {
 window.addEventListener('click', function(e){
     if ($(e.target).is($('#blog-vid-modal')) ){
         $('#blog-vid-modal').removeClass('visible')
-    } 
+    }
 });
 
 function addToCartAjax($id){
@@ -356,7 +356,7 @@ function addToCartAjax($id){
             if(data.status == true){
                 getCartCount();
             }
-        } 
+        }
     });
 }
 function addcartcount($id, $type){
@@ -372,7 +372,7 @@ function addcartcount($id, $type){
             if(data.status == true){
                 getCartCount();
             }
-        } 
+        }
     });
 }
 function removefromcart($id){
@@ -388,7 +388,7 @@ function removefromcart($id){
             if(data.status == true){
                 getCartCount();
             }
-        } 
+        }
     });
 }
 function getCartCount(){
@@ -420,11 +420,11 @@ function getCartCount(){
                         `;
                     }
                     $('#cartitems').append( `
-                    
+
                     <div class="aside-card">
                         <div class="aside-card__top">
                             <div class="aside-card-img">
-                            <img  class="img-cover" src="../storage/product/`+item['id']+`/`+item['file']+`" alt="">
+                            <img  class="img-cover" src="/storage/product/`+item['id']+`/`+item['file']+`" alt="">
                             </div>
                             <div class="aside-card__text">
                                 <h2 class="c-title">
@@ -441,17 +441,17 @@ function getCartCount(){
                             <h2>რაოდენობა</h2>
                             <div class="plus-minus-box ">
                             <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
-                        
+
                             <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
-    
+
                             <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
                             </div>
                         </div>
-    
+
                         <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">წაშლა</button>
-                    
+
                     </div>
-                    
+
                 </div>
                     `);
                     $('#buyproduct').append(`
@@ -475,9 +475,9 @@ function getCartCount(){
 
                             <div class="plus-minus-box ">
                             <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
-                        
+
                             <input  type="number" name="qty" min="1" max="11" value="`+item['quantity']+`" class="qty_input" readonly="">
-    
+
                             <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
                             </div>
 
@@ -488,6 +488,6 @@ function getCartCount(){
                     `);
                 });
             }
-        } 
+        }
     });
 }
