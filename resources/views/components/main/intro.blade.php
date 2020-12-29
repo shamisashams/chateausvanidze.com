@@ -13,7 +13,7 @@
         </div>
 
         <div class="brand-info__picture">
-            <img class="img-cover" src="./img/brand-info-pic.png" alt="">
+            <img class="img-cover" src="./img/brand-info-pic.jpg" alt="">
         </div>
     </div>
 </section>

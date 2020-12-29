@@ -10,7 +10,7 @@
                 @endif
 
                 <div class="divider">
-                    <img src="./img/icons/paragraph-fff.svg" alt="">  
+                    <img src="./img/icons/paragraph-fff.svg" alt="">
                 </div>
 
                 <div class="why-us__flex">
@@ -18,25 +18,25 @@
                         <img src="./img/icons/svg-award.svg" alt="">
                         <h2>უამრავი ჯილდო</h2>
 
-                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>
+{{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
 
                     <div class="why-us__col">
                         <img src="./img/icons/svg-wines.svg" alt="">
                         <h2>საუკეთესო გემო</h2>
 
-                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>
+{{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
 
                     <div class="why-us__col">
                         <img src="./img/icons/svg-w.svg" alt="">
                         <h2>საუკეთესო ხარისხი</h2>
 
-                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>
+{{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
                 </div>
             </div>
         </div>
-    
+
     </div>
 </section>
