@@ -76,7 +76,7 @@
             <th>{{__('client.name')}}</th>
             <th>{{__('client.count')}}</th>
             <th>{{__('client.bottle_capacity_in_liters')}}</th>
-            <th>{{__('client.price')}}</th>
+            <th>{{__('client.invoice_price')}}</th>
         </tr>
         </thead>
         <tbody>
