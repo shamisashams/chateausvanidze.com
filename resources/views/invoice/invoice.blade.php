@@ -37,16 +37,16 @@
            {{__('client.invoice_bank_address')}}
             <br>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-5">
             <table style="width: 100%">
                 <tbody>
                 <tr>
-                    <th> {{__('client.invoice_date')}}:</th>
-                    <td class="text-right">{{\Carbon\Carbon::parse($order->created_at)->toFormattedDateString()}}</td>
+                    <th class="text-center"> {{__('client.invoice_date')}}:</th>
+                    <td >{{\Carbon\Carbon::parse($order->created_at)->toFormattedDateString()}}</td>
                 </tr>
                 <tr>
-                    <th> {{__('client.invoice_id')}}:</th>
-                    <td class="text-right">{{$order->id}}</td>
+                    <th class="text-center"> {{__('client.invoice_id')}}:</th>
+                    <td >{{$order->id}}</td>
                 </tr>
                 </tbody>
             </table>
