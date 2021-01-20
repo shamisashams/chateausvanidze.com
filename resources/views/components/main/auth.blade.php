@@ -42,7 +42,7 @@
             @enderror
 
 
-            <button onclick="logIn()" type="button" class="auth__submit">{{__('client.login')}}</button>
+            <button onclick="logIn()" type="button" class="auth__submit">{{__('client.auth')}}</button>
 
             <a class="auth-underline" href="">{{__('client.forgot_password')}}?</a>
 
