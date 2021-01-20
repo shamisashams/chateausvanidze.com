@@ -28,7 +28,7 @@
                 </div>
 
                 <li class="navigation__item">
-                    <a href="/" class="navigation__link active">{{__('client.home')}}</a>
+                    <a href="{{route('welcome')}}" class="navigation__link active">{{__('client.home')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('AboutUs', app()->getLocale())}}"

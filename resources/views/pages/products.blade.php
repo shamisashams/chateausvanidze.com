@@ -58,9 +58,6 @@
 
                 <div class="category__right">
                     <div class="category__top-panel" style="display: flex;     justify-content: space-between;">
-                        <p class="items-found">
-                            მოიძებნა <span>2,532</span> პროდუქტი
-                        </p>
                         <form action="{{url()->full()}}" method="GET" style="float:right">
                             <select name="sort" onchange="this.form.submit()"  class="select-by">
                                 <option value="">აირჩიეთ</option>
