@@ -8,15 +8,15 @@
                   </svg>                  
             </div>
 
-            <h2 class="auth__title">ავტორიზაცია</h2>
+            <h2 class="auth__title">{{__('client.authorization')}}</h2>
 
             <a href="{{route('loginfacebook', app()->getLocale())}}"  class="alt-login">
                 <img src="{{asset('../img/icons/fff-facebook-f.svg')}}" alt="">
-                Facebook-ით ავტორიზაცია
+                {{__('client.facebook_login')}}
             </a>
             <a href=""  class="alt-login">
                 <img src="{{asset('../img/icons/svg-google.svg')}}" alt="">
-                Google-ით ავტორიზაცია
+                {{__('client.google_login')}}
             </a>
 
             <div class="auth-or"><span>ან</span></div>
@@ -42,11 +42,11 @@
             @enderror
 
 
-            <button onclick="logIn()" type="button" class="auth__submit">შესვლა</button>
+            <button onclick="logIn()" type="button" class="auth__submit">{{__('client.login')}}</button>
 
-            <a class="auth-underline" href="">დაგავიწყდათ პაროლი?</a>
+            <a class="auth-underline" href="">{{__('client.forgot_password')}}?</a>
 
-            <button type="button" class="auth-underline switch-to-register">რეგისტრაცია</button>
+            <button type="button" class="auth-underline switch-to-register">{{__('client.registration')}}</button>
             
         </form>
     </div>
@@ -62,7 +62,7 @@
                   </svg>                  
             </div>
 
-            <h2 class="auth__title">რეგისტრაცია</h2>
+            <h2 class="auth__title">{{__('client.registration')}}</h2>
 
             <input type="text" class="auth__input" required name="first_name" placeholder="სახელი">
             @error('first_name')
@@ -103,16 +103,16 @@
             <label class="checkbox register">
                 <input type="checkbox" name="agree" required id="reg-checkbox" >
                 <span></span>
-                ვეთანხმები წესებსა და პირობებს
+                {{__('client.confirm_agreement')}}
                 @error('agree')
                 <div class="error-message show">{{$message}}</div>
                 @enderror
             </label>
             
 
-            <button onclick="register()" type="button" class="auth__submit">რეგისტრაცია</button>
+            <button onclick="register()" type="button" class="auth__submit">{{__('client.registration')}}</button>
 
-            <button type="button" class="switch-to-login">ავტორიზაცია</button>
+            <button type="button" class="switch-to-login">{{__('client.authorization')}}</button>
             
         </form>
     </div>

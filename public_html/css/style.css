@@ -208,7 +208,7 @@ input[type=number] {
     width: max-content;
 }
 .navigation__link {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     padding: 5px 0;
     position: relative;

@@ -8,7 +8,7 @@
             <div class="container">
 
                 <aside class="category__aside">
-                    <h2 class="aside-title">ფასი</h2>
+                    <h2 class="aside-title">{{__('client.price')}}</h2>
 
                     <div class="range-block">
                         <div class="price-range-meta">
@@ -51,7 +51,7 @@
                             <path id="Icon_material-delete-sweep" data-name="Icon material-delete-sweep" d="M14.471,16.589H18v1.765h-3.53Zm0-7.059h6.177v1.765H14.471Zm0,3.53h5.295v1.765H14.471ZM3.882,18.354a1.77,1.77,0,0,0,1.765,1.765h5.295a1.77,1.77,0,0,0,1.765-1.765V9.53H3.882ZM13.589,6.882H10.942L10.059,6H6.53l-.882.882H3V8.647H13.589Z" transform="translate(-3 -6)"></path>
                         </svg>
 
-                        გასუფთავება
+                        {{__('client.clear')}}
                     </a>
 
                 </aside>
@@ -60,11 +60,11 @@
                     <div class="category__top-panel" style="display: flex;     justify-content: space-between;">
                         <form action="{{url()->full()}}" method="GET" style="float:right">
                             <select name="sort" onchange="this.form.submit()"  class="select-by">
-                                <option value="">აირჩიეთ</option>
-                                <option value="popular">პოპულარული</option>
-                                <option value="new">ახალი დამატებული</option>
-                                <option value="priceup">ფასი ზრდადობით</option>
-                                <option value="pricedown">ფასი კლებადობით</option>
+                                <option value="">{{__('client.choose')}}</option>
+                                <option value="popular">{{__('client.popular')}}</option>
+                                <option value="new">{{__('client.new_added')}}</option>
+                                <option value="priceup">{{__('client.price_plus')}}</option>
+                                <option value="pricedown">{{__('client.price_minus')}}</option>
                             </select>
                         </form>
 
@@ -112,7 +112,7 @@
 
                                 <div class="card__overlay">
                                     <a href="{{route('ProductShow', [app()->getLocale(), $product->id])}}">
-                                        დეტალურად
+                                        {{__('client.details')}}
                                         <span></span>
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15.473" height="10.315" viewBox="0 0 15.473 10.315">
@@ -122,7 +122,7 @@
 
                                     </a>
                                     <button type="button" onclick="addToCart(this, '{{$product->id}}')">
-                                        კალათაში
+                                        {{__('client.add_to_cart')}}
                                         <span></span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16.259" height="15.018" viewBox="0 0 16.259 15.018">
                                             <g id="Icon_ionic-ios-cart" data-name="Icon ionic-ios-cart" transform="translate(-3.382 -4.493)">

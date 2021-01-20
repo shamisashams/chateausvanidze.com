@@ -54,7 +54,7 @@
 
 
             <div class="cabinet-content">
-                <h1 class="cabinet-content__title">ჩემი შეკვეთები</h1>
+                <h1 class="cabinet-content__title">{{__('client.my_orders')}}</h1>
 
                 <!--cabinet page content -  orders-->
                 <div class="table-scroll-y">
@@ -63,23 +63,23 @@
                         <div class="ordered-accordion {{($key == 0) ? 'open' : ''}}">
                             <div class="ordered__top ">
                                 <div class="ordered-col">
-                                    <h3>შეკვეთის ნომერი</h3>
+                                    <h3>{{__('client.order_number')}}</h3>
                                     <p>#{{$item->id}}</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>თარიღი </h3>
+                                    <h3>{{__('client.date')}} </h3>
                                     <p>{{$item->created_at}}</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>შეკვეთის ჯამი</h3>
+                                    <h3>{{__('client.order_total')}}</h3>
                                     <p>{{number_format(($item->totalprice()+500)/100, 2)}}₾</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>გადახდის მეთოდი</h3>
+                                    <h3>{{__('client.pay_method')}}</h3>
                                     <p>{{$item->paymethod}}</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>სტატუსი</h3>
+                                    <h3>{{__('client.status')}}</h3>
                                     <p class="ordered-status">{{$item->pay_status}}</p>
                                 </div>
                             </div>
@@ -87,15 +87,15 @@
                             <div class="ordered-accordion-content">
                                 <div class="ordered__user-info">
                                     <div class="ordered-col">
-                                        <h3>დამკვეთის სახელი</h3>
+                                        <h3>{{__('client.customer_name')}}</h3>
                                         <p>{{$item->full_name}}</p>
                                     </div>
                                     <div class="ordered-col">
-                                        <h3>ელ-ფოსტა</h3>
+                                        <h3>{{__('client.email')}}</h3>
                                         <p>{{$item->email}}</p>
                                     </div>
                                     <div class="ordered-col">
-                                        <h3>ტელ.ნომერი:</h3>
+                                        <h3>{{__('client.phone')}}:</h3>
                                         <p>{{$item->phone}}</p>
                                     </div>
                                     <div class="ordered-col">
@@ -122,13 +122,13 @@
                                             {{$prod->product->language()->where('language_id', $localization)->first()->title ?? ''}}
                                         </h2>
 
-                                        <div class="ordered__card-qty">რაოდენობა: {{$prod->quantity}}</div>
+                                        <div class="ordered__card-qty">{{__('client.count')}}: {{$prod->quantity}}</div>
 
                                         <div class="ordered__card-price">
-                                            ფასი: <span>{{number_format($prod->price/100 ,2)}}₾</span>
+                                            {{__('client.price')}}: <span>{{number_format($prod->price/100 ,2)}}₾</span>
                                         </div>
                                         <div class="ordered__card-total">
-                                            ჯამი: <span>{{number_format( ($prod->quantity * $prod->price/100) ,2)}}</span>
+                                            {{__('client.total')}}: <span>{{number_format( ($prod->quantity * $prod->price/100) ,2)}}</span>
                                         </div>
                                     </div>
                                 @endforeach

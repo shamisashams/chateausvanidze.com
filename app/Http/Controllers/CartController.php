@@ -97,7 +97,12 @@ class CartController extends Controller
             }
            
         }
-        return response()->json(array('status' => true, 'count' => count($cart), 'products' => $products, 'total' => $total));
+        $translations = [
+            'count' => __('client.count'),
+            'add_to_cart' => __('client.add_to_cart'),
+            'clear' => __('client.clear')
+        ];
+        return response()->json(array('status' => true, 'count' => count($cart), 'products' => $products, 'total' => $total,'translations' => $translations));
     }
     public function addCartCount($locale, $id, $type)
     {

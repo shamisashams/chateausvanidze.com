@@ -439,7 +439,7 @@ function getCartCount(){
                         </div>
                         <div class="aside-card__bot">
                         <div class="aside-card__bot-left">
-                            <h2>რაოდენობა</h2>
+                            <h2>${data.translations.count}</h2>
                             <div class="plus-minus-box ">
                             <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
 
@@ -449,7 +449,7 @@ function getCartCount(){
                             </div>
                         </div>
 
-                        <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">წაშლა</button>
+                        <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">${data.translations.clear}</button>
 
                     </div>
 
@@ -472,7 +472,7 @@ function getCartCount(){
                         </div>
 
                         <div class="card-long__qty">
-                            <h2>რაოდენობა</h2>
+                            <h2>${data.translations.count}</h2>
 
                             <div class="plus-minus-box ">
                             <button class="qty_btn" type="button" onclick="QuantityMinus(this, `+item['id']+`)"> -</button>
@@ -482,7 +482,7 @@ function getCartCount(){
                             <button class="qty_btn" type="button" onclick="QuantityPlus(this, `+item['id']+`)">+</button>
                             </div>
 
-                            <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">წაშლა</button>
+                            <button class="aside-card__delete-btn" onclick="removefromcart(`+item['id']+`)">${data.translations.clear}</button>
                         </div>
 
                     </div>

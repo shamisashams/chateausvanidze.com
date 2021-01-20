@@ -12,7 +12,7 @@
                         <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M15.02,5.558a3.62,3.62,0,0,0-5.121,0l-.7.7-.7-.7a3.621,3.621,0,1,0-5.121,5.121l.7.7L9.2,16.5l5.121-5.121.7-.7a3.62,3.62,0,0,0,0-5.121Z" transform="translate(-1.823 -3.997)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
                     </svg>
                 </span>
-                ჩემი ფავორიტები
+                {{__('client.my_favorite')}}
             </div>
 
             <div class="buy__products fav-grid">
@@ -36,7 +36,7 @@
                     <div class="card-long__qty">
                         
 
-                        <a href="{{route('removeFromFavorites', [app()->getLocale(), $item->id])}}" class="card-long__delete-btn" style="text-align: center">წაშლა</a>
+                        <a href="{{route('removeFromFavorites', [app()->getLocale(), $item->id])}}" class="card-long__delete-btn" style="text-align: center">{{__('client.clear')}}</a>
                     </div>
 
                 </div>

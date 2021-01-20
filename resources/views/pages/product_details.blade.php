@@ -7,9 +7,6 @@
         <div class="container">
 
             <div class="details__preview">
-
-
-
                 @foreach ($product->files as $key => $item)
                 <div class="big-img-box {{($key == 0) ? 'shown' : ''}} ">
                     <img class="img-cover" src="{{asset('../storage/product/'.$product->id.'/'.$product->files[$key]->name)}}" alt="">
@@ -18,7 +15,6 @@
                     </div>
                 </div>
                 @endforeach
-
 
                 <div class="big-img-thumbs">
                     @foreach ($product->files as $key => $item)
@@ -36,7 +32,7 @@
                     {{-- <div class="product-sale-percent">-14%</div> --}}
 
                     <div class="share-product">
-                        <p>გაზიარება</p>
+                        <p>{{__('client.share')}}</p>
                         <div class="share-social">
                             <a href="" target="blank"><img src="{{asset('../img/icons/fff-facebook-f.svg')}}" alt="">
                             </a>
@@ -66,10 +62,10 @@
                               <path id="Path_3" data-name="Path 3" d="M19.635,7.163a.23.23,0,0,0-.2-.164L6.7,5.768A.392.392,0,0,1,6.4,5.584a3.981,3.981,0,0,0-.477-.727c-.3-.368-.868-.356-1.908-.364a.57.57,0,0,0-.637.551.559.559,0,0,0,.61.551,5.2,5.2,0,0,1,1.017.074c.184.055.332.356.387.618a.014.014,0,0,0,0,.012c.008.047.078.4.078.4l1.564,8.273a3.041,3.041,0,0,0,.567,1.4A1.56,1.56,0,0,0,8.895,17h9.251a.556.556,0,0,0,.563-.524.545.545,0,0,0-.547-.571H8.887a.454.454,0,0,1-.325-.109,1.755,1.755,0,0,1-.45-1.017l-.168-.927a.021.021,0,0,1,.016-.023L18.818,12a.228.228,0,0,0,.192-.2l.626-4.528A.223.223,0,0,0,19.635,7.163Z"></path>
                             </g>
                           </svg>
-                        კალათაში დამატება
+                        {{__('client.add_to_cart')}}
                     </button>
 
-                    <a class="buy-item" href="">ყიდვა</a>
+                    <a class="buy-item" href="">{{__('client.buy')}}</a>
 
                     <button onclick="addToFav(this, '{{$product->id}}')" class="to-wishlist">
                         <img src="{{asset('../img/icons/heart-img.png')}}" alt="">
@@ -82,7 +78,7 @@
 
                 <div class="details-divider"></div>
 
-                <h3 class="description-title">მოკლე აღწერა</h3>
+                <h3 class="description-title">{{__('client.short_description')}}</h3>
 
                 <p class="details-description">
                     {{$product->language()->where('language_id', $localization)->first()->content ?? ''}}

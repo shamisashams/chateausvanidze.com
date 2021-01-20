@@ -152,7 +152,7 @@
                     <!-- search form -->
                     <form class="nav__form" action="">
                         <div class="nav__form-wrap">
-                            <input type="text" placeholder="ძებნა">
+                            <input type="text" placeholder="{{__('client.search')}}">
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg')}}" width="15.215" height="15.218"
                                      viewBox="0 0 15.215 15.218">

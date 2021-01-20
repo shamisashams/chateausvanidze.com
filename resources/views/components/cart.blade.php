@@ -8,7 +8,7 @@
                 </button>
     
                 <h2 class="cart-aside__title">
-                    კალათა
+                    {{__('client.cart')}}
                     <span class="cart-count" id="setcartcount">0</span>
                 </h2>
     
@@ -25,13 +25,13 @@
     
                 <div class="cart-modal__bottom">
                     <div class="cart-modal__flex">
-                        <p>სულ :</p>
+                        <p>{{__('client.total')}} :</p>
                         <h2 class="cart-modal__total-cost"><span id="totalmoneycart"></span> ₾</h2>
                     </div>
     
                     <div class="cart-modal__flex">
-                        <a href="{{route('Cart',app()->getLocale())}}" >კალათა</a>
-                        <a href="{{route('Purchase', app()->getLocale())}}" >ყიდვა</a>
+                        <a href="{{route('Cart',app()->getLocale())}}" >{{__('client.cart')}}</a>
+                        <a href="{{route('Purchase', app()->getLocale())}}" >{{__('client.buy')}}</a>
                     </div>
                 </div>
         
