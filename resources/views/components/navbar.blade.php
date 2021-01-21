@@ -141,30 +141,30 @@
                 </div>
 
 
-                <div class="nav-r-item nav__search">
-                    <svg xmlns="http://www.w3.org/2000/svg')}}" width="15.215" height="15.218"
-                         viewBox="0 0 15.215 15.218">
-                        <path id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search"
-                              d="M4.678,18.61,8.91,14.339a6.03,6.03,0,1,1,.915.927l-4.2,4.243a.651.651,0,0,1-.919.024A.655.655,0,0,1,4.678,18.61Zm8.97-3.292a4.762,4.762,0,1,0-3.368-1.395A4.732,4.732,0,0,0,13.649,15.317Z"
-                              transform="translate(-4.5 -4.493)"></path>
-                    </svg>
+{{--                <div class="nav-r-item nav__search">--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg')}}" width="15.215" height="15.218"--}}
+{{--                         viewBox="0 0 15.215 15.218">--}}
+{{--                        <path id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search"--}}
+{{--                              d="M4.678,18.61,8.91,14.339a6.03,6.03,0,1,1,.915.927l-4.2,4.243a.651.651,0,0,1-.919.024A.655.655,0,0,1,4.678,18.61Zm8.97-3.292a4.762,4.762,0,1,0-3.368-1.395A4.732,4.732,0,0,0,13.649,15.317Z"--}}
+{{--                              transform="translate(-4.5 -4.493)"></path>--}}
+{{--                    </svg>--}}
 
-                    <!-- search form -->
-                    <form class="nav__form" action="">
-                        <div class="nav__form-wrap">
-                            <input type="text" placeholder="{{__('client.search')}}">
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg')}}" width="15.215" height="15.218"
-                                     viewBox="0 0 15.215 15.218">
-                                    <path id="Icon_ion ic-ios-search" data-name="Icon ionic-ios-search"
-                                          d="M4.678,18.61,8.91,14.339a6.03,6.03,0,1,1,.915.927l-4.2,4.243a.651.651,0,0,1-.919.024A.655.655,0,0,1,4.678,18.61Zm8.97-3.292a4.762,4.762,0,1,0-3.368-1.395A4.732,4.732,0,0,0,13.649,15.317Z"
-                                          transform="translate(-4.5 -4.493)"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
+{{--                    <!-- search form -->--}}
+{{--                    <form class="nav__form" action="">--}}
+{{--                        <div class="nav__form-wrap">--}}
+{{--                            <input type="text" placeholder="{{__('client.search')}}">--}}
+{{--                            <button>--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg')}}" width="15.215" height="15.218"--}}
+{{--                                     viewBox="0 0 15.215 15.218">--}}
+{{--                                    <path id="Icon_ion ic-ios-search" data-name="Icon ionic-ios-search"--}}
+{{--                                          d="M4.678,18.61,8.91,14.339a6.03,6.03,0,1,1,.915.927l-4.2,4.243a.651.651,0,0,1-.919.024A.655.655,0,0,1,4.678,18.61Zm8.97-3.292a4.762,4.762,0,1,0-3.368-1.395A4.732,4.732,0,0,0,13.649,15.317Z"--}}
+{{--                                          transform="translate(-4.5 -4.493)"></path>--}}
+{{--                                </svg>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
 
-                </div>
+{{--                </div>--}}
 
                 <a class="nav-r-item nav__fav" href="{{route('Favorites', app()->getLocale())}}">
                     <span id="fav-count">0</span>
