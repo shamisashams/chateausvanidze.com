@@ -67,7 +67,7 @@
                                     <p>#{{$item->id}}</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>{{__('client.date')}} </h3>
+                                    <h3>{{__('product.date')}} </h3>
                                     <p>{{$item->created_at}}</p>
                                 </div>
                                 <div class="ordered-col">
