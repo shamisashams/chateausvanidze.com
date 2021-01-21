@@ -42,10 +42,10 @@
 
                     </div>
                     @if(count($otherNews) > 0)
-                        @foreach($otherNews as $new)
                             <aside class="blog-details__aside">
 
                                 <h2 class="aside-blogs__title">{{__('client.another_blogs')}}</h2>
+                                @foreach($otherNews as $new)
 
                                 <div class="aside-blog">
                                     <h2 class="aside-blog__name">{{count($new->availableLanguage) > 0 ? $new->availableLanguage[0]->title :
@@ -70,9 +70,9 @@
                                         {{__('client.continue')}}
                                     </a>
                                 </div>
+                                @endforeach
 
                             </aside>
-                        @endforeach
                     @endif
                 </div>
 
