@@ -62,7 +62,7 @@
                                                                        (count($new->language) > 0 ? $new->language[0]->description : '') }}
                                     </p>
 
-                                    <a href="{{route('BlogShow',[app()->getLocale(),$new->id])}}" class="aside-blog__link">
+                                    <a href="{{route('BlogShow',[app()->getLocale(),$new->slug])}}" class="aside-blog__link">
                                         {{__('client.continue')}}
                                     </a>
                                 </div>
