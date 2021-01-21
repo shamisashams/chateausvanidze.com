@@ -20,10 +20,6 @@
                         @if($new->file)
                             <div class="blog-details__main-img"
                                  style="background-image: url('{{url('storage/news/'.$new->file->name)}}')"></div>
-                        @else
-                            <div class="blog-details__main-img"
-                                 style="background-image: url('{{url('noimage.png')}}')"></div>
-
                         @endif
                         @if(count($new->availableLanguage) > 0)
                             {!! $new->availableLanguage[0]->content !!}
@@ -51,7 +47,6 @@
                                     <h2 class="aside-blog__name">{{count($new->availableLanguage) > 0 ? $new->availableLanguage[0]->title :
                                                                         (count($new->language) > 0 ? $new->language[0]->title : '') }}</h2>
                                     @if($new->file)
-
                                         <div class="aside-blog__img">
                                             <img src="{{url('storage/news/'.$new->file->name)}}">
                                         </div>
