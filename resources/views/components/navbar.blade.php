@@ -4,7 +4,7 @@
 
         <div class="container">
 
-            <a href="/" class="brand-logo">
+            <a href="{{route('welcome',app()->getLocale())}}" class="brand-logo">
                 <img src="{{asset('../img/icons/svanidze-brand.svg')}}" alt="">
             </a>
 

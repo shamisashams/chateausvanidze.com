@@ -17,7 +17,7 @@ $instagram = Setting::where('key','instagram')->first();
         <div class="container">
 
             <div class="footer__col">
-                <a class="footer__brand" href="">
+                <a class="footer__brand" href="{{route('welcome',app()->getLocale())}}">
                     <img src="{{asset('../img/icons/svanidze-brand.svg')}}" alt="">
                 </a>
 

@@ -13,7 +13,7 @@
                     <label for="feature">@lang('answer.feature')</label>
                     <select name="feature" id="feature" class="form-control" >
                         @foreach ($features as $feature)
-                        <option value="{{$feature->id}}">{{($feature->language()->where('language_id', $localization)->first()->title) ?? $feature->language()->first()->title}}</option>
+                        <option value="{{$feature->id}}">{{(count($feature->availableLanguage) > 0) ? $feature->availableLanguage[0]->title : $feature->language[0]->title }}</option>
                         @endforeach
                     </select>
                 </div>
