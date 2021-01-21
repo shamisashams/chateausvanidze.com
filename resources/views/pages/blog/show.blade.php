@@ -20,10 +20,6 @@
                         @if($new->file)
                             <div class="blog-details__main-img"
                                  style="background-image: url('{{url('storage/news/'.$new->file->name)}}')"></div>
-                        @else
-                            <div class="blog-details__main-img"
-                                 style="background-image: url('{{url('noimage.png')}}')"></div>
-
                         @endif
                         @if(count($new->availableLanguage) > 0)
                             {!! $new->availableLanguage[0]->content !!}
@@ -66,7 +62,7 @@
                                                                        (count($new->language) > 0 ? $new->language[0]->description : '') }}
                                     </p>
 
-                                    <a href="" class="aside-blog__link">
+                                    <a href="{{route('BlogShow',[app()->getLocale(),$new->id])}}" class="aside-blog__link">
                                         {{__('client.continue')}}
                                     </a>
                                 </div>
