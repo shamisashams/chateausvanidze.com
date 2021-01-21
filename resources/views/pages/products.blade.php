@@ -8,7 +8,7 @@
             <div class="container">
 
                 <aside class="category__aside">
-                    <h2 class="aside-title">{{__('client.price')}}</h2>
+                    <h2 class="aside-title">{{__('user.price')}}</h2>
 
                     <div class="range-block">
                         <div class="price-range-meta">

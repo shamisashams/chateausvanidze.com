@@ -79,7 +79,7 @@
                                     <p>{{$item->paymethod}}</p>
                                 </div>
                                 <div class="ordered-col">
-                                    <h3>{{__('client.status')}}</h3>
+                                    <h3>{{__('user.status')}}</h3>
                                     <p class="ordered-status">{{$item->pay_status}}</p>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                         <div class="ordered__card-qty">{{__('client.count')}}: {{$prod->quantity}}</div>
 
                                         <div class="ordered__card-price">
-                                            {{__('client.price')}}: <span>{{number_format($prod->price/100 ,2)}}₾</span>
+                                            {{__('user.price')}}: <span>{{number_format($prod->price/100 ,2)}}₾</span>
                                         </div>
                                         <div class="ordered__card-total">
                                             {{__('client.total')}}: <span>{{number_format( ($prod->quantity * $prod->price/100) ,2)}}</span>
