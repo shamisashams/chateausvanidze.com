@@ -47,18 +47,8 @@ class NewsController extends AdminController
      */
     public function store(NewsRequest $request, $locale)
     {
-        $data = $request->only([
-            'title',
-            'description',
-            'file',
-            'content' ,
-            'section',
-            'position' ,
-            'status' ,
-            'slug'
-        ]);
-        
-        $this->service->store($locale, $data);
+
+        $this->service->store($locale, $request);
 
         return redirect()->route('NewsIndex', compact('locale'));
     }
@@ -107,17 +97,8 @@ class NewsController extends AdminController
             'status' => 'required|integer',
             'slug' => 'required',
         ]);
-        $data = $request->only([
-            'title',
-            'description',
-            'file',
-            'content' ,
-            'section' ,
-            'position' ,
-            'status' ,
-            'slug'
-        ]);
-        $this->service->update($locale, $data, $id);
+
+        $this->service->update($locale, $request, $id);
 
         return redirect()->route('NewsIndex', compact('locale'));
     }

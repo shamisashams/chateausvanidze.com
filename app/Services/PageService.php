@@ -165,8 +165,8 @@ class PageService
                     continue;
                 }
                 if (!in_array($file->id,$request['old_images'])) {
-                    if (Storage::exists('public_html/page/' . $data->id.'/'.$file->name)) {
-                        Storage::delete('public_html/page/' . $data->id.'/'.$file->name);
+                    if (Storage::exists('public/page/' . $data->id.'/'.$file->name)) {
+                        Storage::delete('public/page/' . $data->id.'/'.$file->name);
                     }
                     $file->delete();
 
@@ -177,11 +177,11 @@ class PageService
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
                 $imagename = date('Ymhs') . $file->getClientOriginalName();
-                $destination = base_path() . '/storage/app/public_html/page/' . $data->id;
+                $destination = base_path() . '/storage/app/public/page/' . $data->id;
                 $request->file('images')[$key]->move($destination, $imagename);
                 $data->files()->create([
                     'name' => $imagename,
-                    'path' => '/storage/app/public_html/page/' . $data->id,
+                    'path' => '/storage/app/public/page/' . $data->id,
                     'format' => $file->getClientOriginalExtension(),
                 ]);
             }

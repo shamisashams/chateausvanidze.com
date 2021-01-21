@@ -88,7 +88,7 @@ class NewsService
      * @param array $request
      * @return bool
      */
-    public function store(string $lang, array $request)
+    public function store(string $lang, $request)
     {
         $model = $this->model->create([
             'slug' => $request['slug'],
@@ -97,7 +97,9 @@ class NewsService
         ]);
         if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public_html')->putFileAs("news/", $request['file'], $filename);
+            $destination = base_path() . '/storage/app/public/news';
+            $request->file('file')->move($destination, $filename);
+
             $model->file()->create([
                 'name' => $filename,
                 'path' => 'news/',
@@ -110,7 +112,8 @@ class NewsService
             'language_id' => $localization->id,
             'title' => $request['title'],
             'description'=> $request['description'],      
-            'content' => $request['content']
+            'content' => $request['content'],
+            'section' => $request['section']
         ]);
 
 
@@ -121,10 +124,9 @@ class NewsService
      * Update Feature item.
      *
      * @param int $id
-     * @param array $request
      * @return bool
      */
-    public function update(string $lang,  array $request , int $id)
+    public function update(string $lang,  $request , int $id)
     {
         $model = $this->model->find($id);
         $model->update([
@@ -135,7 +137,9 @@ class NewsService
         $localization = Localization::getIdByName($lang);
         if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
-            Storage::disk('public_html')->putFileAs("news/", $request['file'], $filename);
+            $destination = base_path() . '/storage/app/public/news';
+            $request->file('file')->move($destination, $filename);
+
             $model->file()->updateOrCreate([
                 'name' => $filename,
                 'path' => 'news/',
@@ -147,13 +151,15 @@ class NewsService
             $language->title = $request['title'];
             $language->description = $request['description'];
             $language->content = $request['content'];
+            $language->section = $request['section'];
             $language->save();
         }else{
             $model->language()->create([
                 'language_id' => $localization->id,
                 'title' => $request['title'],
                 'description'=> $request['description'],      
-                'content' => $request['content']
+                'content' => $request['content'],
+                'section' => $request['section']
             ]);
         }
 
