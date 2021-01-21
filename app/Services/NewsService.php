@@ -132,7 +132,7 @@ class NewsService
             'position' => $request['position'],
             'status' => intval($request['status']),
         ]);
-        $localization = $this->getLocalization($lang);
+        $localization = Localization::getIdByName($lang);
         if(isset($request['file'])){
             $filename = 'time-' . time() . '.' . $request['file']->getClientOriginalExtension();
             Storage::disk('public_html')->putFileAs("news/", $request['file'], $filename);
@@ -149,7 +149,6 @@ class NewsService
             $language->content = $request['content'];
             $language->save();
         }else{
-        
             $model->language()->create([
                 'language_id' => $localization->id,
                 'title' => $request['title'],
