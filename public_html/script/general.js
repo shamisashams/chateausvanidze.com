@@ -393,10 +393,9 @@ function removefromcart($id){
     });
 }
 function getCartCount(){
-    const locale = $('meta[name="language"]').attr('content');
 
     $.ajax({
-        url: `/${locale}/getcartcount/`,
+        url: `/${getMeta('language')}/getcartcount/`,
         method: 'GET',
         success: function(data){
             if(data.status == true){
@@ -493,4 +492,15 @@ function getCartCount(){
             }
         }
     });
+}
+function getMeta(metaName) {
+    const metas = document.getElementsByTagName('meta');
+
+    for (let i = 0; i < metas.length; i++) {
+        if (metas[i].getAttribute('name') === metaName) {
+            return metas[i].getAttribute('content');
+        }
+    }
+
+    return '';
 }
