@@ -394,7 +394,7 @@ function removefromcart($id){
 }
 function getCartCount(){
     $.ajax({
-        url: "/getcartcount/",
+        url: `/${locale}/getcartcount/`,
         method: 'GET',
         success: function(data){
             if(data.status == true){
