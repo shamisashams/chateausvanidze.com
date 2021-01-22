@@ -41,7 +41,7 @@
                     <a href="{{route('Club', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Club') ? 'active' : ''}}">{{__('client.wine_club')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Club') ? 'Blog' : ''}}">{{__('client.news_and_events')}}</a>
+                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Blog' || Request::route()->getName() =='BlogShow') ? 'active' : ''}}">{{__('client.news_and_events')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('ContactUs',app()->getLocale())}}"
