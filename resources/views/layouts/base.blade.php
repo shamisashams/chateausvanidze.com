@@ -44,7 +44,7 @@
 
     <!-- regular js-->
     <script src="{{asset('../script/details.js')}}"></script>
-    <script src="{{asset('../script/general.js')}}"></script>
+    <script src="{{asset('../script/general.js?v=2')}}"></script>
     <script src="{{asset('../script/nouislider.min.js')}}"></script>
     <script src="{{asset('../script/products.js')}}"></script>
     <script src="{{asset('../script/index.js')}}"></script>
