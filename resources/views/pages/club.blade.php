@@ -4,7 +4,7 @@
 
     <div class="club-container" style="background-color: grey; opacity: 0.8">
         <!-- section 1 -  -->
-        <section id="wine-club" style="opacity: 0.5">
+        <section id="wine-club" style="opacity: 0">
             <div class="wine-club__top">
                 <div class="container">
                     <h2>ღვინის კლუბი</h2>
