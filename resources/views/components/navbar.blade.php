@@ -1,5 +1,5 @@
 <header class="header bg-dark">
-
+    {{ Request::is('about') ? 'active' : '' }}
     <nav class="nav">
 
         <div class="container">
@@ -28,24 +28,24 @@
                 </div>
 
                 <li class="navigation__item">
-                    <a href="{{route('welcome',app()->getLocale())}}" class="navigation__link active">{{__('client.home')}}</a>
+                    <a href="{{route('welcome',app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'welcome') ? 'active' : ''}}">{{__('client.home')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('AboutUs', app()->getLocale())}}"
-                       class="navigation__link">{{__('client.history')}}</a>
+                       class="navigation__link {{(Request::route()->getName() == 'AboutUs') ? 'active' : ''}}">{{__('client.history')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link">{{__('client.products')}}</a>
+                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Products' || Request::route()->getName() == 'ProductShow') ? 'active' : ''}}">{{__('client.products')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Club', app()->getLocale())}}" class="navigation__link">{{__('client.wine_club')}}</a>
+                    <a href="{{route('Club', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Club') ? 'active' : ''}}">{{__('client.wine_club')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link">{{__('client.news_and_events')}}</a>
+                    <a href="{{route('Blog', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Club') ? 'Blog' : ''}}">{{__('client.news_and_events')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('ContactUs',app()->getLocale())}}"
-                       class="navigation__link">{{__('client.contact-us')}}</a>
+                       class="navigation__link  {{(Request::route()->getName() == 'ContactUs') ? 'Blog' : ''}}">{{__('client.contact-us')}}</a>
                 </li>
 
             </ul>

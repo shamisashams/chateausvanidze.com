@@ -27,8 +27,12 @@ $contactEmail = Setting::where('key', 'contact_email')->first();
                 @endif
                 <div class="content">
                     <div class="heading">
-                        <p class="s">{{(count($page->availableLanguage) > 0) ?  $page->availableLanguage[0]->meta_title : ''}}</p>
-                        <h4 class="title">{{(count($page->availableLanguage) > 0) ?  $page->availableLanguage[0]->description : ''}}</h4>
+                        @if(count($page->availableLanguage) > 0)
+                        <p class="s">{{$page->availableLanguage[0]->meta_title}}</p>
+                        @endif
+                        @if(count($page->availableLanguage) > 0)
+                        <h4 class="title">{{$page->availableLanguage[0]->description}}</h4>
+                        @endif
                     </div>
                     <p class="r">{{(count($page->availableLanguage) > 0) ?  $page->availableLanguage[0]->content : ''}}</p>
                     <p class="g">{{(count($page->availableLanguage) > 0) ?  $page->availableLanguage[0]->content_2 : ''}}</p>
