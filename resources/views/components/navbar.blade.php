@@ -45,7 +45,7 @@
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('ContactUs',app()->getLocale())}}"
-                       class="navigation__link  {{(Request::route()->getName() == 'ContactUs') ? 'Blog' : ''}}">{{__('client.contact-us')}}</a>
+                       class="navigation__link  {{(Request::route()->getName() == 'ContactUs') ? 'active' : ''}}">{{__('client.contact-us')}}</a>
                 </li>
 
             </ul>
