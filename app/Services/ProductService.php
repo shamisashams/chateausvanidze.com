@@ -95,7 +95,7 @@ class ProductService
                     $data = $data->orderBy('price', 'asc');
                     break;
                 case "pricedown" :
-                    $data = $data->orderBy('id', 'desc');
+                    $data = $data->orderBy('price', 'desc');
                     break;
                 case "popular" : 
                     $data = $data->orderBy('position', 'asc');
