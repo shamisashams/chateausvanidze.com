@@ -1,3 +1,4 @@
+const locale = $('meta[name="language"]').attr('content');
 
 $(document).ready(function(){
     getCartCount();

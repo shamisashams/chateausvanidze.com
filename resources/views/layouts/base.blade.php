@@ -9,6 +9,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="author" content="insite.international">
+    <meta name="language" content="{{app()->getLocale()}}">
 
     <link href="favicon.ico" rel="shortcut icon">
 
