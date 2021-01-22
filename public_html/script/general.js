@@ -1,7 +1,5 @@
 
 $(document).ready(function(){
-    const locale = $('meta[name="language"]').attr('content');
-
     getCartCount();
 });
 
@@ -395,6 +393,8 @@ function removefromcart($id){
     });
 }
 function getCartCount(){
+    const locale = $('meta[name="language"]').attr('content');
+
     $.ajax({
         url: `/${locale}/getcartcount/`,
         method: 'GET',
