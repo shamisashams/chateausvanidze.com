@@ -2149,7 +2149,7 @@ input[type=number] {
 
 }
 .soc-links a svg {
-    fill: var(--clr-red);
+    fill: white;
 }
 .soc-links a {
     position: relative;
@@ -5678,6 +5678,22 @@ input[type=number] {
 
 .card__status.out-sale {
     width: 92px;
+}
+
+#soc-container {
+    justify-content: flex-end;
+}
+
+
+@media (max-width: 1004px) {
+    #soc-column {
+        margin-right: 5%;
+    }
+}
+@media (max-width:751px) {
+    #soc-column {
+        margin-right: 21%;
+    }
 }
 
 /*  ----    .html   ----  */
