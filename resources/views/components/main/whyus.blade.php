@@ -16,21 +16,21 @@
                 <div class="why-us__flex">
                     <div class="why-us__col">
                         <img src="./img/icons/svg-award.svg" alt="">
-                        <h2>უამრავი ჯილდო</h2>
+                        <h2>{{__('client.lots_of_rewards')}}</h2>
 
 {{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
 
                     <div class="why-us__col">
                         <img src="./img/icons/svg-wines.svg" alt="">
-                        <h2>საუკეთესო გემო</h2>
+                        <h2>{{__('client.the_best_taste')}}</h2>
 
 {{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
 
                     <div class="why-us__col">
                         <img src="./img/icons/svg-w.svg" alt="">
-                        <h2>საუკეთესო ხარისხი</h2>
+                        <h2>{{__('client.the_best_quality')}}</h2>
 
 {{--                        <p>ლორემ იპსუმ გრძელნაწნავიან დაგარტყა საქმეც.</p>--}}
                     </div>
