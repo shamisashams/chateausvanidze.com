@@ -204,3 +204,10 @@
 
     </nav>
 </header>
+@if(app()->getLocale() === 'en')
+    <style>
+        .navigation__link{
+            font-size: 18px;
+        }
+    </style>
+@endif
