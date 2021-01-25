@@ -1769,7 +1769,7 @@ input[type=number] {
 .why-us__overlay {
     padding: 70px 15px;
     text-align: center;
-    background-color:rgba(0, 0, 0, 0.88);
+    background-color:rgba(0, 0, 0, 0.65);
 }
 .why-us__title {
     font-size: 30px;
@@ -4691,7 +4691,7 @@ input[type=number] {
 
     /* swtich language bars */
     .language-box {
-        display: none;
+        /*display: none;*/
     }
     .language-switch-mobile {
         display: flex;

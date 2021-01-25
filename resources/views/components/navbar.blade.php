@@ -9,33 +9,33 @@
             </a>
 
             <ul class="navigation">
-                <div class="language-switch-mobile">
-                    @if(isset($languages['current']))
-                            <a href="">
-                                <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">
-                                {{strtoupper($languages['current']['abbreviation'])}}
-                            </a>
-                            @if(count($languages['data']) > 0)
+{{--                <div class="language-switch-mobile">--}}
+{{--                    @if(isset($languages['current']))--}}
+{{--                            <a href="">--}}
+{{--                                <img class="flag" src="/adm/img/flags-icons/{{$languages['current']['img']}}">--}}
+{{--                                {{strtoupper($languages['current']['abbreviation'])}}--}}
+{{--                            </a>--}}
+{{--                            @if(count($languages['data']) > 0)--}}
 
-                                @foreach($languages['data'] as $data)
-                                    <a href="{{$data['url']}}">
-                                        <img src="/adm/img/flags-icons/{{$data['img']}}">
-                                        {{strtoupper($data['abbreviation'])}}
-                                    </a>
-                                @endforeach
-                            @endif
-                    @endif
-                </div>
+{{--                                @foreach($languages['data'] as $data)--}}
+{{--                                    <a href="{{$data['url']}}">--}}
+{{--                                        <img src="/adm/img/flags-icons/{{$data['img']}}">--}}
+{{--                                        {{strtoupper($data['abbreviation'])}}--}}
+{{--                                    </a>--}}
+{{--                                @endforeach--}}
+{{--                            @endif--}}
+{{--                    @endif--}}
+{{--                </div>--}}
 
                 <li class="navigation__item">
                     <a href="{{route('welcome',app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'welcome') ? 'active' : ''}}">{{__('client.home')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('AboutUs', app()->getLocale())}}"
-                       class="navigation__link {{(Request::route()->getName() == 'AboutUs') ? 'active' : ''}}">{{__('client.history')}}</a>
+                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Products' || Request::route()->getName() == 'ProductShow') ? 'active' : ''}}">{{__('client.products')}}</a>
                 </li>
                 <li class="navigation__item">
-                    <a href="{{route('Products', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Products' || Request::route()->getName() == 'ProductShow') ? 'active' : ''}}">{{__('client.products')}}</a>
+                    <a href="{{route('AboutUs', app()->getLocale())}}"
+                       class="navigation__link {{(Request::route()->getName() == 'AboutUs') ? 'active' : ''}}">{{__('client.history')}}</a>
                 </li>
                 <li class="navigation__item">
                     <a href="{{route('Club', app()->getLocale())}}" class="navigation__link {{(Request::route()->getName() == 'Club') ? 'active' : ''}}">{{__('client.wine_club')}}</a>
