@@ -12,7 +12,7 @@
                     <h2>{{__('client.order_information')}}</h2>
                     <p>
                         <span>{{__('client.delivery_price')}}</span>
-                        <span>5₾</span>
+                        <span>0₾</span>
                     </p>
                     <p>
                         <span>{{__('client.product_price')}}</span>
@@ -39,7 +39,7 @@
                 </h2>
 
                 <h2 class="buy__title">{{__('client.delivery')}}</h2>
-                <p style="margin-top:10px">{{__('client.authorization_validate_2')}}</p>
+{{--                <p style="margin-top:10px">{{__('client.authorization_validate_2')}}</p>--}}
 
 
                 <div class="buy__products" id="buyproduct">

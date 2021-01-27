@@ -13,7 +13,7 @@
 
                     <p>
                         <span>{{__('client.delivery_price')}}</span>
-                        <span>5₾</span>
+                        <span>0₾</span>
                     </p>
                     <p>
                         <span>{{__('client.product_price')}}</span>

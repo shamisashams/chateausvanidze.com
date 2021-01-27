@@ -404,7 +404,7 @@ function getCartCount(){
                 $products = data.products;
                 $html = ``;
                 $('#totalmoneycart').html(data.total);
-                $('#buy-total').html(data.total+5);
+                $('#buy-total').html(data.total);
                 $('#buy-prod').html(data.total);
                 $('#cartitems').html('');
                 $('#buyproduct').html('');

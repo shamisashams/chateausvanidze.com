@@ -118,11 +118,11 @@
         </tr>
         <tr>
             <td>{{__('client.courier')}}</td>
-            <td>{{number_format(5 ,2)}} ლ</td>
+            <td>{{number_format(0 ,2)}} ლ</td>
         </tr>
         <tr>
             <td>{{__('client.total')}}</td>
-            <td>{{number_format($total+5 ,2)}} ლ</td>
+            <td>{{number_format($total ,2)}} ლ</td>
         </tr>
 
         </tbody>

@@ -37,7 +37,7 @@ class PurchaseController extends Controller
                 }
             }
 
-            $total += 500; // mitana
+            $total += 0; // mitana
 
             $order = Auth::user()->orders()->create([
                 'address' => $request->address,
