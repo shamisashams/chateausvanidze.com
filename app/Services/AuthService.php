@@ -65,7 +65,7 @@ class AuthService
             ]);
         }
 
-        $model->roles()->attach('3');
+        $model->roles()->attach('2');
 
 
         return true;
