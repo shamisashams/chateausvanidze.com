@@ -19,15 +19,15 @@
                 {{__('client.google_login')}}
             </a>
 
-            <div class="auth-or"><span>ან</span></div>
+            <div class="auth-or"><span>{{__('client.or')}}</span></div>
 
-            <input type="email" required name="email" class="auth__input" placeholder="ელ-ფოსტა"> 
+            <input type="email" required name="email" class="auth__input" placeholder="{{__('client.email')}}">
             @error('email')
                 <div class="error-message show">{{$message}}</div>
             @enderror
 
             <div class="password-wrap">
-                <input class="auth__input" type="password" name="password" required placeholder="პაროლი" maxlength="12" >
+                <input class="auth__input" type="password" name="password" required placeholder="{{__('client.password')}}" maxlength="12" >
                 <div class="hide-show pass-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15.473" height="10.315" viewBox="0 0 15.473 10.315">
                         <path id="Icon_awesome-eye" data-name="Icon awesome-eye" d="M15.379,9.265A8.616,8.616,0,0,0,7.736,4.5,8.617,8.617,0,0,0,.094,9.266a.869.869,0,0,0,0,.784,8.616,8.616,0,0,0,7.643,4.765,8.617,8.617,0,0,0,7.643-4.766A.869.869,0,0,0,15.379,9.265Zm-7.643,4.26A3.868,3.868,0,1,1,11.6,9.658,3.868,3.868,0,0,1,7.736,13.526Zm0-6.447a2.56,2.56,0,0,0-.68.1,1.285,1.285,0,0,1-1.8,1.8,2.573,2.573,0,1,0,2.477-1.9Z" transform="translate(0 -4.5)"/>
@@ -64,23 +64,23 @@
 
             <h2 class="auth__title">{{__('client.registration')}}</h2>
 
-            <input type="text" class="auth__input" required name="first_name" placeholder="სახელი">
+            <input type="text" class="auth__input" required name="first_name" placeholder="{{__('client.name')}}">
             @error('first_name')
             <div class="error-message show">{{$message}}</div>
             @enderror
 
-            <input type="text" class="auth__input" required placeholder="გვარი" name="last_name">
+            <input type="text" class="auth__input" required placeholder="{{__('client.last_name')}}" name="last_name">
             @error('last_name')
             <div class="error-message show">{{$message}}</div>
             @enderror
 
-            <input type="email" class="auth__input" required placeholder="ელ-ფოსტა" name="email"> 
+            <input type="email" class="auth__input" required placeholder="{{__('client.email')}}" name="email">
             @error('email')
             <div class="error-message show">{{$message}}</div>
             @enderror
 
             <div class="password-wrap">
-                <input class="auth__input" required type="password" name="password" placeholder="პაროლი" maxlength="12" >
+                <input class="auth__input" required type="password" name="password" placeholder="{{__('client.password')}}" maxlength="12" >
                 <div class="hide-show pass-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15.473" height="10.315" viewBox="0 0 15.473 10.315">
                         <path id="Icon_awesome-eye" data-name="Icon awesome-eye" d="M15.379,9.265A8.616,8.616,0,0,0,7.736,4.5,8.617,8.617,0,0,0,.094,9.266a.869.869,0,0,0,0,.784,8.616,8.616,0,0,0,7.643,4.765,8.617,8.617,0,0,0,7.643-4.766A.869.869,0,0,0,15.379,9.265Zm-7.643,4.26A3.868,3.868,0,1,1,11.6,9.658,3.868,3.868,0,0,1,7.736,13.526Zm0-6.447a2.56,2.56,0,0,0-.68.1,1.285,1.285,0,0,1-1.8,1.8,2.573,2.573,0,1,0,2.477-1.9Z" transform="translate(0 -4.5)"/>
@@ -92,7 +92,7 @@
             @enderror
 
             <div class="password-wrap">
-                <input class="auth__input" required type="password" name="samepassword" placeholder="დაადასტურეთ პაროლი" maxlength="12" >
+                <input class="auth__input" required type="password" name="samepassword" placeholder="{{__('client.confirm_password')}}" maxlength="12" >
                 <div class="hide-show pass-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15.473" height="10.315" viewBox="0 0 15.473 10.315">
                         <path id="Icon_awesome-eye" data-name="Icon awesome-eye" d="M15.379,9.265A8.616,8.616,0,0,0,7.736,4.5,8.617,8.617,0,0,0,.094,9.266a.869.869,0,0,0,0,.784,8.616,8.616,0,0,0,7.643,4.765,8.617,8.617,0,0,0,7.643-4.766A.869.869,0,0,0,15.379,9.265Zm-7.643,4.26A3.868,3.868,0,1,1,11.6,9.658,3.868,3.868,0,0,1,7.736,13.526Zm0-6.447a2.56,2.56,0,0,0-.68.1,1.285,1.285,0,0,1-1.8,1.8,2.573,2.573,0,1,0,2.477-1.9Z" transform="translate(0 -4.5)"/>
