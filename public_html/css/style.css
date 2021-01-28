@@ -1320,7 +1320,7 @@ input[type=number] {
     position: relative;
     background-image: url('../img/IMG_3814.jpg');
     background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-position: 50% 100%;
     background-size: cover;
 }
 .hero__overlay{
