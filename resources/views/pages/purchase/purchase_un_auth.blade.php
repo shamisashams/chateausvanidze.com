@@ -40,21 +40,9 @@
 
                 <h2 class="buy__title">{{__('client.delivery')}}</h2>
 {{--                <p style="margin-top:10px">{{__('client.authorization_validate_2')}}</p>--}}
-
-
                 <div class="buy__products" id="buyproduct">
-                    
-
-                    
-
-                    
                 </div>
-
-
-
             </div>
-           
-            
         </div>
     </section>
 

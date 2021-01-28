@@ -52,6 +52,7 @@ class AuthService
             'name' => $request['first_name'] . ' ' . $request['last_name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'status' => 1
         ]);
 
         $localization = $this->getLocalization($lang);
@@ -64,14 +65,8 @@ class AuthService
             ]);
         }
 
-        $token = Str::random(40);
-        $model->roles()->attach('2');
-        $model->tokens()->create([
-            'token' => Hash::make($token),
-            'validate_till' => Carbon::now()->addDays(1)
-        ]);
-        Mail::to($request['email'])
-        ->queue(new VerifyMail($token, $model->id));
+        $model->roles()->attach('3');
+
 
         return true;
     }
