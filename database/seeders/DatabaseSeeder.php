@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
                 'key' => 'twitter',
             ],
             [
-                'key' => 'behance',
+                'key' => 'pinterest',
             ],
             [
                 'key' => 'linkedin',
