@@ -99,3 +99,31 @@
         justify-self: center;
     }
 }
+.auth-modal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+.auth-modal {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(36, 36, 36, 0.8);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    z-index: 200;
+    -webkit-transition: .7s;
+    -o-transition: .7s;
+    transition: .7s;
+    display: none;
+}

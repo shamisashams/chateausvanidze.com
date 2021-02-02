@@ -12,12 +12,14 @@
     <meta name="language" content="{{app()->getLocale()}}">
 
     <link href="favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="{{asset('../build/app.css')}}">
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="{{asset('../css/style.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('../css/style.css')}}">
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/nouislider.css">
 

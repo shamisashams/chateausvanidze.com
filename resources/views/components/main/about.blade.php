@@ -1,19 +1,19 @@
 <!-- section 5 - about-video  -->
 <section id="about-video">
-    
-    <div id="video-modal" >
-        <div class="video-modal__wrap">
-            <button class="video-modal-close">
-                <img src="./img/icons/svg-close-circle (1).svg" alt="">
-            </button>
-            
-            <video  controls>
-                <source src="./img/" type="video/mp4">
-                
-                Your browser does not support HTML video.
-              </video>
-        </div>
-    </div>
+
+{{--    <div id="video-modal" >--}}
+{{--        <div class="video-modal__wrap">--}}
+{{--            <button class="video-modal-close">--}}
+{{--                <img src="./img/icons/svg-close-circle (1).svg" alt="">--}}
+{{--            </button>--}}
+
+{{--            <video  controls>--}}
+{{--                <source src="./img/" type="video/mp4">--}}
+
+{{--                Your browser does not support HTML video.--}}
+{{--              </video>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="container">
 
