@@ -102,6 +102,7 @@
 .auth-modal.visible {
     visibility: visible;
     opacity: 1;
+    display: flex;
 }
 .auth-modal {
     position: fixed;
