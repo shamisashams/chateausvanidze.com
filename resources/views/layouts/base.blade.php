@@ -12,7 +12,7 @@
     <meta name="language" content="{{app()->getLocale()}}">
 
     <link href="favicon.ico" rel="shortcut icon">
-{{--    <link rel="stylesheet" href="{{asset('../build/app.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('../build/app.css')}}">
 
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
