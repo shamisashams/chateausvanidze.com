@@ -30,7 +30,7 @@ class BlogController extends Controller
             'per_page' => 8
         ]);
         return view('pages.blog.index',[
-            'news' => $this->service->getAll($lang,$request)
+            'news' => $this->service->getAll($lang,$request,true)
         ]);
     }
 

@@ -52,12 +52,18 @@ class NewsService
      * @return LengthAwarePaginator
      * @throws \Exception
      */
-    public function getAll(string $lang, $request)
+    public function getAll(string $lang, $request, $byLanguage = false)
     {
         $data = $this->model->query();
 
         $localization = $this->getLocalization($lang);
-        
+
+        if ($byLanguage) {
+            $data = $data->whereHas('language',function ($query) use ($localization) {
+                $query->where('language_id',$localization->id);
+            });
+        }
+
         if ($request->id !== null) {
             $data = $data->where('id', $request->all()['id']);
         }
