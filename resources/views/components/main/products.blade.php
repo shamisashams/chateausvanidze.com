@@ -3,7 +3,7 @@
     
                 <div class="container">
                     <h2 class="section__title">
-                        {{__('client.favorite_taste')}}
+                        {{__('client.popular')}}
                     </h2>
                     
                     <div class="product__grid slidable">
