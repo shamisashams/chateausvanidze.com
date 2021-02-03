@@ -23,7 +23,7 @@ class HomeController extends Controller
             return abort('404');
         }
 
-        $vipProducts = Product::inRandomOrder()->where('vip',true)->limit(15)->get();
+        $vipProducts = Product::inRandomOrder()->where('status',true)->limit(10)->get();
         $popularProducts = Product::inRandomOrder()->limit(10)->get();
 
 

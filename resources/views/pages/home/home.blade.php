@@ -12,7 +12,7 @@
 
         <x-main.about :page="$page"/>
 
-        <x-main.popular :products="$popularProducts"/>
+{{--        <x-main.popular :products="$popularProducts"/>--}}
 
     </main>
 
