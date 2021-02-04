@@ -7,14 +7,14 @@
     box-sizing: border-box;
 
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     -webkit-touch-callout: none;
     -khtml-user-select: none;
     -ms-touch-action: pan-y;
-        touch-action: pan-y;
+    touch-action: pan-y;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -42,10 +42,10 @@
 .slick-slider .slick-list
 {
     -webkit-transform: translate3d(0, 0, 0);
-       -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-         -o-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .slick-track
@@ -125,7 +125,7 @@
     cursor: pointer;
 }
 
-                    /* ------- custom slider parameters here*/
+/* ------- custom slider parameters here*/
 
 /* add space the slides  slider = .hero */
 .hero__slider .slick-slide {
@@ -142,14 +142,14 @@
     }
     .hero__slider  .slick-slide {
         margin: 0 ;
-      }
-      /* the parent */
+    }
+    /* the parent */
     .hero__slider  .slick-list {
         margin: 0 ;
     }
-   
+
 }
-                    /* ------- end of  custom slider parameters here*/
+/* ------- end of  custom slider parameters here*/
 
 
 
@@ -168,13 +168,13 @@ ul {list-style: none;}
     position: relative;
 }
 .hero__slider .slick-dots {
-  position: absolute;
-  bottom: -50px;
-  left: 40%;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  width: 60%;
+    position: absolute;
+    bottom: -50px;
+    left: 40%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    width: 60%;
 }
 /* style with slider class*/
 .hero__slider .slick-dots li {
@@ -207,8 +207,8 @@ ul {list-style: none;}
     background-color: #000;
 }
 .hero__slider .slick-dots .slick-active button{
-   background-color: #000;
-   height: 6px;
+    background-color: #000;
+    height: 6px;
 }
 
 @media (max-width: 1000px) {
@@ -232,7 +232,7 @@ ul {list-style: none;}
         left: 32%;
         width: 65%;
     }
-  
+
 }
 
 
@@ -242,8 +242,8 @@ ul {list-style: none;}
 /* space btwen slides */
 .product__grid.slider .slick-slide {
     margin: 0 10px;
-  }
-  /* the parent */
+}
+/* the parent */
 .product__grid.slider .slick-list {
     margin: 0 -10px;
 }
@@ -279,6 +279,6 @@ ul {list-style: none;}
     }
     .product__grid.slider .btn-right {
         right: -10px;
-    }   
+    }
 }
 
