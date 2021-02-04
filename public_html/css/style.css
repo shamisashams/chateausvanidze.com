@@ -10,7 +10,12 @@
     font-family: 'web-001-caps';
     src: url('../fonts/bpg-web-001-caps-webfont.ttf');
 }
-
+@font-face {
+    font-family: 'Nimbus Roman No9 L Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Nimbus Roman No9 L Regular'), url('../fonts/NimbusRomNo9L-Reg.woff') format('woff');
+}
 /*  reset  */
 
 *,
@@ -5694,6 +5699,10 @@ input[type=number] {
     #soc-column {
         margin-right: 21%;
     }
+}
+
+.nimbus-font {
+    font-family: 'Nimbus Roman No9 L Regular';
 }
 
 /*  ----    .html   ----  */

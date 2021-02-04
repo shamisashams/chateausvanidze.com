@@ -3,7 +3,7 @@
     
     <div class="hero__overlay">
         <div class="hero__content">
-            <h1>{{__('client.shato_svanidze')}}</h1>
+            <h1 class="{{app()->getLocale() === 'en' ? 'nimbus-font' : ''}}">{{__('client.shato_svanidze')}}</h1>
             
             <h2>{{__('client.best_georgian_wine')}} </h2>
 
