@@ -9,7 +9,7 @@
                     <div class="hero__overlay">
                         <div class="hero__content">
                             @if (count($slide->availableLanguage) > 0)
-                                <h1>{{$slide->availableLanguage[0]->title}}</h1>
+                                <h1 class="{{app()->getLocale() === 'en' ? 'nimbus-font' : ''}}">{{$slide->availableLanguage[0]->title}}</h1>
                                 <h2>{{$slide->availableLanguage[0]->description}} </h2>
                             @endif
 
