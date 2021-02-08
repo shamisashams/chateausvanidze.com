@@ -141,7 +141,7 @@ input[type=number] {
 .img-cover {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
 }
 .hidden {
@@ -1318,23 +1318,33 @@ input[type=number] {
     margin-right: 7px;
 }
 
+
 /* section  1 - hero */
-#hero {
+
+.hero-slider {
+    width: 100%;
+}
+
+.hero-slide {
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url('../img/IMG_3814.jpg');
+    /* background-image: url('../img/hero.png');
     background-repeat: no-repeat;
-    background-position: 50% 100%;
-    background-size: cover;
+    background-position: 50% 50%;
+    background-size: cover; */
 }
 .hero__overlay{
     width: 100%;
     height: 100%;
-    background-color: #1c1c1c36;
+    background-color: #1c1c1c8e;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .hero__content {
+    z-index: 10;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1425,7 +1435,6 @@ input[type=number] {
     -o-transition: .7s;
     transition: .7s;
 }
-
 
 
 /* section 2 - brand-info */
@@ -5714,3 +5723,4 @@ input[type=number] {
 
 
 /* section 3  */
+

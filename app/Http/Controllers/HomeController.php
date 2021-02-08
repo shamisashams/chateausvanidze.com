@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
@@ -25,12 +26,13 @@ class HomeController extends Controller
 
         $vipProducts = Product::inRandomOrder()->where('status',true)->limit(10)->get();
         $popularProducts = Product::inRandomOrder()->limit(10)->get();
-
+        $slider = Slider::where('status',true)->get();
 
         return view('pages.home.home',[
             'page' => $page,
             'vipProducts' => $vipProducts,
-            'popularProducts' => $popularProducts
+            'popularProducts' => $popularProducts,
+            'slider' => $slider
         ]);
     }
 }

@@ -96,7 +96,13 @@
                     </div>
                     <span>{{__('admin.settings')}}</span></a>
             </li>
-            <li>
+            <li class="">
+                <a href="{{route('slideIndex',app()->getLocale() )}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>{{__('admin.slider')}}</span></a>
+            </li>
          
 
        

@@ -2,7 +2,7 @@
 @section('content')
 
     <main>
-        <x-main.header />
+        <x-main.header :slider="$slider" />
 
         <x-main.intro :page="$page" />
 

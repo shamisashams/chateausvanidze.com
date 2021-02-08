@@ -145,6 +145,16 @@ Route::group([
                 ->name('update', 'pageUpdate')
                 ->name('show', 'pageShow');
 
+            // Pages
+            Route::resource('slider', \App\Http\Controllers\Admin\SliderController::class)
+                ->name('index', 'slideIndex')
+                ->name('create', 'slideCreateView')
+                ->name('store', 'slideCreate')
+                ->name('edit', 'slideEditView')
+                ->name('update', 'slideUpdate')
+                ->name('destroy', 'slideDestroy')
+                ->name('show', 'slideShow');
+
             // Settings
             Route::resource('settings', SettingController::class)->except('destroy')
                 ->name('index', 'settingIndex')

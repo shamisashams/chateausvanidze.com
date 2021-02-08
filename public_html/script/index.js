@@ -1,17 +1,17 @@
 
 // change header on scroll 
-window.addEventListener('scroll', ()=> {
-
-  let headerBot = $(".header")[0].getBoundingClientRect().bottom;
-  let heroBot =$("#hero").get(0).getBoundingClientRect().bottom;
- 
-
-  if( heroBot < headerBot) {
-      $(".header").addClass('bg-dark')
-  }else {
-      $(".header").removeClass('bg-dark')
-  }
-});
+// window.addEventListener('scroll', ()=> {
+//
+//   let headerBot = $(".header")[0].getBoundingClientRect().bottom;
+//   let heroBot =$("#hero").get(0).getBoundingClientRect().bottom;
+//
+//
+//   if( heroBot < headerBot) {
+//       $(".header").addClass('bg-dark')
+//   }else {
+//       $(".header").removeClass('bg-dark')
+//   }
+// });
 
 
 // section 5 - video modal
@@ -118,3 +118,16 @@ if( productLength > 5) {
   };
 
 }
+
+$(".hero-slider").slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  speed: 1000,
+  arrows: false,
+  dots: true,
+  rtl: false,
+  fade: true,
+});

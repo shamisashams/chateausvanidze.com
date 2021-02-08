@@ -21,6 +21,9 @@ $( document ).ready(function() {
             if (el.fileable_type === 'App\\Models\\Page') {
                 directory = 'page';
             }
+            if (el.fileable_type === 'App\\Models\\Slider') {
+                directory = 'slider';
+            }
             imagedata.push({
                 id: el.id,
                 src: `${baseUrl}storage/${directory}/${el.fileable_id}/${el.name}`
