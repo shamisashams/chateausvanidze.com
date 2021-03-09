@@ -61,7 +61,7 @@ class PurchaseController extends Controller
             }
             $order->products()->createMany($products);
 
-            return redirect('https://mpi.gc.ge/page1/?lang_code='.app()->getLocale().'&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge');
+            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge');
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
@@ -72,7 +72,6 @@ class PurchaseController extends Controller
 
     public function checkPaymentAvailUrl(Request $request)
     {
-        dd($request);
         return view('pages.purchase.checkPaymentAvail');
     }
 
