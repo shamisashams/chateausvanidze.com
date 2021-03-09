@@ -61,7 +61,7 @@ class PurchaseController extends Controller
                 }
             }
             $order->products()->createMany($products);
-            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products&o.order_id='.$order->id);
+            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&o.PaymentId=1&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products&o.order_id='.$order->id);
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
