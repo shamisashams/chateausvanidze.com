@@ -61,8 +61,7 @@ class PurchaseController extends Controller
                 }
             }
             $order->products()->createMany($products);
-
-            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products');
+            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products&o.order_id='.$order->id);
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
@@ -73,22 +72,43 @@ class PurchaseController extends Controller
 
     public function checkPaymentAvailUrl(Request $request)
     {
-        $data = [
-            'result' => [
-                'code'=>1,
-                'desc'=>'Payment is available'
-            ],
-            'merchant-trx'=>'Trx120',
-            'purchase'=>[
-                'shortDesc'=>'Buy Items',
-                'account-amount'=>[
-                    'amount'=>100,
-                    'fee'=>1,
-                    'currency'=>643
-                ]
-            ]
-        ];
-        return response()->xml($data);
+        $xml = <<<XML
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><payment-avail-response>
+
+<result>
+
+  <code>1</code>
+
+  <desc>OK</desc>
+
+</result>
+
+<merchant-trx>trx120</merchant-trx>
+
+<purchase>
+
+  <shortDesc>buy</shortDesc>
+
+  <longDesc>buy items</longDesc>
+
+  <account-amount>
+
+    <id>POS18</id>
+
+    <amount>2500</amount>
+
+    <currency>981</currency>
+
+    <exponent>2</exponent>
+
+  </account-amount>
+
+</purchase>
+
+</payment-avail-response>
+XML;
+        return response()->xml($xml);
+
     }
 
     public function registerPaymentUrl()
