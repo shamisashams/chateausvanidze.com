@@ -72,7 +72,15 @@ class PurchaseController extends Controller
 
     public function checkPaymentAvailUrl(Request $request)
     {
-        return view('pages.purchase.checkPaymentAvail');
+        dd(22);
+//        $data = [
+//            'status' => 'success',
+//            'data' => [
+//                'first_name' => 'John',
+//                'last_name' => 'Smith',
+//            ]
+//        ];
+//        return response()->xml($data);
     }
 
     public function registerPaymentUrl()
