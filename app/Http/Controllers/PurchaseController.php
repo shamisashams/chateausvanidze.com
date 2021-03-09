@@ -42,11 +42,12 @@ class PurchaseController extends Controller
 
             $order = Auth::user()->orders()->create([
                 'address' => $request->address,
+                'transaction_id'=>uniqid(),
                 'paymethod' => $request->paymethod,
                 'pay_status' => 'Aproved',
                 'full_name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
-                'phone' => $request->phone
+                'phone' => $request->phone,
             ]);
             $products = array();
             foreach ($cart as $item) {
@@ -61,7 +62,7 @@ class PurchaseController extends Controller
             }
             $order->products()->createMany($products);
 
-            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge');
+            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products');
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
@@ -72,15 +73,22 @@ class PurchaseController extends Controller
 
     public function checkPaymentAvailUrl(Request $request)
     {
-        dd(22);
-//        $data = [
-//            'status' => 'success',
-//            'data' => [
-//                'first_name' => 'John',
-//                'last_name' => 'Smith',
-//            ]
-//        ];
-//        return response()->xml($data);
+        $data = [
+            'result' => [
+                'code'=>1,
+                'desc'=>'Payment is available'
+            ],
+            'merchant-trx'=>'Trx120',
+            'purchase'=>[
+                'shortDesc'=>'Buy Items',
+                'account-amount'=>[
+                    'amount'=>100,
+                    'fee'=>1,
+                    'currency'=>643
+                ]
+            ]
+        ];
+        return response()->xml($data);
     }
 
     public function registerPaymentUrl()
