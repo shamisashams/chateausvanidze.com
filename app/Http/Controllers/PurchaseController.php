@@ -22,17 +22,18 @@ class PurchaseController extends Controller
         }
         return redirect()->back();
     }
+
     public function buy(PurchaseRequest $request, $locale)
     {
         $cart = session('products') ?? null;
 
 
-        if($cart !== null){
+        if ($cart !== null) {
             $total = 0;
             // validate and get total
             foreach ($cart as $item) {
                 $product = Product::find(intval($item->product_id));
-                if($product && $item->quantity > 0){
+                if ($product && $item->quantity > 0) {
                     $total += $item->quantity * (($product->sale == 1) ? $product->sale_price : $product->price);
                 }
             }
@@ -43,15 +44,15 @@ class PurchaseController extends Controller
                 'address' => $request->address,
                 'paymethod' => $request->paymethod,
                 'pay_status' => 'Aproved',
-                'full_name' => $request->first_name.' '.$request->last_name,
+                'full_name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
                 'phone' => $request->phone
             ]);
             $products = array();
             foreach ($cart as $item) {
                 $product = Product::find(intval($item->product_id));
-                if($product && $item->quantity > 0){
-                    $products[] = (array) [
+                if ($product && $item->quantity > 0) {
+                    $products[] = (array)[
                         'product_id' => $product->id,
                         'price' => ($product->sale == 1) ? $product->sale_price : $product->price,
                         'quantity' => intval($item->quantity)
@@ -62,12 +63,18 @@ class PurchaseController extends Controller
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
-        }else{
+        } else {
             return redirect()->back();
         }
     }
 
-    public function bogResponse() {
-        return 'Response';
+    public function checkPaymentAvailUrl()
+    {
+        return 'resposne check payment avail url';
+    }
+
+    public function registerPaymentUrl()
+    {
+        return 'Response register payment url';
     }
 }

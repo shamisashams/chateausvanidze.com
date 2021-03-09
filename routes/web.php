@@ -224,7 +224,11 @@ Route::group([
 
     Route::get('/invoice/{order}', [InvoiceController::class,'index'])->name('getInvoice');
 
-    Route::any('/v1/pay/bog/response',[PurchaseController::class,'bogResponse']);
+    Route::get('/v1/pay/bog/check-payment-avail',[PurchaseController::class,'checkPaymentAvailUrl']);
+
+    Route::get('/v1/pay/bog/register-payment',[PurchaseController::class,'registerPaymentUrl']);
+
+
 
 });
 
