@@ -17,8 +17,8 @@ class AuthenticateBogPayment extends Middleware
      */
     public function handle($request, Closure $next)
     {
-        $authUser = isset($_SERVER['PHP_AUTH_USER']) ?? null;
-        $authPassword = $_SERVER['PHP_AUTH_PW'] ?? null;
+        $authUser = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : null;
+        $authPassword = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : null;
         $user = User::where(['email' => $authUser, 'password' => $authPassword])->first();
 
         if ($user) {

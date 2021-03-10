@@ -77,7 +77,6 @@ class PurchaseController extends Controller
         $orderId = $request['o_order_id'];
         $order = Order::where(['id' => $orderId])->first();
         if ($order) {
-            $currency = env('GEORGIAN_CURRENCY');
             $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><payment-avail-response>
 
@@ -101,7 +100,7 @@ class PurchaseController extends Controller
 
             <amount>$order->total_price</amount>
 
-            <currency>$currency</currency>
+            <currency>981</currency>
 
             <exponent>2</exponent>
 
