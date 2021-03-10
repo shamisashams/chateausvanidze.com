@@ -46,7 +46,7 @@ class PurchaseController extends Controller
                 'transaction_id' => uniqid(),
                 'total_price' => $total,
                 'paymethod' => $request->paymethod,
-                'pay_status' => 'Aproved',
+                'pay_status' => Order::STATUS_PENDING,
                 'full_name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
                 'phone' => $request->phone,
@@ -76,7 +76,7 @@ class PurchaseController extends Controller
     {
         $orderId = $request['o_order_id'];
         $order = Order::where(['id' => $orderId])->first();
-        if($order) {
+        if ($order) {
             $currency = env('GEORGIAN_CURRENCY');
             $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><payment-avail-response>
@@ -111,14 +111,48 @@ class PurchaseController extends Controller
 
         </payment-avail-response>
 XML;
-            return response()->xml($xml);
+        } else {
+            $xml = <<<XML
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+        <payment-avail-response>
+          <result>
+            <code>2</code>
+            <desc>Unable to accept this payment</desc>
+          </result>
+        </payment-avail-response>
+XML;
         }
-        return false;
+        return response()->xml($xml);
+
 
     }
 
-    public function registerPaymentUrl()
+    public function registerPaymentUrl(Request $request)
     {
-        return 'Response register payment url';
+        $result = $request['result_code'];
+        $code = $result == 1 ? 1 : 2;
+        $desc = $result == 1 ? "OK" : "Temporary unavailable";
+        $orderId = $request['o_order_id'];
+        $status = $result == 1 ? Order::STATUS_APPROVED : Order::STATUS_FAILED;
+        if ($result == 1) {
+            Order::where(['id' => $orderId])
+                ->update([
+                    'transaction_id' => $request['trx_id'],
+                    'pay_status' => $status,
+                    'card_number' => $request['card_registered'] == "Y" ? $request['card_id'] : null,
+                    'card_expiry' => $request['card_registered'] == "Y" ? $request['card_expiry'] : null
+                ]);
+        }
+        $xml = <<<XML
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+      <register-payment-response>
+        <result>
+          <code>$code</code>
+          <desc>$desc</desc>
+        </result>
+      </register-payment-response>
+XML;
+        return response()->xml($xml);
+
     }
 }

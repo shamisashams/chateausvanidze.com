@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    const STATUS_APPROVED='Approved';
+    const STATUS_PENDING="Pending";
+    const STATUS_FAILED="Failed";
     use HasFactory;
     protected $fillable = [
         'user_id',
