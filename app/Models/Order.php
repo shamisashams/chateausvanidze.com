@@ -16,6 +16,8 @@ class Order extends Model
         'address',
         'transaction_id',
         'total_price',
+        'card_number',
+        'card_expiry',
         'paymethod',
         'pay_status',
         'full_name',

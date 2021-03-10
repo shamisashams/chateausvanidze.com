@@ -134,15 +134,13 @@ XML;
         $desc = $result == 1 ? "OK" : "Temporary unavailable";
         $orderId = $request['o_order_id'];
         $status = $result == 1 ? Order::STATUS_APPROVED : Order::STATUS_FAILED;
-        if ($result == 1) {
-            Order::where(['id' => $orderId])
-                ->update([
-                    'transaction_id' => $request['trx_id'],
-                    'pay_status' => $status,
-                    'card_number' => $request['card_registered'] == "Y" ? $request['card_id'] : null,
-                    'card_expiry' => $request['card_registered'] == "Y" ? $request['card_expiry'] : null
-                ]);
-        }
+        Order::where(['id' => $orderId])
+            ->update([
+                'transaction_id' => $request['trx_id'],
+                'pay_status' => $status,
+                'card_number' => $request['card_registered'] == "Y" ? $request['card_id'] : null,
+                'card_expiry' => $request['card_registered'] == "Y" ? $request['card_expiry'] : null
+            ]);
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
       <register-payment-response>
