@@ -5713,7 +5713,64 @@ input[type=number] {
 .nimbus-font {
     font-family: 'Nimbus Roman No9 L Regular';
 }
+/* succ-fail */
+#success-fail {
+    margin: 200px 0 100px;
+}
 
+.success-fail__wrapper {
+    max-width: 445px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'neue-geo-caps';
+}
+
+.success-fail__img {
+    display: block;
+    margin: 0 auto 40px;
+    width: 246px;
+}
+
+.success-fail__heading {
+    color: #2FB507;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.success-fail__heading.fail {
+    color: rgb(182, 12, 12);
+}
+.success-fail__p {
+    font-size: 16px;
+    color: #4A4A4A;
+    margin-bottom: 18px;
+}
+
+.success-fail__link {
+    display: block;
+    margin: 0 auto;
+    width: 146px;
+    line-height: 38px;
+    border-radius: 8px;
+    font-size: 12px;
+    background-color: #771732;
+    transition: .6s;
+    color: #fff;
+}
+.success-fail__link:hover {
+    box-shadow: 0 2px 15px rgba(17, 17, 17, 0.5);
+}
+
+@media (max-width: 700px) {
+    #success-fail {
+        margin: 80px 0 60px;
+    }
+    .success-fail__img {
+        display: block;
+        margin: 0 auto 30px;
+        width: 200px;
+    }
+}
 /*  ----    .html   ----  */
 
 /* section 1  */

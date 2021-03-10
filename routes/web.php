@@ -226,6 +226,11 @@ Route::group([
 
     Route::get('/v1/pay/bog/register-payment', [PurchaseController::class, 'registerPaymentUrl'])->middleware(\App\Http\Middleware\AuthenticateBogPayment::class);
 
-
+    Route::get('successful-payment', function () {
+        return view('pages.purchase.success');
+    });
+    Route::get('fail-payment', function () {
+        return view('pages.purchase.fail');
+    });
 });
 
