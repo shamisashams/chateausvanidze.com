@@ -43,12 +43,12 @@ Route::group([
 
     Route::prefix('admin')->group(function () {
         Route::get('/', function () {
-            if(Auth::user() && Auth::user()->can('isAdmin')){
-                return redirect(\route('productIndex',app()->getLocale()));
-            }else{
-                if(Auth::user()){
+            if (Auth::user() && Auth::user()->can('isAdmin')) {
+                return redirect(\route('productIndex', app()->getLocale()));
+            } else {
+                if (Auth::user()) {
                     return view('welcome');
-                }else{
+                } else {
                     return redirect()->route('login-view', app()->getLocale());
                 }
             }
@@ -56,7 +56,6 @@ Route::group([
 
         Route::get('login', [AuthController::class, 'loginView'])->name('login-view');
         Route::middleware(['auth', 'can:isAdmin'])->group(function () {
-
 
 
             // Files
@@ -95,7 +94,7 @@ Route::group([
                 ->name('update', 'DictionaryUpdate')
                 ->name('destroy', 'DictionaryDestroy');
 
-            Route::get('language/rescan',[DictionaryController::class,'rescan'])->name('languageScanner');
+            Route::get('language/rescan', [DictionaryController::class, 'rescan'])->name('languageScanner');
 
             // Answers
             Route::resource('answers', AnswerController::class)
@@ -127,7 +126,7 @@ Route::group([
                 ->name('show', 'productShow');
 
             // Users
-            Route::resource('users',UserController::class)
+            Route::resource('users', UserController::class)
                 ->name('index', 'userIndex')
                 ->name('create', 'userCreateView')
                 ->name('store', 'userCreate')
@@ -166,7 +165,6 @@ Route::group([
         });
 
 
-
     });
 
     // User Rotes
@@ -178,7 +176,7 @@ Route::group([
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verifyaccount/{token}', [AuthController::class, 'verify'])->name('verify');
 
-    Route::get('/', [HomeController::class,'index'])->name('welcome');
+    Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
     Route::get('/facebook', [AuthController::class, 'facebook'])->name('loginfacebook');
     Route::get('/facebook/callback', [AuthController::class, 'facebookredirect'])->name('facebookredirect');
@@ -200,7 +198,7 @@ Route::group([
     Route::put('/cabinet-info/{user}', [CabinetController::class, 'cabinetInfoUpdate'])->name('cabinetInfoUpdate');
     Route::get('/cabinet-orders', [CabinetController::class, 'cabinetorders'])->name('CabinetOrders');
 
-    Route::match(['get','post'],'/contact-us', [ContactController::class, 'index'])->name('ContactUs');
+    Route::match(['get', 'post'], '/contact-us', [ContactController::class, 'index'])->name('ContactUs');
 
 
     // Purchase
@@ -222,12 +220,11 @@ Route::group([
 
 //    Route::get('invoice',[InvoiceController::class,'index'])->name('getInvoice');
 
-    Route::get('/invoice/{order}', [InvoiceController::class,'index'])->name('getInvoice');
+    Route::get('/invoice/{order}', [InvoiceController::class, 'index'])->name('getInvoice');
 
-    Route::get('/v1/pay/bog/check-payment-avail',[PurchaseController::class,'checkPaymentAvailUrl']);
+    Route::get('/v1/pay/bog/check-payment-avail', [PurchaseController::class, 'checkPaymentAvailUrl'])->middleware(\App\Http\Middleware\AuthenticateBogPayment::class);
 
-    Route::get('/v1/pay/bog/register-payment',[PurchaseController::class,'registerPaymentUrl']);
-
+    Route::get('/v1/pay/bog/register-payment', [PurchaseController::class, 'registerPaymentUrl'])->middleware(\App\Http\Middleware\AuthenticateBogPayment::class);
 
 
 });
