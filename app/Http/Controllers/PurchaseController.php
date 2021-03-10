@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Localization;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,8 @@ class PurchaseController extends Controller
 
             $order = Auth::user()->orders()->create([
                 'address' => $request->address,
-                'transaction_id'=>uniqid(),
+                'transaction_id' => uniqid(),
+                'total_price' => $total,
                 'paymethod' => $request->paymethod,
                 'pay_status' => 'Aproved',
                 'full_name' => $request->first_name . ' ' . $request->last_name,
@@ -61,7 +63,7 @@ class PurchaseController extends Controller
                 }
             }
             $order->products()->createMany($products);
-//            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&o.PaymentId=1&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products&o.order_id='.$order->id);
+            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&o.PaymentId=1&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge&back_url_f=https://chateausvanidze.com/ge/products&o.order_id=' . $order->id);
 
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
@@ -72,42 +74,46 @@ class PurchaseController extends Controller
 
     public function checkPaymentAvailUrl(Request $request)
     {
-        $xml = <<<XML
+        $orderId = $request['o_order_id'];
+        $order = Order::where(['id' => $orderId])->first();
+        if($order) {
+            $currency = env('GEORGIAN_CURRENCY');
+            $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><payment-avail-response>
 
-<result>
+        <result>
 
-  <code>1</code>
+          <code>1</code>
 
-  <desc>OK</desc>
+          <desc>OK</desc>
 
-</result>
+        </result>
 
-<merchant-trx>trx120</merchant-trx>
+        <merchant-trx>$order->transaction_id</merchant-trx>
 
-<purchase>
+        <purchase>
 
-  <shortDesc>buy</shortDesc>
+          <shortDesc>Buy</shortDesc>
 
-  <longDesc>buy items</longDesc>
+          <longDesc>Buy Wines</longDesc>
 
-  <account-amount>
+          <account-amount>
 
-    <id>POS18</id>
+            <amount>$order->total_price</amount>
 
-    <amount>2500</amount>
+            <currency>$currency</currency>
 
-    <currency>981</currency>
+            <exponent>2</exponent>
 
-    <exponent>2</exponent>
+          </account-amount>
 
-  </account-amount>
+        </purchase>
 
-</purchase>
-
-</payment-avail-response>
+        </payment-avail-response>
 XML;
-        return response()->xml($xml);
+            return response()->xml($xml);
+        }
+        return false;
 
     }
 
