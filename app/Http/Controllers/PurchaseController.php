@@ -138,8 +138,8 @@ XML;
             ->update([
                 'transaction_id' => $request['trx_id'],
                 'pay_status' => $status,
-                'card_number' => $request['card_registered'] == "Y" ? $request['card_id'] : null,
-                'card_expiry' => $request['card_registered'] == "Y" ? $request['card_expiry'] : null
+                'card_number' => $request['p_maskedPan'],
+                'card_expiry' => $request['p_cardholder']
             ]);
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
