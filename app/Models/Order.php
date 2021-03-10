@@ -17,7 +17,7 @@ class Order extends Model
         'transaction_id',
         'total_price',
         'card_number',
-        'card_expiry',
+        'card_holder',
         'paymethod',
         'pay_status',
         'full_name',

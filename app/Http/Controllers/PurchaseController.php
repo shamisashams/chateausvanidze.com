@@ -139,7 +139,7 @@ XML;
                 'transaction_id' => $request['trx_id'],
                 'pay_status' => $status,
                 'card_number' => $request['p_maskedPan'],
-                'card_expiry' => $request['p_cardholder']
+                'card_holder' => $request['p_cardholder']
             ]);
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
