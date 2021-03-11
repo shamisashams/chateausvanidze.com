@@ -105,7 +105,7 @@
                 <div>
                     <h2 class="buy__title">{{__('client.payment_methods')}}</h2>
 
-                    <div class="payment-methods" style="float: left">
+                    <div class="payment-methods">
                         <label class="checkbox">
                             <input type="radio" onclick="showHideBanks(this)" name="paymethod" value="card">
                             <span></span>
