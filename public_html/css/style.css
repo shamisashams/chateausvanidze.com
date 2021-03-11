@@ -5280,6 +5280,7 @@ input[type=number] {
     }
 
     .payment-methods {
+        width:100%;
         display: block;
         padding: 20px 0;
         margin-bottom: 20px;
@@ -5312,6 +5313,9 @@ input[type=number] {
 
     .order-aside-btn {
         line-height: 40px;
+    }
+    #bank-error-message{
+        margin-bottom:10px;
     }
 }
 
@@ -5770,6 +5774,56 @@ input[type=number] {
         margin: 0 auto 30px;
         width: 200px;
     }
+}
+
+.bog-checkbox {
+    width: max-content;
+    margin-bottom: 30px;
+    margin-top: -10px;
+    position: relative;
+    padding: 0 13px;
+    line-height: 32px;
+    font-size: 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #111;
+}
+.bog-checkbox img {
+    width: 23px;
+    margin-right: 5px;
+}
+.bog-checkbox span {
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: rgba(211, 211, 211, 0.356);
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 11px;
+    color: #111;
+    transition: .4s;
+}
+.bog-checkbox input:checked {
+    border: 1px solid var(--clr-red);
+}
+.bog-checkbox input:checked + span {
+    background-color: var(--clr-red);
+    color: #fff;
+}
+.bog-checkbox input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    cursor: pointer;
+    transition: .4s;
+    border-radius: 6px;
+    border: 1px solid gray;
 }
 /*  ----    .html   ----  */
 

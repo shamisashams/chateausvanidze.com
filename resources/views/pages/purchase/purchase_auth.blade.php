@@ -42,7 +42,7 @@
                 <form class="buy-grid" action="{{route('makePurchase', app()->getLocale())}}" method="POST">
                     @csrf
                     <div class="autorised__input editability">
-                        <input required type="text" value="{{ Auth::user()->language()->where('language_id', $localization)->first()->first_name ?? ''}}" name="first_name" placeholder="{{__('client.first_name')}}" >
+                        <input required type="text" id="first-name" value="{{ Auth::user()->language()->where('language_id', $localization)->first()->first_name ?? ''}}" name="first_name" placeholder="{{__('client.first_name')}}" >
                         <label for="">name</label>
                         <button type="button" onclick="editable(this)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10.092" height="10.091" viewBox="0 0 10.092 10.091">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="autorised__input editability">
-                        <input required type="text" name="last_name" value="{{ Auth::user()->language()->where('language_id', $localization)->first()->last_name ?? ''}}" placeholder="{{__('client.last_name')}}" >
+                        <input required type="text" name="last_name" id="last-name" value="{{ Auth::user()->language()->where('language_id', $localization)->first()->last_name ?? ''}}" placeholder="{{__('client.last_name')}}" >
                         <label for="">last_name</label>
                         <button type="button" onclick="editable(this)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10.092" height="10.091" viewBox="0 0 10.092 10.091">
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="autorised__input editability">
-                        <input required type="email" name="email"  value="{{ Auth::user()->email}}" placeholder="{{__('client.email')}}" >
+                        <input required type="email" name="email" id="email" value="{{ Auth::user()->email}}" placeholder="{{__('client.email')}}" >
                         <label for="">ელ-ფოსტა</label>
                         <button type="button" onclick="editable(this)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10.092" height="10.091" viewBox="0 0 10.092 10.091">
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="autorised__input editability">
-                        <input required type="number" name="phone" value="{{ Auth::user()->phone ?? ''}}" placeholder="{{__('client.phone')}}" >
+                        <input required type="number" name="phone" id="phone" value="{{ Auth::user()->phone ?? ''}}" placeholder="{{__('client.phone')}}" >
                         <label for="">მობილურის ნომერი</label>
                         <button type="button" onclick="editable(this)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10.092" height="10.091" viewBox="0 0 10.092 10.091">
@@ -89,7 +89,7 @@
 
 
                     <div class="autorised__input editability">
-                        <input required type="text" name="address"  value="{{ Auth::user()->language()->where('language_id', $localization)->first()->address ?? ''}}" placeholder="{{__('client.address')}}" >
+                        <input required type="text" name="address" id="address"  value="{{ Auth::user()->language()->where('language_id', $localization)->first()->address ?? ''}}" placeholder="{{__('client.address')}}" >
                         <label for="">მისამართი</label>
                         <button type="button" onclick="editable(this)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10.092" height="10.091" viewBox="0 0 10.092 10.091">
@@ -107,22 +107,28 @@
 
                     <div class="payment-methods" style="float: left">
                         <label class="checkbox">
-                            <input type="radio" name="paymethod" value="card">
+                            <input type="radio" onclick="showHideBanks(this)" name="paymethod" value="card">
                             <span></span>
                             {{__('client.pay_card')}}
                         </label>
 
                         <label class="checkbox">
-                            <input checked="checked" type="radio" name="paymethod" value="cash">
+                            <input checked="checked" onclick="showHideBanks(this)" type="radio" name="paymethod" value="cash">
                             <span></span>
                             {{__('client.pay_courier')}}
                         </label>
 
                     </div>
+                    <div id="banks-container" class="bog-checkbox">
+                        <input class="bank-items" type="checkbox">
+                        {{__('client.georgian_bank')}}
+                        <span>&check;</span>
+                    </div>
+                    <p hidden id="bank-error-message" style="margin-top:-15px;font-size: 12px;color:red">{{__('client.please_choose_bank')}}</p>
                 </div>
                 <div></div>
                 <div >
-                    <button type="submit" class="aside-card__delete-btn" style="width: max-content; padding:5px">
+                    <button onclick="checkIfSelected()" type="button"  class="aside-card__delete-btn" style="width: max-content; padding:5px">
                         {{__('client.confirm')}}
                     </button>
                 </div>

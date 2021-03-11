@@ -28,7 +28,6 @@ class PurchaseController extends Controller
     {
         $cart = session('products') ?? null;
 
-
         if ($cart !== null) {
             $total = 0;
             // validate and get total
@@ -63,8 +62,9 @@ class PurchaseController extends Controller
                 }
             }
             $order->products()->createMany($products);
-            return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge/successful-payment&back_url_f=https://chateausvanidze.com/ge/fail-payment&o.order_id=' . $order->id);
-
+            if ($request->paymethod === "card") {
+                return redirect('https://mpi.gc.ge/page1/?lang_code=ka&merch_id=A903470D9AA87DAA2BC7&back_url_s=https://chateausvanidze.com/ge/successful-payment&back_url_f=https://chateausvanidze.com/ge/fail-payment&o.order_id=' . $order->id);
+            }
             session(['products' => []]);
             return redirect()->route('CabinetOrders', app()->getLocale());
         } else {
@@ -140,6 +140,7 @@ XML;
                 'card_number' => $request['p_maskedPan'],
                 'card_holder' => $request['p_cardholder']
             ]);
+        session(['products' => []]);
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
       <register-payment-response>
