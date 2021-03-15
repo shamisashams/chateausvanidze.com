@@ -504,15 +504,16 @@ function getMeta(metaName) {
 }
 
 function showHideBanks() {
-    let banks = document.querySelector('#banks-container');
+    let banks = document.querySelectorAll('#banks-container');
+    let array=[...banks];
     let paymethod = document.getElementsByName('paymethod');
     let bankErrorMessage=document.querySelector('#bank-error-message');
     if (paymethod[0].checked === true) {
-        banks.style.display = 'flex';
+        array.forEach(item=>item.style.display="flex");
     }
     if (paymethod[1].checked === true) {
         bankErrorMessage.hidden=true;
-        banks.style.display = 'none';
+        array.forEach(item=>item.style.display="none");
     }
 }
 

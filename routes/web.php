@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\LocalizationController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
@@ -162,6 +163,12 @@ Route::group([
                 ->name('edit', 'settingEditView')
                 ->name('update', 'settingUpdate')
                 ->name('show', 'settingShow');
+
+            Route::resource('order', OrderController::class)
+                ->name('index', 'orderIndex')
+                ->name('edit', 'orderEditView')
+                ->name('update', 'orderUpdate')
+                ->name('show', 'orderShow');
         });
 
 

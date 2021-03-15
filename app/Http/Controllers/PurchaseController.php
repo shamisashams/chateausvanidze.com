@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest;
+use App\Models\Bank;
 use App\Models\Localization;
 use App\Models\Order;
 use App\Models\Product;
@@ -14,10 +15,11 @@ class PurchaseController extends Controller
     public function index($locale)
     {
         $cart = session('products') ?? null;
+        $banks = Bank::all();
         if ($cart !== null || count($cart) > 0) {
             if (Auth::user()) {
                 $localization = Localization::where('abbreviation', app()->getLocale())->first()->id;
-                return view('pages.purchase.purchase_auth', compact('localization'));
+                return view('pages.purchase.purchase_auth', compact('localization', 'banks'));
             }
             return view('pages.purchase.purchase_un_auth');
         }
@@ -39,11 +41,13 @@ class PurchaseController extends Controller
             }
 
             $total += 0; // mitana
+            $bank = Bank::where(['id' => $request['bank_id']])->first();
 
             $order = Auth::user()->orders()->create([
                 'address' => $request->address,
                 'transaction_id' => uniqid(),
                 'total_price' => $total,
+                'bank_id' => $bank ? $bank->id : null,
                 'paymethod' => $request->paymethod,
                 'pay_status' => Order::STATUS_PENDING,
                 'full_name' => $request->first_name . ' ' . $request->last_name,

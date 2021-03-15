@@ -15,6 +15,7 @@ class Order extends Model
         'user_id',
         'address',
         'transaction_id',
+        'bank_id',
         'total_price',
         'card_number',
         'card_holder',
@@ -35,5 +36,10 @@ class Order extends Model
             $total += $item->quantity * $item->price;
         }
         return $total;
+    }
+
+    public function bank()
+    {
+        return $this->hasOne(Bank::class, 'id', 'bank_id');
     }
 }

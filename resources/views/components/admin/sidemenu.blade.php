@@ -20,7 +20,7 @@
           <li class="sub-header">
             <span>Options</span>
           </li>
-   
+
             <li class="">
               <a href="{{route('productIndex',app()->getLocale() )}}">
                     <div class="icon-w">
@@ -49,7 +49,7 @@
                   <div class="os-icon os-icon-flag"></div>
                 </div>
                 <span>@lang('admin.language')</span></a>
-  
+
             </li>
             <li>
               <a href="/{{app()->getLocale()}}/admin/answers">
@@ -57,7 +57,7 @@
                   <div class="os-icon os-icon-flag"></div>
                 </div>
                 <span>@lang('admin.answers')</span></a>
-  
+
             </li>
             <li>
               <a href="/{{app()->getLocale()}}/admin/news">
@@ -65,7 +65,7 @@
                   <div class="os-icon os-icon-flag"></div>
                 </div>
                 <span>@lang('admin.news')</span></a>
-  
+
             </li>
             <li>
               <a href="/{{app()->getLocale()}}/admin/files">
@@ -73,7 +73,7 @@
                   <div class="os-icon os-icon-flag"></div>
                 </div>
                 <span>@lang('admin.files')</span></a>
-  
+
             </li>
             <li class="">
                 <a href="{{route('userIndex',app()->getLocale() )}}">
@@ -81,6 +81,13 @@
                         <div class="os-icon os-icon-life-buoy"></div>
                     </div>
                     <span>{{__('admin.users')}}</span></a>
+            </li>
+            <li class="">
+                <a href="{{route('orderIndex',app()->getLocale() )}}">
+                    <div class="icon-w">
+                        <div class="os-icon os-icon-life-buoy"></div>
+                    </div>
+                    <span>{{__('admin.orders')}}</span></a>
             </li>
             <li class="">
                 <a href="{{route('pageIndex',app()->getLocale() )}}">
@@ -103,10 +110,10 @@
                     </div>
                     <span>{{__('admin.slider')}}</span></a>
             </li>
-         
 
-       
-      
+
+
+
         </ul>
       </div>
 </div>
