@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="{{asset('../css/style.css?v=16')}}">
+    <link rel="stylesheet" href="{{asset('../css/style.css?v=17')}}">
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/nouislider.css">
 
@@ -46,7 +46,7 @@
 
     <!-- regular js-->
     <script src="{{asset('../script/details.js')}}"></script>
-    <script src="{{asset('../script/general.js?v=3')}}"></script>
+    <script src="{{asset('../script/general.js?v=4')}}"></script>
     <script src="{{asset('../script/nouislider.min.js')}}"></script>
     <script src="{{asset('../script/products.js')}}"></script>
     <script src="{{asset('../script/index.js?v=2')}}"></script>
