@@ -2,6 +2,6 @@
 
 return
 [
-	'add_files' => 'Add a File',
-	'create' => 'Create',
+	'add_files' => "Add a File",
+	'create' => "Create",
 ];

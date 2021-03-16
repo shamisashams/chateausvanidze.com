@@ -2,11 +2,11 @@
 
 return
 [
-	'key' => 'Key',
-	'module' => 'Module',
-	'permissions' => 'Permissions',
-	'create' => 'Create',
-	'file' => 'File',
-	'status' => 'Status',
-	'Position' => 'Position',
+	'key' => "Key",
+	'module' => "Module",
+	'permissions' => "Permissions",
+	'create' => "Create",
+	'file' => "File",
+	'status' => "Status",
+	'Position' => "Position",
 ];
