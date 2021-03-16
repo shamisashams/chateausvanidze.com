@@ -3,6 +3,8 @@
     {!! Form::open(['url' => route('orderIndex', $locale),'method' =>'get']) !!}
     <div class="controls-above-table">
         <div class="row">
+            <div class="col-sm-2">
+            </div>
             <div class="col-sm-10 per-page-column">
                 <div class="per-page-container">
                     {{ Form::select('per_page',[10 => 10,20 => 20,30 => 30,50 => 50,100=>100],(Request::get('per_page') != null ? Request::get('per_page') : 10),  ['class' => 'form-control', 'no','onChange' => 'this.form.submit()']) }}
@@ -99,7 +101,7 @@
                             {{$order->paymethod}}
                         </td>
                         <td class="text-center">
-                            {{$order->total_price/100}}
+                            {{number_format($order->total_price/100,2)}} {{__('admin.gel')}}
                         </td>
                         <td class="text-center">
                             @if($order->pay_status==\App\Models\Order::STATUS_APPROVED)

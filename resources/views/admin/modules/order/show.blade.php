@@ -61,7 +61,7 @@
                                             {{count($singleOrder->product->availableLanguage)>0?$singleOrder->product->availableLanguage[0]->title:""}}
                                         </td>
                                         <td class="text-center">
-                                            {{number_format($singleOrder->price/100,2)}}
+                                            {{number_format($singleOrder->price/100,2)}} {{__('admin.gel')}}
                                         </td>
                                         <td class="text-center">
                                             {{$singleOrder->quantity}}
