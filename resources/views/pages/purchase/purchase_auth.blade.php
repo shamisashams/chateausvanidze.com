@@ -144,7 +144,7 @@
                             @foreach($banks as $bank)
                                 <div id="banks-container" class="bank-checkbox">
                                         <input class="bank-items" type="radio" name="bank_id" value="{{$bank->id}}">
-                                        {{__('client.')}}{{$bank->config_path}}
+                                        {{__('client.'.$bank->config_path)}}
                                         <span>&check;</span>
 
                                 </div>
