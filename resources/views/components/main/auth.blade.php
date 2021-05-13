@@ -1,5 +1,22 @@
- <!-- auth modal Log In -->
-    <div class="auth-modal login" >
+<?php
+$authLogin = false;
+$authRegister = false;
+if (count($errors)) {
+    $oldAttributes = request()->old();
+    if (count($oldAttributes))  {
+        if (array_key_exists('samepassword', $oldAttributes)) {
+            $authRegister = true;
+        }
+        if(array_key_exists('email', $oldAttributes) && !array_key_exists('samepassword',$oldAttributes)) {
+            $authLogin = true;
+        }
+    }
+}
+
+?>
+
+<!-- auth modal Log In -->
+    <div class="auth-modal login {{$authLogin ? 'visible' : ''}}" >
         <form action="{{route('login', app()->getLocale())}}" method="POST" class="auth-form" id="log-in-form">
             @csrf
             <div class="auth-close">
@@ -52,7 +69,7 @@
     </div>
 
     <!-- auth modal Registration -->
-    <div class="auth-modal register" >
+    <div class="auth-modal register {{$authRegister ? 'visible' : ''}}" >
         <form action="{{route('Register', app()->getLocale())}}" method="POST" class="auth-form" id="registration-form">
             @csrf
 
