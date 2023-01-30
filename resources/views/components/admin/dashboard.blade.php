@@ -3,11 +3,12 @@
         <div class="all-wrapper solid-bg-all" style="height: 87vh;">
             <div class="layout-w" style="height: 100%">
                 <x-admin.mobilemenu/>
-                
+
                 <x-admin.sidemenu/>
                 <div class="content-w">
                     <x-admin.navbar/>
                     <x-admin.breadcrumb/>
+                    <x-admin.alert />
                     <div class="dashboard">
                         {{$slot}}
                     </div>
@@ -20,7 +21,7 @@
                         <span>Dark </span><span>Colors</span>
                       </div>
                 </div>
-                    
+
             </div>
         </div>
     </div>

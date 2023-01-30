@@ -1,0 +1,31 @@
+<?php
+
+return
+[
+	'products' => "პროდუქცია",
+	'localizations' => "ენები",
+	'create_localizations' => "დაამატე ენა",
+	'language' => "თარგმნები",
+	'settings' => "პარამეტრები",
+	'pages' => "გვერდები",
+	'create_pages' => "გვერდის დამატება",
+	'features' => "თვისებები",
+	'answers' => "პასუხები",
+	'news' => "სიახლეები",
+	'files' => "ფაილები",
+	'users' => "მომხმარებლები",
+	'slider' => "სლაიდერი",
+	'create_slider' => "სლაიდის შექმნა",
+	'failed_status' => "წარუმატებელი",
+	'pending_status' => "მუშავდება",
+	'success_status' => "წარმატებული",
+	'gel' => "GEL",
+	'orders' => "გაყიდვები",
+	'full_name' => "სრული სახელი",
+	'email' => "ელ.ფოსტა",
+	'phone' => "ტელეფონი",
+	'address' => "მისამართი",
+	'order_details' => "შეკვეთის დეტალები",
+	'order' => "გაყიდვები",
+	'update_order' => "შეკვეთის სტატუსის შეცვლა",
+];

@@ -1,0 +1,31 @@
+<?php
+
+return
+[
+	'products' => "",
+	'localizations' => "",
+	'create_localizations' => "",
+	'language' => "",
+	'settings' => "",
+	'pages' => "",
+	'create_pages' => "",
+	'features' => "",
+	'answers' => "",
+	'news' => "",
+	'files' => "",
+	'users' => "",
+	'slider' => "Slider",
+	'create_slider' => "Create Slider",
+	'failed_status' => "Неудачная покупка",
+	'pending_status' => "В процесе",
+	'success_status' => "Удачная покупка",
+	'gel' => "GEL",
+	'orders' => "Заказы",
+	'full_name' => "Полное имя",
+	'email' => "Ел.почта",
+	'phone' => "Телефон",
+	'address' => "Адрес",
+	'order_details' => "Детали заказа",
+	'order' => "Заказы",
+	'update_order' => "",
+];

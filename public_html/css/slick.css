@@ -1,0 +1,284 @@
+/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    /* height: 100%; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    /* height: auto; */
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+
+/* remove Outline - select slide name */
+.slick-slide {
+    outline: none;
+    cursor: pointer;
+}
+
+/* ------- custom slider parameters here*/
+
+/* add space the slides  slider = .hero */
+.hero__slider .slick-slide {
+    margin-right: 10px;
+}
+
+/* show half slide  ********************/
+.hero__slider .slick-list{
+    padding: 0 90px 0 0;
+}
+@media (max-width: 1000px) {
+    .hero__slider .slick-list{
+        padding: 0;
+    }
+    .hero__slider  .slick-slide {
+        margin: 0 ;
+    }
+    /* the parent */
+    .hero__slider  .slick-list {
+        margin: 0 ;
+    }
+
+}
+/* ------- end of  custom slider parameters here*/
+
+
+
+
+/* custom arrows */ /* for .hero__slider */
+
+
+
+
+
+/* custom dots --------------- */
+
+ul {list-style: none;}
+
+.slider {
+    position: relative;
+}
+.hero__slider .slick-dots {
+    position: absolute;
+    bottom: -50px;
+    left: 40%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    width: 60%;
+}
+/* style with slider class*/
+.hero__slider .slick-dots li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero__slider .slick-dots button {
+    font-size: 0;
+    width: 100%;
+    height: 3px;
+    background:  #CECECE;
+    border: none;
+    outline: none;
+    box-sizing: content-box;
+    transition: .9s;
+    position: relative;
+}
+.hero__slider .slick-dots button::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: transparent;
+}
+.hero__slider .slick-dots button:hover {
+    background-color: #000;
+}
+.hero__slider .slick-dots .slick-active button{
+    background-color: #000;
+    height: 6px;
+}
+
+@media (max-width: 1000px) {
+    .hero__slider .slick-dots {
+        left: 42%;
+        width: 57%;
+    }
+}
+@media (max-width: 730px)  {
+    .hero__slider .slick-arrow {
+        bottom: -53px;
+    }
+    .hero__slider .tbn-left {
+        left:  10px
+    }
+    .hero__slider .tbn-right {
+        left: 60px;
+    }
+    .hero__slider .slick-dots {
+        bottom: -37px;
+        left: 32%;
+        width: 65%;
+    }
+
+}
+
+
+
+/* arrows  section 3 -- product slider  */
+
+/* space btwen slides */
+.product__grid.slider .slick-slide {
+    margin: 0 10px;
+}
+/* the parent */
+.product__grid.slider .slick-list {
+    margin: 0 -10px;
+}
+
+.product__grid.slider .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    width: auto;
+    height: auto;
+    border-radius: 7px;
+
+}
+.product__grid.slider .s-btn svg {
+    display: block;
+    fill: #771732;;
+}
+.product__grid.slider .btn-left {
+    left:  -28px;
+}
+.product__grid.slider .btn-right {
+    right: -28px;
+}
+
+
+@media (max-width: 1390px) {
+    .product__grid.slider .btn-left {
+        left:  -10px;
+    }
+    .product__grid.slider .btn-right {
+        right: -10px;
+    }
+}
+

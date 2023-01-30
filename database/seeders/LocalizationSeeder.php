@@ -23,8 +23,6 @@ class LocalizationSeeder extends Seeder
      */
     public function run()
     {
-        // Delete all raws from localization
-        DB::table('localizations')->truncate();
 
 
         // Localization Array
@@ -57,8 +55,6 @@ class LocalizationSeeder extends Seeder
 
 
         // Insert localizations
-        foreach ($localizations as $localization) {
-            Localization::updateOrCreate($localization);
-        }
+        Localization::insert($localizations);
     }
 }

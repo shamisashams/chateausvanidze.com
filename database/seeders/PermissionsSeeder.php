@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PermissionsSeeder extends Seeder
 {
@@ -15,9 +16,33 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('permissions')->delete();
-        DB::table('roles_permissions')->delete();
-        DB::table('users_permissions')->delete();
+
+
+        if(DB::table('roles_permissions')->delete()) {
+            DB::table('roles_permissions')->truncate();
+        }
+
+        if(DB::table('users_permissions')->delete()) {
+            DB::table('users_permissions')->truncate();
+        }
+
+        if(DB::table('users_roles')->delete()) {
+            DB::table('users_roles')->truncate();
+        }
+
+        if (DB::table('permissions')->delete()) {
+            DB::table('permissions')->truncate();
+        }
+
+
+        if (DB::table('roles')->delete()) {
+            DB::table('roles')->truncate();
+        }
+
+        if (DB::table('users')->delete()) {
+            DB::table('users')->truncate();
+        }
+
 
         $permissions = array(
             array('name' => 'Read', 'slug' => 'read'),
@@ -29,7 +54,7 @@ class PermissionsSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test test',
             'email' => 'webmaster@gmail.com',
-            'password' => '$2y$10$sgEPreNxcHq0gtVFEXFSFOYMES5nXqyWcjnOiqAYMO3CB4kxtbkKi',
+            'password' => Hash::make('Webmaster'),
         ]);
 
         DB::table('roles')->insert([
